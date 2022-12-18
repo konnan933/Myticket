@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('kib_neve');
             $table->string('vevo_nev');
             $table->dateTime('kib_datum');
-            $table->float('afa');
+            $table->float('afa')->default(27);
             $table->decimal('afa_nelk_ar', 19, 4);
             $table->decimal('afas_ar', 19, 4);
         });

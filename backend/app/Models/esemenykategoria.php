@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class esemenykategoria extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'megnev',
+    ];
 }

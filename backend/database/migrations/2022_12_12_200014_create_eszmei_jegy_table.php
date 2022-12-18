@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('eszmei_jegy', function (Blueprint $table) {
             $table->foreignId('esemeny_id')->references('esemeny_id')->on('esemenyek');
-            $table->bigInteger('eszmei_jegy_id');
+            $table->id('eszmei_jegy_id');
             $table->foreignId('tipus')->references('jegy_tipus_id')->on('jegy_tipus');
             $table->integer('ossz_menny');
             $table->integer('lefog_menny')->default(0);
@@ -24,7 +24,7 @@ return new class extends Migration
             $table->decimal('p_mennyiseg', 8, 2);
             $table->decimal('ara', 19, 4);
             $table->dateTime('kezd_datum');
-            $table->primary(['esemeny_id','eszmei_jegy_id']);
+            /* $table->primary(['esemeny_id','eszmei_jegy_id']); */
             $table->foreign('penznem')->references('penznem')->on('deviza');
         });
     }

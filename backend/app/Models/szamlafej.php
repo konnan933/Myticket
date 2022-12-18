@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class szamlafej extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'kib_neve',
+        'vevo_nev',
+        'kib_datum',
+        'afa_nelk_ar',
+        'afas_ar',
+    ];
 }

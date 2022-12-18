@@ -8,4 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class eszmei_jegyvalt extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'esemeny_id',
+        'eszmei_jegy_id',
+        'tipus',
+        'ossz_menny',
+        'lefog_menny',
+        'szabad_menny',
+        'penznem',
+        'p_mennyiseg',
+        'ara',
+        'kezd_datum',
+        'penznem',
+        'datumig',
+    ];
 }

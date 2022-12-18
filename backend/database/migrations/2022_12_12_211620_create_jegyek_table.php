@@ -16,11 +16,10 @@ return new class extends Migration
         Schema::create('jegyek', function (Blueprint $table) {
             $table->id('jegy_id');
             $table->foreignId('esemeny_id')->references('esemeny_id')->on('eszmei_jegy');
-            $table->bigInteger('eszmei_jegy_id');
+            $table->foreignId('eszmei_jegy_id')->references('eszmei_jegy_id')->on('eszmei_jegy');
             $table->foreignId('user')->references('user_id')->on('users');
             $table->foreignId('szamlaszam')->references('szamlaszam')->on('szamlafej');
             $table->string('qrkod')->unique();
-            $table->foreign('eszmei_jegy_id')->references('eszmei_jegy_id')->on('eszmei_jegy');
         });
     }
 
