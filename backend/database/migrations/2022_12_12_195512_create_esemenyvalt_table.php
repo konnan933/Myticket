@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -29,6 +30,10 @@ return new class extends Migration
             $table->tinyInteger('statusz');
             $table->dateTime('datumig');
         });
+
+
+        DB::statement("ALTER TABLE esemenyvalt ADD CONSTRAINT
+        check_dates CHECK (veg_datum > kezd_datum)");
     }
 
     /**

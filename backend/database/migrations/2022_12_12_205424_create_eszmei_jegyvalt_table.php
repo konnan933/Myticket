@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -25,6 +26,12 @@ return new class extends Migration
             $table->dateTime('kezd_datum');
             $table->dateTime('datumig');
         });
+
+        DB::statement("ALTER TABLE eszmei_jegyvalt ADD CONSTRAINT
+        p_menny CHECK (p_mennyiseg > 0)");
+
+        DB::statement("ALTER TABLE eszmei_jegyvalt ADD CONSTRAINT
+        ara_check CHECK (ara >= 0)");
     }
 
     /**

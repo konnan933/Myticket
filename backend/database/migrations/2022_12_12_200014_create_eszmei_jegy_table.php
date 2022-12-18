@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -24,16 +25,22 @@ return new class extends Migration
             $table->decimal('p_mennyiseg', 8, 2);
             $table->decimal('ara', 19, 4);
             $table->dateTime('kezd_datum');
-            /* $table->primary(['esemeny_id','eszmei_jegy_id']); */
             $table->foreign('penznem')->references('penznem')->on('deviza');
         });
+
+        DB::statement("ALTER TABLE eszmei_jegy ADD CONSTRAINT
+    	fog_menny CHECK (lefog_menny < ossz_menny)");
+
+        DB::statement("ALTER TABLE eszmei_jegy ADD CONSTRAINT
+        szab_menny CHECK (szabad_menny >= 0)");
+
+        DB::statement("ALTER TABLE eszmei_jegy ADD CONSTRAINT
+        p_menny CHECK (p_mennyiseg > 0)");
+
+        DB::statement("ALTER TABLE eszmei_jegy ADD CONSTRAINT
+        ara_check CHECK (ara >= 0)");
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('eszmei_jegy');

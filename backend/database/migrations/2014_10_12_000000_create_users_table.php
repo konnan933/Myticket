@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password')->hash();
             $table->string('fel_nev');
-            $table->tinyInteger('level')->default(0);
+            $table->tinyInteger('level')->default(1);
             $table->string('telefonszam')->unique();
             $table->tinyInteger('szab_sert_szam')->default(0);
             $table->rememberToken();

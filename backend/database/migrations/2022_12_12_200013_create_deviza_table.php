@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -18,6 +19,9 @@ return new class extends Migration
             $table->decimal('penz_val',7 , 3 );
             $table->primary('penznem');
         });
+
+        DB::statement("ALTER TABLE deviza ADD CONSTRAINT
+        pen_val CHECK (penz_val >= 0)");
     }
 
     /**

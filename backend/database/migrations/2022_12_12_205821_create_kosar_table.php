@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -21,8 +22,11 @@ return new class extends Migration
             $table->integer('db');
             $table->dateTime('lefog_ido');
             $table->boolean('kifizetve')->default(false);
-            //$table->foreign('eszmei_jegy_id')->references('eszmei_jegy_id')->on('eszmei_jegy');
         });
+
+        DB::statement("ALTER TABLE kosar ADD CONSTRAINT
+    	db_check CHECK (db < 50 OR db > 0 )");
+        
     }
 
     /**
