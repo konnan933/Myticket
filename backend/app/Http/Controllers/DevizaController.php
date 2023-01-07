@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class jegyek extends Controller
+class DevizaController extends Controller
 {
     //
 }
