@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -16,13 +18,20 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id('user_id');
             $table->string('email')->unique();
-            $table->string('password')->hash();
+            $table->string('password')->hash(); // KLITTINA megkerdezni
             $table->string('fel_nev');
             $table->tinyInteger('level')->default(1);
             $table->string('telefonszam')->unique();
             $table->tinyInteger('szab_sert_szam')->default(0);
             $table->rememberToken();
+            
         });
+
+        User::create(['email'=>'student1@gmail.com', 'password'=> Hash::make('Aa123456'), 'fel_nev'=>'Marcsi', 'telefonszam'=>'06701274832' ]);
+        User::create(['email'=>'admin@gmail.com', 'password'=> Hash::make('Aa123456'), 'fel_nev'=>'Admin', 'telefonszam'=>'06708392017', 'level' => 0]);
+        User::create(['email'=>'ivanadminvagyok@gmail.com', 'password'=> Hash::make('Aa123456'), 'fel_nev'=>'Ivan', 'telefonszam'=>'06701287321', 'level' => 0 ]);
+        User::create(['email'=>'test1234@gmail.com', 'password'=> Hash::make('Aa123456'), 'fel_nev'=>'test1234', 'telefonszam'=>'06700867534' ]);
+        User::create(['email'=>'samuka@gmail.com', 'password'=> Hash::make('Aa123456'), 'fel_nev'=>'Samu', 'telefonszam'=>'06709857543' ]);
     }
 
     /**

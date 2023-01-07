@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class szamlafej extends Model
 {
     use HasFactory;
+    public $table = 'szamlafej';
+    public $timestamps = false;
     protected $fillable = [
         'kib_neve',
         'vevo_nev',
