@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\deviza;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
@@ -23,11 +25,11 @@ return new class extends Migration
         DB::statement("ALTER TABLE deviza ADD CONSTRAINT
         pen_val CHECK (penz_val >= 0)");
 
-        User::create(['penznem' => 'HUF', 'penz_val' => 4.12]);
-        User::create(['penznem' => 'USD', 'penz_val' => 500.10]);
-        User::create(['penznem' => 'CHF', 'penz_val' => 450.70]);
-        User::create(['penznem' => 'EUR', 'penz_val' => 1000.20]);
-        User::create(['penznem' => 'BTC', 'penz_val' => 10000.500]);
+        deviza::create(['penznem' => 'HUF', 'penz_val' => 4.12]);
+        deviza::create(['penznem' => 'USD', 'penz_val' => 500.10]);
+        deviza::create(['penznem' => 'CHF', 'penz_val' => 450.70]);
+        deviza::create(['penznem' => 'EUR', 'penz_val' => 1000.20]);
+        deviza::create(['penznem' => 'BTC', 'penz_val' => 9000.500]);
     }
 
     /**

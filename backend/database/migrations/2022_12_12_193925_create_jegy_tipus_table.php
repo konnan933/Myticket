@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\jegy_tipus;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -18,11 +20,11 @@ return new class extends Migration
             $table->string('megnev');
         });
 
-        User::create(['megnev' => 'Early bid']);
-        User::create(['megnev' => 'Standard']);
-        User::create(['megnev' => 'Sandard 1']);
-        User::create(['megnev' => 'VIP']);
-        User::create(['megnev' => 'Exclusive']);
+        jegy_tipus::create(['megnev' => 'Early bid']);
+        jegy_tipus::create(['megnev' => 'Standard']);
+        jegy_tipus::create(['megnev' => 'Sandard 1']);
+        jegy_tipus::create(['megnev' => 'VIP']);
+        jegy_tipus::create(['megnev' => 'Exclusive']);
 
     }
 

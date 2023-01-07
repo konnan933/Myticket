@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\helyszinek;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -18,11 +19,11 @@ return new class extends Migration
             $table->string('megnev');
         });
 
-        User::create(['megnev' => 'Alterego']);
-        User::create(['megnev' => 'Kek osztriga']);
-        User::create(['megnev' => 'A38']);
-        User::create(['megnev' => 'Cat']);
-        User::create(['megnev' => 'Dog']);
+        helyszinek::create(['megnev' => 'Alterego']);
+        helyszinek::create(['megnev' => 'Kek osztriga']);
+        helyszinek::create(['megnev' => 'A38']);
+        helyszinek::create(['megnev' => 'Cat']);
+        helyszinek::create(['megnev' => 'Dog']);
 
     }
 

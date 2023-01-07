@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class jegy_tipus extends Model
 {
     use HasFactory;
+    public $table = 'jegy_tipus';
+    public $timestamps = false;
     protected $fillable = [
         'megnev',
     ];

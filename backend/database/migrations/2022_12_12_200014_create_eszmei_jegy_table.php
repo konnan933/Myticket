@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\eszmei_jegy;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
@@ -40,15 +42,15 @@ return new class extends Migration
         DB::statement("ALTER TABLE eszmei_jegy ADD CONSTRAINT
         ara_check CHECK (ara >= 0)");
 
-User::create(['esemeny_id' => '0', 'tipus' => '0', 'ossz_menny' => '2000', 'lefog_menny' => '100', 'szabad_menny' => '1900', 'penznem' => 'EUR', 'p_mennyiseg' => 10.1, 'ara' => '5', 'kezd_datum' => '2024-01-01 15:20:00']);
+eszmei_jegy::create(['esemeny_id' => '1', 'tipus' => '1', 'ossz_menny' => '2000', 'lefog_menny' => '100', 'szabad_menny' => '1900', 'penznem' => 'EUR', 'p_mennyiseg' => 10.1, 'ara' => '5', 'kezd_datum' => '2024-01-01 15:20:00']);
 
-User::create(['esemeny_id' => '1', 'tipus' => '1', 'ossz_menny' => '1000', 'lefog_menny' => '20', 'szabad_menny' => '980', 'penznem' => 'HUF', 'p_mennyiseg' => 15.10, 'ara' => '20', 'kezd_datum' => '2025-02-25 20:30:00']);
+eszmei_jegy::create(['esemeny_id' => '2', 'tipus' => '2', 'ossz_menny' => '1000', 'lefog_menny' => '20', 'szabad_menny' => '980', 'penznem' => 'HUF', 'p_mennyiseg' => 15.10, 'ara' => '20', 'kezd_datum' => '2025-02-25 20:30:00']);
 
-User::create(['esemeny_id' => '2', 'tipus' => '2', 'ossz_menny' => '5000', 'lefog_menny' => '500', 'szabad_menny' => '4500', 'penznem' => 'BTC', 'p_mennyiseg' => 1.5, 'ara' => '0.1', 'kezd_datum' => '2023-12-01 23:00:00' ]);
+eszmei_jegy::create(['esemeny_id' => '3', 'tipus' => '3', 'ossz_menny' => '5000', 'lefog_menny' => '500', 'szabad_menny' => '4500', 'penznem' => 'BTC', 'p_mennyiseg' => 1.5, 'ara' => '0.1', 'kezd_datum' => '2023-12-01 23:00:00' ]);
 
-User::create(['esemeny_id' => '3', 'tipus' => '3', 'ossz_menny' => '1000', 'lefog_menny' => '20', 'szabad_menny' => '980', 'penznem' => 'HUF', 'p_mennyiseg' => 15.10, 'ara' => '20', 'kezd_datum' => '2023-08-12 17:00:00' ]);
+eszmei_jegy::create(['esemeny_id' => '4', 'tipus' => '4', 'ossz_menny' => '1000', 'lefog_menny' => '20', 'szabad_menny' => '980', 'penznem' => 'HUF', 'p_mennyiseg' => 15.10, 'ara' => '20', 'kezd_datum' => '2023-08-12 17:00:00' ]);
 
-User::create(['esemeny_id' => '4', 'tipus' => '4', 'ossz_menny' => '1000', 'lefog_menny' => '20', 'szabad_menny' => '980', 'penznem' => 'HUF', 'p_mennyiseg' => 15.10, 'ara' => '20', 'kezd_datum' => '2024-12-31 15:20:00', ]);
+eszmei_jegy::create(['esemeny_id' => '5', 'tipus' => '5', 'ossz_menny' => '1000', 'lefog_menny' => '20', 'szabad_menny' => '980', 'penznem' => 'HUF', 'p_mennyiseg' => 15.10, 'ara' => '20', 'kezd_datum' => '2024-12-31 15:20:00', ]);
 
     }
 
