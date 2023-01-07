@@ -42,6 +42,19 @@ return new class extends Migration
             VALUES 
             (esemenyek.esemeny_id, esemenyek.cim, esemenyek.helyszin, esemenyek.kezd_datum,  esemenyek.veg_datum, esemenyek.leiras, esemenyek.buisness_email, esemenyek.buisness_tel, esemenyek.esem_kat, esemenyek.jutalek,esemenyek.statusz, current_timestamp());
         END');
+
+
+        User::create([ 'cim' => 'Next level', 'szervezo'=> '0', 'helyszin' => '2', 'kezd_datum' => '2024-01-01 15:20:00','veg_datum' => '2024-01-01 20:20:00', 'leiras' => 'Serpane riddim', 'buisness_email' => 'nextlevel@gmail.com', 'buisness_tel' => '06706382542', 'esemeny_kat' => '0' ]);
+
+        User::create([ 'cim' => 'Cat presents KNCSK', 'szervezo'=> '1', 'helyszin' => '3', 'kezd_datum' => '2025-02-25 20:30:00','veg_datum' => '2025-02-25 23:30:00', 'leiras' => 'KNCSK INSANE RIDDIM', 'buisness_email' => 'kncsk@gmail.com', 'buisness_tel' => '06706280732', 'esemeny_kat' => '1' ]);
+
+        User::create([ 'cim' => 'Dog presents IVAN', 'szervezo'=> '2', 'helyszin' => '4', 'kezd_datum' => '2023-12-01 23:00:00','veg_datum' => '2023-12-02 04:30:00', 'leiras' => 'IVAN latin est', 'buisness_email' => 'latinivan@gmail.com', 'buisness_tel' => '06703792732', 'esemeny_kat' => '2' ]);
+
+        User::create([ 'cim' => 'Kek osztriga laza bulika', 'szervezo'=> '3', 'helyszin' => '1', 'kezd_datum' => '2023-08-12 17:00:00','veg_datum' => '2023-08-12 20:30:00', 'leiras' => 'Pansipos laza party', 'buisness_email' => 'keklaza@gmail.com', 'buisness_tel' => '06701294084', 'esemeny_kat' => '3' ]);
+
+        User::create([ 'cim' => 'ALTEREGO presents Zutyu', 'szervezo'=> '4', 'helyszin' => '0', 'kezd_datum' => '2024-12-31 15:20:00','veg_datum' => '2025-01-01 05:30:00', 'leiras' => 'Zutyu triangulum est', 'buisness_email' => 'zutyu@gmail.com', 'buisness_tel' => '06208382843', 'esemeny_kat' => '4' ]);
+
+
     }
 
     /**

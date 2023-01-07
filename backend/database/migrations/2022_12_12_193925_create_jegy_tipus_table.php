@@ -17,6 +17,13 @@ return new class extends Migration
             $table->id('jegy_tipus_id');
             $table->string('megnev');
         });
+
+        User::create(['megnev' => 'Early bid']);
+        User::create(['megnev' => 'Standard']);
+        User::create(['megnev' => 'Sandard 1']);
+        User::create(['megnev' => 'VIP']);
+        User::create(['megnev' => 'Exclusive']);
+
     }
 
     /**

@@ -17,6 +17,13 @@ return new class extends Migration
             $table->id('kat_es_id');
             $table->string('megnev');
         });
+
+        User::create(['megnev' => 'Buli']);
+        User::create(['megnev' => 'Fesztival']);
+        User::create(['megnev' => 'Koncert']);
+        User::create(['megnev' => 'Eloadas']);
+        User::create(['megnev' => 'Egyeb']);
+
     }
 
     /**

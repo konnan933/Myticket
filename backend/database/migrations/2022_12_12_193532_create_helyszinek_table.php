@@ -17,6 +17,13 @@ return new class extends Migration
             $table->id('helyszin_id');
             $table->string('megnev');
         });
+
+        User::create(['megnev' => 'Alterego']);
+        User::create(['megnev' => 'Kek osztriga']);
+        User::create(['megnev' => 'A38']);
+        User::create(['megnev' => 'Cat']);
+        User::create(['megnev' => 'Dog']);
+
     }
 
     /**
