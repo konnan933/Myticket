@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class esemenyvalt extends Controller
+class EsemenyKategoriaController extends Controller
 {
     //
 }

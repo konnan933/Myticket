@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class szamlafej extends Controller
+class Eszmei_jegyController extends Controller
 {
     //
 }
