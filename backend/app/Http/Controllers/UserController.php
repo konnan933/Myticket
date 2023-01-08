@@ -10,11 +10,12 @@ use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $userek =  User::all();
         return $userek;
     }
-    
+
     public function show($id)
     {
         $userek = User::find($id);
@@ -29,11 +30,12 @@ class UserController extends Controller
         $user = new User();
         $user->email = $request->email;
         $validator = Validator::make($request->all(), [
-            'password' => [ 'required', 'string', 
-                Password::min(8) 
-                ->mixedCase() 
-                ->numbers() 
-                ->symbols() 
+            'password' => [
+                'required', 'string',
+                Password::min(8)
+                    ->mixedCase()
+                    ->numbers()
+                    ->symbols()
             ],
         ]);
 
@@ -42,10 +44,10 @@ class UserController extends Controller
         }
         $user->password = Hash::make($request->password);;
         $user->fel_nev = $request->fel_nev;
-        $user->level = $request->level;
+        $user->level = 1;
         $user->telefonszam = $request->telefonszam;
         $user->szab_sert_szam = $request->szab_sert_szam;
-        $user->save(); 
+        $user->save();
     }
 
     public function update(Request $request, $id)
@@ -56,17 +58,18 @@ class UserController extends Controller
         $user->level = $request->level;
         $user->telefonszam = $request->telefonszam;
         $user->szab_sert_szam = $request->szab_sert_szam;
-        $user->save();        
+        $user->save();
     }
 
     public function updatePassword(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'password' => [ 'required', 'string', 
-                Password::min(8) 
-                ->mixedCase() 
-                ->numbers() 
-                ->symbols() 
+            'password' => [
+                'required', 'string',
+                Password::min(8)
+                    ->mixedCase()
+                    ->numbers()
+                    ->symbols()
 
             ],
         ]);
