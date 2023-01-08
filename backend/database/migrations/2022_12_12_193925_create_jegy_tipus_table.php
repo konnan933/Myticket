@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Jegy_tipus;
+use App\Models\JegyTipus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -19,11 +19,11 @@ return new class extends Migration
             $table->string('megnev');
         });
 
-        Jegy_tipus::create(['megnev' => 'Early bid']);
-        Jegy_tipus::create(['megnev' => 'Standard']);
-        Jegy_tipus::create(['megnev' => 'Sandard 1']);
-        Jegy_tipus::create(['megnev' => 'VIP']);
-        Jegy_tipus::create(['megnev' => 'Exclusive']);
+        JegyTipus::create(['megnev' => 'Early bid']);
+        JegyTipus::create(['megnev' => 'Standard']);
+        JegyTipus::create(['megnev' => 'Sandard 1']);
+        JegyTipus::create(['megnev' => 'VIP']);
+        JegyTipus::create(['megnev' => 'Exclusive']);
 
     }
 

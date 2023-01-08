@@ -49,7 +49,7 @@ EszmeiJegy::create(['esemeny_id' => '3', 'tipus' => '3', 'ossz_menny' => '5000',
 
 EszmeiJegy::create(['esemeny_id' => '4', 'tipus' => '4', 'ossz_menny' => '1000', 'lefog_menny' => '20', 'szabad_menny' => '980', 'penznem' => 'HUF', 'p_mennyiseg' => 15.10, 'ara' => '20', 'kezd_datum' => '2023-08-12 17:00:00' ]);
 
-eszmeiJegy::create(['esemeny_id' => '5', 'tipus' => '5', 'ossz_menny' => '1000', 'lefog_menny' => '20', 'szabad_menny' => '980', 'penznem' => 'HUF', 'p_mennyiseg' => 15.10, 'ara' => '20', 'kezd_datum' => '2024-12-31 15:20:00', ]);
+EszmeiJegy::create(['esemeny_id' => '5', 'tipus' => '5', 'ossz_menny' => '1000', 'lefog_menny' => '20', 'szabad_menny' => '980', 'penznem' => 'HUF', 'p_mennyiseg' => 15.10, 'ara' => '20', 'kezd_datum' => '2024-12-31 15:20:00', ]);
 
     }
 
