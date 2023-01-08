@@ -2,14 +2,14 @@
 
 namespace App\Observers;
 
-use App\Models\esemenyek;
+use App\Models\Esemenyek;
 
 class EsemenyekObserver
 {
     /**
      * Handle the esemenyek "created" event.
      *
-     * @param  \App\Models\esemenyek  $esemenyek
+     * @param  \App\Models\Esemenyek  $esemenyek
      * @return void
      */
     public function created(esemenyek $esemenyek)

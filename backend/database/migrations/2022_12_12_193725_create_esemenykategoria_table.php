@@ -1,8 +1,6 @@
 <?php
 
-use App\Models\esemenyek;
-use App\Models\esemenykategoria;
-use App\Models\User;
+use App\Models\Esemenykategoria;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -21,11 +19,11 @@ return new class extends Migration
             $table->string('megnev');
         });
 
-        esemenykategoria::create(['megnev' => 'Buli']);
-        esemenykategoria::create(['megnev' => 'Fesztival']);
-        esemenykategoria::create(['megnev' => 'Koncert']);
-        esemenykategoria::create(['megnev' => 'Eloadas']);
-        esemenykategoria::create(['megnev' => 'Egyeb']);
+        Esemenykategoria::create(['megnev' => 'Buli']);
+        Esemenykategoria::create(['megnev' => 'Fesztival']);
+        Esemenykategoria::create(['megnev' => 'Koncert']);
+        Esemenykategoria::create(['megnev' => 'Eloadas']);
+        Esemenykategoria::create(['megnev' => 'Egyeb']);
 
     }
 

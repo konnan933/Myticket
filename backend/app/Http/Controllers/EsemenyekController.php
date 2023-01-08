@@ -2,28 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\esemenyek;
+use App\Models\Esemenyek;
 use Illuminate\Http\Request;
 
 class EsemenyekController extends Controller
 {
     public function index(){
-        $esemenyek =  esemenyek::all();
+        $esemenyek =  Esemenyek::all();
         return $esemenyek;
     }
     
     public function show($id)
     {
-        $esemenyek = esemenyek::find($id);
+        $esemenyek = Esemenyek::find($id);
         return $esemenyek;
     }
     public function destroy($id)
     {
-        esemenyek::find($id)->delete();
+        Esemenyek::find($id)->delete();
     }
     public function store(Request $request)
     {
-        $esemeny = new esemenyek();
+        $esemeny = new Esemenyek();
         $esemeny->cim = $request->cim;
         $esemeny->szervezo = $request->szervezo;
         $esemeny->helyszin = $request->helyszin;
@@ -40,7 +40,7 @@ class EsemenyekController extends Controller
 
     public function update(Request $request, $id)
     {
-        $esemeny = esemenyek::find($id);
+        $esemeny = Esemenyek::find($id);
         $esemeny->cim = $request->cim;
         $esemeny->szervezo = $request->szervezo;
         $esemeny->helyszin = $request->helyszin;

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class kosar extends Model
+class Kosar extends Model
 {
     use HasFactory;
     protected $fillable = [

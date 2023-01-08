@@ -2,28 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\jegy_tipus;
+use App\Models\Jegy_tipus;
 use Illuminate\Http\Request;
 
 class Jegy_tipusController extends Controller
 {
     public function index(){
-        $jegyTipusok =  jegy_tipus::all();
+        $jegyTipusok =  Jegy_tipus::all();
         return $jegyTipusok;
     }
     
     public function show($id)
     {
-        $jegyTipusok = jegy_tipus::find($id);
+        $jegyTipusok = Jegy_tipus::find($id);
         return $jegyTipusok;
     }
     public function destroy($id)
     {
-        jegy_tipus::find($id)->delete();
+        Jegy_tipus::find($id)->delete();
     }
     public function store(Request $request)
     {
-        $jegyTipus = new jegy_tipus();
+        $jegyTipus = new Jegy_tipus();
         $jegyTipus->megnev = $request->megnev;
         $jegyTipus->save(); 
     }

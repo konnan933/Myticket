@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\helyszinek;
+use App\Models\Helyszinek;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -19,11 +19,11 @@ return new class extends Migration
             $table->string('megnev');
         });
 
-        helyszinek::create(['megnev' => 'Alterego']);
-        helyszinek::create(['megnev' => 'Kek osztriga']);
-        helyszinek::create(['megnev' => 'A38']);
-        helyszinek::create(['megnev' => 'Cat']);
-        helyszinek::create(['megnev' => 'Dog']);
+        Helyszinek::create(['megnev' => 'Alterego']);
+        Helyszinek::create(['megnev' => 'Kek osztriga']);
+        Helyszinek::create(['megnev' => 'A38']);
+        Helyszinek::create(['megnev' => 'Cat']);
+        Helyszinek::create(['megnev' => 'Dog']);
 
     }
 
