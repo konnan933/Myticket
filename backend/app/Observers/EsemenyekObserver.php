@@ -12,23 +12,23 @@ class EsemenyekObserver
      * @param  \App\Models\Esemenyek  $esemenyek
      * @return void
      */
-    public function created(esemenyek $esemenyek)
+    public function created(Esemenyek $esemenyek)
     {
         //
     }
 
 
-    public function updating(esemenyek $esemenyek)
+    public function updating(Esemenyek $esemenyek)
     {
         
     }
     /**
      * Handle the esemenyek "updated" event.
      *
-     * @param  \App\Models\esemenyek  $esemenyek
+     * @param  \App\Models\Esemenyek  $esemenyek
      * @return void
      */
-    public function updated(esemenyek $esemenyek)
+    public function updated(Esemenyek $esemenyek)
     {
         
     }
@@ -36,10 +36,10 @@ class EsemenyekObserver
     /**
      * Handle the esemenyek "deleted" event.
      *
-     * @param  \App\Models\esemenyek  $esemenyek
+     * @param  \App\Models\Esemenyek  $esemenyek
      * @return void
      */
-    public function deleted(esemenyek $esemenyek)
+    public function deleted(Esemenyek $esemenyek)
     {
         //
     }
@@ -47,10 +47,10 @@ class EsemenyekObserver
     /**
      * Handle the esemenyek "restored" event.
      *
-     * @param  \App\Models\esemenyek  $esemenyek
+     * @param  \App\Models\Esemenyek  $esemenyek
      * @return void
      */
-    public function restored(esemenyek $esemenyek)
+    public function restored(Esemenyek $esemenyek)
     {
         //
     }
@@ -58,10 +58,10 @@ class EsemenyekObserver
     /**
      * Handle the esemenyek "force deleted" event.
      *
-     * @param  \App\Models\esemenyek  $esemenyek
+     * @param  \App\Models\Esemenyek  $esemenyek
      * @return void
      */
-    public function forceDeleted(esemenyek $esemenyek)
+    public function forceDeleted(Esemenyek $esemenyek)
     {
         //
     }
