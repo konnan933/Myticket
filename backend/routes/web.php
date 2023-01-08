@@ -2,6 +2,12 @@
 
 use App\Http\Controllers\HelyszinController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Deviza;
+use App\Models\Esemenyek;
+use App\Models\EsemenyKategoria;
+use App\Models\EsemenyValt;
+use App\Models\EszmeiJegy;
+use App\Models\JegyTipus;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,12 +28,55 @@ Route::middleware(['admin'])->group(function () {
 //User végpontok
 Route::middleware(['user'])->group(function () {
 });
+//Helyszin végpontok
+Route::post('api/location', [HelyszinController::class, 'store']);
+Route::get('api/location', [HelyszinController::class, 'index']);
+Route::get('api/location/{id}', [HelyszinController::class, 'show']);
+Route::put('api/location/{id}', [HelyszinController::class, 'update']);
+Route::delete('api/location/{id}', [HelyszinController::class, 'destroy']);
 
-Route::get('api/location ', [HelyszinController::class, 'index']);
-Route::get('api/location/{id} ', [HelyszinController::class, 'show']);
-Route::post('api/location ', [HelyszinController::class, 'store']);
-Route::put('api/location/{id} ', [HelyszinController::class, 'update']);
-Route::delete('api/location/{id} ', [HelyszinController::class, 'destroy']);
+//Esemenyek kategoria végpontok
+Route::post('api/etype', [EsemenyKategoriaController::class, 'store']);
+Route::get('api/etype', [EsemenyKategoriaController::class, 'index']);
+Route::get('api/etype/{id}', [EsemenyKategoriaController::class, 'show']);
+Route::put('api/etype/{id}', [EsemenyKategoriaController::class, 'update']);
+Route::delete('api/etype/{id}', [EsemenyKategoriaController::class, 'destroy']);
+
+//Jegy tipusai vegpontok
+Route::post('api/ttype', [JegyTipusController::class, 'store']);
+Route::get('api/ttype', [JegyTipusController::class, 'index']);
+Route::get('api/ttype/{id}', [JegyTipusController::class, 'show']);
+Route::put('api/ttype/{id}', [JegyTipusController::class, 'update']);
+Route::delete('api/ttype/{id}', [JegyTipusController::class, 'destroy']);
+
+//Esemenyek vegpontok
+Route::post('api/event', [EsemenyekController::class, 'store']);
+Route::get('api/event', [EsemenyekController::class, 'index']);
+Route::get('api/event/{id}', [EsemenyekController::class, 'show']);
+Route::put('api/event/{id}', [EsemenyekController::class, 'update']);
+Route::delete('api/event/{id}', [EsemenyekController::class, 'destroy']);
+
+//Esemenyvaltozas vegpontok
+Route::get('api/eventchange', [EsemenyValtController::class, 'index']);
+Route::get('api/eventchange/{id}', [EsemenyValtController::class, 'show']);
+
+//Penznem vegpontok
+Route::post('api/dtype', [DevizaController::class, 'store']);
+Route::get('api/dtype', [DevizaController::class, 'index']);
+Route::get('api/dtype/{id}', [DevizaController::class, 'show']);
+Route::put('api/dtype/{id}', [DevizaController::class, 'update']);
+Route::delete('api/dtype/{id}', [DevizaController::class, 'destroy']);
+
+//EszmeiJegy vegpontok
+Route::post('api/iticket', [EszmeiJegyController::class, 'store']);
+Route::get('api/iticket', [EszmeiJegyController::class, 'index']);
+Route::get('api/iticket/{id}', [EszmeiJegyController::class, 'show']);
+Route::get('api/iticket/{event}/{id}', [EszmeiJegyController::class, 'show']);
+Route::put('api/iticket/{event}/{id}', [EszmeiJegyController::class, 'update']);
+Route::delete('api/iticket/{event}/{id}', [EszmeiJegyController::class, 'destroy']);
+
+
+
 
 
 
