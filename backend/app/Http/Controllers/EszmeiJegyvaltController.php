@@ -2,29 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Eszmei_jegyvalt;
+use App\Models\EszmeiJegyvalt;
 use Illuminate\Http\Request;
 
-class Eszmei_jegyvaltController extends Controller
+class EszmeiJegyvaltController extends Controller
 {
     public function index(){
-        $eszmei_jegyvaltozasok =  Eszmei_jegyvalt::all();
+        $eszmei_jegyvaltozasok =  EszmeiJegyvalt::all();
         return $eszmei_jegyvaltozasok;
     }
     
     public function show($id)
     {
-        $eszmei_jegyvaltozasok = Eszmei_jegyvalt::find($id);
+        $eszmei_jegyvaltozasok = EszmeiJegyvalt::find($id);
         return $eszmei_jegyvaltozasok[0];
     }
 
     public function destroy($id)
     {
-        Eszmei_jegyvalt::find($id)->delete();
+        EszmeiJegyvalt::find($id)->delete();
     }
     public function store(Request $request)
     {
-        $eszmei_jegyvalt = new Eszmei_jegyvalt();
+        $eszmei_jegyvalt = new EszmeiJegyvalt();
         $eszmei_jegyvalt->esemeny_id = $request->esemeny_id;
         $eszmei_jegyvalt->eszmei_jegy_id = $request->eszmei_jegy_id;
         $eszmei_jegyvalt->tipus = $request->tipus;

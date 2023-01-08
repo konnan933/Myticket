@@ -2,28 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Esemenyvalt;
+use App\Models\EsemenyValt;
 use Illuminate\Http\Request;
 
-class EsemenyvaltController extends Controller
+class EsemenyValtController extends Controller
 {
     public function index(){
-        $esemenyValtozasok =  Esemenyvalt::all();
+        $esemenyValtozasok =  EsemenyValt::all();
         return $esemenyValtozasok;
     }
     
     public function show($id)
     {
-        $esemenyValtozasok = Esemenyvalt::find($id);
+        $esemenyValtozasok = EsemenyValt::find($id);
         return $esemenyValtozasok;
     }
     public function destroy($id)
     {
-        Esemenyvalt::find($id)->delete();
+        EsemenyValt::find($id)->delete();
     }
     public function store(Request $request)
     {
-        $esemenyValt = new Esemenyvalt();
+        $esemenyValt = new EsemenyValt();
         $esemenyValt->esemeny_id = $request->esemeny_id;
         $esemenyValt->cim = $request->cim;
         $esemenyValt->szervezo = $request->szervezo;

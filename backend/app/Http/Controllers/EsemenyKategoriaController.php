@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Esemenykategoria;
+use App\Models\EsemenyKategoria;
 use Illuminate\Http\Request;
 
 class EsemenyKategoriaController extends Controller
 {
     public function index(){
-        $esemenykategoriak =  Esemenykategoria::all();
+        $esemenykategoriak =  EsemenyKategoria::all();
         return $esemenykategoriak;
     }
     
     public function show($id)
     {
-        $esemenykategoriak = Esemenykategoria::find($id);
+        $esemenykategoriak = EsemenyKategoria::find($id);
         return $esemenykategoriak;
     }
     public function destroy($id)
@@ -23,14 +23,14 @@ class EsemenyKategoriaController extends Controller
     }
     public function store(Request $request)
     {
-        $esemenykat = new Esemenykategoria();
+        $esemenykat = new EsemenyKategoria();
         $esemenykat->megnev = $request->megnev;
         $esemenykat->save(); 
     }
 
     public function update(Request $request, $id)
     {
-        $esemenykat = Esemenykategoria::find($id);
+        $esemenykat = EsemenyKategoria::find($id);
         $esemenykat->megnev = $request->megnev;
         $esemenykat->save();        
     }
