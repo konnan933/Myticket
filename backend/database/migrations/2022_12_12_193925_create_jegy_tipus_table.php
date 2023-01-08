@@ -15,7 +15,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('jegy_tipus', function (Blueprint $table) {
-            $table->id('jegy_tipus_id');
+            $table->id('id');
             $table->string('megnev');
         });
 
@@ -24,7 +24,6 @@ return new class extends Migration
         JegyTipus::create(['megnev' => 'Sandard 1']);
         JegyTipus::create(['megnev' => 'VIP']);
         JegyTipus::create(['megnev' => 'Exclusive']);
-
     }
 
     /**

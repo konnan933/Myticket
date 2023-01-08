@@ -15,7 +15,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('esemenykategoria', function (Blueprint $table) {
-            $table->id('kat_es_id');
+            $table->id('id');
             $table->string('megnev');
         });
 
@@ -24,7 +24,6 @@ return new class extends Migration
         Esemenykategoria::create(['megnev' => 'Koncert']);
         Esemenykategoria::create(['megnev' => 'Eloadas']);
         Esemenykategoria::create(['megnev' => 'Egyeb']);
-
     }
 
     /**

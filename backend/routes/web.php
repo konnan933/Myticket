@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HelyszinController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +22,12 @@ Route::middleware(['admin'])->group(function () {
 //User végpontok
 Route::middleware(['user'])->group(function () {
 });
+
+Route::get('api/location ', [HelyszinController::class, 'index']);
+Route::get('api/location/{id} ', [HelyszinController::class, 'show']);
+Route::post('api/location ', [HelyszinController::class, 'store']);
+Route::put('api/location/{id} ', [HelyszinController::class, 'update']);
+Route::delete('api/location/{id} ', [HelyszinController::class, 'destroy']);
 
 
 

@@ -15,10 +15,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('kosar', function (Blueprint $table) {
-            $table->id('kosar_id');
+            $table->id('id');
             $table->foreignId('esemeny_id')->references('esemeny_id')->on('eszmei_jegy');
             $table->foreignId('eszmei_jegy_id')->references('eszmei_jegy_id')->on('eszmei_jegy');
-            $table->foreignId('user')->references('user_id')->on('users');
+            $table->foreignId('user')->references('id')->on('users');
             $table->integer('db');
             $table->dateTime('lefog_ido');
             $table->boolean('kifizetve')->default(false);
@@ -26,7 +26,6 @@ return new class extends Migration
 
         DB::statement("ALTER TABLE kosar ADD CONSTRAINT
     	db_check CHECK (db < 50 OR db > 0 )");
-        
     }
 
     /**

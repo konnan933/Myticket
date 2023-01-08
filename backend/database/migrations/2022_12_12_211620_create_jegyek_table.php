@@ -14,11 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('jegyek', function (Blueprint $table) {
-            $table->id('jegy_id');
+            $table->id('id');
             $table->foreignId('esemeny_id')->references('esemeny_id')->on('eszmei_jegy');
             $table->foreignId('eszmei_jegy_id')->references('eszmei_jegy_id')->on('eszmei_jegy');
-            $table->foreignId('user')->references('user_id')->on('users');
-            $table->foreignId('szamlaszam')->references('szamlaszam')->on('szamlafej');
+            $table->foreignId('user')->references('id')->on('users');
+            $table->foreignId('szamlaszam')->references('id')->on('szamlafej');
             $table->string('qrkod')->unique();
         });
     }

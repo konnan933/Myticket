@@ -15,7 +15,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('esemenyvalt', function (Blueprint $table) {
-            $table->id('sorszam');
+            $table->id('id');
             $table->integer('esemeny_id');
             $table->string('cim');
             $table->integer('szervezo');

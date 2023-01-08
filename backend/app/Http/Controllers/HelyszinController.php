@@ -7,11 +7,12 @@ use Illuminate\Http\Request;
 
 class HelyszinController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $helyszinek =  Helyszinek::all();
         return $helyszinek;
     }
-    
+
     public function show($id)
     {
         $helyszinek = Helyszinek::find($id);
@@ -25,13 +26,13 @@ class HelyszinController extends Controller
     {
         $helyszinek = new Helyszinek();
         $helyszinek->megnev = $request->megnev;
-        $helyszinek->save(); 
+        $helyszinek->save();
     }
 
     public function update(Request $request, $id)
     {
         $helyszinek = Helyszinek::find($id);
         $helyszinek->megnev = $request->megnev;
-        $helyszinek->save();        
+        $helyszinek->save();
     }
 }

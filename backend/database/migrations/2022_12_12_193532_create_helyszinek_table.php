@@ -15,7 +15,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('helyszinek', function (Blueprint $table) {
-            $table->id('helyszin_id');
+            $table->id('id');
             $table->string('megnev');
         });
 
@@ -24,7 +24,6 @@ return new class extends Migration
         Helyszinek::create(['megnev' => 'A38']);
         Helyszinek::create(['megnev' => 'Cat']);
         Helyszinek::create(['megnev' => 'Dog']);
-
     }
 
     /**
