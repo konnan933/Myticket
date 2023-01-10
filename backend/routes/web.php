@@ -8,6 +8,10 @@ use App\Http\Controllers\HelyszinController;
 use App\Http\Controllers\JegyTipusController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EszmeiJegyController;
+use App\Http\Controllers\EszmeiJegyValtController;
+use App\Http\Controllers\JegyekController;
+use App\Http\Controllers\KosarController;
+use App\Http\Controllers\SzamlafejController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -75,8 +79,25 @@ Route::get('api/iticket/{event}/{id}', [EszmeiJegyController::class, 'show']);
 Route::put('api/iticket/{event}/{id}', [EszmeiJegyController::class, 'update']);
 Route::delete('api/iticket/{event}/{id}', [EszmeiJegyController::class, 'destroy']);
 
+//EszmeiJegyValt vegpontok
+Route::get('api/ticketchange', [EszmeiJegyValtController::class, 'index']);
+Route::get('api/ticketchange/{id}', [EszmeiJegyValtController::class, 'show']);
 
+//Kosar végpontok
+Route::post('api/basket', [KosarController::class, 'store']);
+Route::get('api/basket', [KosarController::class, 'index']);
+Route::get('api/basket/{id}', [KosarController::class, 'show']);
+Route::put('api/basket/{id}', [KosarController::class, 'update']);
+Route::delete('api/basket', [KosarController::class, 'destroyAll']);
+Route::delete('api/basket/{id}', [KosarController::class, 'destroy']);
 
+//Számla vegpontok
+Route::get('api/bill', [SzamlafejController::class, 'index']);
+Route::get('api/bill/{id}', [SzamlafejController::class, 'show']);
+
+//Vásárolt jegyek vegpontok
+Route::get('api/bticket', [JegyekController::class, 'index']);
+Route::get('api/bticket/{id}', [JegyekController::class, 'show']);
 
 
 

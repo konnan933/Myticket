@@ -7,11 +7,12 @@ use Illuminate\Http\Request;
 
 class KosarController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $kosarak =  Kosar::all();
         return $kosarak;
     }
-    
+
     public function show($esemeny_id, $eszmei_jegy_id, $user)
     {
         $kosarak = Kosar::where('esemeny_id', $esemeny_id)->where('eszmei_jegy_id', $eszmei_jegy_id)->where('user', $user)->get();
@@ -22,6 +23,10 @@ class KosarController extends Controller
     {
         Kosar::show($esemeny_id, $eszmei_jegy_id, $user)->delete();
     }
+    public function destroyAll()
+    {
+        Kosar::all()->delete();
+    }
     public function store(Request $request)
     {
         $kosar = new Kosar();
@@ -31,7 +36,7 @@ class KosarController extends Controller
         $kosar->db = $request->db;
         $kosar->lefog_ido = $request->lefog_ido;
         $kosar->kifizetve = false;
-        $kosar->save(); 
+        $kosar->save();
     }
 
     public function update(Request $request, $esemeny_id, $eszmei_jegy_id, $user)
@@ -39,6 +44,6 @@ class KosarController extends Controller
         $kosar =  Kosar::show($esemeny_id, $eszmei_jegy_id, $user);
         $kosar->db = $request->db;
         $kosar->kifizetve = $request->kifizetve;
-        $kosar->save();       
+        $kosar->save();
     }
 }

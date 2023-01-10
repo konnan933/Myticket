@@ -7,14 +7,15 @@ use Illuminate\Http\Request;
 
 class DevizaController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $devizak =  Deviza::all();
         return $devizak;
     }
-    
-    public function show($id)
+
+    public function show($penznem)
     {
-        $devizak = Deviza::find($id);
+        $devizak = Deviza::where('penznem', ' =', $penznem)->get();
         return $devizak;
     }
     public function destroy($id)
@@ -26,7 +27,7 @@ class DevizaController extends Controller
         $deviza = new Deviza();
         $deviza->penznem = $request->penznem;
         $deviza->penz_val = $request->penz_val;
-        $deviza->save(); 
+        $deviza->save();
     }
 
     public function update(Request $request, $id)
@@ -34,6 +35,6 @@ class DevizaController extends Controller
         $deviza = Deviza::find($id);
         $deviza->penznem = $request->penznem;
         $deviza->penz_val = $request->penz_val;
-        $deviza->save();        
+        $deviza->save();
     }
 }
