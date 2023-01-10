@@ -1,13 +1,13 @@
 <?php
 
+use App\Http\Controllers\DevizaController;
+use App\Http\Controllers\EsemenyekController;
+use App\Http\Controllers\EsemenyKategoriaController;
+use App\Http\Controllers\EsemenyValtController;
 use App\Http\Controllers\HelyszinController;
+use App\Http\Controllers\JegyTipusController;
 use App\Http\Controllers\ProfileController;
-use App\Models\Deviza;
-use App\Models\Esemenyek;
-use App\Models\EsemenyKategoria;
-use App\Models\EsemenyValt;
-use App\Models\EszmeiJegy;
-use App\Models\JegyTipus;
+use App\Http\Controllers\EszmeiJegyController;
 use Illuminate\Support\Facades\Route;
 
 /*
