@@ -12,6 +12,14 @@ class EsemenyekObserver
      * @param  \App\Models\Esemenyek  $esemenyek
      * @return void
      */
+    public function creating(Esemenyek $esemenyek)
+    {
+        if ($esemenyek->kezd_datum < now()) {
+            print $esemenyek->kezd_datum;
+            return false;
+        };
+    }
+
     public function created(Esemenyek $esemenyek)
     {
         //
@@ -20,7 +28,6 @@ class EsemenyekObserver
 
     public function updating(Esemenyek $esemenyek)
     {
-        
     }
     /**
      * Handle the esemenyek "updated" event.
@@ -30,7 +37,6 @@ class EsemenyekObserver
      */
     public function updated(Esemenyek $esemenyek)
     {
-        
     }
 
     /**

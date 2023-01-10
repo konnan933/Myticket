@@ -15,7 +15,7 @@ class DevizaController extends Controller
 
     public function show($penznem)
     {
-        $devizak = Deviza::where('penznem', ' =', $penznem)->get();
+        $devizak = Deviza::find($penznem); //where('penznem', '=', $penznem)->get();
         return $devizak;
     }
     public function destroy($id)
