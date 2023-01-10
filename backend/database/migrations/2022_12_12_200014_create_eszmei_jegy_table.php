@@ -16,7 +16,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('eszmei_jegy', function (Blueprint $table) {
-            $table->foreignId('esemeny_id')->references('esemeny_id')->on('esemenyek');
+            $table->foreignId('esemeny_id')->references('id')->on('esemenyek');
             $table->id('eszmei_jegy_id');
             $table->foreignId('tipus')->references('id')->on('jegy_tipus');
             $table->integer('ossz_menny');
@@ -36,7 +36,7 @@ return new class extends Migration
         szab_menny CHECK (szabad_menny >= 0)");
 
         DB::statement("ALTER TABLE eszmei_jegy ADD CONSTRAINT
-        p_menny CHECK (p_mennyiseg > 0)");
+        p_mennyiseg CHECK (p_mennyiseg > 0)");
 
         DB::statement("ALTER TABLE eszmei_jegy ADD CONSTRAINT
         ara_check CHECK (ara >= 0)");

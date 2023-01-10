@@ -33,7 +33,7 @@ return new class extends Migration
 
 
         DB::statement("ALTER TABLE esemenyvalt ADD CONSTRAINT
-        check_dates CHECK (veg_datum > kezd_datum)");
+        check_dates_valt CHECK (veg_datum > kezd_datum)");
     }
 
     /**

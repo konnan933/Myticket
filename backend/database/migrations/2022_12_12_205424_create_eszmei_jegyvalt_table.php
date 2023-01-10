@@ -31,7 +31,7 @@ return new class extends Migration
         p_menny CHECK (p_mennyiseg > 0)");
 
         DB::statement("ALTER TABLE eszmei_jegyvalt ADD CONSTRAINT
-        ara_check CHECK (ara >= 0)");
+        ara_check_valt CHECK (ara >= 0)");
     }
 
     /**
