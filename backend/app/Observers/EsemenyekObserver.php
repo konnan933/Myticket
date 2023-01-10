@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Esemenyek;
+use App\Models\EsemenyValt;
 
 class EsemenyekObserver
 {
@@ -28,6 +29,21 @@ class EsemenyekObserver
 
     public function updating(Esemenyek $esemenyek)
     {
+        $esemenyValt = new EsemenyValt();
+        $esemenyValt->esemeny_id = $esemenyek->id;
+        $esemenyValt->cim = $esemenyek->cim;
+        $esemenyValt->szervezo = $esemenyek->szervezo;
+        $esemenyValt->helyszin = $esemenyek->helyszin;
+        $esemenyValt->kezd_datum = $esemenyek->kezd_datum;
+        $esemenyValt->veg_datum = $esemenyek->veg_datum;
+        $esemenyValt->leiras = $esemenyek->leiras;
+        $esemenyValt->buisness_email = $esemenyek->buisness_email;
+        $esemenyValt->buisness_tel = $esemenyek->buisness_tel;
+        $esemenyValt->esem_kat = $esemenyek->esem_kat;
+        $esemenyValt->jutalek = 17;
+        $esemenyValt->statusz = 0;
+        $esemenyValt->datumig = now();
+        $esemenyValt->save();
     }
     /**
      * Handle the esemenyek "updated" event.

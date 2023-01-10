@@ -16,7 +16,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('esemenyek', function (Blueprint $table) {
-            $table->id('id');
+            $table->id();
             $table->string('cim');
             $table->foreignId('szervezo')->references('id')->on('users');
             $table->foreignId('helyszin')->references('id')->on('helyszinek');
