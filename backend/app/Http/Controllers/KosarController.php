@@ -21,7 +21,7 @@ class KosarController extends Controller
 
     public function destroy($esemeny_id, $eszmei_jegy_id, $user)
     {
-        Kosar::show($esemeny_id, $eszmei_jegy_id, $user)->delete();
+        KosarController::show($esemeny_id, $eszmei_jegy_id, $user)->delete();
     }
     public function destroyAll()
     {
@@ -39,9 +39,9 @@ class KosarController extends Controller
         $kosar->save();
     }
 
-    public function update(Request $request, $esemeny_id, $eszmei_jegy_id, $user)
+    public function update(Request $request, $id)
     {
-        $kosar =  Kosar::show($esemeny_id, $eszmei_jegy_id, $user);
+        $kosar =  Kosar::find($id);
         $kosar->db = $request->db;
         $kosar->kifizetve = $request->kifizetve;
         $kosar->save();

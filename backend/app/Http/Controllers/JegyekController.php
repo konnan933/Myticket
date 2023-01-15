@@ -7,20 +7,21 @@ use Illuminate\Http\Request;
 
 class JegyekController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $jegyek =  Jegyek::all();
         return $jegyek;
     }
-    
+
     public function show($id)
     {
         $jegyek = Jegyek::find($id)->get();
         return $jegyek[0];
     }
 
-    public function destroy($esemeny_id, $eszmei_jegy_id, $user)
+    public function destroy($id)
     {
-        Jegyek::show($esemeny_id, $eszmei_jegy_id, $user)->delete();
+        Jegyek::find($id)->delete();
     }
     public function store(Request $request)
     {
@@ -29,6 +30,6 @@ class JegyekController extends Controller
         $jegy->eszmei_jegy_id = $request->eszmei_jegy_id;
         $jegy->user = $request->user;
         $jegy->szamlaszam = $request->szamlaszam;
-        $jegy->save(); 
+        $jegy->save();
     }
 }

@@ -75,7 +75,7 @@ Route::delete('api/dtype/{id}', [DevizaController::class, 'destroy']);
 Route::post('api/iticket', [EszmeiJegyController::class, 'store']);
 Route::get('api/iticket', [EszmeiJegyController::class, 'index']);
 Route::get('api/iticket/{id}', [EszmeiJegyController::class, 'show']);
-Route::get('api/iticket/{event}/{id}', [EszmeiJegyController::class, 'show']);
+//Route::get('api/iticket/{event}/{id}', [EszmeiJegyController::class, 'show']);
 Route::put('api/iticket/{event}/{id}', [EszmeiJegyController::class, 'update']);
 Route::delete('api/iticket/{event}/{id}', [EszmeiJegyController::class, 'destroy']);
 

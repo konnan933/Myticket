@@ -7,11 +7,12 @@ use Illuminate\Http\Request;
 
 class EsemenyekController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $esemenyek =  Esemenyek::all();
         return $esemenyek;
     }
-    
+
     public function show($id)
     {
         $esemenyek = Esemenyek::find($id);
@@ -35,7 +36,7 @@ class EsemenyekController extends Controller
         $esemeny->esem_kat = $request->esem_kat;
         $esemeny->jutalek = 17;
         $esemeny->statusz = 0;
-        $esemeny->save(); 
+        $esemeny->save();
     }
 
     public function update(Request $request, $id)
@@ -51,7 +52,7 @@ class EsemenyekController extends Controller
         $esemeny->buisness_tel = $request->buisness_tel;
         $esemeny->esem_kat = $request->esem_kat;
         $esemeny->jutalek = 17;
-        $esemeny->statusz = 0;
-        $esemeny->save();       
+        $esemeny->statusz = $request->statusz;
+        $esemeny->save();
     }
 }
