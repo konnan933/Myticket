@@ -15,13 +15,14 @@ class EszmeiJegyController extends Controller
 
     public function show($esemeny_id, $eszmei_jegy_id)
     {
+        //TODO Átállítani findra
         $eszmei_jegyek = EszmeiJegy::where('esemeny_id', $esemeny_id)->where('eszmei_jegy_id', $eszmei_jegy_id)->get();
         return $eszmei_jegyek[0];
     }
 
     public function destroy($esemeny_id, $eszmei_jegy_id)
     {
-        EszmeiJegy::show($esemeny_id, $eszmei_jegy_id)->delete();
+        EszmeiJegyController::show($esemeny_id, $eszmei_jegy_id)->delete();
     }
     public function store(Request $request)
     {
@@ -40,8 +41,8 @@ class EszmeiJegyController extends Controller
 
     public function update(Request $request, $esemeny_id, $eszmei_jegy_id)
     {
-        $eszmei_jegy = EszmeiJegy::show($esemeny_id, $eszmei_jegy_id);
-        $eszmei_jegy->esemeny_id = $eszmei_jegy->esemeny_id;
+        $eszmei_jegy = EszmeiJegyController::show($esemeny_id, $eszmei_jegy_id);
+        $eszmei_jegy->esemeny_id = $esemeny_id;
         $eszmei_jegy->tipus = $request->tipus;
         $eszmei_jegy->ossz_menny = $request->ossz_menny;
         $eszmei_jegy->lefog_menny = $request->lefog_menny;
