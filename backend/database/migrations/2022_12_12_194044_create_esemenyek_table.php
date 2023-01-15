@@ -37,14 +37,6 @@ return new class extends Migration
         DB::statement("ALTER TABLE esemenyek ADD CONSTRAINT
         status_check CHECK (statusz = 0 OR statusz = 1 OR statusz = 2 OR statusz = 3 )");
 
-        DB::unprepared('CREATE TRIGGER esemeny_val_be AFTER UPDATE ON `esemenyek` FOR EACH ROW
-        BEGIN
-            INSERT INTO `esemenyvalt` (`esemeny_id`, `cim`, `helyszin`, `kezd_datum`,`veg_datum`, `leiras`, `buisness_email`, `buisness_tel`, `esem_kat`, `jutalek`,`statusz`,`datumig`) 
-            VALUES 
-            (esemenyek.esemeny_id, esemenyek.cim, esemenyek.helyszin, esemenyek.kezd_datum,  esemenyek.veg_datum, esemenyek.leiras, esemenyek.buisness_email, esemenyek.buisness_tel, esemenyek.esem_kat, esemenyek.jutalek,esemenyek.statusz, current_timestamp());
-        END');
-
-
         Esemenyek::create(['cim' => 'Next level', 'szervezo' => '1', 'helyszin' => '3', 'kezd_datum' => '2024-01-01 15:20:00', 'veg_datum' => '2024-01-01 20:20:00', 'leiras' => 'Serpane riddim', 'buisness_email' => 'nextlevel@gmail.com', 'buisness_tel' => '06706382542', 'esem_kat' => '1']);
 
         Esemenyek::create(['cim' => 'Cat presents KNCSK', 'szervezo' => '3', 'helyszin' => '5', 'kezd_datum' => '2025-02-25 20:30:00', 'veg_datum' => '2025-02-25 23:30:00', 'leiras' => 'KNCSK INSANE RIDDIM', 'buisness_email' => 'kncsk@gmail.com', 'buisness_tel' => '06706280732', 'esem_kat' => '3']);

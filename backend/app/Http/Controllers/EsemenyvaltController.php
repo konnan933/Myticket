@@ -7,11 +7,12 @@ use Illuminate\Http\Request;
 
 class EsemenyValtController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $esemenyValtozasok =  EsemenyValt::all();
         return $esemenyValtozasok;
     }
-    
+
     public function show($id)
     {
         $esemenyValtozasok = EsemenyValt::find($id);
@@ -35,9 +36,8 @@ class EsemenyValtController extends Controller
         $esemenyValt->buisness_tel = $request->buisness_tel;
         $esemenyValt->esem_kat = $request->esem_kat;
         $esemenyValt->jutalek = 17;
-        $esemenyValt->statusz = 0;
+        $esemenyValt->statusz = $request->statusz;
         $esemenyValt->datumig = now();
-        $esemenyValt->save(); 
+        $esemenyValt->save();
     }
-
 }
