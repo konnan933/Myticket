@@ -43,15 +43,16 @@ class AuthController extends Controller
 
     public function register(Request $request){
         $request->validate([
-            'fel_nev' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6',
+            'fel_nev' => 'required|string|max:255',
         ]);
 
         $user = User::create([
-            'fel_nev' => $request->fel_nev,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'fel_nev' => $request->fel_nev,
+            'telefonszam' => $request->telefonszam
         ]);
 
         $token = Auth::login($user);
