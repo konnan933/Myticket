@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\EszmeiJegy;
+use App\Models\EszmeiJegyValt;
 
 class EszmeiJegyObserver
 {
@@ -12,9 +13,34 @@ class EszmeiJegyObserver
      * @param  \App\Models\EszmeiJegy  $eszmeiJegy
      * @return void
      */
+    public function creating(EszmeiJegy $eszmeiJegy)
+    {
+        if ($eszmeiJegy->kezd_datum < now()) {
+            return false;
+        }
+    }
     public function created(EszmeiJegy $eszmeiJegy)
     {
-        //
+    }
+
+    public function updating(EszmeiJegy $eszmeiJegy)
+    {
+        if ($eszmeiJegy->kezd_datum < now()) {
+            return false;
+        }
+        $eszmei_jegy_valt =  new EszmeiJegyValt();
+        $eszmei_jegy_valt->esemeny_id =  $eszmeiJegy->esemeny_id;
+        $eszmei_jegy_valt->eszmei_jegy_id =  $eszmeiJegy->eszmei_jegy_id;
+        $eszmei_jegy_valt->tipus = $eszmeiJegy->getOriginal('tipus');
+        $eszmei_jegy_valt->ossz_menny = $eszmeiJegy->getOriginal('ossz_menny');
+        $eszmei_jegy_valt->lefog_menny = $eszmeiJegy->getOriginal('lefog_menny');
+        $eszmei_jegy_valt->szabad_menny = $eszmeiJegy->getOriginal('szabad_menny');
+        $eszmei_jegy_valt->penznem = $eszmeiJegy->getOriginal('penznem');
+        $eszmei_jegy_valt->p_mennyiseg = $eszmeiJegy->getOriginal('p_mennyiseg');
+        $eszmei_jegy_valt->ara = $eszmeiJegy->getOriginal('ara');
+        $eszmei_jegy_valt->kezd_datum = $eszmeiJegy->getOriginal('kezd_datum');
+        $eszmei_jegy_valt->datumig = now();
+        $eszmei_jegy_valt->save();
     }
 
     /**

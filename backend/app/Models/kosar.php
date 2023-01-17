@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Kosar extends Model
 {
     use HasFactory;
+    public $table = 'kosar';
+    public $timestamps = false;
     protected $fillable = [
         'esemeny_id',
         'eszmei_jegy_id',
@@ -15,5 +17,4 @@ class Kosar extends Model
         'db',
         'lefog_ido',
     ];
-
 }
