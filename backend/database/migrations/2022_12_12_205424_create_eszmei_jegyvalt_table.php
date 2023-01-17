@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('eszmei_jegy_id');
             $table->integer('tipus');
             $table->integer('ossz_menny');
-            $table->char('penz_nem', 3);
+            $table->char('penznem', 3);
             $table->decimal('p_mennyiseg', 8, 2);
             $table->decimal('ara', 19, 4);
             $table->dateTime('kezd_datum');

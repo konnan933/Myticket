@@ -33,8 +33,6 @@ class EszmeiJegyObserver
         $eszmei_jegy_valt->eszmei_jegy_id =  $eszmeiJegy->eszmei_jegy_id;
         $eszmei_jegy_valt->tipus = $eszmeiJegy->getOriginal('tipus');
         $eszmei_jegy_valt->ossz_menny = $eszmeiJegy->getOriginal('ossz_menny');
-        $eszmei_jegy_valt->lefog_menny = $eszmeiJegy->getOriginal('lefog_menny');
-        $eszmei_jegy_valt->szabad_menny = $eszmeiJegy->getOriginal('szabad_menny');
         $eszmei_jegy_valt->penznem = $eszmeiJegy->getOriginal('penznem');
         $eszmei_jegy_valt->p_mennyiseg = $eszmeiJegy->getOriginal('p_mennyiseg');
         $eszmei_jegy_valt->ara = $eszmeiJegy->getOriginal('ara');

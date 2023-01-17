@@ -3,7 +3,11 @@
 namespace App\Providers;
 
 use App\Models\Esemenyek;
+use App\Models\EszmeiJegy;
+use App\Models\Kosar;
 use App\Observers\EsemenyekObserver;
+use App\Observers\EszmeiJegyObserver;
+use App\Observers\KosarObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -26,5 +30,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Esemenyek::observe(EsemenyekObserver::class);
+        EszmeiJegy::observe(EszmeiJegyObserver::class);
+        Kosar::observe(KosarObserver::class);
     }
 }
