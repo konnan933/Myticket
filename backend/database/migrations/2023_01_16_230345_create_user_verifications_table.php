@@ -35,7 +35,7 @@ class CreateUserVerificationsTable extends Migration
         Schema::dropIfExists("user_verifications");
 
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('is_verified');
+            $table->dropColumn('megerositve_e');
         });
     }
 }
