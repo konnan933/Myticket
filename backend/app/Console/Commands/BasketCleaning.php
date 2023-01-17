@@ -34,6 +34,7 @@ class BasketCleaning extends Command
     {
         $kosarTartalom = Kosar::all();
         foreach ($kosarTartalom as $kosarAdat) {
+            //TODO feltétel kibővítés
             if (!(now()->lessThan(Carbon::parse($kosarAdat->lefog_ido)->addMinutes(10)))) {
                 $kosarAdat->delete();
             }
