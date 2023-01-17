@@ -23,7 +23,6 @@ class User extends Authenticatable
         'fel_nev',
         'level',
         'telefonszam',
-        'megerositve_e'
     ];
     public $timestamps = false;
 
