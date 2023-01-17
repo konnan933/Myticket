@@ -14,6 +14,7 @@ use App\Http\Controllers\JegyekController;
 use App\Http\Controllers\KosarController;
 use App\Http\Controllers\SzamlafejController;
 use Illuminate\Support\Facades\Route;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 /*
 |--------------------------------------------------------------------------
@@ -103,10 +104,17 @@ Route::get('api/bill/{id}', [SzamlafejController::class, 'show']);
 Route::get('api/bticket', [JegyekController::class, 'index']);
 Route::get('api/bticket/{id}', [JegyekController::class, 'show']);
 
-/* Route::get('qrcode', function () {
-    return QrCode::size(300)->generate('A basic example of QR code!');
-}); */
-
+// ! kell composer require simplesoftwareio/simple-qrcode "~4" 
+// ! kell baconQrcode ot composer.lock-ba átírni 2.0.8 ra
+// ! kell config/app.php-ban beilleszteni a kommentel jelölt sort
+// ! composer update -o
+Route::get('qrcode/jegyId', function ($jegyId) {
+    return QrCode::size(300)->generate($jegyId);
+});
+Route::get('qrcode', function () {
+    return QrCode::size(300)->generate('1234');
+});
+ 
 Route::get('/', function () {
     return view('welcome');
 });

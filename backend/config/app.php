@@ -184,15 +184,15 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        // ! QRCODE 
-        //SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
         /*
-         * Package Service Providers...
-         */
+        * Package Service Providers...
+        */
 
         /*
-         * Application Service Providers...
-         */
+        * Application Service Providers...
+        */
+        // ! QRCODE 
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
@@ -214,7 +214,8 @@ return [
 
     'aliases' => [
         // 'ExampleClass' => App\Example\ExampleClass::class,
-        //'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class
+        // ! QRCODE 
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class
     ],
 
 ];
