@@ -14,16 +14,3 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::post('sendPasswordResetLink', [ResetPasswordController::class, 'sendEmail']);
-
-
-Route::controller(AuthController::class)->group(function () {
-    Route::post('login', 'login');
-    Route::get('login', 'login')->name('login');
-    Route::post('register', 'register');
-    Route::post('logout', 'logout');
-    Route::post('refresh', 'refresh');
-    Route::get('me', 'me');
-
-});
