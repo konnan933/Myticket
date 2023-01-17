@@ -215,7 +215,8 @@ return [
     'aliases' => [
         // 'ExampleClass' => App\Example\ExampleClass::class,
         // ! QRCODE 
-        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
+        'Route' => Illuminate\Support\Facades\Route::class
     ],
 
 ];
