@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Facade;
 
 return [
 
+
+
+
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -181,7 +184,8 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-
+        // ! QRCODE 
+        //SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -208,8 +212,9 @@ return [
     |
     */
 
-    'aliases' => Facade::defaultAliases()->merge([
+    'aliases' => [
         // 'ExampleClass' => App\Example\ExampleClass::class,
-    ])->toArray(),
+        //'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class
+    ],
 
 ];

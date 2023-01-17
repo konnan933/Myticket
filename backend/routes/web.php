@@ -103,7 +103,9 @@ Route::get('api/bill/{id}', [SzamlafejController::class, 'show']);
 Route::get('api/bticket', [JegyekController::class, 'index']);
 Route::get('api/bticket/{id}', [JegyekController::class, 'show']);
 
-
+/* Route::get('qrcode', function () {
+    return QrCode::size(300)->generate('A basic example of QR code!');
+}); */
 
 Route::get('/', function () {
     return view('welcome');
