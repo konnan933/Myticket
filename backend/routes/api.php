@@ -20,6 +20,7 @@ Route::post('sendPasswordResetLink', [ResetPasswordController::class, 'sendEmail
 
 Route::controller(AuthController::class)->group(function () {
     Route::post('login', 'login');
+    Route::get('login', 'login')->name('login');
     Route::post('register', 'register');
     Route::post('logout', 'logout');
     Route::post('refresh', 'refresh');

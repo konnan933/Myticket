@@ -23,7 +23,6 @@ return new class extends Migration
             $table->tinyInteger('level')->default(1);
             $table->string('telefonszam')->unique();
             $table->tinyInteger('szab_sert_szam')->default(0);
-            $table->rememberToken();
         });
 
         User::create(['email' => 'student1@gmail.com', 'password' => Hash::make('Aa123456'), 'fel_nev' => 'Marcsi', 'telefonszam' => '06701274832']);

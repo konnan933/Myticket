@@ -24,6 +24,7 @@ class User extends Authenticatable implements JWTSubject
         'fel_nev',
         'level',
         'telefonszam',
+        'megerositve_e'
     ];
     public $timestamps = false;
 

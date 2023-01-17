@@ -58,6 +58,7 @@ class UserController extends Controller
         $user->level = $request->level;
         $user->telefonszam = $request->telefonszam;
         $user->szab_sert_szam = $request->szab_sert_szam;
+        $user->megerositve_e = $request->megerositve_e;
         $user->save();
     }
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DevizaController;
 use App\Http\Controllers\EsemenyekController;
 use App\Http\Controllers\EsemenyKategoriaController;
@@ -24,6 +25,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
+Route::get('user/verify/{verification_code}', [AuthController::class, 'verifyUser']);
 
 //Admin végpontok
 Route::middleware(['admin'])->group(function () {
