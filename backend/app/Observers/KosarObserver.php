@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Models\EszmeiJegy;
 use App\Models\Kosar;
 
 class KosarObserver
@@ -14,50 +15,28 @@ class KosarObserver
      */
     public function created(Kosar $kosar)
     {
-        //
+        $eszmeiJegy = EszmeiJegy::find($kosar->eszmei_jegy_id);
+        $eszmeiJegy->lefog_menny = $eszmeiJegy->lefog_menny + $kosar->db;
+        $eszmeiJegy->lefog_menny = $eszmeiJegy->szab_menny - $kosar->db;
+        $eszmeiJegy->save();
     }
 
-    /**
-     * Handle the Kosar "updated" event.
-     *
-     * @param  \App\Models\Kosar  $kosar
-     * @return void
-     */
     public function updated(Kosar $kosar)
     {
-        //
     }
 
-    /**
-     * Handle the Kosar "deleted" event.
-     *
-     * @param  \App\Models\Kosar  $kosar
-     * @return void
-     */
+
     public function deleted(Kosar $kosar)
     {
-        //
     }
 
-    /**
-     * Handle the Kosar "restored" event.
-     *
-     * @param  \App\Models\Kosar  $kosar
-     * @return void
-     */
+
     public function restored(Kosar $kosar)
     {
-        //
     }
 
-    /**
-     * Handle the Kosar "force deleted" event.
-     *
-     * @param  \App\Models\Kosar  $kosar
-     * @return void
-     */
+
     public function forceDeleted(Kosar $kosar)
     {
-        //
     }
 }

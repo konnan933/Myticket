@@ -43,7 +43,7 @@ class EsemenyekObserver
         $esemenyValt->buisness_email = $esemenyek->getOriginal('buisness_email');
         $esemenyValt->buisness_tel = $esemenyek->getOriginal('buisness_tel');
         $esemenyValt->esem_kat = $esemenyek->getOriginal('esem_kat');
-        $esemenyValt->jutalek = 17;
+        $esemenyValt->jutalek = $esemenyek->getOriginal('jutalek');;
         $esemenyValt->statusz = $esemenyek->getOriginal('statusz');
         $esemenyValt->datumig = now();
         $esemenyValt->save();

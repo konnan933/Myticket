@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('esemeny_id')->references('esemeny_id')->on('eszmei_jegy');
             $table->foreignId('eszmei_jegy_id')->references('eszmei_jegy_id')->on('eszmei_jegy');
             $table->foreignId('user')->references('id')->on('users');
-            $table->integer('db');
+            $table->integer('db')->max(50);
             $table->dateTime('lefog_ido');
             $table->boolean('kifizetve')->default(false);
         });
