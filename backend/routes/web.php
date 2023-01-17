@@ -114,7 +114,7 @@ Route::get('qrcode/jegyId', function ($jegyId) {
 Route::get('qrcode', function () {
     return QrCode::size(300)->generate('1234');
 });
- 
+
 Route::get('/', function () {
     return view('welcome');
 });
