@@ -14,7 +14,7 @@ class BasketCleaning extends Command
      *
      * @var string
      */
-    protected $signature = 'basket:hourly';
+    protected $signature = 'basket:everyTenMinutes';
 
     /**
      * The console command description.

@@ -19,8 +19,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('basket:hourly')
-            ->everyMinute()->onOneServer();
+        //terminálban php artisan schedule:work hogy elinduljon a megadott időzitéssel
+        $schedule->command('basket:everyTenMinutes')
+            ->everyTenMinutes()->onOneServer();
     }
 
     /**
