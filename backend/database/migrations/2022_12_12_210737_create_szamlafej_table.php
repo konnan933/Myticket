@@ -38,7 +38,7 @@ return new class extends Migration
 
         Szamlafej::create(['kib_neve' => 'Eszter kft', 'vevo_nev' => 'Eszter', 'user'=>'4', 'kib_datum' => '2023-09-11 08:50:00', 'afa_nelk_ar' => '5000', 'afas_ar' => '7000']);
 
-        Szamlafej::create(['kib_neve' => 'Sanyi kft', 'vevo_nev' => 'Sanyi', 'user'=>5, 'kib_datum' => '2023-07-28 10:50:00', 'afa_nelk_ar' => '6000', 'afas_ar' => '9000']);
+        Szamlafej::create(['kib_neve' => 'Sanyi kft', 'vevo_nev' => 'Sanyi', 'user'=>'5', 'kib_datum' => '2023-07-28 10:50:00', 'afa_nelk_ar' => '6000', 'afas_ar' => '9000']);
     }
 
     /**

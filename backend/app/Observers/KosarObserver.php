@@ -53,6 +53,7 @@ class KosarObserver
         $szamlafej = new Szamlafej();
         $szamlafej->kib_neve = "MyTicket";
         $szamlafej->vevo_nev = User::find($kosar->user)->fel_nev;
+        $szamlafej->user = $kosar->user;
         $szamlafej->kib_datum = now();
         $szamlafej->afa_nelk_ar  = $afas_ar - ($afas_ar * 0.27);
         $szamlafej->afas_ar  = $afas_ar;
