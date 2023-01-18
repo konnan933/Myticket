@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Http\Controllers\EmailController;
 use App\Models\Szamlafej;
 
 class SzamlafejObserver
@@ -14,7 +15,7 @@ class SzamlafejObserver
      */
     public function created(Szamlafej $szamlafej)
     {
-        //
+        EmailController::szamlaEmail($szamlafej);
     }
 
     /**
@@ -47,7 +48,7 @@ class SzamlafejObserver
      */
     public function restored(Szamlafej $szamlafej)
     {
-        //
+        
     }
 
     /**

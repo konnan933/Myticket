@@ -13,6 +13,7 @@ class Szamlafej extends Model
     protected $fillable = [
         'kib_neve',
         'vevo_nev',
+        'user',
         'kib_datum',
         'afa_nelk_ar',
         'afas_ar',
