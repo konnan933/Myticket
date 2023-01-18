@@ -43,7 +43,7 @@ return new class extends Migration
 
         EszmeiJegy::create(['esemeny_id' => '1', 'tipus' => '1', 'ossz_menny' => '2000', 'lefog_menny' => '100', 'szabad_menny' => '1900', 'penznem' => 'EUR', 'p_mennyiseg' => 10.1, 'ara' => '5', 'kezd_datum' => '2024-01-01 15:20:00']);
 
-        EszmeiJegy::create(['esemeny_id' => '1', 'tipus' => '2', 'ossz_menny' => '1000', 'lefog_menny' => '20', 'szabad_menny' => '980', 'penznem' => 'HUF', 'p_mennyiseg' => 15.10, 'ara' => '20', 'kezd_datum' => '2025-02-25 20:30:00']);
+        EszmeiJegy::create(['esemeny_id' => '2', 'tipus' => '2', 'ossz_menny' => '1000', 'lefog_menny' => '20', 'szabad_menny' => '980', 'penznem' => 'HUF', 'p_mennyiseg' => 15.10, 'ara' => '20', 'kezd_datum' => '2025-02-25 20:30:00']);
 
         EszmeiJegy::create(['esemeny_id' => '3', 'tipus' => '3', 'ossz_menny' => '5000', 'lefog_menny' => '500', 'szabad_menny' => '4500', 'penznem' => 'BTC', 'p_mennyiseg' => 1.5, 'ara' => '0.1', 'kezd_datum' => '2023-12-01 23:00:00']);
 

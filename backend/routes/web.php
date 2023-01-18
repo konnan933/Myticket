@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DevizaController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\EsemenyekController;
 use App\Http\Controllers\EsemenyKategoriaController;
 use App\Http\Controllers\EsemenyValtController;
@@ -77,7 +78,6 @@ Route::delete('api/dtype/{id}', [DevizaController::class, 'destroy']);
 Route::post('api/iticket', [EszmeiJegyController::class, 'store']);
 Route::get('api/iticket', [EszmeiJegyController::class, 'index']);
 Route::get('api/iticket/{id}', [EszmeiJegyController::class, 'show']);
-//Route::get('api/iticket/{event}/{id}', [EszmeiJegyController::class, 'show']);
 Route::put('api/iticket/{event}/{id}', [EszmeiJegyController::class, 'update']);
 Route::delete('api/iticket/{event}/{id}', [EszmeiJegyController::class, 'destroy']);
 
