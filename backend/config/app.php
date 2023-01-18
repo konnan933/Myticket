@@ -193,8 +193,10 @@ return [
         /*
         * Application Service Providers...
         */
-        // ! QRCODE 
+        // * QRCODE 
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
+        // * PDF 
+        Barryvdh\DomPDF\ServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
@@ -216,8 +218,10 @@ return [
 
     'aliases' => [
         // 'ExampleClass' => App\Example\ExampleClass::class,
-        // ! QRCODE 
+        // * QRCODE 
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
+        // * PDF
+        'PDF' => Barryvdh\DomPDF\Facade::class,
         'Route' => Illuminate\Support\Facades\Route::class
     ],
 

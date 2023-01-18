@@ -104,15 +104,14 @@ Route::get('api/bticket/{id}', [JegyekController::class, 'show']);
 // ! kell baconQrcode ot composer.lock-ba átírni 2.0.8 ra
 // ! kell config/app.php-ban beilleszteni a kommentel jelölt sort
 // ! composer update -o
-Route::get('qrcode/jegyId', function ($jegyId) {
-    return QrCode::size(300)->generate($jegyId);
-});
-Route::get('qrcode', function () {
+
+Route::get('/qrcode/{jegyId}', [QrCodeController::class, 'index']);
+/* Route::get('qrcode', function () {
     return QrCode::size(300)->generate('1234');
-});
+}); */
 
 Route::get('/', function () {
     return ['Laravel' => app()->version()];
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
