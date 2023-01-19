@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Http\Controllers\EmailController;
 use App\Models\Jegyek;
 
 class JegyekObserver
@@ -14,7 +15,7 @@ class JegyekObserver
      */
     public function created(Jegyek $jegyek)
     {
-        //
+        EmailController::sendPDF($jegyek->user, $jegyek->qrkod);
     }
 
     /**

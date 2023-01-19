@@ -221,7 +221,7 @@ return [
         // * QRCODE 
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
         // * PDF
-        'PDF' => Barryvdh\DomPDF\Facade::class,
+        'PDF' => Barryvdh\DomPDF\Facade\Pdf::class,
         'Route' => Illuminate\Support\Facades\Route::class
     ],
 

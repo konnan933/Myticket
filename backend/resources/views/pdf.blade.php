@@ -9,7 +9,6 @@
 </head>
 
 <body>
-
     <div class="container mt-4">
         <img src="/images/small_logo.png" class="rounded mx-auto d-block" alt="asd">
         <div class="card">
@@ -17,7 +16,7 @@
                 <h2>Jegy azonosítód : {{$fel_nev}}</h2>
             </div>
             <div class="card-body">
-                {!! QrCode::size(300)->generate($qrCodehash) !!}
+                <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(300)->generate($qrcode)) !!} ">
             </div>
         </div>
 

@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Szamlafej;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class EmailController extends Controller
 {
@@ -30,24 +32,23 @@ class EmailController extends Controller
         );
     }
 
-    public static function createPDF($user, $qrcode)
+    public static function sendPDF($user, $qrcode)
     {
         $user = User::find($user);
         $fel_nev = $user->fel_nev;
         $email = $user->email;
-        $qrCodehash = Hash::make($qrcode);
-        //return view('pdf', compact('qrCodehash', 'fel_nev'));
-
         $subject = 'Jegy azonosítód';
+        /*         $png = QrCode::format('png')->size(300)->generate($qrcode);
+        $png = base64_encode($png); */
+        $pdf = PDF::loadView('pdf', compact('qrcode', 'fel_nev'))->output();
 
         Mail::send(
             'pdf',
-            ['qrCodehash' => $qrCodehash, 'fel_nev' => $fel_nev],
-            function ($mail) use ($email, $fel_nev, $subject) {
-                $mail->from("myticketszakdoga@gmail.com", "MyTicket");
-                $mail->to($email, $fel_nev);
-                $mail->subject($subject);
-                /*  $mail->file(); */
+            ['qrcode' => $qrcode, 'fel_nev' => $fel_nev],
+            function ($mail) use ($email, $subject, $pdf) {
+                $mail->to($email, $email)
+                    ->subject($subject)
+                    ->attachData($pdf, "text.pdf");
             }
         );
     }

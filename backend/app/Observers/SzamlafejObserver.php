@@ -16,7 +16,6 @@ class SzamlafejObserver
     public function created(Szamlafej $szamlafej)
     {
         EmailController::szamlaEmail($szamlafej);
-        EmailController::createPDF($szamlafej->user, 1);
     }
 
     /**
