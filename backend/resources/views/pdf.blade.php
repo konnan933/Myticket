@@ -10,10 +10,10 @@
 
 <body>
     <div class="container mt-4">
-        <img src="/images/small_logo.png" class="rounded mx-auto d-block" alt="asd">
+        <h2>{{$fel_nev}}</h2>
         <div class="card">
             <div class="card-header">
-                <h2>Jegy azonosítód : {{$fel_nev}}</h2>
+                <h2>Jegy azonosítód</h2>
             </div>
             <div class="card-body">
                 <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(300)->generate($qrcode)) !!} ">
