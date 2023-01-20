@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Http\Controllers\EmailController;
 use App\Models\Jegyek;
+use Illuminate\Support\Facades\Hash;
 
 class JegyekObserver
 {
@@ -15,6 +16,9 @@ class JegyekObserver
      */
     public function created(Jegyek $jegyek)
     {
+
+        $jegyek->qrkod = Hash::make($jegyek->id);
+        $jegyek->save();
         EmailController::sendPDF($jegyek->user, $jegyek->qrkod);
     }
 
