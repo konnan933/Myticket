@@ -10,13 +10,11 @@
 
 <body>
     <div class="container mt-4">
-        <h2>{{$fel_nev}}</h2>
+        <h2>Kedves {{$fel_nev}}</h2>
         <div class="card">
             <div class="card-header">
-                <h2>Jegy azonosítód</h2>
-            </div>
-            <div class="card-body">
-                <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(300)->generate($tempQrCode)) !!} ">
+                <h3>Jegy azonosítód</h3>
+                <h4>Köszönjük a vasárlásod itt a jegyed a fáljokban</h4>
             </div>
         </div>
 

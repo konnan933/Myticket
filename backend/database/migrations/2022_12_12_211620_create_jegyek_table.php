@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('esemeny_id')->references('esemeny_id')->on('eszmei_jegy');
             $table->foreignId('eszmei_jegy_id')->references('eszmei_jegy_id')->on('eszmei_jegy');
             $table->foreignId('user')->references('id')->on('users');
+            $table->integer('kosarSzam');
             $table->foreignId('szamlaszam')->references('id')->on('szamlafej');
             $table->string('qrkod')->unique();
         });

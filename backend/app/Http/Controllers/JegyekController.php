@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Jegyek;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class JegyekController extends Controller
 {
@@ -31,5 +32,16 @@ class JegyekController extends Controller
         $jegy->user = $request->user;
         $jegy->szamlaszam = $request->szamlaszam;
         $jegy->save();
+    }
+    public static function getUserTickets($jegyek)
+    {
+        $userTickets = DB::table('jegyek')->select('qrkod')
+            ->where('esemeny_id', '=', $jegyek->esemeny_id)
+            ->where('eszmei_jegy_id', '=', $jegyek->eszmei_jegy_id)
+            ->where('user', '=', $jegyek->user)
+            ->where('kosarSzam', '=', $jegyek->kosarSzam)
+            ->get();
+
+        return $userTickets;
     }
 }

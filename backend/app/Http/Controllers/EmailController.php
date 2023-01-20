@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Esemenyek;
 use App\Models\Szamlafej;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
@@ -32,23 +33,32 @@ class EmailController extends Controller
         );
     }
 
-    public static function sendPDF($user, $qrcode)
+    public static function sendPDF($jegyek, $qrCodes)
     {
-        $user = User::find($user);
+        $user = User::find($jegyek->user);
         $fel_nev = $user->fel_nev;
         $email = $user->email;
+        $esemeny_nev = Esemenyek::find($jegyek->esemeny_id)->cim;
         $subject = 'Jegy azonosítód';
         /*         $png = QrCode::format('png')->size(300)->generate($qrcode);
         $png = base64_encode($png); */
-        $pdf = PDF::loadView('pdf', compact('qrcode', 'fel_nev'))->output();
+
+        $pdfs = array();
+        foreach ($qrCodes as $qrcode) {
+            $tempQrCode = $qrcode->qrkod;
+            array_push($pdfs, PDF::loadView('pdf', compact('tempQrCode', 'fel_nev'))->output());
+        }
+
 
         Mail::send(
-            'pdf',
-            ['qrcode' => $qrcode, 'fel_nev' => $fel_nev],
-            function ($mail) use ($email, $subject, $pdf) {
+            'email.ticket',
+            ['fel_nev' => $fel_nev],
+            function ($mail) use ($email, $subject, $pdfs, $esemeny_nev) {
                 $mail->to($email, $email)
-                    ->subject($subject)
-                    ->attachData($pdf, "text.pdf");
+                    ->subject($subject);
+                for ($i = 0; $i < count($pdfs); $i++) {
+                    $mail->attachData($pdfs[$i], $esemeny_nev . ".pdf");
+                }
             }
         );
     }

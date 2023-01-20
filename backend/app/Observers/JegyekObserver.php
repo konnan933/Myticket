@@ -3,7 +3,10 @@
 namespace App\Observers;
 
 use App\Http\Controllers\EmailController;
+use App\Http\Controllers\JegyekController;
+use App\Http\Controllers\KosarController;
 use App\Models\Jegyek;
+use App\Models\Kosar;
 use Illuminate\Support\Facades\Hash;
 
 class JegyekObserver
@@ -16,10 +19,13 @@ class JegyekObserver
      */
     public function created(Jegyek $jegyek)
     {
-
+        $dbSzam = Kosar::find($jegyek->kosarSzam);
         $jegyek->qrkod = Hash::make($jegyek->id);
         $jegyek->save();
-        EmailController::sendPDF($jegyek->user, $jegyek->qrkod);
+        $qrCodes = JegyekController::getUserTickets($jegyek);
+        if (count($qrCodes) == $dbSzam->db) {
+            EmailController::sendPDF($jegyek, $qrCodes);
+        }
     }
 
     /**

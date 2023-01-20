@@ -43,6 +43,7 @@ class KosarObserver
         $jegyek->esemeny_id = $kosar->esemeny_id;
         $jegyek->eszmei_jegy_id = $kosar->eszmei_jegy_id;
         $jegyek->user = $kosar->user;
+        $jegyek->kosarSzam = $kosar->id;
         $jegyek->szamlaszam = $szamlaId;
         $jegyek->qrkod = Hash::make($kosar->eszmei_jegy_id);
         $jegyek->save();

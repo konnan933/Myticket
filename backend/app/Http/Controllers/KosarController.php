@@ -13,7 +13,7 @@ class KosarController extends Controller
         return $kosarak;
     }
 
-    public function show($esemeny_id, $eszmei_jegy_id, $user)
+    public static function show($esemeny_id, $eszmei_jegy_id, $user)
     {
         $kosarak = Kosar::where('esemeny_id', $esemeny_id)->where('eszmei_jegy_id', $eszmei_jegy_id)->where('user', $user)->get();
         return $kosarak[0];

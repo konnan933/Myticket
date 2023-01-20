@@ -111,6 +111,8 @@ Route::get('/qrcode/{user}/{jegyId}', [PDFController::class, 'createPDF']);
     return QrCode::size(300)->generate('1234');
 }); */
 
+
+Route::get('api/getusertickets/{esemeny_id}/{eszmei_jegy_id}/{user}', [JegyekController::class, 'getUserTickets']);
 Route::get('/', function () {
     return ['Laravel' => app()->version()];
 });
