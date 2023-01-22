@@ -81,6 +81,7 @@ Route::get('api/iticket', [EszmeiJegyController::class, 'index']);
 Route::get('api/iticket/{id}', [EszmeiJegyController::class, 'show']);
 Route::put('api/iticket/{event}/{id}', [EszmeiJegyController::class, 'update']);
 Route::delete('api/iticket/{event}/{id}', [EszmeiJegyController::class, 'destroy']);
+Route::get('api/iticket/event/all/{id}', [EszmeiJegyController::class, 'getAllEventTickets']);
 
 //EszmeiJegyValt vegpontok
 Route::get('api/ticketchange', [EszmeiJegyValtController::class, 'index']);
@@ -103,6 +104,7 @@ Route::get('api/bticket', [JegyekController::class, 'index']);
 Route::get('api/bticket/{id}', [JegyekController::class, 'show']);
 Route::get('api/usertickets/{user}', [JegyekController::class, 'getUserAllTickets']);
 Route::get('api/usereventtickets/{user}/{event}', [JegyekController::class, 'getUserEvenTickets']);
+Route::get('api/bticket/all/{event}', [JegyekController::class, 'getEventBuyedTickets']);
 
 // ! kell composer require simplesoftwareio/simple-qrcode "~4" 
 // ! kell baconQrcode ot composer.lock-ba átírni 2.0.8 ra

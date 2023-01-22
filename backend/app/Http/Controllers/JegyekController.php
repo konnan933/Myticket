@@ -62,4 +62,15 @@ class JegyekController extends Controller
 
         return $userTickets;
     }
+
+    
+    public function getEventBuyedTickets($esemeny){
+
+        $buyedTickets = DB::table('jegyek')->select('*')
+        ->where('esemeny_id', '=', $esemeny)
+        ->get();
+
+    return $buyedTickets;
+    }
+
 }

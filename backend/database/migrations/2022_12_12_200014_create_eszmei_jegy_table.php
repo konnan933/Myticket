@@ -42,6 +42,7 @@ return new class extends Migration
         ara_check CHECK (ara >= 0)");
 
         EszmeiJegy::create(['esemeny_id' => '1', 'tipus' => '1', 'ossz_menny' => '2000', 'lefog_menny' => '100', 'szabad_menny' => '1900', 'penznem' => 'EUR', 'p_mennyiseg' => 10.1, 'ara' => '5', 'kezd_datum' => '2024-01-01 15:20:00']);
+        EszmeiJegy::create(['esemeny_id' => '1', 'tipus' => '2', 'ossz_menny' => '2000', 'lefog_menny' => '200', 'szabad_menny' => '1800', 'penznem' => 'EUR', 'p_mennyiseg' => 10.1, 'ara' => '5', 'kezd_datum' => '2024-01-01 15:20:00']);
 
         EszmeiJegy::create(['esemeny_id' => '2', 'tipus' => '2', 'ossz_menny' => '1000', 'lefog_menny' => '20', 'szabad_menny' => '980', 'penznem' => 'HUF', 'p_mennyiseg' => 15.10, 'ara' => '20', 'kezd_datum' => '2025-02-25 20:30:00']);
 

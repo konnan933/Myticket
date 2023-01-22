@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\EszmeiJegy;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EszmeiJegyController extends Controller
 {
@@ -51,5 +52,14 @@ class EszmeiJegyController extends Controller
         $eszmei_jegy->ara = $request->ara;
         $eszmei_jegy->kezd_datum = $request->kezd_datum;
         $eszmei_jegy->save();
+    }
+
+    public function getAllEventTickets($esemeny){
+
+        $allEventTickets = DB::table('eszmei_jegy')->select('*')
+        ->where('esemeny_id', '=', $esemeny)
+        ->get();
+
+    return $allEventTickets;
     }
 }
