@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Esemenyek;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Termwind\Components\Raw;
 
 class EsemenyekController extends Controller
 {
@@ -57,31 +58,29 @@ class EsemenyekController extends Controller
         $esemeny->save();
     }
 
-    public function getUserEvents ($user){
+    public function getUserEvents($user)
+    {
 
         $userEvents = DB::table('esemenyek')->select('*')
-        ->where('user', '=', $user)
-        ->get();
+            ->where('user', '=', $user)
+            ->get();
 
-    return $userEvents;
+        return $userEvents;
     }
 
-    public function getEventProfit ($event){
+    public function getEventRevenue($event)
+    {
+        $eventRevenue = DB::table('szamlafej as sz')
+            ->select(DB::raw('sum(sz.afas_ar)'))
+            ->whereExists(function () use ($event) {
+                return DB::table('jegyek as j')
+                    ->select('*')
+                    ->where('j.esemeny_id', $event)
+                    ->where('j.szamlaszam', 'sz.id');
+            })
+            ->get();
 
-/*         $userEvents = DB::table('jegyek j, eszmei_jegy ej')->select('*')
-        ->join('eszmei_jegy', 'jegyek.eszmei_jegy_id', '=', 'eszmei_jegy.eszmei_jegy_id')
-        ->join('eszmei_jegy', 'jegyek.esemeny_id', '=', 'eszmei_jegy.esemeny_id')
-        ->where('esemeny_id', '=', $event)
-        ->groupBy('jegyek.eszmei_jegy_id','jegyek.esemeny_id')
-        ->count(); */
 
-        $userEvents = DB::table('jegyek')->select('*')
-        ->where('jegyek.eszmei_jegy_id', '=', 'eszmei_jegy.eszmei_jegy_id')
-        ->where('jegyek.esemeny_id', '=', 'eszmei_jegy.esemeny_id')
-        ->where('esemeny_id', '=', $event)
-        ->groupBy('jegyek.eszmei_jegy_id','jegyek.esemeny_id')
-        ->count(); 
-
-    return $userEvents;
+        return $eventRevenue;
     }
 }
