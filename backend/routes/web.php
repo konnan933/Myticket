@@ -100,6 +100,8 @@ Route::get('api/bill/{id}', [SzamlafejController::class, 'show']);
 //Vásárolt jegyek vegpontok
 Route::get('api/bticket', [JegyekController::class, 'index']);
 Route::get('api/bticket/{id}', [JegyekController::class, 'show']);
+Route::get('api/usertickets/{user}', [JegyekController::class, 'getUserAllTickets']);
+Route::get('api/usereventtickets/{user}/{event}', [JegyekController::class, 'getUserEvenTickets']);
 
 // ! kell composer require simplesoftwareio/simple-qrcode "~4" 
 // ! kell baconQrcode ot composer.lock-ba átírni 2.0.8 ra

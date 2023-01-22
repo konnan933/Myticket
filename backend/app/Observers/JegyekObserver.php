@@ -22,7 +22,7 @@ class JegyekObserver
         $dbSzam = Kosar::find($jegyek->kosarSzam);
         $jegyek->qrkod = Hash::make($jegyek->id);
         $jegyek->save();
-        $qrCodes = JegyekController::getUserTickets($jegyek);
+        $qrCodes = JegyekController::getUserQrCodes($jegyek);
         if (count($qrCodes) == $dbSzam->db) {
             EmailController::sendPDF($jegyek, $qrCodes);
         }
