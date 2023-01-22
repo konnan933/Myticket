@@ -12,7 +12,7 @@ class Esemenyek extends Model
     public $timestamps = false;
     protected $fillable = [
         'cim',
-        'szervezo',
+        'user',
         'helyszin',
         'kezd_datum',
         'veg_datum',

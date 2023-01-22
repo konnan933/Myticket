@@ -18,7 +18,7 @@ return new class extends Migration
             $table->id('id');
             $table->integer('esemeny_id');
             $table->string('cim');
-            $table->integer('szervezo');
+            $table->integer('user');
             $table->integer('helyszin');
             $table->dateTime('kezd_datum');
             $table->dateTime('veg_datum');

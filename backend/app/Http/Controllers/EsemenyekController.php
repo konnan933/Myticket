@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Esemenyek;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EsemenyekController extends Controller
 {
@@ -26,7 +27,7 @@ class EsemenyekController extends Controller
     {
         $esemeny = new Esemenyek();
         $esemeny->cim = $request->cim;
-        $esemeny->szervezo = $request->szervezo;
+        $esemeny->user = $request->user;
         $esemeny->helyszin = $request->helyszin;
         $esemeny->kezd_datum = $request->kezd_datum;
         $esemeny->veg_datum = $request->veg_datum;
@@ -43,7 +44,7 @@ class EsemenyekController extends Controller
     {
         $esemeny = Esemenyek::find($id);
         $esemeny->cim = $request->cim;
-        $esemeny->szervezo = $request->szervezo;
+        $esemeny->user = $request->user;
         $esemeny->helyszin = $request->helyszin;
         $esemeny->kezd_datum = $request->kezd_datum;
         $esemeny->veg_datum = $request->veg_datum;
@@ -54,5 +55,14 @@ class EsemenyekController extends Controller
         $esemeny->jutalek = 17;
         $esemeny->statusz = $request->statusz;
         $esemeny->save();
+    }
+
+    public function getUserEvents ($user){
+
+        $userEvents = DB::table('esemenyek')->select('*')
+        ->where('user', '=', $user)
+        ->get();
+
+    return $userEvents;
     }
 }

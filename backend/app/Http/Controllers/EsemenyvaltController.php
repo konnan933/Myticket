@@ -27,7 +27,7 @@ class EsemenyValtController extends Controller
         $esemenyValt = new EsemenyValt();
         $esemenyValt->esemeny_id = $request->esemeny_id;
         $esemenyValt->cim = $request->cim;
-        $esemenyValt->szervezo = $request->szervezo;
+        $esemenyValt->user = $request->user;
         $esemenyValt->helyszin = $request->helyszin;
         $esemenyValt->kezd_datum = $request->kezd_datum;
         $esemenyValt->veg_datum = $request->veg_datum;

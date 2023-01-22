@@ -13,7 +13,7 @@ class EsemenyValt extends Model
     protected $fillable = [
         'esemeny_id',
         'cim',
-        'szervezo',
+        'user',
         'helyszin',
         'kezd_datum',
         'veg_datum',

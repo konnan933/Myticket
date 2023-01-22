@@ -35,7 +35,7 @@ class EsemenyekObserver
         $esemenyValt = new EsemenyValt();
         $esemenyValt->esemeny_id = $esemenyek->id;
         $esemenyValt->cim = $esemenyek->getOriginal('cim');
-        $esemenyValt->szervezo = $esemenyek->getOriginal('szervezo');
+        $esemenyValt->user = $esemenyek->getOriginal('user');
         $esemenyValt->helyszin = $esemenyek->getOriginal('helyszin');
         $esemenyValt->kezd_datum = $esemenyek->getOriginal('kezd_datum');
         $esemenyValt->veg_datum = $esemenyek->getOriginal('veg_datum');

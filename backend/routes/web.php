@@ -62,6 +62,7 @@ Route::get('api/event', [EsemenyekController::class, 'index']);
 Route::get('api/event/{id}', [EsemenyekController::class, 'show']);
 Route::put('api/event/{id}', [EsemenyekController::class, 'update']);
 Route::delete('api/event/{id}', [EsemenyekController::class, 'destroy']);
+Route::get('api/userevents/{user}', [EsemenyekController::class, 'getUserEvents']);
 
 //Esemenyvaltozas vegpontok
 Route::get('api/eventchange', [EsemenyValtController::class, 'index']);
