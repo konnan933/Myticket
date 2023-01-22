@@ -65,4 +65,23 @@ class EsemenyekController extends Controller
 
     return $userEvents;
     }
+
+    public function getEventProfit ($event){
+
+/*         $userEvents = DB::table('jegyek j, eszmei_jegy ej')->select('*')
+        ->join('eszmei_jegy', 'jegyek.eszmei_jegy_id', '=', 'eszmei_jegy.eszmei_jegy_id')
+        ->join('eszmei_jegy', 'jegyek.esemeny_id', '=', 'eszmei_jegy.esemeny_id')
+        ->where('esemeny_id', '=', $event)
+        ->groupBy('jegyek.eszmei_jegy_id','jegyek.esemeny_id')
+        ->count(); */
+
+        $userEvents = DB::table('jegyek')->select('*')
+        ->where('jegyek.eszmei_jegy_id', '=', 'eszmei_jegy.eszmei_jegy_id')
+        ->where('jegyek.esemeny_id', '=', 'eszmei_jegy.esemeny_id')
+        ->where('esemeny_id', '=', $event)
+        ->groupBy('jegyek.eszmei_jegy_id','jegyek.esemeny_id')
+        ->count(); 
+
+    return $userEvents;
+    }
 }

@@ -54,10 +54,10 @@ class EszmeiJegyController extends Controller
         $eszmei_jegy->save();
     }
 
-    public function getAllEventTickets($esemeny){
+    public function getAllEventTickets($event){
 
         $allEventTickets = DB::table('eszmei_jegy')->select('*')
-        ->where('esemeny_id', '=', $esemeny)
+        ->where('esemeny_id', '=', $event)
         ->get();
 
     return $allEventTickets;
