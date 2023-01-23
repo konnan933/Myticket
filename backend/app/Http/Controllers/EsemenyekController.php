@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Esemenyek;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Response;
 use Termwind\Components\Raw;
 
 class EsemenyekController extends Controller
@@ -26,10 +28,18 @@ class EsemenyekController extends Controller
     }
     public function store(Request $request)
     {
+
+        $this->validate($request, [
+            'kep' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+        ]);
+
+        $image_path = $request->file('kep')->store('images', 'public');
+
         $esemeny = new Esemenyek();
         $esemeny->cim = $request->cim;
         $esemeny->user = $request->user;
         $esemeny->helyszin = $request->helyszin;
+        $esemeny->kep = $image_path;
         $esemeny->kezd_datum = $request->kezd_datum;
         $esemeny->veg_datum = $request->veg_datum;
         $esemeny->leiras = $request->leiras;
@@ -43,10 +53,20 @@ class EsemenyekController extends Controller
 
     public function update(Request $request, $id)
     {
+
+        $this->validate($request, [
+            'kep' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+        ]);
+
+
         $esemeny = Esemenyek::find($id);
         $esemeny->cim = $request->cim;
         $esemeny->user = $request->user;
         $esemeny->helyszin = $request->helyszin;
+
+        $image_path = $request->file($esemeny->kep)->store('storage', 'images');
+        $esemeny->kep = $image_path;
+
         $esemeny->kezd_datum = $request->kezd_datum;
         $esemeny->veg_datum = $request->veg_datum;
         $esemeny->leiras = $request->leiras;
@@ -82,5 +102,24 @@ class EsemenyekController extends Controller
 
 
         return $eventRevenue;
+    }
+
+    public function getPicture($id)
+    {
+        $esemeny = Esemenyek::find($id);
+        $path = storage_path('public/' . $esemeny->kep);
+
+        /* if (!File::exists($path)) {
+            abort(404);
+        } */
+
+        $type = File::mimeType($path);
+
+        $file = File::get($path);
+
+        $response = Response::make($file, 200);
+        $response->header("Content-Type", $type);
+
+        return $response;
     }
 }

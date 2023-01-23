@@ -60,6 +60,8 @@ Route::delete('api/ttype/{id}', [JegyTipusController::class, 'destroy']);
 Route::post('api/event', [EsemenyekController::class, 'store']);
 Route::get('api/event', [EsemenyekController::class, 'index']);
 Route::get('api/event/{id}', [EsemenyekController::class, 'show']);
+// * kep lekerese
+Route::get('api/event/picture/{id}', [EsemenyekController::class, 'getPicture']);
 Route::put('api/event/{id}', [EsemenyekController::class, 'update']);
 Route::delete('api/event/{id}', [EsemenyekController::class, 'destroy']);
 Route::get('api/userevents/{user}', [EsemenyekController::class, 'getUserEvents']);

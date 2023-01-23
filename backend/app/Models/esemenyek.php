@@ -14,6 +14,7 @@ class Esemenyek extends Model
         'cim',
         'user',
         'helyszin',
+        'kep',
         'kezd_datum',
         'veg_datum',
         'leiras',
