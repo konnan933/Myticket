@@ -14,6 +14,7 @@ use App\Http\Controllers\EszmeiJegyValtController;
 use App\Http\Controllers\JegyekController;
 use App\Http\Controllers\KosarController;
 use App\Http\Controllers\PDFController;
+use App\Http\Controllers\QrCodeController;
 use App\Http\Controllers\SzamlafejController;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
@@ -66,6 +67,9 @@ Route::put('api/event/{id}', [EsemenyekController::class, 'update']);
 Route::delete('api/event/{id}', [EsemenyekController::class, 'destroy']);
 Route::get('api/userevents/{user}', [EsemenyekController::class, 'getUserEvents']);
 Route::get('api/event/profit/{event}', [EsemenyekController::class, 'getEventRevenue']);
+Route::get('api/event/place/{event}', [EsemenyekController::class, 'getEventByPlace']);
+Route::get('api/event/date/{event}', [EsemenyekController::class, 'getEventByDate']);
+Route::get('api/event/category/{event}', [EsemenyekController::class, 'getEventByCategory']);
 
 //Esemenyvaltozas vegpontok
 Route::get('api/eventchange', [EsemenyValtController::class, 'index']);
@@ -118,6 +122,9 @@ Route::get('/qrcode/{user}/{jegyId}', [PDFController::class, 'createPDF']);
 /* Route::get('qrcode', function () {
     return QrCode::size(300)->generate('1234');
 }); */
+
+// QR code
+Route::get('api/qr/isvalid/{qrcode}', [QrCodeController::class, 'isValidQrCode']);
 
 
 Route::get('api/getusertickets/{esemeny_id}/{eszmei_jegy_id}/{user}', [JegyekController::class, 'getUserTickets']);

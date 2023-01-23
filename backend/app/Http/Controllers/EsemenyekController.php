@@ -122,4 +122,33 @@ class EsemenyekController extends Controller
 
         return $response;
     }
+    public function getEventByPlace($place)
+    {
+
+        $eventPlace = DB::table('esemenyek')->select('*')
+            ->where('helyszin', '=', $place)
+            ->get();
+
+        return $eventPlace;
+    }
+
+    public function getEventByDate($date)
+    {
+
+        $eventDate = DB::table('esemenyek')->select('*')
+            ->where('kezd_datum', '=', $date)
+            ->get();
+
+        return $eventDate;
+    }
+
+    public function getEventByCategory($category)
+    {
+
+        $eventCategory = DB::table('esemenyek')->select('*')
+            ->where('esem_kat', '=', $category)
+            ->get();
+
+        return $eventCategory;
+    }
 }
