@@ -78,20 +78,23 @@ class JegyekController extends Controller
 
     public function qrCodeExists($qrCode)
     {
-        $qrCodeExists = DB::table('jegyek as jk')
+        /* $qrCodeExists = DB::table('jegyek as jk')
             ->select(DB::raw('1'))
             ->whereExists(function () use ($qrCode) {
                 return DB::table('jegyek as j')
                     ->select('*')
                     ->where('j.qrkod', $qrCode);
             })
-            ->get();
+            ->get(); */
 
-        if ($qrCodeExists == '1') {
-            return response()->json(true, 200);
+
+        if (Jegyek::where('qrkod', '=', $qrCode)->exists()) {
+            return response()->json([
+                'data' => true,
+            ]);
         }
         return response()->json([
-            'data' => true,
+            'data' => false,
         ]);
     }
 }

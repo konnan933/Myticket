@@ -126,8 +126,6 @@ Route::get('/qrcode/{user}/{jegyId}', [PDFController::class, 'createPDF']);
     return QrCode::size(300)->generate('1234');
 }); */
 
-// QR code
-Route::get('api/qr/isvalid/{qrcode}', [QrCodeController::class, 'isValidQrCode']);
 
 
 Route::get('api/getusertickets/{esemeny_id}/{eszmei_jegy_id}/{user}', [JegyekController::class, 'getUserTickets']);
