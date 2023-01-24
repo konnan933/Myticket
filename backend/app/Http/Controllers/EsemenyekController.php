@@ -149,24 +149,31 @@ class EsemenyekController extends Controller
 
         return $eventCategory;
     }
-    public function eventFilter($date, $category, $place)
+    public function eventFilter($date, $place, $category )
     {
 
-        /*$eventCategory = DB::table('esemenyek')->select('*')
-        ->when('kezd_datum' != '*', function($eventCategory) use($date){
-            $eventCategory->where('kezd_datum', $date)
+        $eventCategory = DB::table('esemenyek')->select('*')
+        ->when($category != '*', function($eventCategory) use($category) {
+            $eventCategory->where('esem_kat',  $category);
         })
-        ->where('esem_kat',  $category)
-            ->where('helyszin',  $place)
-              if ($category != null) {
+        ->when($date != '*', function($eventCategory) use($date) {
+            $eventCategory->where(DB::raw('DATE(kezd_datum)'),  $date);
+        })
+        ->when($place != '*', function($eventCategory) use($place) {
+            $eventCategory->where('helyszin',  $place);
+        })
+        /* if ($category != '*') {
+            $eventCategory->where('esem_kat',  $category);
         }
-         if ($date != null) {
+        if ($place != '*') {
+            $eventCategory->where(DB::raw('DATE(kezd_datum)'), $date);
         } 
-        if ($place != null) {
-        } 
-            ->get();*/
+        if ($place != '*') {
+            $eventCategory->where('helyszin',  $place);
+        }  */
+        ->get();
 
-        return Esemenyek::filter();
+        return $eventCategory;//response()->json($eventCategory);
     }
     public static function sendEmailEventChange($esemeny)
     {
