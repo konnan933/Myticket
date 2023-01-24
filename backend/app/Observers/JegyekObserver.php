@@ -20,7 +20,7 @@ class JegyekObserver
     public function created(Jegyek $jegyek)
     {
         $dbSzam = Kosar::find($jegyek->kosarSzam);
-        $jegyek->qrkod = Hash::make($jegyek->id);
+        $jegyek->qrkod = str_replace('/', '0', Hash::make($jegyek->id));
         $jegyek->save();
         $qrCodes = JegyekController::getUserQrCodes($jegyek);
         if (count($qrCodes) == $dbSzam->db) {

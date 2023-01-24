@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Jegyek;
+use Dotenv\Repository\RepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Response;
 
 class JegyekController extends Controller
 {
@@ -63,14 +65,36 @@ class JegyekController extends Controller
         return $userTickets;
     }
 
-    
-    public function getEventBuyedTickets($esemeny){
+
+    public function getEventBuyedTickets($esemeny)
+    {
 
         $buyedTickets = DB::table('jegyek')->select('*')
-        ->where('esemeny_id', '=', $esemeny)
-        ->get();
+            ->where('esemeny_id', '=', $esemeny)
+            ->get();
 
-    return $buyedTickets;
+        return $buyedTickets;
     }
 
+    public function qrCodeExists($qrCode)
+    {
+        /* $qrCodeExists = DB::table('jegyek as jk')
+            ->select(DB::raw('1'))
+            ->whereExists(function () use ($qrCode) {
+                return DB::table('jegyek as j')
+                    ->select('*')
+                    ->where('j.qrkod', $qrCode);
+            })
+            ->get(); */
+
+
+        if (Jegyek::where('qrkod', '=', $qrCode)->exists()) {
+            return response()->json([
+                'data' => true,
+            ]);
+        }
+        return response()->json([
+            'data' => false,
+        ]);
+    }
 }
