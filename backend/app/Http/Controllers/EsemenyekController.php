@@ -124,7 +124,6 @@ class EsemenyekController extends Controller
     }
     public function getEventByPlace($place)
     {
-
         $eventPlace = DB::table('esemenyek')->select('*')
             ->where('helyszin', '=', $place)
             ->get();
@@ -134,7 +133,6 @@ class EsemenyekController extends Controller
 
     public function getEventByDate($date)
     {
-
         $eventDate = DB::table('esemenyek')->select('*')
             ->where('kezd_datum', '=', $date)
             ->get();
@@ -144,11 +142,29 @@ class EsemenyekController extends Controller
 
     public function getEventByCategory($category)
     {
-
         $eventCategory = DB::table('esemenyek')->select('*')
             ->where('esem_kat', '=', $category)
             ->get();
 
         return $eventCategory;
+    }
+    public function eventFilter($date, $category, $place)
+    {
+
+        /*$eventCategory = DB::table('esemenyek')->select('*')
+        ->when('kezd_datum' != '*', function($eventCategory) use($date){
+            $eventCategory->where('kezd_datum', $date)
+        })
+        ->where('esem_kat',  $category)
+            ->where('helyszin',  $place)
+              if ($category != null) {
+        }
+         if ($date != null) {
+        } 
+        if ($place != null) {
+        } 
+            ->get();*/
+
+        return Esemenyek::filter();
     }
 }

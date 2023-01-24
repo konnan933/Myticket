@@ -70,6 +70,8 @@ Route::get('api/event/profit/{event}', [EsemenyekController::class, 'getEventRev
 Route::get('api/event/place/{event}', [EsemenyekController::class, 'getEventByPlace']);
 Route::get('api/event/date/{event}', [EsemenyekController::class, 'getEventByDate']);
 Route::get('api/event/category/{event}', [EsemenyekController::class, 'getEventByCategory']);
+Route::get('api/event/filter/{date}/{category}/{place}', [EsemenyekController::class, 'eventFilter']);
+
 
 
 //Esemenyvaltozas vegpontok
