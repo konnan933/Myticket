@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('cim');
             $table->foreignId('user')->references('id')->on('users');
             $table->foreignId('helyszin')->references('id')->on('helyszinek');
-            $table->string('kep');
+            $table->foreignId('kep')->references('id')->on('esemeny_kep');
             $table->dateTime('kezd_datum');
             $table->dateTime('veg_datum');
             $table->longText('leiras');
@@ -38,15 +38,15 @@ return new class extends Migration
         DB::statement("ALTER TABLE esemenyek ADD CONSTRAINT
         status_check CHECK (statusz = 0 OR statusz = 1 OR statusz = 2 OR statusz = 3 )");
 
-        Esemenyek::create(['cim' => 'Next level', 'user' => '1', 'helyszin' => '3', 'kep' => 'public/images/big_logo.png', 'kezd_datum' => '2024-01-01 15:20:00', 'veg_datum' => '2024-01-01 20:20:00', 'leiras' => 'Serpane riddim', 'buisness_email' => 'nextlevel@gmail.com', 'buisness_tel' => '06706382542', 'esem_kat' => '1']);
+        Esemenyek::create(['cim' => 'Next level', 'user' => '1', 'helyszin' => '3', 'kep' => '1', 'kezd_datum' => '2024-01-01 15:20:00', 'veg_datum' => '2024-01-01 20:20:00', 'leiras' => 'Serpane riddim', 'buisness_email' => 'nextlevel@gmail.com', 'buisness_tel' => '06706382542', 'esem_kat' => '1']);
 
-        Esemenyek::create(['cim' => 'Cat presents KNCSK', 'user' => '3', 'helyszin' => '5', 'kep' => 'public/images/big_logo.png', 'kezd_datum' => '2025-02-25 20:30:00', 'veg_datum' => '2025-02-25 23:30:00', 'leiras' => 'KNCSK INSANE RIDDIM', 'buisness_email' => 'kncsk@gmail.com', 'buisness_tel' => '06706280732', 'esem_kat' => '3']);
+        Esemenyek::create(['cim' => 'Cat presents KNCSK', 'user' => '3', 'helyszin' => '5', 'kep' => '1', 'kezd_datum' => '2025-02-25 20:30:00', 'veg_datum' => '2025-02-25 23:30:00', 'leiras' => 'KNCSK INSANE RIDDIM', 'buisness_email' => 'kncsk@gmail.com', 'buisness_tel' => '06706280732', 'esem_kat' => '3']);
 
-        Esemenyek::create(['cim' => 'Dog presents IVAN', 'user' => '3', 'helyszin' => '5', 'kep' => 'public/images/big_logo.png', 'kezd_datum' => '2023-12-01 23:00:00', 'veg_datum' => '2023-12-02 04:30:00', 'leiras' => 'IVAN latin est', 'buisness_email' => 'latinivan@gmail.com', 'buisness_tel' => '06703792732', 'esem_kat' => '3']);
+        Esemenyek::create(['cim' => 'Dog presents IVAN', 'user' => '3', 'helyszin' => '5', 'kep' => '1', 'kezd_datum' => '2023-12-01 23:00:00', 'veg_datum' => '2023-12-02 04:30:00', 'leiras' => 'IVAN latin est', 'buisness_email' => 'latinivan@gmail.com', 'buisness_tel' => '06703792732', 'esem_kat' => '3']);
 
-        Esemenyek::create(['cim' => 'Kek osztriga laza bulika', 'user' => '4', 'helyszin' => '2', 'kep' => 'public/images/big_logo.png', 'kezd_datum' => '2023-08-12 17:00:00', 'veg_datum' => '2023-08-12 20:30:00', 'leiras' => 'Pansipos laza party', 'buisness_email' => 'keklaza@gmail.com', 'buisness_tel' => '06701294084', 'esem_kat' => '4']);
+        Esemenyek::create(['cim' => 'Kek osztriga laza bulika', 'user' => '4', 'helyszin' => '2', 'kep' => '1', 'kezd_datum' => '2023-08-12 17:00:00', 'veg_datum' => '2023-08-12 20:30:00', 'leiras' => 'Pansipos laza party', 'buisness_email' => 'keklaza@gmail.com', 'buisness_tel' => '06701294084', 'esem_kat' => '4']);
 
-        Esemenyek::create(['cim' => 'ALTEREGO presents Zutyu', 'user' => '5', 'helyszin' => '1', 'kep' => 'storage/images/big_logo.png', 'kezd_datum' => '2024-12-31 15:20:00', 'veg_datum' => '2025-01-01 05:30:00', 'leiras' => 'Zutyu triangulum est', 'buisness_email' => 'zutyu@gmail.com', 'buisness_tel' => '06208382843', 'esem_kat' => '5']);
+        Esemenyek::create(['cim' => 'ALTEREGO presents Zutyu', 'user' => '5', 'helyszin' => '1', 'kep' => '1', 'kezd_datum' => '2024-12-31 15:20:00', 'veg_datum' => '2025-01-01 05:30:00', 'leiras' => 'Zutyu triangulum est', 'buisness_email' => 'zutyu@gmail.com', 'buisness_tel' => '06208382843', 'esem_kat' => '5']);
     }
 
     /**

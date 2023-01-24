@@ -12,6 +12,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EszmeiJegyController;
 use App\Http\Controllers\EszmeiJegyValtController;
 use App\Http\Controllers\JegyekController;
+use App\Http\Controllers\KepController;
 use App\Http\Controllers\KosarController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\QrCodeController;
@@ -128,6 +129,9 @@ Route::get('/qrcode/{user}/{jegyId}', [PDFController::class, 'createPDF']);
 /* Route::get('qrcode', function () {
     return QrCode::size(300)->generate('1234');
 }); */
+
+//Kép
+Route::post('api/upload/images', [KepController::class, 'store']);
 
 
 

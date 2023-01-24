@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Esemenyek;
+use App\Models\Kep;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -108,7 +109,9 @@ class EsemenyekController extends Controller
     public function getPicture($id)
     {
         $esemeny = Esemenyek::find($id);
-        $path = storage_path('app/' . $esemeny->kep);
+        $kep = KepController::imagePath($esemeny->kep);
+        
+        $path = storage_path('app/' . $kep);
 
         if (!File::exists($path)) {
             abort(404);
