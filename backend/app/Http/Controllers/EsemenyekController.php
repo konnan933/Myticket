@@ -109,9 +109,9 @@ class EsemenyekController extends Controller
         $esemeny = Esemenyek::find($id);
         $path = storage_path('app/' . $esemeny->kep);
 
-        /* if (!File::exists($path)) {
+        if (!File::exists($path)) {
             abort(404);
-        } */
+        }
 
         $type = File::mimeType($path);
 

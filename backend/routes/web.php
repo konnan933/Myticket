@@ -71,6 +71,7 @@ Route::get('api/event/place/{event}', [EsemenyekController::class, 'getEventByPl
 Route::get('api/event/date/{event}', [EsemenyekController::class, 'getEventByDate']);
 Route::get('api/event/category/{event}', [EsemenyekController::class, 'getEventByCategory']);
 
+
 //Esemenyvaltozas vegpontok
 Route::get('api/eventchange', [EsemenyValtController::class, 'index']);
 Route::get('api/eventchange/{id}', [EsemenyValtController::class, 'show']);
@@ -112,6 +113,8 @@ Route::get('api/bticket/{id}', [JegyekController::class, 'show']);
 Route::get('api/usertickets/{user}', [JegyekController::class, 'getUserAllTickets']);
 Route::get('api/usereventtickets/{user}/{event}', [JegyekController::class, 'getUserEvenTickets']);
 Route::get('api/bticket/all/{event}', [JegyekController::class, 'getEventBuyedTickets']);
+// * qr kod letezik
+Route::get('api/bticket/qrcode/{qrcode}', [JegyekController::class, 'qrCodeExists']);
 
 // ! kell composer require simplesoftwareio/simple-qrcode "~4" 
 // ! kell baconQrcode ot composer.lock-ba átírni 2.0.8 ra
