@@ -6,6 +6,7 @@ use App\Models\Esemenyek;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Response;
 use Termwind\Components\Raw;
 
@@ -55,7 +56,7 @@ class EsemenyekController extends Controller
     {
 
         $this->validate($request, [
-            'kep' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'kep' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ]);
 
 
@@ -166,5 +167,58 @@ class EsemenyekController extends Controller
             ->get();*/
 
         return Esemenyek::filter();
+    }
+    public static function sendEmailEventChange($esemeny)
+    {
+        $userTicket = DB::table('jegyek')->select('users.fel_nev,users.email')
+            ->join('users', 'users.id', '=', 'jegyek.user')
+            ->where('esemeny_id', '=', $esemeny->id)
+            ->get();
+
+        $cim = $esemeny->cim;
+        $kezd_datum = $esemeny->kezd_datum;
+        $veg_datum = $esemeny->veg_datum;
+        $helyszin = $esemeny->helyszin;
+
+
+        $subject = "A(z)" . $cim . " eseményen változás történt.";
+        foreach ($userTicket as $user) {
+            $fel_nev = $user->fel_nev;
+            $email = $user->email;
+            Mail::send(
+                'email.esemenyValt',
+                ['fel_nev' => $fel_nev, 'cim' => $cim, 'kezd_datum' => $kezd_datum, 'veg_datum' => $veg_datum, 'helyszin' => $helyszin],
+                function ($mail) use ($email, $fel_nev, $subject) {
+                    $mail->from("myticketszakdoga@gmail.com", "MyTicket");
+                    $mail->to($email, $fel_nev);
+                    $mail->subject($subject);
+                }
+            );
+        }
+    }
+    public static function sendEmailEventDelete($esemeny)
+    {
+        $userTicket = DB::table('jegyek')->select('users.fel_nev,users.email')
+            ->join('user', 'user.id', '=', 'jegyek.user')
+            ->where('esemeny_id', '=', $esemeny->id)
+            ->where('jegyek.user', '=', 'user.id')
+            ->get();
+
+        $cim = $esemeny->cim;
+
+        $subject = "A(z)" . $cim . " esemény sajnos elmarad.";
+        foreach ($userTicket as $users) {
+            $fel_nev = $users->fel_nev;
+            $email = $users->email;
+            Mail::send(
+                'email.esemenyValt',
+                ['fel_nev' => $fel_nev, 'cim' => $cim],
+                function ($mail) use ($email, $fel_nev, $subject) {
+                    $mail->from("myticketszakdoga@gmail.com", "MyTicket");
+                    $mail->to($email, $fel_nev);
+                    $mail->subject($subject);
+                }
+            );
+        }
     }
 }

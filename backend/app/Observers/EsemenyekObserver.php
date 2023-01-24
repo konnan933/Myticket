@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Http\Controllers\EsemenyekController;
 use App\Models\Esemenyek;
 use App\Models\EsemenyValt;
 use Illuminate\Http\Response;
@@ -54,6 +55,16 @@ class EsemenyekObserver
         if ($esemenyek->statusz == 3) {
             Esemenyek::find($esemenyek->id)->delete();
         }
+
+        if ($esemenyek->statusz == 4) {
+            EsemenyekController::sendEmailEventDelete($esemenyek);
+            Esemenyek::find($esemenyek->id)->delete();
+        }
+
+         if ($esemenyek->getOriginal('kezd_datum') != $esemenyek->kezd_datum  || $esemenyek->getOriginal('veg_datum') != $esemenyek->veg_datum || $esemenyek->getOriginal('helyszin') != $esemenyek->helyszin || $esemenyek->getOriginal('cim') != $esemenyek->cim){
+            EsemenyekController::sendEmailEventChange($esemenyek);
+        } 
+       
     }
 
     /**
