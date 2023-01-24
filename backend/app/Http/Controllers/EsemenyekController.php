@@ -33,7 +33,7 @@ class EsemenyekController extends Controller
             'kep' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ]);
 
-        $image_path = $request->file('kep')->store('images', 'public');
+        $image_path = $request->file('kep')->store('images');
 
         $esemeny = new Esemenyek();
         $esemeny->cim = $request->cim;
@@ -107,7 +107,7 @@ class EsemenyekController extends Controller
     public function getPicture($id)
     {
         $esemeny = Esemenyek::find($id);
-        $path = storage_path('public/' . $esemeny->kep);
+        $path = storage_path('app/' . $esemeny->kep);
 
         /* if (!File::exists($path)) {
             abort(404);

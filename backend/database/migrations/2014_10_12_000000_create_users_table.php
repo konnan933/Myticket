@@ -33,6 +33,7 @@ return new class extends Migration
         User::create(['email' => 'samuka@gmail.com', 'password' => Hash::make('Aa123456'), 'fel_nev' => 'Samu', 'telefonszam' => '06709857543', 'megerositve_e' => 1]);
         User::create(['email' => 'odornorbert.on@gmail.com', 'password' => Hash::make('Aa123456@'), 'fel_nev' => 'Norbus', 'telefonszam' => '06702486730', 'level' => 0, 'megerositve_e' => 1]);
         User::create(['email' => 'konnan933@gmail.com', 'password' => Hash::make('Aa123456@'), 'fel_nev' => 'Ati', 'telefonszam' => '06308339380', 'level' => 0, 'megerositve_e' => 1]);
+        User::create(['email' => 'daniallaszlo002@gmail.com', 'password' => Hash::make('Aa123456@'), 'fel_nev' => 'DLD', 'telefonszam' => '06308339370', 'level' => 0, 'megerositve_e' => 1]);
     }
 
     /**
