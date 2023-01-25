@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('path');
         });
 
-        Kep::create(['path' => 'images/fp3BoqQfWjcOOcYgIeDZKkOmNWsmCcSF303kL4gT.jpg']);
+        Kep::create(['path' => 'images/l2nfWOUvhB4FWZuVGbbPkVQ0KwgUTxqM1F9Vhm3Y.jpg']);
+        Kep::create(['path' => 'images/big_logo.png']);
     }
 
     /**

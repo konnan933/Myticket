@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Storage;
 use Termwind\Components\Raw;
 
 class EsemenyekController extends Controller
@@ -32,16 +33,16 @@ class EsemenyekController extends Controller
     {
 
         $this->validate($request, [
-            'kep' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'newImage' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ]);
 
-        $image_path = $request->file('kep')->store('images');
+        $image_path = $request->file('newImage')->store('images');
 
         $esemeny = new Esemenyek();
         $esemeny->cim = $request->cim;
         $esemeny->user = $request->user;
         $esemeny->helyszin = $request->helyszin;
-        $esemeny->kep = $image_path;
+        $esemeny->newImage = $image_path;
         $esemeny->kezd_datum = $request->kezd_datum;
         $esemeny->veg_datum = $request->veg_datum;
         $esemeny->leiras = $request->leiras;
@@ -57,7 +58,7 @@ class EsemenyekController extends Controller
     {
 
         $this->validate($request, [
-            'kep' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'newImage' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ]);
 
 
@@ -66,8 +67,8 @@ class EsemenyekController extends Controller
         $esemeny->user = $request->user;
         $esemeny->helyszin = $request->helyszin;
 
-        $image_path = $request->file($esemeny->kep)->store('storage', 'images');
-        $esemeny->kep = $image_path;
+        $image_path = $request->file($esemeny->newImage)->store('storage', 'images');
+        $esemeny->newImage = $image_path;
 
         $esemeny->kezd_datum = $request->kezd_datum;
         $esemeny->veg_datum = $request->veg_datum;
@@ -109,9 +110,9 @@ class EsemenyekController extends Controller
     public function getPicture($id)
     {
         $esemeny = Esemenyek::find($id);
-        $kep = KepController::imagePath($esemeny->kep);
-        
-        $path = storage_path('app/' . $kep);
+        $path = KepController::imagePath($esemeny->kep);
+
+        $path = storage_path('app/' . $path);
 
         if (!File::exists($path)) {
             abort(404);
@@ -125,6 +126,35 @@ class EsemenyekController extends Controller
         $response->header("Content-Type", $type);
 
         return $response;
+    }
+    public function changePicture(Request $request, $eventId)
+    {
+        $newImage = EsemenyekController::newPicture($request);
+
+        $esemeny = Esemenyek::find($eventId);
+
+        $oldImage = Kep::find($esemeny->kep);
+
+        $esemeny->kep = $newImage;
+        $esemeny->save();
+        // ? lehet ki kell venni első feltétel mert kötelező lesza kép feltöltés
+        if ($oldImage->path != null) {
+            if (Storage::exists($oldImage->path)) {
+                Storage::delete($oldImage->path);;
+            }
+        }
+    }
+    public function newPicture(Request $request)
+    {
+        $this->validate($request, [
+            'path' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+        ]);
+
+        $image_path = $request->file('path')->store('images');
+        $newImage = new Kep();
+        $newImage->path = $image_path;
+        $newImage->save();
+        return $newImage->id;
     }
     public function getEventByPlace($place)
     {
@@ -152,20 +182,20 @@ class EsemenyekController extends Controller
 
         return $eventCategory;
     }
-    public function eventFilter($date, $place, $category )
+    public function eventFilter($date, $place, $category)
     {
 
         $eventCategory = DB::table('esemenyek')->select('*')
-        ->when($category != '*', function($eventCategory) use($category) {
-            $eventCategory->where('esem_kat',  $category);
-        })
-        ->when($date != '*', function($eventCategory) use($date) {
-            $eventCategory->where(DB::raw('DATE(kezd_datum)'),  $date);
-        })
-        ->when($place != '*', function($eventCategory) use($place) {
-            $eventCategory->where('helyszin',  $place);
-        })
-        /* if ($category != '*') {
+            ->when($category != '*', function ($eventCategory) use ($category) {
+                $eventCategory->where('esem_kat',  $category);
+            })
+            ->when($date != '*', function ($eventCategory) use ($date) {
+                $eventCategory->where(DB::raw('DATE(kezd_datum)'),  $date);
+            })
+            ->when($place != '*', function ($eventCategory) use ($place) {
+                $eventCategory->where('helyszin',  $place);
+            })
+            /* if ($category != '*') {
             $eventCategory->where('esem_kat',  $category);
         }
         if ($place != '*') {
@@ -174,9 +204,9 @@ class EsemenyekController extends Controller
         if ($place != '*') {
             $eventCategory->where('helyszin',  $place);
         }  */
-        ->get();
+            ->get();
 
-        return $eventCategory;//response()->json($eventCategory);
+        return $eventCategory; //response()->json($eventCategory);
     }
     public static function sendEmailEventChange($esemeny)
     {
