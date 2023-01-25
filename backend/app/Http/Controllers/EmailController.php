@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Esemenyek;
+use App\Models\EszmeiJegy;
+use App\Models\Jegyek;
+use App\Models\JegyTipus;
 use App\Models\Szamlafej;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
@@ -39,6 +42,8 @@ class EmailController extends Controller
         $fel_nev = $user->fel_nev;
         $email = $user->email;
         $esemeny_nev = Esemenyek::find($jegyek->esemeny_id)->cim;
+        $jegy_tipus = JegyTipus::find(EszmeiJegy::find($jegyek->eszmei_jegy_id)->tipus)->megnev;
+        $esemeny = Esemenyek::find($jegyek->esemeny_id);
         $subject = 'Jegy azonosítód';
         /*         $png = QrCode::format('png')->size(300)->generate($qrcode);
         $png = base64_encode($png); */
@@ -46,7 +51,7 @@ class EmailController extends Controller
         $pdfs = array();
         foreach ($qrCodes as $qrcode) {
             $tempQrCode = $qrcode->qrkod;
-            array_push($pdfs, PDF::loadView('pdf', compact('tempQrCode', 'fel_nev'))->output());
+            array_push($pdfs, PDF::loadView('pdf', compact('tempQrCode', 'fel_nev', 'esemeny', 'jegy_tipus'))->output());
         }
 
 
