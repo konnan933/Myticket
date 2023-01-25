@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class KepController extends Controller
 {
-    
+
     public static function imagePath($id)
     {
         $kep = Kep::find($id);
@@ -27,6 +27,6 @@ class KepController extends Controller
         $kep = new Kep();
         $kep->path = $image_path;
         $kep->save();
+        return $kep->id;
     }
-
 }

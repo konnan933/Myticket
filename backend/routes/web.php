@@ -64,6 +64,7 @@ Route::get('api/event', [EsemenyekController::class, 'index']);
 Route::get('api/event/{id}', [EsemenyekController::class, 'show']);
 // * kep lekerese
 Route::get('api/event/picture/{id}', [EsemenyekController::class, 'getPicture']);
+Route::post('api/event/picture/new/{id}', [EsemenyekController::class, 'changePicture']);
 Route::put('api/event/{id}', [EsemenyekController::class, 'update']);
 Route::delete('api/event/{id}', [EsemenyekController::class, 'destroy']);
 Route::get('api/userevents/{user}', [EsemenyekController::class, 'getUserEvents']);
