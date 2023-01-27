@@ -127,9 +127,6 @@ Route::get('api/bticket/qrcode/{qrcode}', [JegyekController::class, 'qrCodeExist
 // ! composer update -o
 
 Route::get('/qrcode/{user}/{jegyId}', [PDFController::class, 'createPDF']);
-/* Route::get('qrcode', function () {
-    return QrCode::size(300)->generate('1234');
-}); */
 
 //Kép
 Route::post('api/upload/images', [KepController::class, 'store']);

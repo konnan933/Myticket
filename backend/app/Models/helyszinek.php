@@ -13,6 +13,12 @@ class Helyszinek extends Model
 
     protected $fillable = [
         'megnev',
+        'iranyitoszam',
+        'kerulet',
+        'utca',
+        'hazszam',
+        'emelet',
+        'terem'
     ];
 
 }

@@ -61,8 +61,13 @@ class EsemenyekObserver
             Esemenyek::find($esemenyek->id)->delete();
         }
 
-         if ($esemenyek->getOriginal('kezd_datum') != $esemenyek->kezd_datum  || $esemenyek->getOriginal('veg_datum') != $esemenyek->veg_datum || $esemenyek->getOriginal('helyszin') != $esemenyek->helyszin || $esemenyek->getOriginal('cim') != $esemenyek->cim){
-            EsemenyekController::sendEmailEventChange($esemenyek);
+         if ($esemenyek->getOriginal('kezd_datum') != $esemenyek->kezd_datum  
+         || 
+         $esemenyek->getOriginal('veg_datum') != $esemenyek->veg_datum 
+         || 
+         $esemenyek->getOriginal('helyszin') != $esemenyek->helyszin 
+         ){
+             EsemenyekController::sendEmailEventChange($esemenyek);
         } 
        
     }

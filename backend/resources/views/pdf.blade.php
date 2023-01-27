@@ -194,6 +194,7 @@
                             src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(200)->generate($tempQrCode)) !!} ">
                     </div>
                 </div>
+                <br>
                 <div>
                     <p>
                         A JEGYEN SZEREPLŐ QR KÓDRÓL NE

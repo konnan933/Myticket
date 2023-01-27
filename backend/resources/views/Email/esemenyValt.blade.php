@@ -8,25 +8,33 @@
 <body>
 
     <div>
-        Szia {{ $vevo_nev }}!,
+        Szia {{ $fel_nev }}!,
         <br>
-        A vásárolt jegyed eseményén ({{ $cim }} változás történt)
+        A vásárolt jegyed eseményén ({{ $esemeny_neve }}) változás történt.
         <br>
         Új adatok az eseményről:
-        <li>
-            <ul>
-                {{ $cim }}
-            </ul>
-            <ul>
-                {{ $helyszin }}
-            </ul>
-            <ul>
-                {{ $kezd_datum }}
-            </ul>
-            <ul>
-                {{ $veg_datum }}
-            </ul>
-        </li>
+        <ul>
+            <li>
+                <p>
+                    Helyszín neve: {{ $helyszin_neve }}
+                </p>
+            </li>
+            <li>
+                <p>
+                    Helyszín cim: {{ $helyszin_cim }}
+                </p>
+            </li>
+            <li>
+                <p>
+                    Esemény kezdete: {{ $kezd_datum }}
+                </p>
+            </li>
+            <li>
+                <p>
+                    Esemény vége: {{ $veg_datum }}
+                </p>
+            </li>
+        </ul>
         <br>
         Megértésedet köszönjük.
         <br>

@@ -31,7 +31,6 @@ class EmailController extends Controller
                 $mail->from("myticketszakdoga@gmail.com", "MyTicket");
                 $mail->to($email, $vevo_nev);
                 $mail->subject($subject);
-                /*  $mail->file(); */
             }
         );
     }
@@ -45,8 +44,6 @@ class EmailController extends Controller
         $jegy_tipus = JegyTipus::find(EszmeiJegy::find($jegyek->eszmei_jegy_id)->tipus)->megnev;
         $esemeny = Esemenyek::find($jegyek->esemeny_id);
         $subject = 'Jegy azonosítód';
-        /*         $png = QrCode::format('png')->size(300)->generate($qrcode);
-        $png = base64_encode($png); */
 
         $pdfs = array();
         foreach ($qrCodes as $qrcode) {

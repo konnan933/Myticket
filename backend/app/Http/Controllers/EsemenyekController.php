@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Esemenyek;
+use App\Models\Helyszinek;
 use App\Models\Kep;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -66,9 +67,6 @@ class EsemenyekController extends Controller
         $esemeny->cim = $request->cim;
         $esemeny->user = $request->user;
         $esemeny->helyszin = $request->helyszin;
-
-        $image_path = $request->file($esemeny->newImage)->store('storage', 'images');
-        $esemeny->newImage = $image_path;
 
         $esemeny->kezd_datum = $request->kezd_datum;
         $esemeny->veg_datum = $request->veg_datum;
@@ -195,39 +193,31 @@ class EsemenyekController extends Controller
             ->when($place != '*', function ($eventCategory) use ($place) {
                 $eventCategory->where('helyszin',  $place);
             })
-            /* if ($category != '*') {
-            $eventCategory->where('esem_kat',  $category);
-        }
-        if ($place != '*') {
-            $eventCategory->where(DB::raw('DATE(kezd_datum)'), $date);
-        } 
-        if ($place != '*') {
-            $eventCategory->where('helyszin',  $place);
-        }  */
             ->get();
 
-        return $eventCategory; //response()->json($eventCategory);
+        return $eventCategory;
     }
     public static function sendEmailEventChange($esemeny)
     {
-        $userTicket = DB::table('jegyek')->select('users.fel_nev,users.email')
+        $userTicket = DB::table('jegyek')->select('users.fel_nev','users.email')
             ->join('users', 'users.id', '=', 'jegyek.user')
             ->where('esemeny_id', '=', $esemeny->id)
             ->get();
 
-        $cim = $esemeny->cim;
+        $esemeny_neve = $esemeny->cim;
         $kezd_datum = $esemeny->kezd_datum;
         $veg_datum = $esemeny->veg_datum;
-        $helyszin = $esemeny->helyszin;
+        $helyszin_neve = Helyszinek::find($esemeny->helyszin)->megnev;
+        $helyszin_cim = HelyszinController::eventLocationBuilder($esemeny->helyszin);
 
 
-        $subject = "A(z)" . $cim . " eseményen változás történt.";
+        $subject = "A(z)" . $esemeny_neve . " eseményen változás történt.";
         foreach ($userTicket as $user) {
             $fel_nev = $user->fel_nev;
             $email = $user->email;
             Mail::send(
                 'email.esemenyValt',
-                ['fel_nev' => $fel_nev, 'cim' => $cim, 'kezd_datum' => $kezd_datum, 'veg_datum' => $veg_datum, 'helyszin' => $helyszin],
+                ['fel_nev' => $fel_nev, 'esemeny_neve' => $esemeny_neve, 'kezd_datum' => $kezd_datum, 'veg_datum' => $veg_datum, 'helyszin_neve' => $helyszin_neve,'helyszin_cim' => $helyszin_cim],
                 function ($mail) use ($email, $fel_nev, $subject) {
                     $mail->from("myticketszakdoga@gmail.com", "MyTicket");
                     $mail->to($email, $fel_nev);
@@ -238,7 +228,7 @@ class EsemenyekController extends Controller
     }
     public static function sendEmailEventDelete($esemeny)
     {
-        $userTicket = DB::table('jegyek')->select('users.fel_nev,users.email')
+        $userTicket = DB::table('jegyek')->select('users.fel_nev','users.email')
             ->join('user', 'user.id', '=', 'jegyek.user')
             ->where('esemeny_id', '=', $esemeny->id)
             ->where('jegyek.user', '=', 'user.id')
