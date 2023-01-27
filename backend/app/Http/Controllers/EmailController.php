@@ -47,17 +47,17 @@ class EmailController extends Controller
         $jegy_tipus = JegyTipus::find(EszmeiJegy::find($jegyek->eszmei_jegy_id)->tipus)->megnev;
         $esemeny = Esemenyek::find($jegyek->esemeny_id);
         $helyszin_cim = HelyszinController::eventLocationBuilder($esemeny->helyszin);
-       /*  $esemeny_kep = EsemenyekController::getPicture($esemeny->id);  */
-       /*  $esemeny_kep = Storage::path(Kep::find($esemeny->kep)->path);  */
+        /*  $esemeny_kep = EsemenyekController::getPicture($esemeny->id);  */
+        $esemeny_kep = Storage::path(Kep::find($esemeny->kep)->path);
         $jegy_ar = EszmeiJegy::find($jegyek->eszmei_jegy_id)->ara;
         $penznem_tipus = EszmeiJegy::find($jegyek->eszmei_jegy_id)->penznem;
-        
+
         $subject = 'Jegy azonosítód';
 
         $pdfs = array();
         foreach ($qrCodes as $qrcode) {
             $tempQrCode = $qrcode->qrkod;
-            array_push($pdfs, PDF::setOptions(['isRemoteEnabled' => true])->loadView('pdf', compact('tempQrCode', 'fel_nev', 'esemeny', 'jegy_tipus'/* ,'esemeny_kep' */,'helyszin_cim','jegy_ar'))->output());
+            array_push($pdfs, PDF::loadView('pdf', compact('tempQrCode', 'fel_nev', 'esemeny', 'jegy_tipus', 'esemeny_kep', 'helyszin_cim', 'jegy_ar'))->output());
         }
 
 
