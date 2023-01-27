@@ -105,7 +105,7 @@ class EsemenyekController extends Controller
         return $eventRevenue;
     }
 
-    public function getPicture($id)
+    public static function getPicture($id)
     {
         $esemeny = Esemenyek::find($id);
         $path = KepController::imagePath($esemeny->kep);
