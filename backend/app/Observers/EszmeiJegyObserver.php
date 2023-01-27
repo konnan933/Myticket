@@ -34,7 +34,6 @@ class EszmeiJegyObserver
         $eszmei_jegy_valt->tipus = $eszmeiJegy->getOriginal('tipus');
         $eszmei_jegy_valt->ossz_menny = $eszmeiJegy->getOriginal('ossz_menny');
         $eszmei_jegy_valt->penznem = $eszmeiJegy->getOriginal('penznem');
-        $eszmei_jegy_valt->p_mennyiseg = $eszmeiJegy->getOriginal('p_mennyiseg');
         $eszmei_jegy_valt->ara = $eszmeiJegy->getOriginal('ara');
         $eszmei_jegy_valt->kezd_datum = $eszmeiJegy->getOriginal('kezd_datum');
         $eszmei_jegy_valt->datumig = now();

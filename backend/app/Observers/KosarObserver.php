@@ -50,7 +50,7 @@ class KosarObserver
     }
     public function szamlaLetrehozas($kosar)
     {
-        $afas_ar = KosarObserver::afasArKiszamolo($kosar->db, EszmeiJegy::find($kosar->eszmei_jegy_id)->p_mennyiseg);
+        $afas_ar = KosarObserver::afasArKiszamolo($kosar->db, EszmeiJegy::find($kosar->eszmei_jegy_id)->ara);
         $szamlafej = new Szamlafej();
         $szamlafej->kib_neve = "MyTicket";
         $szamlafej->vevo_nev = User::find($kosar->user)->fel_nev;

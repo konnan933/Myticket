@@ -18,7 +18,6 @@ class EszmeiJegyValt extends Model
         'lefog_menny',
         'szabad_menny',
         'penznem',
-        'p_mennyiseg',
         'ara',
         'kezd_datum',
         'penznem',

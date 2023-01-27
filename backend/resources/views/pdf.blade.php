@@ -96,7 +96,7 @@
 
         <div class="ticket">
             <div>
-                <img src={{$esemeny_kep}} alt=" Esemény képe" width="300" height="500">
+                <img src="a" alt=" Esemény képe" width="300" height="500">
             </div>
             <div class="bottom">
                 <div class="column">

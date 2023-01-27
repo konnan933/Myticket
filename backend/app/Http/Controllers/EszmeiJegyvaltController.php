@@ -32,7 +32,6 @@ class EszmeiJegyValtController extends Controller
         $eszmei_jegyvalt->lefog_menny = 0;
         $eszmei_jegyvalt->szabad_menny = $request->ossz_menny;
         $eszmei_jegyvalt->penznem = $request->penznem;
-        $eszmei_jegyvalt->p_mennyiseg = $request->p_mennyiseg;
         $eszmei_jegyvalt->ara = $request->ara;
         $eszmei_jegyvalt->kezd_datum = $request->kezd_datum;
         $eszmei_jegyvalt->kezd_datum = now();

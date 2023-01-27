@@ -33,7 +33,6 @@ class EszmeiJegyController extends Controller
         $eszmei_jegy->lefog_menny = 0;
         $eszmei_jegy->szabad_menny = $request->ossz_menny;
         $eszmei_jegy->penznem = $request->penznem;
-        $eszmei_jegy->p_mennyiseg = $request->p_mennyiseg;
         $eszmei_jegy->ara = $request->ara;
         $eszmei_jegy->kezd_datum = $request->kezd_datum;
         $eszmei_jegy->save();
@@ -48,7 +47,6 @@ class EszmeiJegyController extends Controller
         $eszmei_jegy->lefog_menny = $request->lefog_menny;
         $eszmei_jegy->szabad_menny = $request->ossz_menny - $request->lefog_menny;
         $eszmei_jegy->penznem = $request->penznem;
-        $eszmei_jegy->p_mennyiseg = $request->p_mennyiseg;
         $eszmei_jegy->ara = $request->ara;
         $eszmei_jegy->kezd_datum = $request->kezd_datum;
         $eszmei_jegy->save();

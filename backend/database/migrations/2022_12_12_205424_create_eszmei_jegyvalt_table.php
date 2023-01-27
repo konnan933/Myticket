@@ -21,14 +21,10 @@ return new class extends Migration
             $table->integer('tipus');
             $table->integer('ossz_menny');
             $table->char('penznem', 3);
-            $table->decimal('p_mennyiseg', 8, 2);
             $table->decimal('ara', 19, 4);
             $table->dateTime('kezd_datum');
             $table->dateTime('datumig');
         });
-
-        DB::statement("ALTER TABLE eszmei_jegyvalt ADD CONSTRAINT
-        p_menny CHECK (p_mennyiseg > 0)");
 
         DB::statement("ALTER TABLE eszmei_jegyvalt ADD CONSTRAINT
         ara_check_valt CHECK (ara >= 0)");
