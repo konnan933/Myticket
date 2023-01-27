@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('kosarSzam');
             $table->foreignId('szamlaszam')->references('id')->on('szamlafej');
             $table->string('qrkod')->unique();
-            $table->boolean('felhasznalt_e')->default(false);
+            $table->boolean('felhasznalt_e')->default(0);
         });
     }
 

@@ -77,15 +77,19 @@ class JegyekController extends Controller
     }
 
     public function qrCodeExists($qrCode)
-    {
+    {  
+        $ticket  = DB::table('jegyek')->select('*')
+        ->where('qrkod', '=', $qrCode)
+        ->get();
 
-        $ticket =Jegyek::where('qrkod', '=', $qrCode);
+        $localTicket = Jegyek::find($ticket[0]->id);
+        
 
         if (Jegyek::where('qrkod', '=', $qrCode)->exists()
-            && $ticket->felhasznalva_e = false
+            && $localTicket->felhasznalt_e == '0'
         ) {
-            $ticket->felhasznalva_e = true;
-            $ticket->save();
+            $localTicket->felhasznalt_e = '1';
+            $localTicket->save();
             return response()->json([
                 'data' => true,
             ]);
