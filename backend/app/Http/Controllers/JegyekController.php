@@ -78,7 +78,14 @@ class JegyekController extends Controller
 
     public function qrCodeExists($qrCode)
     {
-        if (Jegyek::where('qrkod', '=', $qrCode)->exists()) {
+
+        $ticket =Jegyek::where('qrkod', '=', $qrCode);
+
+        if (Jegyek::where('qrkod', '=', $qrCode)->exists()
+            && $ticket->felhasznalva_e = false
+        ) {
+            $ticket->felhasznalva_e = true;
+            $ticket->save();
             return response()->json([
                 'data' => true,
             ]);
@@ -86,5 +93,6 @@ class JegyekController extends Controller
         return response()->json([
             'data' => false,
         ]);
+        
     }
 }

@@ -16,5 +16,6 @@ class Jegyek extends Model
         'user',
         'szamlaszam',
         'qrkod',
+        'felhasznalt_e',
     ];
 }
