@@ -1,14 +1,14 @@
-import axios from './axois';
+import api from './axois';
 import { useNavigate, useParams } from 'react-router-dom';
 
 export const UseAuth = () => {
   let navigate = useNavigate();
 
-  const csrf = () => axios.get('/sanctum/csrf-cookie');
+  const csrf = () => api.get('/sanctum/csrf-cookie');
 
   const login = async ({ setErrors, setSuccessResponse }) => {
     await csrf();
-    axios
+    api
       .post('/login', props)
       .then(() => {
         setSuccessResponse();

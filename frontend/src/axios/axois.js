@@ -1,6 +1,6 @@
 import Axios from 'axios';
 
-const axios = Axios.create({
+const api = Axios.create({
   baseURL: 'localhost:8000/',
   headers: {
     'X-Requested-With': 'XMLHttpRequest'
@@ -8,4 +8,4 @@ const axios = Axios.create({
   withCredentials: true
 });
 
-export default axios;
+export default api;
