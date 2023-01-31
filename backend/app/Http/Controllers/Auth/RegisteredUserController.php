@@ -18,19 +18,17 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request)
+    public function store(Request $request): Response
     {
         $request->validate([
-            'fel_nev' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'telefonszam' => ['required', 'string', 'max:12', 'unique:' . User::class],
         ]);
 
         $user = User::create([
-            'fel_nev' => $request->fel_nev,
+            'name' => $request->name,
             'email' => $request->email,
-            'telefonszam' => $request->telefonszam,
             'password' => Hash::make($request->password),
         ]);
 
@@ -38,8 +36,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return response()->json([
-            'data'=> $user,
-        ]);
+        return response()->noContent();
     }
 }
