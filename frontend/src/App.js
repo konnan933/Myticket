@@ -1,25 +1,17 @@
 import './App.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchLogin } from 'redux/thunks/Auth';
+import { Route, Routes } from 'react-router-dom';
+import RegisterPage from 'pages/register/RegisterPage';
 import LoginPage from 'pages/login/LoginPage';
-/* import i18next from 'i18next';
-import i18n from 'i18n';
-
-i18n.init({
-  lng: 'en',
-  debug: true,
-  resources: {
-    en: {
-      translation: {
-        key: 'hello world'
-      }
-    }
-  }
-}); */
-
+import { Button, Drawer, Link } from '@mui/material';
+import { Box } from '@mui/system';
 function App() {
   const dispatch = useDispatch();
+
+  const [drawer, setDrawer] = useState(false);
+
   useEffect(() => {
     const email = 'student1@gmail.com';
     const password = 'Aa123456';
@@ -29,7 +21,20 @@ function App() {
 
   return (
     <div className="App">
-      <LoginPage />
+      <Button onClick={() => setDrawer(true)}>Drawer</Button>
+      <Drawer anchor="left" open={Boolean(drawer)} onClose={() => setDrawer(false)}>
+        <Box>
+          <div className="flex flex-col gap-10">
+            <Link href="/login">Login</Link>
+            <Link href="/register">Register</Link>
+          </div>
+        </Box>
+      </Drawer>
+      <Routes>
+        <Route path="/" element={<h1>Home</h1>} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/login" element={<LoginPage />} />
+      </Routes>
     </div>
   );
 }
