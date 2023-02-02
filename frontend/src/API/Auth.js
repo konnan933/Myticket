@@ -1,4 +1,6 @@
-export const auth = {
+const auth = {
   login: 'login',
   register: 'register'
 };
+
+export default auth;

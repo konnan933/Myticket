@@ -1,13 +1,14 @@
-import i18next from 'i18next';
+import i18n from '../../i18n';
+import LoginContent from 'PageContent/login/LoginContent';
 
-import en from './i18n/en';
-import hu from './i18n/hu';
+import en from './I18n/en';
+import hu from './I18n/hu';
 
-i18next.addResourceBundle('en', 'login', en);
-i18next.addResourceBundle('hu', 'login', hu);
+i18n.addResourceBundle('en', 'login', en);
+i18n.addResourceBundle('hu', 'login', hu);
 
 function LoginPage() {
-  return <h1>Login</h1>;
+  return <LoginContent />;
 }
 
 export default LoginPage;

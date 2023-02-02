@@ -1,28 +1,35 @@
-import logo from './logo.svg';
 import './App.css';
 import { useEffect } from 'react';
-import api from './axios/axois';
-import React from 'react';
+import { useDispatch } from 'react-redux';
+import { fetchLogin } from 'redux/thunks/Auth';
+import LoginPage from 'pages/login/LoginPage';
+/* import i18next from 'i18next';
+import i18n from 'i18n';
+
+i18n.init({
+  lng: 'en',
+  debug: true,
+  resources: {
+    en: {
+      translation: {
+        key: 'hello world'
+      }
+    }
+  }
+}); */
 
 function App() {
+  const dispatch = useDispatch();
   useEffect(() => {
     const email = 'student1@gmail.com';
     const password = 'Aa123456';
-    const login = async () => {
-      const csrf = () => api.get('/sanctum/csrf-cookie');
-      await csrf();
-      api.get('api/location' /* , { email, password } */).then(() => {
-        console.log('siker');
-      });
-    };
-    login();
+
+    dispatch(fetchLogin({ email: email, password: password }));
   }, []);
 
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Müködj breeze</h1>
-      </header>
+      <LoginPage />
     </div>
   );
 }
