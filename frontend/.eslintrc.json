@@ -19,7 +19,19 @@
   },
   "plugins": ["react"],
   "rules": {
+    "no-unused-vars": [
+      "off",
+      {
+        "varsIgnorePattern": "React"
+      }
+    ],
     "react/react-in-jsx-scope": "off",
-    "react/jsx-uses-react": "off"
+    "react/jsx-uses-react": "off",
+    "react/no-danger": "off",
+    "react/prop-types": "off",
+    "react/forbid-prop-types": "off",
+    "react/require-default-props": "off",
+    "react/default-props-match-prop-types": "off",
+    "react/no-unused-prop-types": "off"
   }
 }
