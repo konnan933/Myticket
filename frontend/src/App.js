@@ -6,6 +6,8 @@ import { Route, Routes } from 'react-router-dom';
 import RegisterPage from 'pages/register/RegisterPage';
 import LoginPage from 'pages/login/LoginPage';
 import HomePage from 'pages/Home/HomePage';
+import Navbar from 'PageContent/navbar/Navbar';
+import rootConfig from 'pages/routes/RootConfig';
 function App() {
   const dispatch = useDispatch();
 
@@ -18,10 +20,11 @@ function App() {
 
   return (
     <div className="App">
+      <Navbar />
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/login" element={<LoginPage />} />
+        {rootConfig.map((root, index) => {
+          return <Route key={index} path={root.pagePath} element={root.element} />;
+        })}
       </Routes>
     </div>
   );
