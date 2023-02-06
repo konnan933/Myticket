@@ -10,13 +10,6 @@ import rootConfig from 'pages/routes/RootConfig';
 function App() {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const email = 'student1@gmail.com';
-    const password = 'Aa123456';
-
-    dispatch(fetchLogin({ email: email, password: password }));
-  }, []);
-
   return (
     <div className="App">
       <Navbar />

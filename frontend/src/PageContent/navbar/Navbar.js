@@ -11,6 +11,7 @@ import { useState } from 'react';
 import rootConfig from 'pages/routes/RootConfig';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import LangChanger from './components/LangChanger';
 
 export default function Navbar() {
   const matches = useMediaQuery('(max-width:768px)');
@@ -50,6 +51,7 @@ export default function Navbar() {
                     </Link>
                   );
               })}
+            <LangChanger />
           </div>
         </AppBar>
       </Box>
