@@ -1,6 +1,7 @@
 const locale = {
   MAIN: 'Main page',
-  LOGIN: 'Login'
+  LOGIN: 'Login',
+  REGISTER: 'Register'
 };
 
 export default locale;

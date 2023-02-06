@@ -1,6 +1,7 @@
 const locale = {
   HOME: 'Fő oldal',
-  LOGIN: 'Bejelentkezés'
+  LOGIN: 'Bejelentkezés',
+  REGISTER: 'Regisztráció'
 };
 
 export default locale;
