@@ -17,6 +17,7 @@ use App\Http\Controllers\KosarController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\QrCodeController;
 use App\Http\Controllers\SzamlafejController;
+use App\Http\Controllers\UserController;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 /*
@@ -37,6 +38,11 @@ Route::middleware(['admin'])->group(function () {
 //User végpontok
 Route::middleware(['user'])->group(function () {
 });
+
+//Felhasznalok vegpontok
+Route::get('api/users', [UserController::class, 'index']);
+
+
 //Helyszin végpontok
 Route::post('api/location', [HelyszinController::class, 'store']);
 Route::get('api/location', [HelyszinController::class, 'index']);
