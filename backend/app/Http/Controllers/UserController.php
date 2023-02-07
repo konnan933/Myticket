@@ -46,7 +46,7 @@ class UserController extends Controller
         $user->fel_nev = $request->fel_nev;
         $user->level = 1;
         $user->telefonszam = $request->telefonszam;
-        $user->szab_sert_szam = $request->szab_sert_szam;
+        $user->szab_sert_szam = 0;
         $user->save();
     }
 

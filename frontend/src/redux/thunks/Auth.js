@@ -16,3 +16,18 @@ export const fetchLogin = createAsyncThunk('auth/fetchLog', async (data, { rejec
     return rejectWithValue({ data, status });
   }
 });
+
+export const fetchRegister = createAsyncThunk('auth/fetchReg', async (data, { rejectWithValue }) => {
+  try {
+    await api.get('/sanctum/csrf-cookie');
+    const response = await api.post(auth.register, data);
+    return response.data;
+  } catch (err) {
+    if (!err.response) {
+      throw err;
+    }
+
+    const { data, status } = err.response;
+    return rejectWithValue({ data, status });
+  }
+});

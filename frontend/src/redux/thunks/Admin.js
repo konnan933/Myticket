@@ -16,6 +16,7 @@ export const getUsers = createAsyncThunk('admin/getUsers', async (_, { rejectWit
   }
 });
 
+
 export const deleteUser = createAsyncThunk('admin/deleteUser', async (id, { rejectWithValue }) => {
   try {
     const response = await api.delete(admin.users + '/' + id);
