@@ -12,6 +12,7 @@ import { useDispatch } from 'react-redux';
 import { deleteUser } from 'redux/thunks/Admin';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import modalStyle from 'PageContent/utils/ModalStyle';
 
 function DeleteUser({ id }) {
   const { t } = useTranslation('adminUser');
@@ -42,7 +43,7 @@ function DeleteUser({ id }) {
         aria-describedby="alert-dialog-description">
         <DialogTitle id="alert-dialog-title">{t('DELETE')}</DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">{t('CONFIRMDELETE')}</DialogContentText>
+          <DialogContentText id="alert-dialog-description">{t('CONFIRM_DELETE')}</DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>{t('NO')}</Button>
