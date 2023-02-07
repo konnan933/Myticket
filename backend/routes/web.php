@@ -41,6 +41,7 @@ Route::middleware(['user'])->group(function () {
 
 //Felhasznalok vegpontok
 Route::get('api/users', [UserController::class, 'index']);
+Route::delete('api/users/{id}', [UserController::class, 'destroy']);
 
 
 //Helyszin végpontok
