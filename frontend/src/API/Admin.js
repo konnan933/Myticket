@@ -1,6 +1,6 @@
 const admin = {
-    getUsers: 'api/users',
-  };
-  
-  export default admin;
-  
+  users: 'api/users',
+  event: 'api/event'
+};
+
+export default admin;

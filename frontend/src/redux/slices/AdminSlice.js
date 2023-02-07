@@ -1,9 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getUsers } from 'redux/thunks/Admin';
+import { deleteEvent, deleteUser, getUsers } from 'redux/thunks/Admin';
 
 const ADMIN_INIT_STATE = {
   users: [],
-  usersLoading: false
+  usersLoading: false,
+  deleteUserLoading: false,
+  deleteEventLoading: false,
 };
 const adminSlice = createSlice({
   name: 'admin',
