@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { fetchLogin } from '../thunks/Auth';
 
 const AUTH_INIT_STATE = {
-  login: [],
+  login: [{level:0}],
   loginLoading: false
 };
 const authSlice = createSlice({

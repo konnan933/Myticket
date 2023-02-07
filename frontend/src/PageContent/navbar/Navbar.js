@@ -7,16 +7,18 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useMediaQuery } from '@mui/material';
 import Sidebar from './Sidebar';
-import { useState } from 'react';
+import {  useState } from 'react';
 import rootConfig from 'pages/routes/RootConfig';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import LangChanger from './components/LangChanger';
+import { useSelector } from 'react-redux';
 
 export default function Navbar() {
   const matches = useMediaQuery('(max-width:768px)');
-
   const { t } = useTranslation('rootes');
+  
+  const { login } =useSelector((state) => state.auth)
 
   const [drawer, setDrawer] = useState(false);
 
@@ -42,7 +44,7 @@ export default function Navbar() {
           <div className="flex flex-row justify-evenly">
             {!matches &&
               rootConfig.map((root, index) => {
-                if (root.level.includes(0))
+                if (root.level.includes(login[0].level))
                   return (
                     <Link to={root.pagePath} key={index}>
                       <Button variant="outlined" sx={{ color: 'white', borderColor: 'white' }}>
