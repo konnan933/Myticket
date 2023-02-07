@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteEvent, deleteUser, getUsers } from 'redux/thunks/Admin';
 import * as React from 'react';
@@ -12,13 +12,15 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useTranslation } from 'react-i18next';
 import { HashLoader } from 'react-spinners';
-import DeleteIcon from '@mui/icons-material/Delete';
-import { IconButton } from '@mui/material';
+import { Box, IconButton, Modal, Typography } from '@mui/material';
 import { padding } from '@mui/system';
+import UserEdit from './components/UserEdit';
+import DeleteUser from './components/DeleteUser';
 
 function AdminUserContent() {
   const dispatch = useDispatch();
   const { users } = useSelector((state) => state.admin);
+
   useEffect(() => {
     dispatch(getUsers());
   }, []);
@@ -44,11 +46,6 @@ function AdminUserContent() {
       border: 0
     }
   }));
-
-  const handleUserDelete = (id) => {
-    console.log(id);
-    dispatch(deleteUser(id));
-  };
 
   if (usersLoading) {
     return (
@@ -76,12 +73,8 @@ function AdminUserContent() {
             {users.map((user, index) => (
               <StyledTableRow key={user.id}>
                 <StyledTableCell align="left">
-                  <IconButton
-                    onClick={() => handleUserDelete(user.id)}
-                    color="primary"
-                    component="label">
-                    <DeleteIcon />
-                  </IconButton>
+                   <DeleteUser id={user.id} />
+                  <UserEdit id={user.id} />
                 </StyledTableCell>
                 <StyledTableCell align="left">{user.fel_nev}</StyledTableCell>
                 <StyledTableCell align="left">{user.email}</StyledTableCell>

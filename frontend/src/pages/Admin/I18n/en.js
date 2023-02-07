@@ -5,7 +5,11 @@ const locale = {
   LEVEL: 'Level',
   PHONENUMBER: 'Phone number',
   PENALTIES: 'Penalties number',
-  EDIT: 'Edit'
+  EDIT: 'Edit',
+  DELETE: 'Delete',
+  CONFIRMDELETE: 'Do you want to delete this user ?',
+  YES: 'Yes',
+  NO: 'No'
 };
 
 export default locale;
