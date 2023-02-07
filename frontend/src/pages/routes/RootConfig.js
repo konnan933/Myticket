@@ -6,6 +6,7 @@ import en from './I18n/en';
 import hu from './I18n/hu';
 import RegisterPage from 'pages/register/RegisterPage';
 import AdminPage from 'pages/Admin/AdminPage';
+import level from './Level';
 
 i18n.addResourceBundle('en', 'rootes', en);
 i18n.addResourceBundle('hu', 'rootes', hu);
@@ -15,25 +16,25 @@ const rootConfig = [
     pageName: 'HOME',
     pagePath: '/',
     element: <HomePage />,
-    level: [0]
+    level: level.user
   },
   {
     pageName: 'LOGIN',
     pagePath: '/login',
     element: <LoginPage />,
-    level: [0]
+    level: level.user
   },
   {
     pageName: 'REGISTER',
     pagePath: '/register',
     element: <RegisterPage />,
-    level: [0]
+    level: level.user
   },
   {
     pageName: 'ADMIN',
     pagePath: '/admin',
     element: <AdminPage/>,
-    level: [0]
+    level: level.admin
   },
 ];
 

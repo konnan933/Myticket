@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import admin from 'API/Admin';
+import { useNavigate } from 'react-router-dom';
 import api from '../../axios/axois';
 
 export const getUsers = createAsyncThunk('admin/getUsers', async (_, { rejectWithValue }) => {

@@ -1,18 +1,20 @@
 import { Button, TextField } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { HashLoader } from 'react-spinners';
 import { fetchLogin } from 'redux/thunks/Auth';
 
 function LoginContent() {
   const { register, handleSubmit } = useForm();
   const { t } = useTranslation('login');
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
+  const { loginLoading, login } = useSelector((state) => state.auth);
 
-  const { loginLoading } = useSelector((state) => state.auth);
 
   const [email, setEmail] = useState('student1@gmail.com');
   const [password, setPassword] = useState('Aa123456');
@@ -31,6 +33,11 @@ function LoginContent() {
       <div className="w-full flex justify-center items-center">
         <HashLoader color="#FBC95C" size={150} />
       </div>
+    );
+  }
+  if (login[0].email !== undefined) {
+    return (
+      <Navigate to="/" />
     );
   }
   return (

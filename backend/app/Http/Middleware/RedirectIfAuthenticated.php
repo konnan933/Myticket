@@ -20,13 +20,12 @@ class RedirectIfAuthenticated
     public function handle(Request $request, Closure $next, ...$guards)
     {
         $guards = empty($guards) ? [null] : $guards;
-
         // * login response 
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
                 return response()->json([
-                    'data' => 'sikeres'
+                    Auth::user()
                 ]);
             }
         }
