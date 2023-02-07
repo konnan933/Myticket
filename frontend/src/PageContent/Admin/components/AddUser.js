@@ -35,7 +35,7 @@ function AddUser() {
   return (
     <div className="flex justify-start pl-72">
       <div className="pt-8">
-        <Button onClick={handleOpen} variant="outlined" addIcon={<AddIcon />}>
+        <Button onClick={handleOpen} variant="outlined" endIcon={<AddIcon />}>
           {t('ADD_USER')}
         </Button>
       </div>
