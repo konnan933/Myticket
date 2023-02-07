@@ -22,9 +22,7 @@ function Sidebar({ drawer, setDrawer }) {
                 <Link
                   to={root.pagePath}
                   key={index}
-                  onClick={() => {
-                    console.log('kattint');
-                  }}>
+          >
                   <Button variant="outlined" sx={{ color: 'white', borderColor: 'white' }}>
                     {t(root.pageName)}
                   </Button>
