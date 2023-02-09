@@ -33,7 +33,7 @@ function DeleteUser({ id }) {
   };
   return (
     <div>
-      <IconButton onClick={handleClickOpen} color="red" component="label">
+      <IconButton onClick={handleClickOpen} color="error" component="label">
         <DeleteIcon />
       </IconButton>
       <Dialog

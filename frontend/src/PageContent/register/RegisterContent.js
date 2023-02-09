@@ -16,7 +16,6 @@ function RegisterContent() {
   const dispatch = useDispatch();
   const { regLoading, reg } = useSelector((state) => state.auth);
 
-
   const [email, setEmail] = useState('af@gmail.com');
   const [password, setPassword] = useState('Aa123456');
   const [confirmPassword, setConfirmPassword] = useState('Aa123456');
@@ -39,7 +38,6 @@ function RegisterContent() {
     setPhonNum(event.target.value);
   };
 
-  
   if (regLoading) {
     return (
       // TODO CSS FIX hogy kozépen legyen
@@ -51,7 +49,7 @@ function RegisterContent() {
   return (
     <form
       onSubmit={handleSubmit((data) => {
-
+        console.log(data);
         dispatch(fetchRegister(data));
       })}>
       <fieldset className="flex justify-center">
@@ -75,7 +73,7 @@ function RegisterContent() {
             className="border-2"
           />
           <TextField
-            {...register('password')}
+            {...register('password_confirmation')}
             required
             type="password"
             value={confirmPassword}
@@ -112,7 +110,8 @@ function RegisterContent() {
           </Button>
         </div>
       </fieldset>
-    </form>);
+    </form>
+  );
 }
 
 export default RegisterContent;
