@@ -15,8 +15,8 @@ import { Box, IconButton, Modal, Typography } from '@mui/material';
 import { padding } from '@mui/system';
 import AddUser from './components/AddUser';
 import DeleteUser from './components/DeleteUser';
-import AddUser from './components/AddUser';
 import { StyledTableCell, StyledTableRow } from 'PageContent/utils/TableStyles';
+import UserEdit from './components/UserEdit';
 
 function AdminUserContent() {
   const dispatch = useDispatch();
