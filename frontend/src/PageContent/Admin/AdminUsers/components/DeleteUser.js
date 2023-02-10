@@ -1,11 +1,14 @@
 import {
+  Box,
   Button,
   Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
-  IconButton
+  IconButton,
+  Modal,
+  Typography
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch } from 'react-redux';
@@ -36,24 +39,25 @@ function DeleteUser({ id }) {
       <IconButton onClick={handleClickOpen} color="error" component="label">
         <DeleteIcon />
       </IconButton>
-      <Dialog
+      <Modal
         open={open}
         onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description">
-        <DialogTitle id="alert-dialog-title">{t('DELETE')}</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            {t('CONFIRM_DELETE_USER')}
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>{t('NO')}</Button>
-          <Button onClick={onDelete} autoFocus>
-            {t('YES')}
-          </Button>
-        </DialogActions>
-      </Dialog>
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description">
+        <Box sx={modalStyle}>
+          <div className="flex justify-center pb-10 pt-5">
+            <Typography>{t('CONFIRM_DELETE')}</Typography>
+          </div>
+          <div className="flex justify-evenly">
+            <Button variant="outlined" onClick={handleClose}>
+              {t('NO')}
+            </Button>
+            <Button variant="outlined" onClick={onDelete} color="error" autoFocus>
+              {t('YES')}
+            </Button>
+          </div>
+        </Box>
+      </Modal>
     </div>
   );
 }

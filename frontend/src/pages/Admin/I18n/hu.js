@@ -5,7 +5,7 @@ const locale = {
   LEVEL: 'Szint',
   PHONENUMBER: 'Telefonszám',
   PENALTIES: 'Szabálysértés szám',
-  EDIT: 'Szerkeztés',
+  ACTIONS: 'Műveletek',
   DELETE: 'Törlés',
   CONFIRM_DELETE_USER: 'Biztosan törölni szeretné a felhasználót ?',
   CONFIRM_DELETE_EVENT: 'Biztosan törölni szeretné az eseményt ?',

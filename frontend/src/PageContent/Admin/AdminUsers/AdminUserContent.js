@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteEvent, deleteUser, getUsers } from 'redux/thunks/Admin';
-import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -16,7 +15,8 @@ import { Box, IconButton, Modal, Typography } from '@mui/material';
 import { padding } from '@mui/system';
 import AddUser from './components/AddUser';
 import DeleteUser from './components/DeleteUser';
-import UserEdit from './components/UserEdit';
+import AddUser from './components/AddUser';
+import { StyledTableCell, StyledTableRow } from 'PageContent/utils/TableStyles';
 
 function AdminUserContent() {
   const dispatch = useDispatch();
@@ -29,25 +29,6 @@ function AdminUserContent() {
   const { t } = useTranslation('adminUser');
   const { usersLoading } = useSelector((state) => state.admin);
 
-  const StyledTableCell = styled(TableCell)(({ theme }) => ({
-    [`&.${tableCellClasses.head}`]: {
-      backgroundColor: theme.palette.common.black,
-      color: theme.palette.common.white
-    },
-    [`&.${tableCellClasses.body}`]: {
-      fontSize: 14
-    }
-  }));
-
-  const StyledTableRow = styled(TableRow)(({ theme }) => ({
-    '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.action.hover
-    },
-    '&:last-child td, &:last-child th': {
-      border: 0
-    }
-  }));
-
   if (usersLoading) {
     return (
       // TODO CSS FIX hogy kozépen legyen
@@ -58,13 +39,14 @@ function AdminUserContent() {
   }
   return (
     <div>
-      <AddUser />
       <div className="flex justify-center w-full">
         <TableContainer style={{ margin: 30, maxWidth: '70%' }} component={Paper}>
           <Table aria-label="customized table">
             <TableHead>
               <TableRow>
-                <StyledTableCell align="left">{t('EDIT')}</StyledTableCell>
+                <StyledTableCell align="left">
+                  <AddUser />
+                </StyledTableCell>
                 <StyledTableCell align="left">{t('USER_NAME')}</StyledTableCell>
                 <StyledTableCell align="left">{t('EMAIL')}</StyledTableCell>
                 <StyledTableCell align="left">{t('LEVEL')}</StyledTableCell>
@@ -76,8 +58,10 @@ function AdminUserContent() {
               {users.map((user, index) => (
                 <StyledTableRow key={user.id}>
                   <StyledTableCell align="left">
-                    <DeleteUser id={user.id} />
-                    <UserEdit id={user.id} />
+                    <div className="flex">
+                      <UserEdit id={user.id} />
+                      <DeleteUser id={user.id} />
+                    </div>
                   </StyledTableCell>
                   <StyledTableCell align="left">{user.fel_nev}</StyledTableCell>
                   <StyledTableCell align="left">{user.email}</StyledTableCell>

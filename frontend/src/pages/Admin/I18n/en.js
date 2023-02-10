@@ -5,7 +5,7 @@ const locale = {
   LEVEL: 'Level',
   PHONENUMBER: 'Phone number',
   PENALTIES: 'Penalties number',
-  EDIT: 'Edit',
+  ACTIONS: 'Actions',
   DELETE: 'Delete',
   CONFIRM_DELETE_USER: 'Do you want to delete this user ?',
   CONFIRM_DELETE_EVENT: 'Do you want to delete this event ?',

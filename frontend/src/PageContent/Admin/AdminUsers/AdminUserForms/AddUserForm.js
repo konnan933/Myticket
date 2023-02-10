@@ -1,20 +1,24 @@
+import { Add } from '@mui/icons-material';
+import { Box, Button, IconButton, Modal, TextField, Typography } from '@mui/material';
+import { useState } from 'react';
+import AddIcon from '@mui/icons-material/Add';
+import modalStyle from 'PageContent/utils/ModalStyle';
 import { useTranslation } from 'react-i18next';
-import { Button, TextField } from '@mui/material';
-import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
-import { Navigate, useNavigate } from 'react-router-dom';
-import { HashLoader } from 'react-spinners';
+import { useDispatch } from 'react-redux';
 import { fetchRegister } from 'redux/thunks/Auth';
 
-function RegisterContent() {
-  const { t } = useTranslation('register');
+function AddUserForm() {
+  const { t } = useTranslation('adminUser');
 
   const { register, handleSubmit } = useForm();
-  const navigate = useNavigate();
 
   const dispatch = useDispatch();
-  const { regLoading, reg } = useSelector((state) => state.auth);
+
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const [email, setEmail] = useState('af@gmail.com');
   const [password, setPassword] = useState('Aa123456');
@@ -37,22 +41,13 @@ function RegisterContent() {
   const phonNumChangeHandler = (event) => {
     setPhonNum(event.target.value);
   };
-
-  if (regLoading) {
-    return (
-      // TODO CSS FIX hogy kozépen legyen
-      <div className="w-full flex justify-center items-center">
-        <HashLoader color="#FBC95C" size={150} />
-      </div>
-    );
-  }
   return (
     <form
       onSubmit={handleSubmit((data) => {
         dispatch(fetchRegister(data));
       })}>
-      <fieldset className="flex justify-center">
-        <div className="grid gap-8 p-20 w-1/2">
+      <fieldset>
+        <div className="grid gap-8 p-4">
           <TextField
             {...register('fel_nev')}
             required
@@ -113,4 +108,4 @@ function RegisterContent() {
   );
 }
 
-export default RegisterContent;
+export default AddUserForm;
