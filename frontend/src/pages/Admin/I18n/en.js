@@ -5,7 +5,7 @@ const locale = {
   LEVEL: 'Level',
   PHONENUMBER: 'Phone number',
   PENALTIES: 'Penalties number',
-  EDIT: 'Edit',
+  ACTIONS: 'Actions',
   DELETE: 'Delete',
   CONFIRM_DELETE: 'Do you want to delete this user ?',
   YES: 'Yes',
@@ -15,8 +15,8 @@ const locale = {
   PASSWORD: 'Password',
   CONFIRM_PASSWORD: 'Confrim password',
   NAME: 'User name',
-  USER : 'User',
-  ADMIN : 'Admin'
+  USER: 'User',
+  ADMIN: 'Admin'
 };
 
 export default locale;

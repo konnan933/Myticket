@@ -5,19 +5,18 @@ const locale = {
   LEVEL: 'Szint',
   PHONENUMBER: 'Telefonszám',
   PENALTIES: 'Szabálysértés szám',
-  EDIT: 'Szerkeztés',
+  ACTIONS: 'Műveletek',
   DELETE: 'Törlés',
   CONFIRM_DELETE: 'Biztosan törölni szeretné a felhasználót ?',
   YES: 'Igen',
   NO: 'Nem',
   ADD_USER: 'Felhasználó hozzáadása',
   LOGIN_SEND: 'Hozzáadás',
-  PASSWORD : 'Jelszó',
-  NAME : 'Felhasználó név',
-  CONFIRM_PASSWORD : 'Jelszó megerősítése',
-  ADMIN : 'Admin',
+  PASSWORD: 'Jelszó',
+  NAME: 'Felhasználó név',
+  CONFIRM_PASSWORD: 'Jelszó megerősítése',
+  ADMIN: 'Admin',
   USER: 'Felhasználó'
-
 };
 
 export default locale;

@@ -1,7 +1,7 @@
 import { Fade, IconButton, Modal, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { useState } from 'react';
-import CreateIcon from '@mui/icons-material/Create';
+import EditIcon from '@mui/icons-material/Edit';
 import modalStyle from 'PageContent/utils/ModalStyle';
 
 function UserEdit({ id }) {
@@ -11,7 +11,7 @@ function UserEdit({ id }) {
   return (
     <div>
       <IconButton onClick={handleOpen} color="primary" component="label">
-        <CreateIcon />
+        <EditIcon />
       </IconButton>
       <Modal
         open={open}
