@@ -9,12 +9,12 @@ import {
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch } from 'react-redux';
-import { deleteUser } from 'redux/thunks/Admin';
+import { deleteEvent } from 'redux/thunks/Admin';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import modalStyle from 'PageContent/utils/ModalStyle';
 
-function DeleteUser({ id }) {
+function DeleteEvent({ id }) {
   const { t } = useTranslation('adminUser');
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
@@ -29,7 +29,7 @@ function DeleteUser({ id }) {
 
   const onDelete = () => {
     handleClose();
-    dispatch(deleteUser(id));
+    dispatch(deleteEvent(id));
   };
   return (
     <div>
@@ -44,7 +44,7 @@ function DeleteUser({ id }) {
         <DialogTitle id="alert-dialog-title">{t('DELETE')}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            {t('CONFIRM_DELETE_USER')}
+            {t('CONFIRM_DELETE_EVENT')}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
@@ -58,4 +58,4 @@ function DeleteUser({ id }) {
   );
 }
 
-export default DeleteUser;
+export default DeleteEvent;

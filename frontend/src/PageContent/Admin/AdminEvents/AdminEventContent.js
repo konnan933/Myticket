@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteEvent, deleteUser, getUsers } from 'redux/thunks/Admin';
+import { deleteEvent, deleteUser, getEvents, getUsers } from 'redux/thunks/Admin';
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
@@ -14,20 +14,20 @@ import { useTranslation } from 'react-i18next';
 import { HashLoader } from 'react-spinners';
 import { Box, IconButton, Modal, Typography } from '@mui/material';
 import { padding } from '@mui/system';
-import AddUser from './components/AddUser';
-import DeleteUser from './components/DeleteUser';
-import UserEdit from './components/UserEdit';
+import EditEvent from './components/EditEvent';
+import AddEvent from './components/AddEvent';
+import DeleteEvent from './components/DeleteEvent';
+import EventDetails from './components/EventDetails';
 
-function AdminUserContent() {
+function AdminEventContent() {
   const dispatch = useDispatch();
-  const { users } = useSelector((state) => state.admin);
+  const { events } = useSelector((state) => state.admin);
 
   useEffect(() => {
-    dispatch(getUsers());
+    dispatch(getEvents());
   }, []);
-
   const { t } = useTranslation('adminUser');
-  const { usersLoading } = useSelector((state) => state.admin);
+  const { eventsLoading } = useSelector((state) => state.admin);
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -47,8 +47,9 @@ function AdminUserContent() {
       border: 0
     }
   }));
+  console.log(events);
 
-  if (usersLoading) {
+  if (eventsLoading) {
     return (
       // TODO CSS FIX hogy kozépen legyen
       <div className="w-full flex justify-center items-center">
@@ -58,36 +59,29 @@ function AdminUserContent() {
   }
   return (
     <div>
-      <AddUser />
+      <AddEvent />
       <div className="flex justify-center w-full">
         <TableContainer style={{ margin: 30, maxWidth: '70%' }} component={Paper}>
           <Table aria-label="customized table">
             <TableHead>
               <TableRow>
                 <StyledTableCell align="left">{t('EDIT')}</StyledTableCell>
-                <StyledTableCell align="left">{t('USER_NAME')}</StyledTableCell>
-                <StyledTableCell align="left">{t('EMAIL')}</StyledTableCell>
-                <StyledTableCell align="left">{t('LEVEL')}</StyledTableCell>
-                <StyledTableCell align="left">{t('PHONENUMBER')}</StyledTableCell>
-                <StyledTableCell align="center">{t('PENALTIES')}</StyledTableCell>
+                <StyledTableCell align="left">{t('EVENTNAME')}</StyledTableCell>
+                <StyledTableCell align="left">{t('ORGANIZER')}</StyledTableCell>
+                <StyledTableCell align="left">{t('LOCATION')}</StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {users.map((user, index) => (
-                <StyledTableRow key={user.id}>
+              {events.map((event, index) => (
+                <StyledTableRow key={event.id}>
                   <StyledTableCell align="left">
-                    <DeleteUser id={user.id} />
-                    <UserEdit id={user.id} />
+                    <DeleteEvent id={event.id} />
+                    <EditEvent id={event.id} />
+                    <EventDetails id={event.id} />
                   </StyledTableCell>
-                  <StyledTableCell align="left">{user.fel_nev}</StyledTableCell>
-                  <StyledTableCell align="left">{user.email}</StyledTableCell>
-                  {user.level === 1 ? (
-                    <StyledTableCell align="left">{t('ADMIN')}</StyledTableCell>
-                  ) : (
-                    <StyledTableCell align="left">{t('USER')}</StyledTableCell>
-                  )}
-                  <StyledTableCell align="left">{user.telefonszam}</StyledTableCell>
-                  <StyledTableCell align="center">{user.szab_sert_szam}</StyledTableCell>
+                  <StyledTableCell align="left">{event.cim}</StyledTableCell>
+                  <StyledTableCell align="left">{event.user}</StyledTableCell>
+                  <StyledTableCell align="left">{event.helyszin}</StyledTableCell>
                 </StyledTableRow>
               ))}
             </TableBody>
@@ -97,4 +91,4 @@ function AdminUserContent() {
     </div>
   );
 }
-export default AdminUserContent;
+export default AdminEventContent;

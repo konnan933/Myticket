@@ -7,8 +7,8 @@ import hu from "./I18n/hu";
 i18n.addResourceBundle("en", "adminUser", en);
 i18n.addResourceBundle("hu", "adminUser", hu);
 
-function AdminPage() {
+function AdminUserPage() {
   return <AdminUserContent />;
 }
 
-export default AdminPage;
+export default AdminUserPage;

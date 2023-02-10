@@ -7,11 +7,14 @@ import hu from './I18n/hu';
 import RegisterPage from 'pages/register/RegisterPage';
 import AdminPage from 'pages/Admin/AdminPage';
 import level from './Level';
+import AdminMenuList from 'PageContent/navbar/components/AdminMenuList';
+import AdminUserContent from 'PageContent/Admin/AdminUsers/AdminUserContent';
+import AdminEventContent from 'PageContent/Admin/AdminEvents/AdminEventContent';
 
 i18n.addResourceBundle('en', 'rootes', en);
 i18n.addResourceBundle('hu', 'rootes', hu);
 
-const rootConfig = [
+export const allRootConfig = [
   {
     pageName: 'HOME',
     pagePath: '/',
@@ -33,9 +36,61 @@ const rootConfig = [
   {
     pageName: 'ADMIN',
     pagePath: '/admin',
-    element: <AdminPage/>,
+    element: <AdminMenuList />,
     level: level.admin
   },
+  {
+    pageName: 'ADMINUSER',
+    pagePath: '/adminUsers',
+    element: <AdminUserContent />,
+    level: level.user
+  },
+  {
+    pageName: 'ADMINEVENT',
+    pagePath: '/adminEvents',
+    element: <AdminEventContent />,
+    level: level.user
+  }
 ];
 
-export default rootConfig;
+export const navbarConfig = [
+  {
+    pageName: 'HOME',
+    pagePath: '/',
+    element: <HomePage />,
+    level: level.user
+  },
+  {
+    pageName: 'LOGIN',
+    pagePath: '/login',
+    element: <LoginPage />,
+    level: level.user
+  },
+  {
+    pageName: 'REGISTER',
+    pagePath: '/register',
+    element: <RegisterPage />,
+    level: level.user
+  },
+  {
+    pageName: 'ADMIN',
+    pagePath: '/admin',
+    element: <AdminMenuList />,
+    level: level.admin
+  }
+];
+
+export const adminConfig = [
+  {
+    pageName: 'ADMINUSER',
+    pagePath: '/adminUsers',
+    element: <AdminUserContent />,
+    level: level.user
+  },
+  {
+    pageName: 'ADMINEVENT',
+    pagePath: '/adminEvents',
+    element: <AdminEventContent />,
+    level: level.user
+  }
+];

@@ -26,7 +26,7 @@ return new class extends Migration
             $table->boolean('megerositve_e')->default(0);
         });
 
-        User::create(['email' => 'student1@gmail.com', 'password' => Hash::make('Aa123456'), 'fel_nev' => 'Marcsi', 'telefonszam' => '06701274832', 'megerositve_e' => 1]);
+        User::create(['email' => 'student1@gmail.com', 'password' => Hash::make('Aa123456'), 'fel_nev' => 'Marcsi', 'telefonszam' => '06701274832','level' => 1, 'megerositve_e' => 1]);
         User::create(['email' => 'admin@gmail.com', 'password' => Hash::make('Aa123456'), 'fel_nev' => 'Admin', 'telefonszam' => '06708392017', 'level' => 1, 'megerositve_e' => 1]);
         User::create(['email' => 'ivanadminvagyok@gmail.com', 'password' => Hash::make('Aa123456'), 'fel_nev' => 'Ivan', 'telefonszam' => '06701287321', 'level' => 1, 'megerositve_e' => 1]);
         User::create(['email' => 'test1234@gmail.com', 'password' => Hash::make('Aa123456'), 'fel_nev' => 'test1234', 'telefonszam' => '06700867534', 'megerositve_e' => 1]);

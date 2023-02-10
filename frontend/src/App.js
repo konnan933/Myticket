@@ -6,7 +6,7 @@ import RegisterPage from 'pages/register/RegisterPage';
 import LoginPage from 'pages/login/LoginPage';
 import HomePage from 'pages/Home/HomePage';
 import Navbar from 'PageContent/navbar/Navbar';
-import rootConfig from 'pages/routes/RootConfig';
+import rootConfig, { allRootConfig } from 'pages/routes/RootConfig';
 function App() {
   const dispatch = useDispatch();
 
@@ -14,7 +14,7 @@ function App() {
     <div className="App">
       <Navbar />
       <Routes>
-        {rootConfig.map((root, index) => {
+        {allRootConfig.map((root, index) => {
           return <Route key={index} path={root.pagePath} element={root.element} />;
         })}
       </Routes>

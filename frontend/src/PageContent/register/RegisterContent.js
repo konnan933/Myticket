@@ -49,7 +49,6 @@ function RegisterContent() {
   return (
     <form
       onSubmit={handleSubmit((data) => {
-        console.log(data);
         dispatch(fetchRegister(data));
       })}>
       <fieldset className="flex justify-center">

@@ -26,7 +26,6 @@ const authSlice = createSlice({
       state.regLoading = true;
     });
     builder.addCase(fetchRegister.fulfilled, (state, action) => {
-      console.log(state);
       state.regLoading = false;
       state.reg = action.payload;
     });
