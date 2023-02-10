@@ -13,12 +13,7 @@ import { useTranslation } from 'react-i18next';
 import { HashLoader } from 'react-spinners';
 import { Box, IconButton, Modal, Typography } from '@mui/material';
 import { padding } from '@mui/system';
-import DeleteUser from './components/DeleteUser';
-import AddUser from './components/AddUser';
-import { StyledTableCell, StyledTableRow } from 'PageContent/utils/TableStyles';
-import EditUserButton from './components/EditUserButton';
 import UsersTable from './UsersTable';
-
 function AdminUserContent() {
   const { t } = useTranslation('adminUser');
 
