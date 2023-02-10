@@ -46,9 +46,10 @@ class UserController extends Controller
         $user->fel_nev = $request->fel_nev;
         $user->level = 1;
         $user->telefonszam = $request->telefonszam;
-        $user->szab_sert_szam = 0;
+        $user->faults = 0;
         $user->save();
     }
+
 
     public function update(Request $request, $id)
     {
@@ -57,8 +58,8 @@ class UserController extends Controller
         $user->fel_nev = $request->fel_nev;
         $user->level = $request->level;
         $user->telefonszam = $request->telefonszam;
-        $user->szab_sert_szam = $request->szab_sert_szam;
-        $user->megerositve_e = $request->megerositve_e;
+        $user->faults = $request->faults;
+        $user->confirmed = $request->confirmed;
         $user->save();
     }
 

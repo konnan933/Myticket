@@ -41,6 +41,8 @@ Route::middleware(['user'])->group(function () {
 
 //Felhasznalok vegpontok
 Route::get('api/users', [UserController::class, 'index']);
+Route::post('api/users', [UserController::class, 'store']);
+Route::put('api/users/{id}', [UserController::class, 'update']);
 Route::delete('api/users/{id}', [UserController::class, 'destroy']);
 
 

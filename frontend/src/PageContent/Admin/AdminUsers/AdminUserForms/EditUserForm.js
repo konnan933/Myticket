@@ -1,5 +1,14 @@
 import { Add } from '@mui/icons-material';
-import { Box, Button, IconButton, Modal, TextField, Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  IconButton,
+  MenuItem,
+  Modal,
+  Select,
+  TextField,
+  Typography
+} from '@mui/material';
 import { useState } from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import modalStyle from 'PageContent/utils/ModalStyle';
@@ -7,9 +16,10 @@ import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { fetchRegister } from 'redux/thunks/Auth';
-import { addUser } from 'redux/thunks/Admin';
+import { updateUser } from 'redux/thunks/Admin';
 
-function AddUserForm() {
+function EditUserForm({ user }) {
+  console.log(user);
   const { t } = useTranslation('adminUser');
 
   const { register, handleSubmit } = useForm();
@@ -21,20 +31,21 @@ function AddUserForm() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const [email, setEmail] = useState('af@gmail.com');
-  const [password, setPassword] = useState('Aa123456@');
-  const [confirmPassword, setConfirmPassword] = useState('Aa123456@');
-  const [felNev, setFelNev] = useState('Jancsi');
-  const [phonNum, setPhonNum] = useState('06301111111');
+  const [email, setEmail] = useState(user.email);
+  const [faults, setFaults] = useState(user.faults);
+  const [confirmed, setConfirmed] = useState(user.confirmed);
+  const [felNev, setFelNev] = useState(user.fel_nev);
+  const [phonNum, setPhonNum] = useState(user.telefonszam);
+  const [level, setLevel] = useState(user.level);
 
   const emailChangeHandler = (event) => {
     setEmail(event.target.value);
   };
-  const passwordChangeHandler = (event) => {
-    setPassword(event.target.value);
+  const faultsChangeHandler = (event) => {
+    setFaults(event.target.value);
   };
-  const ConfirmPasswordChangeHandler = (event) => {
-    setConfirmPassword(event.target.value);
+  const ConfirmedChangeHandler = (event) => {
+    setConfirmed(event.target.value);
   };
   const felNevChangeHandler = (event) => {
     setFelNev(event.target.value);
@@ -42,10 +53,16 @@ function AddUserForm() {
   const phonNumChangeHandler = (event) => {
     setPhonNum(event.target.value);
   };
+  const levelChangeHandler = (event) => {
+    setLevel(event.target.value);
+  };
   return (
     <form
       onSubmit={handleSubmit((data) => {
-        dispatch(addUser(data));
+        data.confirmed = false;
+        data.faults = 0;
+        data.level;
+        dispatch(updateUser({ formData: data, id: user.id }));
       })}>
       <fieldset>
         <div className="grid gap-8 p-4">
@@ -55,7 +72,7 @@ function AddUserForm() {
             type="text"
             value={felNev}
             onChange={felNevChangeHandler}
-            label={t('TEL_NUM')}
+            label={t('USER_NAME')}
             className="border-2"
           />
           <TextField
@@ -68,21 +85,21 @@ function AddUserForm() {
             className="border-2"
           />
           <TextField
-            {...register('password')}
+            {...register('faults')}
             required
-            type="password"
-            value={password}
-            onChange={passwordChangeHandler}
-            label={t('PASSWORD')}
+            type="text"
+            value={faults}
+            onChange={faultsChangeHandler}
+            label={t('FAULTS')}
             className="border-2"
           />
           <TextField
-            {...register('password_confirmation')}
+            {...register('confirmed')}
             required
-            type="password"
-            value={confirmPassword}
-            onChange={ConfirmPasswordChangeHandler}
-            label={t('PASSWORD')}
+            type="text"
+            value={confirmed}
+            onChange={ConfirmedChangeHandler}
+            label={t('CONFIRMED')}
             className="border-2"
           />
           <TextField
@@ -91,9 +108,17 @@ function AddUserForm() {
             type="text"
             value={phonNum}
             onChange={phonNumChangeHandler}
-            label={t('TEL_NUM')}
+            label={t('PHONENUMBER')}
             className="border-2"
           />
+          <Select
+            {...register('level')}
+            value={level}
+            onChange={levelChangeHandler}
+            inputProps={{ 'aria-label': 'Without label' }}>
+            <MenuItem value={1}>{t('Admin')}</MenuItem>
+            <MenuItem value={2}>{t('USER')}</MenuItem>
+          </Select>
           <Button
             variant="contained"
             color="info"
@@ -101,7 +126,7 @@ function AddUserForm() {
             aria-label="Sign in"
             type="submit"
             size="large">
-            {t('LOGIN_SEND')}
+            {t('SEND')}
           </Button>
         </div>
       </fieldset>
@@ -109,4 +134,4 @@ function AddUserForm() {
   );
 }
 
-export default AddUserForm;
+export default EditUserForm;

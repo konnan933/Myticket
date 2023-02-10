@@ -22,18 +22,18 @@ return new class extends Migration
             $table->string('fel_nev');
             $table->tinyInteger('level')->default(2);
             $table->string('telefonszam')->unique();
-            $table->tinyInteger('szab_sert_szam')->default(0);
-            $table->boolean('megerositve_e')->default(0);
+            $table->tinyInteger('faults')->default(0);
+            $table->boolean('confirmed')->default(0);
         });
 
-        User::create(['email' => 'student1@gmail.com', 'password' => Hash::make('Aa123456'), 'fel_nev' => 'Marcsi', 'telefonszam' => '06701274832', 'megerositve_e' => 1]);
-        User::create(['email' => 'admin@gmail.com', 'password' => Hash::make('Aa123456'), 'fel_nev' => 'Admin', 'telefonszam' => '06708392017', 'level' => 1, 'megerositve_e' => 1]);
-        User::create(['email' => 'ivanadminvagyok@gmail.com', 'password' => Hash::make('Aa123456'), 'fel_nev' => 'Ivan', 'telefonszam' => '06701287321', 'level' => 1, 'megerositve_e' => 1]);
-        User::create(['email' => 'test1234@gmail.com', 'password' => Hash::make('Aa123456'), 'fel_nev' => 'test1234', 'telefonszam' => '06700867534', 'megerositve_e' => 1]);
-        User::create(['email' => 'samuka@gmail.com', 'password' => Hash::make('Aa123456'), 'fel_nev' => 'Samu', 'telefonszam' => '06709857543', 'megerositve_e' => 1]);
-        User::create(['email' => 'odornorbert.on@gmail.com', 'password' => Hash::make('Aa123456@'), 'fel_nev' => 'Norbus', 'telefonszam' => '06702486730', 'level' => 1, 'megerositve_e' => 1]);
-        User::create(['email' => 'konnan933@gmail.com', 'password' => Hash::make('Aa123456@'), 'fel_nev' => 'Ati', 'telefonszam' => '06308339380', 'level' => 1, 'megerositve_e' => 1]);
-        User::create(['email' => 'daniallaszlo002@gmail.com', 'password' => Hash::make('Aa123456@'), 'fel_nev' => 'DLD', 'telefonszam' => '06308339370', 'level' => 1, 'megerositve_e' => 1]);
+        User::create(['email' => 'student1@gmail.com', 'password' => Hash::make('Aa123456'), 'fel_nev' => 'Marcsi', 'telefonszam' => '06701274832', 'confirmed' => 1]);
+        User::create(['email' => 'admin@gmail.com', 'password' => Hash::make('Aa123456'), 'fel_nev' => 'Admin', 'telefonszam' => '06708392017', 'level' => 1, 'confirmed' => 1]);
+        User::create(['email' => 'ivanadminvagyok@gmail.com', 'password' => Hash::make('Aa123456'), 'fel_nev' => 'Ivan', 'telefonszam' => '06701287321', 'level' => 1, 'confirmed' => 1]);
+        User::create(['email' => 'test1234@gmail.com', 'password' => Hash::make('Aa123456'), 'fel_nev' => 'test1234', 'telefonszam' => '06700867534', 'confirmed' => 1]);
+        User::create(['email' => 'samuka@gmail.com', 'password' => Hash::make('Aa123456'), 'fel_nev' => 'Samu', 'telefonszam' => '06709857543', 'confirmed' => 1]);
+        User::create(['email' => 'odornorbert.on@gmail.com', 'password' => Hash::make('Aa123456@'), 'fel_nev' => 'Norbus', 'telefonszam' => '06702486730', 'level' => 1, 'confirmed' => 1]);
+        User::create(['email' => 'konnan933@gmail.com', 'password' => Hash::make('Aa123456@'), 'fel_nev' => 'Ati', 'telefonszam' => '06308339380', 'level' => 1, 'confirmed' => 1]);
+        User::create(['email' => 'daniallaszlo002@gmail.com', 'password' => Hash::make('Aa123456@'), 'fel_nev' => 'DLD', 'telefonszam' => '06308339370', 'level' => 1, 'confirmed' => 1]);
     }
 
     /**

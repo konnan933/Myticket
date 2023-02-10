@@ -13,23 +13,22 @@ import { useTranslation } from 'react-i18next';
 import { HashLoader } from 'react-spinners';
 import { Box, IconButton, Modal, Typography } from '@mui/material';
 import { padding } from '@mui/system';
-import UserEdit from './components/UserEdit';
 import DeleteUser from './components/DeleteUser';
 import AddUser from './components/AddUser';
 import { StyledTableCell, StyledTableRow } from 'PageContent/utils/TableStyles';
+import EditUserButton from './components/EditUserButton';
+import UsersTable from './UsersTable';
 
 function AdminUserContent() {
+  const { t } = useTranslation('adminUser');
+
   const dispatch = useDispatch();
-  const { users } = useSelector((state) => state.admin);
+  const { users, usersLoading } = useSelector((state) => state.admin);
 
   useEffect(() => {
     dispatch(getUsers());
   }, []);
-
-  const { t } = useTranslation('adminUser');
-  const { usersLoading } = useSelector((state) => state.admin);
-
-  if (usersLoading) {
+  if (usersLoading || users.length === 0) {
     return (
       // TODO CSS FIX hogy kozépen legyen
       <div className="w-full flex justify-center items-center">
@@ -40,43 +39,7 @@ function AdminUserContent() {
   return (
     <div>
       <div className="flex justify-center w-full">
-        <TableContainer style={{ margin: 30, maxWidth: '70%' }} component={Paper}>
-          <Table aria-label="customized table">
-            <TableHead>
-              <TableRow>
-                <StyledTableCell align="left">
-                  <AddUser />
-                </StyledTableCell>
-                <StyledTableCell align="left">{t('USER_NAME')}</StyledTableCell>
-                <StyledTableCell align="left">{t('EMAIL')}</StyledTableCell>
-                <StyledTableCell align="left">{t('LEVEL')}</StyledTableCell>
-                <StyledTableCell align="left">{t('PHONENUMBER')}</StyledTableCell>
-                <StyledTableCell align="center">{t('PENALTIES')}</StyledTableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {users.map((user, index) => (
-                <StyledTableRow key={user.id}>
-                  <StyledTableCell align="left">
-                    <div className="flex">
-                      <UserEdit id={user.id} />
-                      <DeleteUser id={user.id} />
-                    </div>
-                  </StyledTableCell>
-                  <StyledTableCell align="left">{user.fel_nev}</StyledTableCell>
-                  <StyledTableCell align="left">{user.email}</StyledTableCell>
-                  {user.level === 1 ? (
-                    <StyledTableCell align="left">{t('ADMIN')}</StyledTableCell>
-                  ) : (
-                    <StyledTableCell align="left">{t('USER')}</StyledTableCell>
-                  )}
-                  <StyledTableCell align="left">{user.telefonszam}</StyledTableCell>
-                  <StyledTableCell align="center">{user.szab_sert_szam}</StyledTableCell>
-                </StyledTableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+        <UsersTable />
       </div>
     </div>
   );
