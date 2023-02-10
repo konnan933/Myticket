@@ -24,7 +24,7 @@ function AddEvent() {
     <div className="flex justify-start pl-72">
       <div className="pt-8">
         <Button onClick={handleOpen} variant="outlined" endIcon={<AddIcon />}>
-          {t('ADD_USER')}
+          {t('ADD_EVENT')}
         </Button>
       </div>
       <div>
