@@ -17,7 +17,7 @@
       "presets": ["@babel/preset-react"]
     }
   },
-  "plugins": ["react"],
+  "plugins": ["react", "unused-imports"],
   "rules": {
     "no-unused-vars": [
       "off",
@@ -32,6 +32,16 @@
     "react/forbid-prop-types": "off",
     "react/require-default-props": "off",
     "react/default-props-match-prop-types": "off",
-    "react/no-unused-prop-types": "off"
+    "react/no-unused-prop-types": "off",
+    "unused-imports/no-unused-imports": "error",
+    "unused-imports/no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "varsIgnorePattern": "^_",
+        "args": "after-used",
+        "argsIgnorePattern": "^_"
+      }
+    ]
   }
 }

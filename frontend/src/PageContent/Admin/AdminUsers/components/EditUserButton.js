@@ -1,10 +1,7 @@
-import { Add } from '@mui/icons-material';
-import { Box, Button, IconButton, Modal, TextField, Typography } from '@mui/material';
+import { Box, IconButton, Modal } from '@mui/material';
 import { useState } from 'react';
-import AddIcon from '@mui/icons-material/Add';
 import modalStyle from 'PageContent/utils/ModalStyle';
 import { useTranslation } from 'react-i18next';
-import { useForm } from 'react-hook-form';
 import EditIcon from '@mui/icons-material/Edit';
 import EditUserForm from '../AdminUserForms/EditUserForm';
 
