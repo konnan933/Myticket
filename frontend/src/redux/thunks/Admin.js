@@ -42,6 +42,8 @@ export const getEvents = createAsyncThunk('admin/deleteEvent', async (id, { reje
     if (!err.response) {
       throw err;
     }
+    const { data, status } = err.response;
+    return rejectWithValue({ data, status });
   }
 });
 export const addUser = createAsyncThunk(
