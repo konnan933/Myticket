@@ -13,6 +13,7 @@ import { useTranslation } from 'react-i18next';
 import LangChanger from './components/LangChanger';
 import { useSelector } from 'react-redux';
 import AdminMenuList from './components/AdminMenuList';
+import LogoutButton from './components/LogoutButton';
 
 export default function Navbar() {
   const matches = useMediaQuery('(max-width:768px)');
@@ -57,6 +58,7 @@ export default function Navbar() {
                   );
               })}
             <LangChanger />
+            <LogoutButton />
           </div>
         </AppBar>
       </Box>

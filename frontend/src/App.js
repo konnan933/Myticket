@@ -1,10 +1,7 @@
-import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import Navbar from 'PageContent/navbar/Navbar';
 import { allRootConfig } from 'pages/routes/RootConfig';
 function App() {
-  const dispatch = useDispatch();
-
   return (
     <div className="App">
       <Navbar />
