@@ -22,6 +22,7 @@ function DeleteUser({ id }) {
   const onDelete = () => {
     handleClose();
     dispatch(deleteUser(id));
+    
   };
   return (
     <div>
@@ -35,7 +36,7 @@ function DeleteUser({ id }) {
         aria-describedby="modal-modal-description">
         <Box sx={modalStyle}>
           <div className="flex justify-center pb-10 pt-5">
-            <Typography>{t('CONFIRM_DELETE')}</Typography>
+            <Typography>{t('CONFIRM_DELETE_USER')}</Typography>
           </div>
           <div className="flex justify-evenly">
             <Button variant="outlined" onClick={handleClose}>

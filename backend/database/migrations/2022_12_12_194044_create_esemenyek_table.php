@@ -29,6 +29,7 @@ return new class extends Migration
             $table->foreignId('esem_kat')->references('id')->on('esemenykategoria');
             $table->tinyInteger('jutalek')->default(17);
             $table->tinyInteger('statusz')->default(0);
+            $table->boolean('promoted')->default(0);
         });
 
 

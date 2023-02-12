@@ -1,13 +1,13 @@
 import { Box, Button, IconButton, Modal, Typography } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch } from 'react-redux';
-import { deleteUser } from 'redux/thunks/Admin';
+import { deleteEvent } from 'redux/thunks/Admin';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import modalStyle from 'PageContent/utils/ModalStyle';
 
-function DeleteUser({ id }) {
-  const { t } = useTranslation('adminUser');
+function DeleteEvent({ id }) {
+  const { t } = useTranslation('adminEvent');
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
 
@@ -21,7 +21,7 @@ function DeleteUser({ id }) {
 
   const onDelete = () => {
     handleClose();
-    dispatch(deleteUser(id));
+    dispatch(deleteEvent(id));
   };
   return (
     <div>
@@ -35,7 +35,7 @@ function DeleteUser({ id }) {
         aria-describedby="modal-modal-description">
         <Box sx={modalStyle}>
           <div className="flex justify-center pb-10 pt-5">
-            <Typography>{t('CONFIRM_DELETE')}</Typography>
+            <Typography>{t('CONFIRM_DELETE_EVENT')}</Typography>
           </div>
           <div className="flex justify-evenly">
             <Button variant="outlined" onClick={handleClose}>
@@ -51,4 +51,4 @@ function DeleteUser({ id }) {
   );
 }
 
-export default DeleteUser;
+export default DeleteEvent;

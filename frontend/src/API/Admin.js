@@ -1,6 +1,6 @@
 const admin = {
   users: 'api/users',
-  event: 'api/event'
+  event: 'api/eventdetails'
 };
 
 export default admin;

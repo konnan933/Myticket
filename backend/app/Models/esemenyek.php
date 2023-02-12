@@ -22,5 +22,6 @@ class Esemenyek extends Model
         'buisness_email',
         'buisness_tel',
         'esem_kat',
+        'promoted',
     ];
 }

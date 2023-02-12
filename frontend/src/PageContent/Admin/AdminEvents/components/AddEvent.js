@@ -9,7 +9,7 @@ function AddEvent() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const { t } = useTranslation('adminUser');
+  const { t } = useTranslation('adminEvent');
   const { register, handleSubmit } = useForm();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -34,7 +34,7 @@ function AddEvent() {
           aria-describedby="modal-modal-description">
           <Box sx={modalStyle}>
             <div className="flex justify-center">
-              <h2>{t('ADD_USER')}</h2>
+              <h2>{t('ADD_EVENT')}</h2>
             </div>
             <form onSubmit={handleSubmit((data) => {})}>
               <fieldset>
@@ -45,7 +45,7 @@ function AddEvent() {
                     type="text"
                     value={email}
                     onChange={userNameChangeHandler}
-                    label={t('NAME')}
+                    label={t('EVENTNAME')}
                     className="border-2"
                   />
 
