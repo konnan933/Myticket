@@ -9,7 +9,8 @@ import level from './Level';
 import AdminMenuList from 'PageContent/navbar/components/AdminMenuList';
 import AdminUserContent from 'PageContent/Admin/AdminUsers/AdminUserContent';
 import AdminEventContent from 'PageContent/Admin/AdminEvents/AdminEventContent';
-import AdminUserPage from 'pages/Admin/AdminPage';
+import AdminUsersPage from 'pages/Admin/AdminUsers/AdminUsersPage';
+import AdminEventPage from 'pages/Admin/AdminEvent/AdminEventPage';
 
 i18n.addResourceBundle('en', 'rootes', en);
 i18n.addResourceBundle('hu', 'rootes', hu);
@@ -42,13 +43,13 @@ export const allRootConfig = [
   {
     pageName: 'ADMINUSER',
     pagePath: '/adminUsers',
-    element: <AdminUserPage />,
+    element: <AdminUsersPage />,
     level: level.user
   },
   {
     pageName: 'ADMINEVENT',
     pagePath: '/adminEvents',
-    element: <AdminEventContent />,
+    element: <AdminEventPage />,
     level: level.user
   }
 ];

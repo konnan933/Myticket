@@ -12,20 +12,14 @@ const locale = {
   CONFIRMED: 'Ellenörzött',
   DELETE: 'Törlés',
   CONFIRM_DELETE_USER: 'Biztosan törölni szeretné a felhasználót ?',
-  CONFIRM_DELETE_EVENT: 'Biztosan törölni szeretné az eseményt ?',
   YES: 'Igen',
   NO: 'Nem',
   ADD_USER: 'Felhasználó hozzáadása',
-  ADD_EVENT: 'Esemény hozzáadása',
   LOGIN_SEND: 'Hozzáadás',
   PASSWORD: 'Jelszó',
   NAME: 'Felhasználó név',
-  CONFIRM_PASSWORD: 'Jelszó megerősítése',
   LEVEL_1: 'Admin',
-  LEVEL_2: 'Felhasználó',
-  EVENTNAME: 'Cím',
-  ORGANIZER: 'Szervező',
-  LOCATION: 'Helyszín'
+  LEVEL_2: 'Felhasználó'
 };
 
 export default locale;

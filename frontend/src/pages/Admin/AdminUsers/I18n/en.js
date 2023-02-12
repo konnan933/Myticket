@@ -12,20 +12,14 @@ const locale = {
   EDIT_USER: 'Edit user',
   DELETE: 'Delete',
   CONFIRM_DELETE_USER: 'Do you want to delete this user ?',
-  CONFIRM_DELETE_EVENT: 'Do you want to delete this event ?',
   YES: 'Yes',
   NO: 'No',
   ADD_USER: 'Add user',
-  ADD_EVENT: 'Add event',
   LOGIN_SEND: 'Add',
   PASSWORD: 'Password',
-  CONFIRM_PASSWORD: 'Confrim password',
   NAME: 'User name',
   LEVEL_2: 'User',
-  LEVEL_1: 'Admin',
-  EVENTNAME: 'Name',
-  ORGANIZER: 'Organizer',
-  LOCATION: 'Location'
+  LEVEL_1: 'Admin'
 };
 
 export default locale;
