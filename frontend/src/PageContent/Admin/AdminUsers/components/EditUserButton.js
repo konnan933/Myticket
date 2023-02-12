@@ -6,7 +6,6 @@ import EditIcon from '@mui/icons-material/Edit';
 import EditUserForm from '../AdminUserForms/EditUserForm';
 
 function EditUserButton({ user }) {
-  console.log(user);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);

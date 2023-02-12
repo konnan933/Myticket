@@ -6,7 +6,6 @@ import { useDispatch } from 'react-redux';
 import { updateUser } from 'redux/thunks/Admin';
 
 function EditUserForm({ user }) {
-  console.log(user);
   const { t } = useTranslation('adminUser');
 
   const { register, handleSubmit } = useForm();
