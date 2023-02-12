@@ -28,7 +28,7 @@ function AdminEventContent() {
   if (eventsLoading || events.lenght === 0 || events[0] === undefined) {
     return <Loader />;
   }
-  
+
   return (
     <div>
       <AddEvent />
@@ -44,7 +44,7 @@ function AdminEventContent() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {events.map((event, index) => (
+              {events.map((event) => (
                 <StyledTableRow key={event.id}>
                   <StyledTableCell align="left">
                     <DeleteEvent id={event.id} />
@@ -54,13 +54,7 @@ function AdminEventContent() {
                   <StyledTableCell align="left">{event.cim}</StyledTableCell>
                   <StyledTableCell align="left">{event.fel_nev}</StyledTableCell>
                   <StyledTableCell align="left">
-                    {`${event.iranyitoszam}` +
-                      ' ' +
-                      `${event.kerulet}` +
-                      ' ' +
-                      `${event.utca}` +
-                      ' ' +
-                      `${event.hazszam}`}
+                    {`${event.iranyitoszam} ${event.kerulet} ${event.utca} ${event.hazszam}`}
                   </StyledTableCell>
                 </StyledTableRow>
               ))}

@@ -253,14 +253,12 @@ class EsemenyekController extends Controller
     }
     public function getEventDetails(){
 
-       /*  HelyszinController::eventLocationBuilder('esemenyek.helyszin'), */
-
-            $eventLocation = DB::table('esemenyek')->select('esemenyek.cim','esemenyek.kezd_datum','esemenyek.veg_datum','esemenyek.leiras','esemenyek.buisness_email','esemenyek.buisness_tel','esemenyek.jutalek','esemenyek.statusz','esemenykategoria.megnev','helyszinek.iranyitoszam','helyszinek.kerulet','helyszinek.utca','helyszinek.hazszam','helyszinek.emelet','helyszinek.terem','users.fel_nev')
+            $eventDetails = DB::table('esemenyek')->select('esemenyek.id','esemenyek.cim','esemenyek.kezd_datum','esemenyek.veg_datum','esemenyek.leiras','esemenyek.buisness_email','esemenyek.buisness_tel','esemenyek.jutalek','esemenyek.statusz','esemenykategoria.megnev','helyszinek.iranyitoszam','helyszinek.kerulet','helyszinek.utca','helyszinek.hazszam','helyszinek.emelet','helyszinek.terem','users.fel_nev')
             ->join('helyszinek', 'helyszinek.id', '=','esemenyek.helyszin')
             ->join('esemenykategoria', 'esemenykategoria.id', '=','esemenyek.esem_kat')
             ->join('users', 'users.id', '=','esemenyek.user')
             ->get();
             
-            return $eventLocation;
+            return $eventDetails;
     }
 }
