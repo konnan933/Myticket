@@ -1,12 +1,7 @@
-import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { fetchLogin } from 'redux/thunks/Auth';
 import { Route, Routes } from 'react-router-dom';
-import RegisterPage from 'pages/register/RegisterPage';
-import LoginPage from 'pages/login/LoginPage';
-import HomePage from 'pages/Home/HomePage';
 import Navbar from 'PageContent/navbar/Navbar';
-import rootConfig, { allRootConfig } from 'pages/routes/RootConfig';
+import { allRootConfig } from 'pages/routes/RootConfig';
 function App() {
   const dispatch = useDispatch();
 

@@ -1,21 +1,8 @@
-import { Add } from '@mui/icons-material';
-import {
-  Box,
-  Button,
-  IconButton,
-  MenuItem,
-  Modal,
-  Select,
-  TextField,
-  Typography
-} from '@mui/material';
+import { Button, MenuItem, Select, TextField } from '@mui/material';
 import { useState } from 'react';
-import AddIcon from '@mui/icons-material/Add';
-import modalStyle from 'PageContent/utils/ModalStyle';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { fetchRegister } from 'redux/thunks/Auth';
 import { updateUser } from 'redux/thunks/Admin';
 
 function EditUserForm({ user }) {

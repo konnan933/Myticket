@@ -5,7 +5,6 @@ import LoginPage from '../login/LoginPage';
 import en from './I18n/en';
 import hu from './I18n/hu';
 import RegisterPage from 'pages/register/RegisterPage';
-import AdminPage from 'pages/Admin/AdminPage';
 import level from './Level';
 import AdminMenuList from 'PageContent/navbar/components/AdminMenuList';
 import AdminUserContent from 'PageContent/Admin/AdminUsers/AdminUserContent';

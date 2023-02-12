@@ -1,18 +1,11 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { deleteEvent, deleteUser, getUsers } from 'redux/thunks/Admin';
-import { styled } from '@mui/material/styles';
+import { useSelector } from 'react-redux';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useTranslation } from 'react-i18next';
-import { HashLoader } from 'react-spinners';
-import { Box, IconButton, Modal, Typography } from '@mui/material';
-import { padding } from '@mui/system';
 import DeleteUser from './components/DeleteUser';
 import AddUser from './components/AddUser';
 import { StyledTableCell, StyledTableRow } from 'PageContent/utils/TableStyles';
@@ -21,8 +14,7 @@ import EditUserButton from './components/EditUserButton';
 function UsersTable() {
   const { t } = useTranslation('adminUser');
 
-  const dispatch = useDispatch();
-  const { users, usersLoading } = useSelector((state) => state.admin);
+  const { users } = useSelector((state) => state.admin);
 
   return (
     <TableContainer style={{ margin: 30, maxWidth: '70%' }} component={Paper}>
@@ -40,7 +32,7 @@ function UsersTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {users.map((user, index) => (
+          {users.map((user) => (
             <StyledTableRow key={user.id}>
               <StyledTableCell align="left">
                 <div className="flex">
@@ -50,11 +42,9 @@ function UsersTable() {
               </StyledTableCell>
               <StyledTableCell align="left">{user.fel_nev}</StyledTableCell>
               <StyledTableCell align="left">{user.email}</StyledTableCell>
-              {user.level === 1 ? (
-                <StyledTableCell align="left">{t('ADMIN')}</StyledTableCell>
-              ) : (
-                <StyledTableCell align="left">{t('USER')}</StyledTableCell>
-              )}
+
+              <StyledTableCell align="left">{t('LEVEL_' + user.level)}</StyledTableCell>
+
               <StyledTableCell align="left">{user.telefonszam}</StyledTableCell>
               <StyledTableCell align="center">{user.faults}</StyledTableCell>
             </StyledTableRow>

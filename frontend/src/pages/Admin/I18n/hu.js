@@ -21,8 +21,8 @@ const locale = {
   PASSWORD: 'Jelszó',
   NAME: 'Felhasználó név',
   CONFIRM_PASSWORD: 'Jelszó megerősítése',
-  ADMIN: 'Admin',
-  USER: 'Felhasználó',
+  LEVEL_1: 'Admin',
+  LEVEL_2: 'Felhasználó',
   EVENTNAME: 'Cím',
   ORGANIZER: 'Szervező',
   LOCATION: 'Helyszín'

@@ -1,7 +1,7 @@
-import { Button, Drawer, useMediaQuery } from '@mui/material';
+import { Button, Drawer } from '@mui/material';
 import { Box } from '@mui/system';
 import { Link } from 'react-router-dom';
-import rootConfig, { navbarConfig } from 'pages/routes/RootConfig';
+import { navbarConfig } from 'pages/routes/RootConfig';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 

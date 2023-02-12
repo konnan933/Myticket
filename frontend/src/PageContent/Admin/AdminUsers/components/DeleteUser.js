@@ -1,15 +1,4 @@
-import {
-  Box,
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  IconButton,
-  Modal,
-  Typography
-} from '@mui/material';
+import { Box, Button, IconButton, Modal, Typography } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch } from 'react-redux';
 import { deleteUser } from 'redux/thunks/Admin';

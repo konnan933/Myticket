@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteEvent, deleteUser, getEvents, getUsers } from 'redux/thunks/Admin';
-import * as React from 'react';
+import { /* deleteEvent, */ getEvents } from 'redux/thunks/Admin';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -12,8 +11,6 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useTranslation } from 'react-i18next';
 import { HashLoader } from 'react-spinners';
-import { Box, IconButton, Modal, Typography } from '@mui/material';
-import { padding } from '@mui/system';
 import EditEvent from './components/EditEvent';
 import AddEvent from './components/AddEvent';
 import DeleteEvent from './components/DeleteEvent';

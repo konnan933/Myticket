@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import { Button, TextField } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { HashLoader } from 'react-spinners';
 import { fetchRegister } from 'redux/thunks/Auth';
 

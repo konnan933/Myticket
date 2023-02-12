@@ -1,12 +1,8 @@
-import { Add } from '@mui/icons-material';
-import { Box, Button, IconButton, Modal, TextField, Typography } from '@mui/material';
+import { Button, TextField } from '@mui/material';
 import { useState } from 'react';
-import AddIcon from '@mui/icons-material/Add';
-import modalStyle from 'PageContent/utils/ModalStyle';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { fetchRegister } from 'redux/thunks/Auth';
 import { addUser } from 'redux/thunks/Admin';
 
 function AddUserForm() {
@@ -15,11 +11,6 @@ function AddUserForm() {
   const { register, handleSubmit } = useForm();
 
   const dispatch = useDispatch();
-
-  const [open, setOpen] = useState(false);
-
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
 
   const [email, setEmail] = useState('af@gmail.com');
   const [password, setPassword] = useState('Aa123456@');

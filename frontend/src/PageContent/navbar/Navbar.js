@@ -1,14 +1,13 @@
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useMediaQuery } from '@mui/material';
 import Sidebar from './Sidebar';
 import { useState } from 'react';
-import rootConfig, { allRootConfig, navbarConfig } from 'pages/routes/RootConfig';
+import { navbarConfig } from 'pages/routes/RootConfig';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import LangChanger from './components/LangChanger';

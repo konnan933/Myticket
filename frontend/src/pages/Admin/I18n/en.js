@@ -21,8 +21,8 @@ const locale = {
   PASSWORD: 'Password',
   CONFIRM_PASSWORD: 'Confrim password',
   NAME: 'User name',
-  USER: 'User',
-  ADMIN: 'Admin',
+  LEVEL_2: 'User',
+  LEVEL_1: 'Admin',
   EVENTNAME: 'Name',
   ORGANIZER: 'Organizer',
   LOCATION: 'Location'

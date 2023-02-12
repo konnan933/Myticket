@@ -1,6 +1,4 @@
 import { Button, MenuItem, Select } from '@mui/material';
-import AdminEventContent from 'PageContent/Admin/AdminEvents/AdminEventContent';
-import AdminUserContent from 'PageContent/Admin/AdminUsers/AdminUserContent';
 import { adminConfig } from 'pages/routes/RootConfig';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';

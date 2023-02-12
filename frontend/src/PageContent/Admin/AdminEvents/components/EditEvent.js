@@ -1,4 +1,4 @@
-import { Fade, IconButton, Modal, Typography } from '@mui/material';
+import { IconButton, Modal, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { useState } from 'react';
 import CreateIcon from '@mui/icons-material/Create';
