@@ -1,11 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchLogin, fetchRegister } from '../thunks/Auth';
+import { fetchLogin, fetchLogout, fetchRegister } from '../thunks/Auth';
 
 const AUTH_INIT_STATE = {
-  login: [{level:0}],
+  login: [{ level: 0 }],
   loginLoading: false,
   reg: [],
-  regLoading: false
+  regLoading: false,
+  logoutLoading: false
 };
 const authSlice = createSlice({
   name: 'auth',
@@ -31,6 +32,15 @@ const authSlice = createSlice({
     });
     builder.addCase(fetchRegister.rejected, (state) => {
       state.regLoading = false;
+    });
+    builder.addCase(fetchLogout.pending, (state) => {
+      state.logoutLoading = true;
+    });
+    builder.addCase(fetchLogout.fulfilled, (state) => {
+      state.logoutLoading = false;
+    });
+    builder.addCase(fetchLogout.rejected, (state) => {
+      state.logoutLoading = false;
     });
   }
 });

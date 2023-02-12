@@ -1,6 +1,7 @@
 const auth = {
   login: 'login',
-  register: 'register'
+  register: 'register',
+  logout: 'logout'
 };
 
 export default auth;
