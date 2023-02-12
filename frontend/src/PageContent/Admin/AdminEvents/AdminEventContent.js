@@ -22,7 +22,7 @@ function AdminEventContent() {
   useEffect(() => {
     dispatch(getEvents());
   }, []);
-  const { t } = useTranslation('adminUser');
+  const { t } = useTranslation('adminEvent');
   const { eventsLoading } = useSelector((state) => state.admin);
 
   if (eventsLoading) {
@@ -43,7 +43,7 @@ function AdminEventContent() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {events.map((event, index) => (
+              {events.map((event) => (
                 <StyledTableRow key={event.id}>
                   <StyledTableCell align="left">
                     <DeleteEvent id={event.id} />
