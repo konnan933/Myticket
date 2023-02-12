@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { HashLoader } from 'react-spinners';
 import { fetchRegister } from 'redux/thunks/Auth';
+import Loader from 'PageContent/utils/Loader';
 
 function RegisterContent() {
   const { t } = useTranslation('register');
@@ -39,12 +39,7 @@ function RegisterContent() {
   };
 
   if (regLoading) {
-    return (
-      // TODO CSS FIX hogy kozépen legyen
-      <div className="w-full flex justify-center items-center">
-        <HashLoader color="#FBC95C" size={150} />
-      </div>
-    );
+    return <Loader />;
   }
   return (
     <form

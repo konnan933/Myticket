@@ -1,10 +1,10 @@
 import { Button, TextField } from '@mui/material';
+import Loader from 'PageContent/utils/Loader';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
-import { HashLoader } from 'react-spinners';
 import { fetchLogin } from 'redux/thunks/Auth';
 
 function LoginContent() {
@@ -26,12 +26,7 @@ function LoginContent() {
   // ! student1@gmail.com;
   // ! Aa123456;
   if (loginLoading) {
-    return (
-      // TODO CSS FIX hogy kozépen legyen
-      <div className="w-full flex justify-center items-center">
-        <HashLoader color="#FBC95C" size={150} />
-      </div>
-    );
+    return <Loader />;
   }
   if (login[0].email !== undefined) {
     return <Navigate to="/" />;
