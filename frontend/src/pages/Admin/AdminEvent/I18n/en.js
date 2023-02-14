@@ -10,6 +10,7 @@ const locale = {
   EVENTNAME: 'Name',
   ORGANIZER: 'Organizer',
   LOCATION: 'Location',
+  BACK_TO: 'Previous page',
   DETAILED_INFO: 'Click the name of the event for the detailed page.'
 };
 

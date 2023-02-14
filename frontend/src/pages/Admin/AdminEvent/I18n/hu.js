@@ -10,6 +10,7 @@ const locale = {
   EVENTNAME: 'Cím',
   ORGANIZER: 'Szervező',
   LOCATION: 'Helyszín',
+  BACK_TO: 'Elöző oldal',
   DETAILED_INFO: 'Kattintson az esemény nevére a részletes oldalért'
 };
 
