@@ -25,8 +25,7 @@ class RedirectIfAuthenticated
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
                 return response()->json([
-                    //Auth::user()
-                    'asd' => 1234
+                    Auth::user()
                 ]);
             }
         }

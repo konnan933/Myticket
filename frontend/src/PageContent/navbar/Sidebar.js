@@ -4,11 +4,15 @@ import { Link } from 'react-router-dom';
 import { navbarConfig } from 'pages/routes/RootConfig';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import LangChanger from './components/LangChanger';
+import LoginButton from './components/LoginButton';
+import RegisterButton from './components/RegisterButton';
+import LogoutButton from './components/LogoutButton';
 
 function Sidebar({ drawer, setDrawer }) {
   const { t } = useTranslation('rootes');
 
-  const { login } = useSelector((state) => state.auth);
+  const { login, loggedIn } = useSelector((state) => state.auth);
 
   return (
     <Drawer
@@ -20,6 +24,7 @@ function Sidebar({ drawer, setDrawer }) {
       }}>
       <Box sx={{ width: '35%' }}>
         <div className="flex flex-col gap-4">
+          <LangChanger />
           {navbarConfig.map((root, index) => {
             if (root.level.includes(login[0].level))
               return (
@@ -30,6 +35,9 @@ function Sidebar({ drawer, setDrawer }) {
                 </Link>
               );
           })}
+          {!loggedIn && <LoginButton />}
+          {!loggedIn && <RegisterButton />}
+          {loggedIn && <LogoutButton />}
         </div>
       </Box>
     </Drawer>

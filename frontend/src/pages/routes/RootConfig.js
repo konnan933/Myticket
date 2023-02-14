@@ -62,18 +62,6 @@ export const navbarConfig = [
     level: level.user
   },
   {
-    pageName: 'LOGIN',
-    pagePath: '/login',
-    element: <LoginPage />,
-    level: level.user
-  },
-  {
-    pageName: 'REGISTER',
-    pagePath: '/register',
-    element: <RegisterPage />,
-    level: level.user
-  },
-  {
     pageName: 'ADMIN',
     pagePath: '/admin',
     element: <AdminMenuList />,

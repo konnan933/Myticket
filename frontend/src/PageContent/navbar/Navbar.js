@@ -14,13 +14,15 @@ import LangChanger from './components/LangChanger';
 import { useSelector } from 'react-redux';
 import AdminMenuList from './components/AdminMenuList';
 import LogoutButton from './components/LogoutButton';
+import LoginButton from './components/LoginButton';
 import Loader from 'PageContent/utils/Loader';
+import RegisterButton from './components/RegisterButton';
 
 export default function Navbar() {
   const matches = useMediaQuery('(max-width:768px)');
   const { t } = useTranslation('rootes');
 
-  const { login } = useSelector((state) => state.auth);
+  const { login, loggedIn } = useSelector((state) => state.auth);
 
   const [drawer, setDrawer] = useState(false);
 
@@ -61,8 +63,10 @@ export default function Navbar() {
                     </Link>
                   );
               })}
+              {!loggedIn && <LoginButton/>}
+              {!loggedIn && <RegisterButton/>}
             <LangChanger />
-            <LogoutButton />
+            {loggedIn && <LogoutButton />}
           </div>
         </AppBar>
       </Box>
