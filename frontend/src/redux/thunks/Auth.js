@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { setLoggedIn } from 'redux/slices/AuthSlice';
+import { setLoggedIn, setLogin } from 'redux/slices/AuthSlice';
 import auth from '../../API/Auth';
 import api from '../../axios/axois';
 
@@ -29,6 +29,7 @@ export const fetchLogout = createAsyncThunk(
   async (_, { dispatch, rejectWithValue }) => {
     try {
       await api.post(auth.logout).then(() => {
+        dispatch(setLogin());
         dispatch(setLoggedIn(false));
       });
     } catch (err) {
