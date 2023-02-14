@@ -24,7 +24,6 @@ export const deleteUser = createAsyncThunk(
       });
       return response.data;
     } catch (err) {
-      console.log(err);
       if (!err.response) {
         throw err;
       }
@@ -36,7 +35,7 @@ export const deleteUser = createAsyncThunk(
 
 export const getEvents = createAsyncThunk('admin/getEvents', async (id, { rejectWithValue }) => {
   try {
-    const response = await api.get(admin.event);
+    const response = await api.get(admin.eventDetails);
     return response.data;
   } catch (err) {
     if (!err.response) {
@@ -73,7 +72,6 @@ export const updateUser = createAsyncThunk(
       });
       return response.data;
     } catch (err) {
-      console.log(err);
       if (!err.response) {
         throw err;
       }
@@ -88,6 +86,40 @@ export const deleteEvent = createAsyncThunk(
   async (id, { rejectWithValue }) => {
     try {
       const response = await api.delete(admin.event + '/' + id);
+      return response.data;
+    } catch (err) {
+      if (!err.response) {
+        throw err;
+      }
+      const { data, status } = err.response;
+      return rejectWithValue({ data, status });
+    }
+  }
+);
+
+export const addEvent = createAsyncThunk(
+  'auth/addEvent',
+  async (data, { dispatch, rejectWithValue }) => {
+    try {
+      const response = await api.post(admin.event, data).then(() => {
+        dispatch(getEvents());
+      });
+      return response.data;
+    } catch (err) {
+      if (!err.response) {
+        throw err;
+      }
+
+      const { data, status } = err.response;
+      return rejectWithValue({ data, status });
+    }
+  }
+);
+export const getEventTypes = createAsyncThunk(
+  'admin/getEventTypes',
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await api.get(admin.eventTypes);
       return response.data;
     } catch (err) {
       if (!err.response) {

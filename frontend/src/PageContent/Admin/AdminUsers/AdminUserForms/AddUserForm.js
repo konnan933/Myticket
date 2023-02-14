@@ -12,11 +12,11 @@ function AddUserForm() {
 
   const dispatch = useDispatch();
 
-  const [email, setEmail] = useState('af@gmail.com');
-  const [password, setPassword] = useState('Aa123456@');
-  const [confirmPassword, setConfirmPassword] = useState('Aa123456@');
-  const [felNev, setFelNev] = useState('Jancsi');
-  const [phonNum, setPhonNum] = useState('06301111111');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [felNev, setFelNev] = useState('');
+  const [phonNum, setPhonNum] = useState('');
 
   const emailChangeHandler = (event) => {
     setEmail(event.target.value);
@@ -73,7 +73,7 @@ function AddUserForm() {
             type="password"
             value={confirmPassword}
             onChange={ConfirmPasswordChangeHandler}
-            label={t('CONFRIM_PASSWORD')}
+            label={t('CONFIRM_PASSWORD')}
             className="border-2"
           />
           <TextField

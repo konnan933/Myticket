@@ -1,6 +1,7 @@
 const locale = {
   ADMIN_PAGE: 'Admin page',
   USER_NAME: 'Name',
+  MANAGE_USER: 'Modify user',
   EMAIL: 'Email address',
   LEVEL: 'Level',
   PHONE_NUMBER: 'Phone number',

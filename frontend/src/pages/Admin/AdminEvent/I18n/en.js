@@ -9,7 +9,9 @@ const locale = {
   ADD_EVENT: 'Add event',
   EVENTNAME: 'Name',
   ORGANIZER: 'Organizer',
-  LOCATION: 'Location'
+  LOCATION: 'Location',
+  MANAGE_EVENT: 'Modify event',
+  EVENT_NAME: 'Event name'
 };
 
 export default locale;

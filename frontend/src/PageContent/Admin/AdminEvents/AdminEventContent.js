@@ -18,20 +18,19 @@ import DeleteEvent from './components/DeleteEvent';
 function AdminEventContent() {
   const dispatch = useDispatch();
   const { events, eventsLoading } = useSelector((state) => state.admin);
-
+  const { eventTypes } = useSelector((state) => state.admin);
   useEffect(() => {
     dispatch(getEvents());
   }, []);
   const { t } = useTranslation('adminEvent');
-  console.log(events);
 
-  if (eventsLoading || events.lenght === 0 || events[0] === undefined) {
+  if (eventsLoading || events.lenght === 0 || eventTypes.lenght === 0) {
     return <Loader />;
   }
 
   return (
     <div>
-      <AddEvent />
+      <AddEvent eventTypes={eventTypes} />
       <div className="flex justify-center w-full">
         <TableContainer style={{ margin: 30, maxWidth: '70%' }} component={Paper}>
           <Table aria-label="customized table">

@@ -19,7 +19,6 @@ export const fetchLogin = createAsyncThunk('auth/fetchLog', async (data, { rejec
 
 export const fetchLogout = createAsyncThunk('auth/fetchLogout', async (_, { rejectWithValue }) => {
   try {
-    console.log('Logout');
     await api.post(auth.logout);
   } catch (err) {
     if (!err.response) {

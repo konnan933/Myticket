@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getEvents, getUsers } from 'redux/thunks/Admin';
+import { getEvents, getEventTypes, getUsers } from 'redux/thunks/Admin';
 
 const ADMIN_INIT_STATE = {
   users: [],
@@ -7,7 +7,9 @@ const ADMIN_INIT_STATE = {
   deleteUserLoading: false,
   deleteEventLoading: false,
   eventsLoading: false,
-  events: []
+  eventTypesLoading: false,
+  events: [],
+  eventTypes: []
 };
 const adminSlice = createSlice({
   name: 'admin',
@@ -33,6 +35,16 @@ const adminSlice = createSlice({
     });
     builder.addCase(getEvents.rejected, (state) => {
       state.eventsLoading = false;
+    });
+    builder.addCase(getEventTypes.pending, (state) => {
+      state.eventTypesLoading = true;
+    });
+    builder.addCase(getEventTypes.fulfilled, (state, action) => {
+      state.eventTypesLoading = false;
+      state.eventTypes = action.payload;
+    });
+    builder.addCase(getEventTypes.rejected, (state) => {
+      state.eventTypesLoading = false;
     });
   }
 });

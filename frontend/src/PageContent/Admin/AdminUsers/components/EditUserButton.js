@@ -27,7 +27,7 @@ function EditUserButton({ user }) {
           aria-describedby="modal-modal-description">
           <Box sx={modalStyle}>
             <div className="flex justify-center">
-              <h2>{t('ADD_USER')}</h2>
+              <h2>{t('MANAGE_USER')}</h2>
             </div>
             <EditUserForm user={user} />
           </Box>

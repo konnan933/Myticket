@@ -9,7 +9,9 @@ const locale = {
   ADD_EVENT: 'Esemény hozzáadása',
   EVENTNAME: 'Cím',
   ORGANIZER: 'Szervező',
-  LOCATION: 'Helyszín'
+  LOCATION: 'Helyszín',
+  MANAGE_EVENT: 'Esemény szerkeztése',
+  EVENT_NAME: 'Esemény neve'
 };
 
 export default locale;

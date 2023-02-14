@@ -19,7 +19,9 @@ const locale = {
   LOGIN_SEND: 'Hozzáadás',
   PASSWORD: 'Jelszó',
   LEVEL_1: 'Admin',
-  LEVEL_2: 'Felhasználó'
+  LEVEL_2: 'Felhasználó',
+  MANAGE_USER: 'Felhasználó szerkeztése',
+
 };
 
 export default locale;

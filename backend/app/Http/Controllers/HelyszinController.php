@@ -26,12 +26,12 @@ class HelyszinController extends Controller
     {
         $helyszinek = new Helyszinek();
         $helyszinek->megnev = $request->megnev;
-        $helyszinek->megnev = $request->iranyitoszam;
-        $helyszinek->megnev = $request->kerulet;
-        $helyszinek->megnev = $request->utca;
-        $helyszinek->megnev = $request->hazszam;
-        $helyszinek->megnev = $request->emelet;
-        $helyszinek->megnev = $request->terem;
+        $helyszinek->iranyitoszam = $request->iranyitoszam;
+        $helyszinek->kerulet = $request->kerulet;
+        $helyszinek->utca = $request->utca;
+        $helyszinek->hazszam = $request->hazszam;
+        $helyszinek->emelet = $request->emelet;
+        $helyszinek->terem = $request->terem;
         $helyszinek->save();
     }
 
