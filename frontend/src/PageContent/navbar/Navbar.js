@@ -26,13 +26,13 @@ export default function Navbar() {
 
   const [drawer, setDrawer] = useState(false);
 
-  if(login[0].level === undefined){
-    return <Loader/>
+  if (login[0].level === undefined) {
+    return <Loader />;
   }
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" sx={{ backgroundColor: '#262626' }}>
+        <AppBar position="static" sx={{ backgroundColor: '#262626', marginBottom: 5 }}>
           {matches && (
             <Toolbar>
               <IconButton
@@ -63,8 +63,8 @@ export default function Navbar() {
                     </Link>
                   );
               })}
-              {!loggedIn && <LoginButton/>}
-              {!loggedIn && <RegisterButton/>}
+            {!loggedIn && <LoginButton />}
+            {!loggedIn && <RegisterButton />}
             <LangChanger />
             {loggedIn && <LogoutButton />}
           </div>
