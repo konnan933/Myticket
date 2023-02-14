@@ -1,7 +1,6 @@
 const admin = {
   users: 'api/users',
-  eventDetails: 'api/eventdetails',
-  event: 'api/event',
+  eventDetails: 'api/event',
   location: 'api/location',
   eventTypes: 'api/etype'
 };

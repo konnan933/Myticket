@@ -11,7 +11,8 @@ const locale = {
   ORGANIZER: 'Organizer',
   LOCATION: 'Location',
   MANAGE_EVENT: 'Modify event',
-  EVENT_NAME: 'Event name'
+  EVENT_NAME: 'Event name',
+  DETAILED_INFO: 'Click the name of the event for the detailed page.'
 };
 
 export default locale;

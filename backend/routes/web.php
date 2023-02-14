@@ -84,6 +84,7 @@ Route::get('api/event/category/{event}', [EsemenyekController::class, 'getEventB
 // ! ha nem akarunk paraméter akkor *-ot kell rakni
 Route::get('api/event/filter/{date}/{place}/{category}', [EsemenyekController::class, 'eventFilter']);
 Route::get('api/eventdetails', [EsemenyekController::class, 'getEventDetails']);
+Route::get('api/eventdetails/{id}', [EsemenyekController::class, 'getSingleEventDetails']);
 
 
 

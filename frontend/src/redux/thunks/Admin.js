@@ -33,7 +33,7 @@ export const deleteUser = createAsyncThunk(
   }
 );
 
-export const getEvents = createAsyncThunk('admin/getEvents', async (id, { rejectWithValue }) => {
+export const getEvents = createAsyncThunk('admin/getEvents', async (_, { rejectWithValue }) => {
   try {
     const response = await api.get(admin.eventDetails);
     return response.data;
@@ -45,6 +45,21 @@ export const getEvents = createAsyncThunk('admin/getEvents', async (id, { reject
     return rejectWithValue({ data, status });
   }
 });
+export const getSingleEvent = createAsyncThunk(
+  'admin/getSingleEvent',
+  async (id, { rejectWithValue }) => {
+    try {
+      const response = await api.get(`${admin.event}/${id}`);
+      return response.data;
+    } catch (err) {
+      if (!err.response) {
+        throw err;
+      }
+      const { data, status } = err.response;
+      return rejectWithValue({ data, status });
+    }
+  }
+);
 export const addUser = createAsyncThunk(
   'auth/addUser',
   async (data, { dispatch, rejectWithValue }) => {

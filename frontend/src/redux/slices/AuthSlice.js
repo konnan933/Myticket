@@ -4,6 +4,7 @@ import { fetchLogin, fetchLogout, fetchRegister } from '../thunks/Auth';
 const AUTH_INIT_STATE = {
   login: [{ level: 0 }],
   loginLoading: false,
+  loggedIn: false,
   reg: [],
   regLoading: false,
   logoutLoading: false
@@ -11,13 +12,21 @@ const AUTH_INIT_STATE = {
 const authSlice = createSlice({
   name: 'auth',
   initialState: AUTH_INIT_STATE,
-  reducers: {},
+  reducers: {
+    setLoggedIn: (state, action) => {
+      state.loggedIn = action.payload;
+    },
+    setLogin: (state) => {
+      state.login = [{ level: 0 }];
+    }
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchLogin.pending, (state) => {
       state.loginLoading = true;
     });
     builder.addCase(fetchLogin.fulfilled, (state, action) => {
       state.loginLoading = false;
+      console.log(action.payload);
       state.login = action.payload;
     });
     builder.addCase(fetchLogin.rejected, (state) => {
@@ -44,4 +53,7 @@ const authSlice = createSlice({
     });
   }
 });
+
+export const { setLoggedIn, setLogin } = authSlice.actions;
+
 export default authSlice.reducer;

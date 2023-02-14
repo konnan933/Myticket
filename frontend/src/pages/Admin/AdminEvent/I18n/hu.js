@@ -11,7 +11,8 @@ const locale = {
   ORGANIZER: 'Szervező',
   LOCATION: 'Helyszín',
   MANAGE_EVENT: 'Esemény szerkeztése',
-  EVENT_NAME: 'Esemény neve'
+  EVENT_NAME: 'Esemény neve',
+  DETAILED_INFO: 'Kattintson az esemény nevére a részletes oldalért'
 };
 
 export default locale;

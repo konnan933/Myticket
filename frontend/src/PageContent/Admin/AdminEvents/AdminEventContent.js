@@ -7,13 +7,15 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { useTranslation } from 'react-i18next';
 import EditEvent from './components/EditEvent';
 import AddEvent from './components/AddEvent';
-import EventDetails from './components/EventDetails';
 import { StyledTableCell, StyledTableRow } from 'PageContent/utils/TableStyles';
 import Loader from 'PageContent/utils/Loader';
 import DeleteEvent from './components/DeleteEvent';
+import { Tooltip } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 function AdminEventContent() {
   const dispatch = useDispatch();
@@ -37,7 +39,16 @@ function AdminEventContent() {
             <TableHead>
               <TableRow>
                 <StyledTableCell align="left">{t('EDIT')}</StyledTableCell>
-                <StyledTableCell align="left">{t('EVENTNAME')}</StyledTableCell>
+                <StyledTableCell align="left">
+                  <div className="flex">
+                    {t('EVENTNAME')}
+                    <div className="px-3">
+                      <Tooltip title={t('DETAILED_INFO')} placement="right-start">
+                        <InfoOutlinedIcon color="inherit" />
+                      </Tooltip>
+                    </div>
+                  </div>
+                </StyledTableCell>
                 <StyledTableCell align="left">{t('ORGANIZER')}</StyledTableCell>
                 <StyledTableCell align="left">{t('LOCATION')}</StyledTableCell>
               </TableRow>
@@ -46,11 +57,18 @@ function AdminEventContent() {
               {events.map((event) => (
                 <StyledTableRow key={event.id}>
                   <StyledTableCell align="left">
-                    <DeleteEvent id={event.id} />
-                    <EditEvent id={event.id} />
-                    <EventDetails id={event.id} />
+                    <div className="flex">
+                      <DeleteEvent id={event.id} />
+                      <EditEvent id={event.id} />
+                    </div>
                   </StyledTableCell>
-                  <StyledTableCell align="left">{event.cim}</StyledTableCell>
+                  <StyledTableCell align="left">
+                    <Link to={`${event.id}`}>
+                      <p className="cursor-pointer hover:text-blue-600 hover:underline">
+                        {event.cim}
+                      </p>
+                    </Link>
+                  </StyledTableCell>
                   <StyledTableCell align="left">{event.fel_nev}</StyledTableCell>
                   <StyledTableCell align="left">
                     {`${event.iranyitoszam} ${event.kerulet} ${event.utca} ${event.hazszam}`}
