@@ -6,6 +6,7 @@ export const fetchLogin = createAsyncThunk('auth/fetchLog', async (data, { rejec
   try {
     await api.get('/sanctum/csrf-cookie');
     const response = await api.post(auth.login, data);
+    console.log(response);
     return response.data;
   } catch (err) {
     if (!err.response) {
@@ -19,7 +20,6 @@ export const fetchLogin = createAsyncThunk('auth/fetchLog', async (data, { rejec
 
 export const fetchLogout = createAsyncThunk('auth/fetchLogout', async (_, { rejectWithValue }) => {
   try {
-    console.log('Logout');
     await api.post(auth.logout);
   } catch (err) {
     if (!err.response) {

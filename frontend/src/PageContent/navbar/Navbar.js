@@ -14,6 +14,7 @@ import LangChanger from './components/LangChanger';
 import { useSelector } from 'react-redux';
 import AdminMenuList from './components/AdminMenuList';
 import LogoutButton from './components/LogoutButton';
+import Loader from 'PageContent/utils/Loader';
 
 export default function Navbar() {
   const matches = useMediaQuery('(max-width:768px)');
@@ -23,6 +24,9 @@ export default function Navbar() {
 
   const [drawer, setDrawer] = useState(false);
 
+  if(login[0].level === undefined){
+    return <Loader/>
+  }
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
