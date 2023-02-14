@@ -3,13 +3,14 @@ const locale = {
   USER_NAME: 'Név',
   EMAIL: 'Email cím',
   LEVEL: 'Szint',
-  PHONENUMBER: 'Telefonszám',
+  PHONE_NUMBER: 'Telefonszám',
   PENALTIES: 'Szabálysértés szám',
   ACTIONS: 'Műveletek',
   SEND: 'küldés',
   EDIT_USER: 'Felhasználó változtatás',
   FAULTS: 'Szabályszegések',
   CONFIRMED: 'Ellenörzött',
+  CONFIRM_PASSWORD: 'Jelszó megerősítése',
   DELETE: 'Törlés',
   CONFIRM_DELETE_USER: 'Biztosan törölni szeretné a felhasználót ?',
   YES: 'Igen',
@@ -17,7 +18,6 @@ const locale = {
   ADD_USER: 'Felhasználó hozzáadása',
   LOGIN_SEND: 'Hozzáadás',
   PASSWORD: 'Jelszó',
-  NAME: 'Felhasználó név',
   LEVEL_1: 'Admin',
   LEVEL_2: 'Felhasználó'
 };

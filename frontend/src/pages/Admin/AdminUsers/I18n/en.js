@@ -3,7 +3,7 @@ const locale = {
   USER_NAME: 'Name',
   EMAIL: 'Email address',
   LEVEL: 'Level',
-  PHONENUMBER: 'Phone number',
+  PHONE_NUMBER: 'Phone number',
   PENALTIES: 'Penalties number',
   ACTIONS: 'Actions',
   SEND: 'Send',
@@ -17,6 +17,7 @@ const locale = {
   ADD_USER: 'Add user',
   LOGIN_SEND: 'Add',
   PASSWORD: 'Password',
+  CONFIRM_PASSWORD: 'Confirm password',
   NAME: 'User name',
   LEVEL_2: 'User',
   LEVEL_1: 'Admin'

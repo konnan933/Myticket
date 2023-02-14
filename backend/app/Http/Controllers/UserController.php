@@ -44,7 +44,7 @@ class UserController extends Controller
         }
         $user->password = Hash::make($request->password);;
         $user->fel_nev = $request->fel_nev;
-        $user->level = 1;
+        $user->level = 2;
         $user->telefonszam = $request->telefonszam;
         $user->faults = 0;
         $user->save();

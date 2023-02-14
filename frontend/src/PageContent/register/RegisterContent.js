@@ -54,7 +54,7 @@ function RegisterContent() {
             type="text"
             value={felNev}
             onChange={felNevChangeHandler}
-            label={t('TEL_NUM')}
+            label={t('PHONE_NUMBER')}
             className="border-2"
           />
           <TextField
@@ -81,7 +81,7 @@ function RegisterContent() {
             type="password"
             value={confirmPassword}
             onChange={ConfirmPasswordChangeHandler}
-            label={t('PASSWORD')}
+            label={t('CONFIRM_PASSWORD')}
             className="border-2"
           />
           <TextField

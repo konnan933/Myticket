@@ -46,7 +46,7 @@ function AddUserForm() {
             type="text"
             value={felNev}
             onChange={felNevChangeHandler}
-            label={t('TEL_NUM')}
+            label={t('USER_NAME')}
             className="border-2"
           />
           <TextField
@@ -73,7 +73,7 @@ function AddUserForm() {
             type="password"
             value={confirmPassword}
             onChange={ConfirmPasswordChangeHandler}
-            label={t('PASSWORD')}
+            label={t('CONFRIM_PASSWORD')}
             className="border-2"
           />
           <TextField
@@ -82,7 +82,7 @@ function AddUserForm() {
             type="text"
             value={phonNum}
             onChange={phonNumChangeHandler}
-            label={t('TEL_NUM')}
+            label={t('PHONE_NUMBER')}
             className="border-2"
           />
           <Button
