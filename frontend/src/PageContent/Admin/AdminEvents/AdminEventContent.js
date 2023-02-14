@@ -14,7 +14,8 @@ import AddEvent from './components/AddEvent';
 import { StyledTableCell, StyledTableRow } from 'PageContent/utils/TableStyles';
 import Loader from 'PageContent/utils/Loader';
 import DeleteEvent from './components/DeleteEvent';
-import { Link, Tooltip } from '@mui/material';
+import { Tooltip } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 function AdminEventContent() {
   const dispatch = useDispatch();
@@ -63,8 +64,10 @@ function AdminEventContent() {
                     </div>
                   </StyledTableCell>
                   <StyledTableCell align="left">
-                    <Link href={'adminEvents/' + event.id} underline="hover">
-                      {event.cim}
+                    <Link to={`${event.id}`}>
+                      <p className="cursor-pointer hover:text-blue-600 hover:underline">
+                        {event.cim}
+                      </p>
                     </Link>
                   </StyledTableCell>
                   <StyledTableCell align="left">{event.fel_nev}</StyledTableCell>

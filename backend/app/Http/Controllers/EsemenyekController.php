@@ -199,7 +199,7 @@ class EsemenyekController extends Controller
     }
     public static function sendEmailEventChange($esemeny)
     {
-        $userTicket = DB::table('jegyek')->select('users.fel_nev','users.email')
+        $userTicket = DB::table('jegyek')->select('users.fel_nev', 'users.email')
             ->join('users', 'users.id', '=', 'jegyek.user')
             ->where('esemeny_id', '=', $esemeny->id)
             ->get();
@@ -217,7 +217,7 @@ class EsemenyekController extends Controller
             $email = $user->email;
             Mail::send(
                 'email.esemenyValt',
-                ['fel_nev' => $fel_nev, 'esemeny_neve' => $esemeny_neve, 'kezd_datum' => $kezd_datum, 'veg_datum' => $veg_datum, 'helyszin_neve' => $helyszin_neve,'helyszin_cim' => $helyszin_cim],
+                ['fel_nev' => $fel_nev, 'esemeny_neve' => $esemeny_neve, 'kezd_datum' => $kezd_datum, 'veg_datum' => $veg_datum, 'helyszin_neve' => $helyszin_neve, 'helyszin_cim' => $helyszin_cim],
                 function ($mail) use ($email, $fel_nev, $subject) {
                     $mail->from("myticketszakdoga@gmail.com", "MyTicket");
                     $mail->to($email, $fel_nev);
@@ -228,7 +228,7 @@ class EsemenyekController extends Controller
     }
     public static function sendEmailEventDelete($esemeny)
     {
-        $userTicket = DB::table('jegyek')->select('users.fel_nev','users.email')
+        $userTicket = DB::table('jegyek')->select('users.fel_nev', 'users.email')
             ->join('user', 'user.id', '=', 'jegyek.user')
             ->where('esemeny_id', '=', $esemeny->id)
             ->where('jegyek.user', '=', 'user.id')
@@ -251,14 +251,27 @@ class EsemenyekController extends Controller
             );
         }
     }
-    public function getEventDetails(){
+    public function getEventDetails()
+    {
 
-            $eventDetails = DB::table('esemenyek')->select('esemenyek.id','esemenyek.cim','esemenyek.kezd_datum','esemenyek.veg_datum','esemenyek.leiras','esemenyek.buisness_email','esemenyek.buisness_tel','esemenyek.jutalek','esemenyek.statusz','esemenykategoria.megnev','helyszinek.iranyitoszam','helyszinek.kerulet','helyszinek.utca','helyszinek.hazszam','helyszinek.emelet','helyszinek.terem','users.fel_nev')
-            ->join('helyszinek', 'helyszinek.id', '=','esemenyek.helyszin')
-            ->join('esemenykategoria', 'esemenykategoria.id', '=','esemenyek.esem_kat')
-            ->join('users', 'users.id', '=','esemenyek.user')
+        $eventDetails = DB::table('esemenyek')->select('esemenyek.id', 'esemenyek.cim', 'esemenyek.kezd_datum', 'esemenyek.veg_datum', 'esemenyek.leiras', 'esemenyek.buisness_email', 'esemenyek.buisness_tel', 'esemenyek.jutalek', 'esemenyek.statusz', 'esemenykategoria.megnev', 'helyszinek.iranyitoszam', 'helyszinek.kerulet', 'helyszinek.utca', 'helyszinek.hazszam', 'helyszinek.emelet', 'helyszinek.terem', 'users.fel_nev')
+            ->join('helyszinek', 'helyszinek.id', '=', 'esemenyek.helyszin')
+            ->join('esemenykategoria', 'esemenykategoria.id', '=', 'esemenyek.esem_kat')
+            ->join('users', 'users.id', '=', 'esemenyek.user')
             ->get();
-            
-            return $eventDetails;
+
+        return $eventDetails;
+    }
+    public function getSingleEventDetails($eventId)
+    {
+
+        $eventDetails = DB::table('esemenyek')->select('esemenyek.id', 'esemenyek.cim', 'esemenyek.kezd_datum', 'esemenyek.veg_datum', 'esemenyek.leiras', 'esemenyek.buisness_email', 'esemenyek.buisness_tel', 'esemenyek.jutalek', 'esemenyek.statusz', 'esemenykategoria.megnev', 'helyszinek.iranyitoszam', 'helyszinek.kerulet', 'helyszinek.utca', 'helyszinek.hazszam', 'helyszinek.emelet', 'helyszinek.terem', 'users.fel_nev')
+            ->join('helyszinek', 'helyszinek.id', '=', 'esemenyek.helyszin')
+            ->join('esemenykategoria', 'esemenykategoria.id', '=', 'esemenyek.esem_kat')
+            ->join('users', 'users.id', '=', 'esemenyek.user')
+            ->where('esemenyek.id', $eventId)
+            ->get();
+
+        return $eventDetails;
     }
 }
