@@ -8,8 +8,9 @@ export const fetchLogin = createAsyncThunk(
   async (data, { dispatch, rejectWithValue }) => {
     try {
       await api.get('/sanctum/csrf-cookie');
-      const response = await api.post(auth.login, data).then(() => {
+      const response = await api.post(auth.login, data).then((response) => {
         dispatch(setLoggedIn(true));
+        return response;
       });
       return response.data;
     } catch (err) {
@@ -45,10 +46,9 @@ export const fetchRegister = createAsyncThunk(
   async (data, { dispatch, rejectWithValue }) => {
     try {
       await api.get('/sanctum/csrf-cookie');
-      const response = await api.post(auth.register, data).then(() => {
-        dispatch(setLoggedIn(true));
+      await api.post(auth.register, data).then(() => {
+        dispatch(fetchLogin({ email: data.email, password: data.password }));
       });
-      return response.data;
     } catch (err) {
       if (!err.response) {
         throw err;

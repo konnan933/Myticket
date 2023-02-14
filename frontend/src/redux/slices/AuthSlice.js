@@ -13,7 +13,7 @@ const authSlice = createSlice({
   name: 'auth',
   initialState: AUTH_INIT_STATE,
   reducers: {
-    setLoggedIn: (state, action) =>{
+    setLoggedIn: (state, action) => {
       state.loggedIn = action.payload;
     }
   },
@@ -23,6 +23,7 @@ const authSlice = createSlice({
     });
     builder.addCase(fetchLogin.fulfilled, (state, action) => {
       state.loginLoading = false;
+      console.log(action.payload);
       state.login = action.payload;
     });
     builder.addCase(fetchLogin.rejected, (state) => {
@@ -50,6 +51,6 @@ const authSlice = createSlice({
   }
 });
 
-export const {setLoggedIn} = authSlice.actions;
+export const { setLoggedIn } = authSlice.actions;
 
 export default authSlice.reducer;
