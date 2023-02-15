@@ -1,3 +1,5 @@
+import { Typography } from '@mui/material';
+//import admin from 'API/Admin';
 import Loader from 'PageContent/utils/Loader';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -5,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getSingleEvent } from 'redux/thunks/Admin';
 import BackToButton from './components/BackToButton';
+import EditEventPictures from './components/EditEventPicture';
 
 function DetailedAdminEvent() {
   const { t } = useTranslation('adminEvent');
@@ -23,10 +26,21 @@ function DetailedAdminEvent() {
   }
 
   return (
-    <>
-      <BackToButton />
-      <h1>{singleEvent.cim}</h1>
-    </>
+    <div className="flex justify-center">
+      <div className="flex flex-col w-3/4">
+        <div>
+          <BackToButton />
+        </div>
+        <div className="flex flex-col">
+          <div>
+            <Typography variant="h4">{`${singleEvent.cim} ${t('EVENT_D_PAGE')}`}</Typography>
+          </div>
+          <div className="flex justify-center">
+            <EditEventPictures />
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 export default DetailedAdminEvent;
