@@ -26,7 +26,6 @@ const authSlice = createSlice({
     });
     builder.addCase(fetchLogin.fulfilled, (state, action) => {
       state.loginLoading = false;
-      console.log(action.payload);
       state.login = action.payload;
     });
     builder.addCase(fetchLogin.rejected, (state) => {

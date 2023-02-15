@@ -145,3 +145,19 @@ export const getEventTypes = createAsyncThunk(
     }
   }
 );
+
+export const getUserNames = createAsyncThunk(
+  'admin/getUserNames',
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await api.get(admin.userNames);
+      return response.data;
+    } catch (err) {
+      if (!err.response) {
+        throw err;
+      }
+      const { data, status } = err.response;
+      return rejectWithValue({ data, status });
+    }
+  }
+);

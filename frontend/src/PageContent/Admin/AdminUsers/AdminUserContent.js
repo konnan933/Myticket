@@ -1,11 +1,9 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUsers } from 'redux/thunks/Admin';
-//import { useTranslation } from 'react-i18next';
 import UsersTable from './UsersTable';
 import Loader from 'PageContent/utils/Loader';
 function AdminUserContent() {
-  //const { t } = useTranslation('adminUser');
 
   const dispatch = useDispatch();
   const { users, usersLoading } = useSelector((state) => state.admin);

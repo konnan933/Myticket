@@ -33,6 +33,8 @@ class HelyszinController extends Controller
         $helyszinek->emelet = $request->emelet;
         $helyszinek->terem = $request->terem;
         $helyszinek->save();
+        
+        return $helyszinek->id;
     }
 
     public function update(Request $request, $id)
@@ -60,13 +62,13 @@ class HelyszinController extends Controller
         $terem = $helyszin->terem;
 
         if($emelet != ''){
-            $emelet = ' ,Emelet '.$emelet;
+            $emelet = ' Emelet '.$emelet;
         }
         if($terem != ''){
-            $terem = ' ,Terem '.$emelet;
+            $terem = ' Terem '.$emelet;
         }
 
-        $helyszin_cim = $ir_szam.' ,'.$kerulet.$utca.' ,'.$hazszam.$emelet.$terem;
+        $helyszin_cim = $ir_szam.' '.$kerulet.$utca.' '.$hazszam.$emelet.$terem;
 
         return $helyszin_cim;
     }

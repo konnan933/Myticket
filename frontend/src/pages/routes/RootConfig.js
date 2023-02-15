@@ -12,6 +12,7 @@ import AdminEventContent from 'PageContent/Admin/AdminEvents/AdminEventContent';
 import AdminUsersPage from 'pages/Admin/AdminUsers/AdminUsersPage';
 import AdminEventPage from 'pages/Admin/AdminEvent/AdminEventPage';
 import DetailedEventPage from 'pages/Admin/AdminEvent/DetailedEventPage';
+import AdminAddEventPage from 'pages/Admin/AdminEvent/AddEventPage';
 
 i18n.addResourceBundle('en', 'rootes', en);
 i18n.addResourceBundle('hu', 'rootes', hu);
@@ -57,6 +58,12 @@ export const allRootConfig = [
     pageName: 'ADMINEVENT_DETAILED',
     pagePath: '/adminEvents/:id',
     element: <DetailedEventPage />,
+    level: level.admin
+  },
+  {
+    pageName: 'ADMINEVENT_ADD_Event',
+    pagePath: '/adminAddEvent',
+    element: <AdminAddEventPage />,
     level: level.admin
   }
 ];
