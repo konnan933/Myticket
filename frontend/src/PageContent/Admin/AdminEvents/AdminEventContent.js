@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getEventTypes, getUserNames } from 'redux/thunks/Admin';
 import Loader from 'PageContent/utils/Loader';
 import EventsTable from './EventsTable';
+import AddEvent from './components/AddEvent';
 
 function AdminEventContent() {
   const dispatch = useDispatch();
@@ -19,9 +20,14 @@ function AdminEventContent() {
   }
 
   return (
-    <div>
-      <div className="flex justify-center w-full">
-        <EventsTable />
+    <div className="flex justify-center ">
+      <div className="w-3/4">
+        <div className="flex justify-start">
+          <AddEvent />
+        </div>
+        <div className="flex justify-center w-full">
+          <EventsTable />
+        </div>
       </div>
     </div>
   );
