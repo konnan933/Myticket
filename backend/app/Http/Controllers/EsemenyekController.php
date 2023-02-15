@@ -56,12 +56,6 @@ class EsemenyekController extends Controller
 
     public function update(Request $request, $id)
     {
-
-        $this->validate($request, [
-            'newImage' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-        ]);
-
-
         $esemeny = Esemenyek::find($id);
         $esemeny->cim = $request->cim;
         $esemeny->user = $request->user;
@@ -75,6 +69,7 @@ class EsemenyekController extends Controller
         $esemeny->esem_kat = $request->esem_kat;
         $esemeny->jutalek = 17;
         $esemeny->statusz = $request->statusz;
+        $esemeny->kep= $request->kep;
         $esemeny->save();
     }
 

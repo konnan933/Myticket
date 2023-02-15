@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Helyszinek;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HelyszinController extends Controller
 {
@@ -71,5 +72,12 @@ class HelyszinController extends Controller
         $helyszin_cim = $ir_szam.' '.$kerulet.$utca.' '.$hazszam.$emelet.$terem;
 
         return $helyszin_cim;
+    }
+
+    public function getLocationNames(){
+            $locationNames = DB::table('helyszinek')->select('helyszinek.megnev','helyszinek.id')
+            ->get();
+
+        return $locationNames;
     }
 }

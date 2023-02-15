@@ -50,6 +50,7 @@ Route::delete('api/users/{id}', [UserController::class, 'destroy']);
 //Helyszin végpontok
 Route::post('api/location', [HelyszinController::class, 'store']);
 Route::get('api/location', [HelyszinController::class, 'index']);
+Route::get('api/locationnames', [HelyszinController::class, 'getLocationNames']);
 Route::get('api/location/{id}', [HelyszinController::class, 'show']);
 Route::put('api/location/{id}', [HelyszinController::class, 'update']);
 Route::delete('api/location/{id}', [HelyszinController::class, 'destroy']);
