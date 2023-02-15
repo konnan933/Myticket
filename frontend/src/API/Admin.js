@@ -4,7 +4,7 @@ const admin = {
   eventDetails: 'api/eventdetails',
   event: 'api/event',
   location: 'api/location',
-  eventTypes: 'api/etype'
+  eventTypes: 'api/etype',
+  eventPicture: 'http://localhost:8000/api/event/picture/'
 };
-
 export default admin;
