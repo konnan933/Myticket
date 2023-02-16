@@ -157,22 +157,6 @@ export const getUserNames = createAsyncThunk(
   }
 );
 
-export const getLocationNames = createAsyncThunk(
-  'admin/getLocationNames',
-  async (_, { rejectWithValue }) => {
-    try {
-      const response = await api.get(admin.locationNames);
-      return response.data;
-    } catch (err) {
-      if (!err.response) {
-        throw err;
-      }
-      const { data, status } = err.response;
-      return rejectWithValue({ data, status });
-    }
-  }
-);
-
 export const addPicture = createAsyncThunk(
   'admin/addPicture',
   async (path, { rejectWithValue }) => {
@@ -180,23 +164,6 @@ export const addPicture = createAsyncThunk(
       let fd = new FormData();
       fd.append('path', path);
       const response = await api.post(admin.addPicture, fd);
-      return response.data;
-    } catch (err) {
-      console.log(err);
-      if (!err.response) {
-        throw err;
-      }
-      const { data, status } = err.response;
-      return rejectWithValue({ data, status });
-    }
-  }
-);
-
-export const addLocation = createAsyncThunk(
-  'admin/addLocation',
-  async (location, { rejectWithValue }) => {
-    try {
-      const response = await api.post(admin.location, location);
       return response.data;
     } catch (err) {
       console.log(err);

@@ -13,58 +13,47 @@ import AdminUsersPage from 'pages/Admin/AdminUsers/AdminUsersPage';
 import AdminEventPage from 'pages/Admin/AdminEvent/AdminEventPage';
 import DetailedEventPage from 'pages/Admin/AdminEvent/DetailedEventPage';
 import AdminAddEventPage from 'pages/Admin/AdminEvent/AddEventPage';
+import RootDataTablesPage from 'pages/Admin/RootDataTablesPage/RootDataTablesPage';
 
 i18n.addResourceBundle('en', 'rootes', en);
 i18n.addResourceBundle('hu', 'rootes', hu);
 
 export const allRootConfig = [
   {
-    pageName: 'HOME',
     pagePath: '/',
-    element: <HomePage />,
-    level: level.user
+    element: <HomePage />
   },
   {
-    pageName: 'LOGIN',
     pagePath: '/login',
-    element: <LoginPage />,
-    level: level.user
+    element: <LoginPage />
   },
   {
-    pageName: 'REGISTER',
     pagePath: '/register',
-    element: <RegisterPage />,
-    level: level.user
+    element: <RegisterPage />
   },
   {
-    pageName: 'ADMIN',
     pagePath: '/admin',
-    element: <AdminMenuList />,
-    level: level.admin
+    element: <AdminMenuList />
   },
   {
-    pageName: 'ADMINUSER',
     pagePath: '/adminUsers',
-    element: <AdminUsersPage />,
-    level: level.admin
+    element: <AdminUsersPage />
   },
   {
-    pageName: 'ADMINEVENT',
     pagePath: '/adminEvents',
-    element: <AdminEventPage />,
-    level: level.admin
+    element: <AdminEventPage />
   },
   {
-    pageName: 'ADMINEVENT_DETAILED',
     pagePath: '/adminEvents/:id',
-    element: <DetailedEventPage />,
-    level: level.admin
+    element: <DetailedEventPage />
   },
   {
-    pageName: 'ADMINEVENT_ADD_Event',
     pagePath: '/adminAddEvent',
-    element: <AdminAddEventPage />,
-    level: level.admin
+    element: <AdminAddEventPage />
+  },
+  {
+    pagePath: '/rootData',
+    element: <RootDataTablesPage />
   }
 ];
 
@@ -95,5 +84,11 @@ export const adminConfig = [
     pagePath: '/adminEvents',
     element: <AdminEventContent />,
     level: level.user
+  },
+  {
+    pageName: 'ROOT_DATA',
+    pagePath: '/rootData',
+    element: <RootDataTablesPage />,
+    level: level.admin
   }
 ];

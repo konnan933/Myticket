@@ -4,7 +4,8 @@ const locale = {
   LOGOUT: 'Kijelentkezés',
   REGISTER: 'Regisztráció',
   ADMINUSER: 'Felhasználok kezelése',
-  ADMINEVENT: 'Események kezelése'
+  ADMINEVENT: 'Események kezelése',
+  ROOT_DATA: 'Törzs adat táblák'
 };
 
 export default locale;
