@@ -5,8 +5,9 @@ import { useForm } from 'react-hook-form';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 import moment from 'moment/moment';
 import { useDispatch, useSelector } from 'react-redux';
-import { addEvent, addPicture } from 'redux/thunks/Admin';
-import Addimage from './AddImage';
+import { addEvent } from 'redux/thunks/Admin';
+import Addimage from '../../../utils/AddImage';
+import AddLocationForm from './AddLocationForm';
 
 function AddEventForm() {
   const { t } = useTranslation('adminEvent');
@@ -17,13 +18,16 @@ function AddEventForm() {
   const [buisnessPhoneNum, setBuisnessPhoneNum] = useState('');
   const [eventDescription, setEventDescription] = useState('');
   const [eventType, setEventType] = useState('');
-  const [location, setlocation] = useState('');
   const [organizerName, setOrganizername] = useState('');
   const [organizerNameinput, setOrganizerInput] = useState('');
   const [locationName, setLocationName] = useState('');
+  const { locationNames } = useSelector((state) => state.admin);
   const [locationNameinput, setLocationNameInput] = useState('');
 
-  const { eventTypes, userNames, locationNames } = useSelector((state) => state.admin);
+  const [imageId, setImageId] = useState('');
+  const [locationId, setLocationId] = useState('');
+
+  const { eventTypes, userNames } = useSelector((state) => state.admin);
 
   const date = moment(new Date()).format('YYYY-MM-DDTkk:mm');
 
@@ -45,20 +49,12 @@ function AddEventForm() {
   const eventTypeChangeHandler = (event) => {
     setEventType(event.target.value);
   };
-
-  const locationChangeHandler = (event) => {
-    setlocation(event.target.value);
-  };
-
-  const uploadImage = (path) => {
-    dispatch(addPicture(path));
-  };
-
   return (
     <div className="flex justify-center flex-col">
       <div className="flex justify-center pb-16">
         <h2>{t('ADD_EVENT')}</h2>
       </div>
+      <AddLocationForm />
       <div className="flex justify-center">
         <form
           className="w-2/5"
@@ -67,35 +63,14 @@ function AddEventForm() {
             data.veg_datum = moment(data.veg_datum).format('YYYY-MM-DD hh:mm:ss');
             data.user = organizerName.id;
             data.helyszin = locationName.id;
+            data.kep = imageId;
             console.log(data);
             dispatch(addEvent(data));
           })}>
           <fieldset>
-            <div className="flex justify-center pb-16">
-              <TextField
-                {...register('cim')}
-                required
-                type="text"
-                value={eventName}
-                onChange={eventNameChangeHandler}
-                label={t('EVENT_NAME')}
-                className="border-2 w-full mt-5"
-              />
-            </div>
-            <div className="grid grid-cols-2 gap-16">
-              <Select
-                {...register('esem_kat')}
-                value={eventType}
-                onChange={eventTypeChangeHandler}
-                inputProps={{ 'aria-label': 'Without label' }}>
-                {eventTypes.map((eventType) => (
-                  <MenuItem key={eventType.id} value={eventType.id}>
-                    {eventType.megnev}
-                  </MenuItem>
-                ))}
-              </Select>
-
+            <div className="pb-16">
               <Autocomplete
+                className="w-full"
                 options={locationNames}
                 getOptionLabel={(option) => (option.megnev ? option.megnev : '')}
                 value={locationName}
@@ -111,7 +86,19 @@ function AddEventForm() {
                   <TextField value={locationName} {...params} label="Controllable" />
                 )}
               />
-
+            </div>
+            <div className="flex justify-center pb-16">
+              <TextField
+                {...register('cim')}
+                required
+                type="text"
+                value={eventName}
+                onChange={eventNameChangeHandler}
+                label={t('EVENT_NAME')}
+                className="border-2 w-full mt-5"
+              />
+            </div>
+            <div className="grid grid-cols-2 gap-16">
               <Autocomplete
                 options={userNames}
                 getOptionLabel={(option) => (option.fel_nev ? option.fel_nev : '')}
@@ -138,6 +125,17 @@ function AddEventForm() {
                 label={t('BUISNESS_EMAIL')}
                 className="border-2"
               />
+              <Select
+                {...register('esem_kat')}
+                value={eventType}
+                onChange={eventTypeChangeHandler}
+                inputProps={{ 'aria-label': 'Without label' }}>
+                {eventTypes.map((eventType) => (
+                  <MenuItem key={eventType.id} value={eventType.id}>
+                    {eventType.megnev}
+                  </MenuItem>
+                ))}
+              </Select>
 
               <TextField
                 {...register('buisness_tel')}
@@ -146,16 +144,6 @@ function AddEventForm() {
                 value={buisnessPhoneNum}
                 onChange={buisnessPhoneNumChangeHandler}
                 label={t('BUISNESS_PHONE_NUMBER')}
-                className="border-2"
-              />
-
-              <TextField
-                {...register('helyszin')}
-                required
-                type="numb"
-                value={location}
-                onChange={locationChangeHandler}
-                label={t('Location')}
                 className="border-2"
               />
 
@@ -176,24 +164,24 @@ function AddEventForm() {
                 type="datetime-local"
                 className="border-2 px-2 pt-2"
               />
+              <TextareaAutosize
+                {...register('leiras')}
+                required
+                type="text"
+                value={eventDescription}
+                onChange={eventDescriptionChangeHandler}
+                placeholder={t('DESCRIPTION')}
+                className="border-2 w-full p-3 mt-5"
+              />
             </div>
-            <TextareaAutosize
-              {...register('leiras')}
-              required
-              type="text"
-              value={eventDescription}
-              onChange={eventDescriptionChangeHandler}
-              placeholder={t('DESCRIPTION')}
-              className="border-2 w-full p-3 mt-5"
-            />
+            <Addimage setImageId={setImageId} />
           </fieldset>
-          <Addimage uploadImage={uploadImage} />
           <div className="flex justify-center pt-6">
             <Button
               variant="contained"
               color="info"
               className=" w-28"
-              aria-label="Sign in"
+              aria-label="Event add"
               type="submit"
               size="lagre">
               {t('LOGIN_SEND')}

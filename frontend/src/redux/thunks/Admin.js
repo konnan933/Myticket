@@ -112,24 +112,19 @@ export const deleteEvent = createAsyncThunk(
   }
 );
 
-export const addEvent = createAsyncThunk(
-  'auth/addEvent',
-  async (data, { dispatch, rejectWithValue }) => {
-    try {
-      const response = await api.post(admin.event, data).then(() => {
-        dispatch(getEvents());
-      });
-      return response.data;
-    } catch (err) {
-      if (!err.response) {
-        throw err;
-      }
-
-      const { data, status } = err.response;
-      return rejectWithValue({ data, status });
+export const addEvent = createAsyncThunk('auth/addEvent', async (data, { rejectWithValue }) => {
+  try {
+    const response = await api.post(admin.event, data);
+    return response.data;
+  } catch (err) {
+    if (!err.response) {
+      throw err;
     }
+
+    const { data, status } = err.response;
+    return rejectWithValue({ data, status });
   }
-);
+});
 export const getEventTypes = createAsyncThunk(
   'admin/getEventTypes',
   async (_, { rejectWithValue }) => {
@@ -182,8 +177,26 @@ export const addPicture = createAsyncThunk(
   'admin/addPicture',
   async (path, { rejectWithValue }) => {
     try {
-      console.log(typeof path);
-      const response = await api.post(admin.addPicture, path);
+      let fd = new FormData();
+      fd.append('path', path);
+      const response = await api.post(admin.addPicture, fd);
+      return response.data;
+    } catch (err) {
+      console.log(err);
+      if (!err.response) {
+        throw err;
+      }
+      const { data, status } = err.response;
+      return rejectWithValue({ data, status });
+    }
+  }
+);
+
+export const addLocation = createAsyncThunk(
+  'admin/addLocation',
+  async (location, { rejectWithValue }) => {
+    try {
+      const response = await api.post(admin.location, location);
       return response.data;
     } catch (err) {
       console.log(err);

@@ -35,7 +35,11 @@ class HelyszinController extends Controller
         $helyszinek->terem = $request->terem;
         $helyszinek->save();
         
-        return $helyszinek->id;
+        return response()->json(
+            ["id"=>$helyszinek->id,
+            "megnev"=>$helyszinek->megnev
+            ]
+        );
     }
 
     public function update(Request $request, $id)

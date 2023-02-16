@@ -21,7 +21,7 @@ class KepController extends Controller
     {
         $this->validate($request, [
             'path' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-        ]);
+        ]); 
 
         $image_path = $request->file('path')->store('images');
         $kep = new Kep();

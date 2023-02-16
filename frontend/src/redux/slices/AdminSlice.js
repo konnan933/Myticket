@@ -5,7 +5,8 @@ import {
   getSingleEvent,
   getUserNames,
   getUsers,
-  getLocationNames
+  getLocationNames,
+  addLocation
 } from 'redux/thunks/Admin';
 
 const ADMIN_INIT_STATE = {
@@ -22,7 +23,8 @@ const ADMIN_INIT_STATE = {
   userNames: [],
   locationNames: [],
   userNamesLoading: false,
-  locationNamesLoading: false
+  locationNamesLoading: false,
+  addLocationLoading: false
 };
 const adminSlice = createSlice({
   name: 'admin',
@@ -90,6 +92,16 @@ const adminSlice = createSlice({
     });
     builder.addCase(getLocationNames.rejected, (state) => {
       state.locationNamesLoading = false;
+    });
+
+    builder.addCase(addLocation.pending, (state) => {
+      state.addLocationLoading = true;
+    });
+    builder.addCase(addLocation.fulfilled, (state) => {
+      state.addLocationLoading = false;
+    });
+    builder.addCase(addLocation.rejected, (state) => {
+      state.addLocationLoading = false;
     });
   }
 });

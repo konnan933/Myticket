@@ -32,25 +32,17 @@ class EsemenyekController extends Controller
     public function store(Request $request)
     {
 
-        $this->validate($request, [
-            'newImage' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-        ]);
-
-        $image_path = $request->file('newImage')->store('images');
-
         $esemeny = new Esemenyek();
         $esemeny->cim = $request->cim;
         $esemeny->user = $request->user;
         $esemeny->helyszin = $request->helyszin;
-        $esemeny->newImage = $image_path;
+        $esemeny->kep = $request->kep;
         $esemeny->kezd_datum = $request->kezd_datum;
         $esemeny->veg_datum = $request->veg_datum;
         $esemeny->leiras = $request->leiras;
         $esemeny->buisness_email = $request->buisness_email;
         $esemeny->buisness_tel = $request->buisness_tel;
         $esemeny->esem_kat = $request->esem_kat;
-        $esemeny->jutalek = 17;
-        $esemeny->statusz = 0;
         $esemeny->save();
     }
 
