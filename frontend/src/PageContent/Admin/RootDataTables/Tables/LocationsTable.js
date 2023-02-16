@@ -12,6 +12,7 @@ import Paper from '@mui/material/Paper';
 import { StyledTableCell, StyledTableRow } from 'PageContent/utils/TableStyles';
 import LocationEdit from '../components/LocationEdit';
 import LocationDelete from '../components/LocationDelete';
+import LocationAdd from '../components/LocationAdd';
 
 function LocationsTable() {
   const { t } = useTranslation('rootData');
@@ -26,7 +27,7 @@ function LocationsTable() {
   }
 
   const returnEmpty = (data) => {
-    if (data === '') {
+    if (data === '' || data === null) {
       return '-';
     }
     return data;
@@ -38,7 +39,9 @@ function LocationsTable() {
           <Table aria-label="customized table">
             <TableHead>
               <TableRow>
-                <StyledTableCell align="left">{t('ACTIONS')}</StyledTableCell>
+                <StyledTableCell align="left">
+                  <LocationAdd />
+                </StyledTableCell>
                 <StyledTableCell align="left">{t('NAME')}</StyledTableCell>
                 <StyledTableCell align="left">{t('POST_CODE')}</StyledTableCell>
                 <StyledTableCell align="left">{t('STREET')}</StyledTableCell>

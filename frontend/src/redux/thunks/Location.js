@@ -4,12 +4,13 @@ import api from '../../axios/axois';
 
 export const addLocation = createAsyncThunk(
   'location/addLocation',
-  async (location, { rejectWithValue }) => {
+  async (location, { dispatch, rejectWithValue }) => {
     try {
-      const response = await api.post(admin.location, location);
+      const response = await api.post(admin.location, location).then(() => {
+        dispatch(getLocations());
+      });
       return response.data;
     } catch (err) {
-      console.log(err);
       if (!err.response) {
         throw err;
       }
@@ -26,7 +27,6 @@ export const getLocations = createAsyncThunk(
       const response = await api.get(admin.location);
       return response.data;
     } catch (err) {
-      console.log(err);
       if (!err.response) {
         throw err;
       }
@@ -43,7 +43,6 @@ export const deleteLocation = createAsyncThunk(
         dispatch(getLocations());
       });
     } catch (err) {
-      console.log(err);
       if (!err.response) {
         throw err;
       }
@@ -61,7 +60,6 @@ export const updateLocation = createAsyncThunk(
         dispatch(getLocations());
       });
     } catch (err) {
-      console.log(err);
       if (!err.response) {
         throw err;
       }

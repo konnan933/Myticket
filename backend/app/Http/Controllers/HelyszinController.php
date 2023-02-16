@@ -28,6 +28,7 @@ class HelyszinController extends Controller
         $helyszinek = new Helyszinek();
         $helyszinek->name = $request->name;
         $helyszinek->postcode = $request->postcode;
+        $helyszinek->district = $request->district;
         $helyszinek->street = $request->street;
         $helyszinek->housenumber = $request->housenumber;
         $helyszinek->floor = $request->floor;
@@ -47,6 +48,7 @@ class HelyszinController extends Controller
         $helyszinek = Helyszinek::find($id);
         $helyszinek->name = $request->name;
         $helyszinek->postcode = $request->postcode;
+        $helyszinek->district = $request->district;
         $helyszinek->street = $request->street;
         $helyszinek->housenumber = $request->housenumber;
         $helyszinek->floor = $request->floor;
