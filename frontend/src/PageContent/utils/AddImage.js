@@ -13,14 +13,19 @@ function Addimage({ setImageId }) {
   const handleClose = () => setOpen(false);
   const { t } = useTranslation('adminEvent');
 
-  const displayImage = path && !open;
+  const displayImage = path && !open ;
+  const displayRemoveButton = path && !open;
+  const displayAddButton = !path && !open;
 
   return (
     <div>
-      <div>
-        <Button onClick={handleOpen} color="primary" component="label">
-          {t('ADD_IMAGE')}
-        </Button>
+      <div className="flex justify-center">
+        {displayAddButton && (
+          <Button onClick={handleOpen} color="primary" component="label">
+            {t('ADD_IMAGE')}
+          </Button>
+        )}
+        {displayRemoveButton && <Button onClick={() => setPath(null)}> {t('REMOVE_IMAGE')}</Button>}
         <Modal
           open={open}
           onClose={handleClose}
@@ -38,24 +43,28 @@ function Addimage({ setImageId }) {
             )}
             {path && (
               <div>
-                <img alt="not fount" width={'50%'} src={URL.createObjectURL(path)} />
+                <div className="flex justify-center">
+                  <img alt="not fount" width={'50%'} src={URL.createObjectURL(path)} />
+                </div>
                 <br />
-                <Button onClick={() => setPath(null)}> {t('REMOVE_IMAGE')}</Button>
-                <Button
-                  onClick={() => {
-                    dispatch(addPicture(path)).then((respone) => {
-                      setImageId(respone.payload);
-                    });
-                  }}>
-                  {t('SEND_IMAGE')}
-                </Button>
+                <div className="flex justify-center">
+                  <Button onClick={() => setPath(null)}> {t('REMOVE_IMAGE')}</Button>
+                  <Button
+                    onClick={() => {
+                      dispatch(addPicture(path)).then((respone) => {
+                        setImageId(respone.payload);
+                      });
+                    }}>
+                    {t('SEND_IMAGE')}
+                  </Button>
+                </div>
               </div>
             )}
           </Box>
         </Modal>
       </div>
       {displayImage && (
-        <div>
+        <div className="flex justify-center">
           <img alt="not fount" width={'50%'} src={URL.createObjectURL(path)} />
         </div>
       )}

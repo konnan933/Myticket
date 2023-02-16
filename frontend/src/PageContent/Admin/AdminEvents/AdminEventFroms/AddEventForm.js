@@ -7,7 +7,6 @@ import moment from 'moment/moment';
 import { useDispatch, useSelector } from 'react-redux';
 import { addEvent } from 'redux/thunks/Admin';
 import Addimage from '../../../utils/AddImage';
-import AddLocationForm from './AddLocationForm';
 
 function AddEventForm() {
   const { t } = useTranslation('adminEvent');
@@ -54,7 +53,6 @@ function AddEventForm() {
       <div className="flex justify-center pb-16">
         <h2>{t('ADD_EVENT')}</h2>
       </div>
-      <AddLocationForm />
       <div className="flex justify-center">
         <form
           className="w-2/5"
@@ -68,25 +66,6 @@ function AddEventForm() {
             dispatch(addEvent(data));
           })}>
           <fieldset>
-            <div className="pb-16">
-              <Autocomplete
-                className="w-full"
-                options={locationNames}
-                getOptionLabel={(option) => (option.megnev ? option.megnev : '')}
-                value={locationName}
-                onChange={(event, newValue) => {
-                  setLocationName(newValue);
-                }}
-                inputValue={locationNameinput}
-                onInputChange={(event, newInputValue) => {
-                  setLocationNameInput(newInputValue);
-                }}
-                id="location-name_picker"
-                renderInput={(params) => (
-                  <TextField value={locationName} {...params} label="Controllable" />
-                )}
-              />
-            </div>
             <div className="flex justify-center pb-16">
               <TextField
                 {...register('cim')}
@@ -113,6 +92,23 @@ function AddEventForm() {
                 id="organizer-name_picker"
                 renderInput={(params) => (
                   <TextField value={organizerName} {...params} label="Controllable" />
+                )}
+              />
+              <Autocomplete
+                className="w-full"
+                options={locationNames}
+                getOptionLabel={(option) => (option.megnev ? option.megnev : '')}
+                value={locationName}
+                onChange={(event, newValue) => {
+                  setLocationName(newValue);
+                }}
+                inputValue={locationNameinput}
+                onInputChange={(event, newInputValue) => {
+                  setLocationNameInput(newInputValue);
+                }}
+                id="location-name_picker"
+                renderInput={(params) => (
+                  <TextField value={locationName} {...params} label="Controllable" />
                 )}
               />
 
@@ -164,16 +160,16 @@ function AddEventForm() {
                 type="datetime-local"
                 className="border-2 px-2 pt-2"
               />
-              <TextareaAutosize
-                {...register('leiras')}
-                required
-                type="text"
-                value={eventDescription}
-                onChange={eventDescriptionChangeHandler}
-                placeholder={t('DESCRIPTION')}
-                className="border-2 w-full p-3 mt-5"
-              />
             </div>
+            <TextareaAutosize
+              {...register('leiras')}
+              required
+              type="text"
+              value={eventDescription}
+              onChange={eventDescriptionChangeHandler}
+              placeholder={t('DESCRIPTION')}
+              className="border-2 w-full p-3 mt-5"
+            />
             <Addimage setImageId={setImageId} />
           </fieldset>
           <div className="flex justify-center pt-6">
