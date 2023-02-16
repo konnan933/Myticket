@@ -35,6 +35,41 @@ export const getLocations = createAsyncThunk(
     }
   }
 );
+export const deleteLocation = createAsyncThunk(
+  'location/deleteLocation',
+  async (id, { dispatch, rejectWithValue }) => {
+    try {
+      await api.delete(`${admin.location}/${id}`).then(() => {
+        dispatch(getLocations());
+      });
+    } catch (err) {
+      console.log(err);
+      if (!err.response) {
+        throw err;
+      }
+      const { data, status } = err.response;
+      return rejectWithValue({ data, status });
+    }
+  }
+);
+export const updateLocation = createAsyncThunk(
+  'location/updateLocation',
+  async (data, { dispatch, rejectWithValue }) => {
+    try {
+      console.log(data);
+      await api.put(`${admin.location}/${data.id}`, data).then(() => {
+        dispatch(getLocations());
+      });
+    } catch (err) {
+      console.log(err);
+      if (!err.response) {
+        throw err;
+      }
+      const { data, status } = err.response;
+      return rejectWithValue({ data, status });
+    }
+  }
+);
 
 export const getLocationNames = createAsyncThunk(
   'location/getLocationNames',

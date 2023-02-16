@@ -7,11 +7,12 @@ use Illuminate\Http\Request;
 
 class EsemenyKategoriaController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $esemenykategoriak =  EsemenyKategoria::all();
         return $esemenykategoriak;
     }
-    
+
     public function show($id)
     {
         $esemenykategoriak = EsemenyKategoria::find($id);
@@ -24,14 +25,14 @@ class EsemenyKategoriaController extends Controller
     public function store(Request $request)
     {
         $esemenykat = new EsemenyKategoria();
-        $esemenykat->megnev = $request->megnev;
-        $esemenykat->save(); 
+        $esemenykat->name = $request->name;
+        $esemenykat->save();
     }
 
     public function update(Request $request, $id)
     {
         $esemenykat = EsemenyKategoria::find($id);
-        $esemenykat->megnev = $request->megnev;
-        $esemenykat->save();        
+        $esemenykat->name = $request->name;
+        $esemenykat->save();
     }
 }

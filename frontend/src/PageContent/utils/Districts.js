@@ -1,4 +1,4 @@
-const Disctricts = {
+const districts = {
   1: 'I.',
   2: 'II.',
   3: 'III.',
@@ -23,4 +23,4 @@ const Disctricts = {
   22: 'XXII.',
   23: 'XXIII.'
 };
-export default Disctricts;
+export default districts;

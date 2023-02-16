@@ -16,14 +16,14 @@ return new class extends Migration
     {
         Schema::create('jegy_tipus', function (Blueprint $table) {
             $table->id('id');
-            $table->string('megnev');
+            $table->string('name');
         });
 
-        JegyTipus::create(['megnev' => 'Early bid']);
-        JegyTipus::create(['megnev' => 'Standard']);
-        JegyTipus::create(['megnev' => 'Sandard 1']);
-        JegyTipus::create(['megnev' => 'VIP']);
-        JegyTipus::create(['megnev' => 'Exclusive']);
+        JegyTipus::create(['name' => 'Early bid']);
+        JegyTipus::create(['name' => 'Standard']);
+        JegyTipus::create(['name' => 'Sandard 1']);
+        JegyTipus::create(['name' => 'VIP']);
+        JegyTipus::create(['name' => 'Exclusive']);
     }
 
     /**

@@ -44,7 +44,7 @@ class EmailController extends Controller
         $fel_nev = $user->fel_nev;
         $email = $user->email;
         $esemeny_nev = Esemenyek::find($jegyek->esemeny_id)->cim;
-        $jegy_tipus = JegyTipus::find(EszmeiJegy::find($jegyek->eszmei_jegy_id)->tipus)->megnev;
+        $jegy_tipus = JegyTipus::find(EszmeiJegy::find($jegyek->eszmei_jegy_id)->tipus)->name;
         $esemeny = Esemenyek::find($jegyek->esemeny_id);
         $helyszin_cim = HelyszinController::eventLocationBuilder($esemeny->helyszin);
         /*  $esemeny_kep = EsemenyekController::getPicture($esemeny->id);  */

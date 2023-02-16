@@ -16,14 +16,14 @@ return new class extends Migration
     {
         Schema::create('esemenykategoria', function (Blueprint $table) {
             $table->id('id');
-            $table->string('megnev');
+            $table->string('name');
         });
 
-        Esemenykategoria::create(['megnev' => 'Buli']);
-        Esemenykategoria::create(['megnev' => 'Fesztival']);
-        Esemenykategoria::create(['megnev' => 'Koncert']);
-        Esemenykategoria::create(['megnev' => 'Eloadas']);
-        Esemenykategoria::create(['megnev' => 'Egyeb']);
+        Esemenykategoria::create(['name' => 'Buli']);
+        Esemenykategoria::create(['name' => 'Fesztival']);
+        Esemenykategoria::create(['name' => 'Koncert']);
+        Esemenykategoria::create(['name' => 'Eloadas']);
+        Esemenykategoria::create(['name' => 'Egyeb']);
     }
 
     /**

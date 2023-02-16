@@ -12,13 +12,12 @@ class Helyszinek extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'megnev',
-        'iranyitoszam',
+        'name',
+        'postcode',
         'kerulet',
-        'utca',
-        'hazszam',
-        'emelet',
-        'terem'
+        'street',
+        'housenumber',
+        'floor',
+        'room'
     ];
-
 }

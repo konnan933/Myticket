@@ -12,7 +12,7 @@ const locale = {
   CONFIRMED: 'Ellenörzött',
   CONFIRM_PASSWORD: 'Jelszó megerősítése',
   DELETE: 'Törlés',
-  CONFIRM_DELETE_USER: 'Biztosan törölni szeretné a felhasználót ?',
+  CONFIRM_DELETE_USER: 'Biztosan törölni szeretné a felhasználót?',
   YES: 'Igen',
   NO: 'Nem',
   ADD_USER: 'Felhasználó hozzáadása',
@@ -20,8 +20,7 @@ const locale = {
   PASSWORD: 'Jelszó',
   LEVEL_1: 'Admin',
   LEVEL_2: 'Felhasználó',
-  MANAGE_USER: 'Felhasználó szerkeztése',
-
+  MANAGE_USER: 'Felhasználó szerkeztése'
 };
 
 export default locale;

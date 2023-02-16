@@ -11,6 +11,6 @@ class EsemenyKategoria extends Model
     public $table = 'esemenykategoria';
     public $timestamps = false;
     protected $fillable = [
-        'megnev',
+        'name',
     ];
 }

@@ -62,7 +62,7 @@ function EventsTable() {
                 </StyledTableCell>
                 <StyledTableCell align="left">{event.fel_nev}</StyledTableCell>
                 <StyledTableCell align="left">
-                  {`${event.iranyitoszam} ${event.kerulet} ${event.utca} ${event.hazszam}`}
+                  {`${event.postcode} ${event.kerulet} ${event.street} ${event.housenumber}`}
                 </StyledTableCell>
               </StyledTableRow>
             ))}

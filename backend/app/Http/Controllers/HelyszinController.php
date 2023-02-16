@@ -26,18 +26,18 @@ class HelyszinController extends Controller
     public function store(Request $request)
     {
         $helyszinek = new Helyszinek();
-        $helyszinek->megnev = $request->megnev;
-        $helyszinek->iranyitoszam = $request->iranyitoszam;
-        $helyszinek->kerulet = $request->kerulet;
-        $helyszinek->utca = $request->utca;
-        $helyszinek->hazszam = $request->hazszam;
-        $helyszinek->emelet = $request->emelet;
-        $helyszinek->terem = $request->terem;
+        $helyszinek->name = $request->name;
+        $helyszinek->postcode = $request->postcode;
+        $helyszinek->street = $request->street;
+        $helyszinek->housenumber = $request->housenumber;
+        $helyszinek->floor = $request->floor;
+        $helyszinek->room = $request->room;
         $helyszinek->save();
-        
+
         return response()->json(
-            ["id"=>$helyszinek->id,
-            "megnev"=>$helyszinek->megnev
+            [
+                "id" => $helyszinek->id,
+                "name" => $helyszinek->name
             ]
         );
     }
@@ -45,13 +45,12 @@ class HelyszinController extends Controller
     public function update(Request $request, $id)
     {
         $helyszinek = Helyszinek::find($id);
-        $helyszinek->megnev = $request->megnev;
-        $helyszinek->megnev = $request->iranyitoszam;
-        $helyszinek->megnev = $request->kerulet;
-        $helyszinek->megnev = $request->utca;
-        $helyszinek->megnev = $request->hazszam;
-        $helyszinek->megnev = $request->emelet;
-        $helyszinek->megnev = $request->terem;
+        $helyszinek->name = $request->name;
+        $helyszinek->postcode = $request->postcode;
+        $helyszinek->street = $request->street;
+        $helyszinek->housenumber = $request->housenumber;
+        $helyszinek->floor = $request->floor;
+        $helyszinek->room = $request->room;
         $helyszinek->save();
     }
 
@@ -59,27 +58,28 @@ class HelyszinController extends Controller
     {
         $helyszin_cim = '';
         $helyszin = Helyszinek::find($id);
-        $ir_szam = $helyszin->iranyitoszam;
+        $ir_szam = $helyszin->postcode;
         $kerulet = $helyszin->kerulet;
-        $utca = $helyszin->utca;
-        $hazszam = $helyszin->hazszam;
-        $emelet = $helyszin->emelet;
-        $terem = $helyszin->terem;
+        $street = $helyszin->street;
+        $housenumber = $helyszin->housenumber;
+        $floor = $helyszin->floor;
+        $room = $helyszin->room;
 
-        if($emelet != ''){
-            $emelet = ' Emelet '.$emelet;
+        if ($floor != '') {
+            $floor = ' Emelet ' . $floor;
         }
-        if($terem != ''){
-            $terem = ' Terem '.$emelet;
+        if ($room != '') {
+            $room = ' Terem ' . $floor;
         }
 
-        $helyszin_cim = $ir_szam.' '.$kerulet.$utca.' '.$hazszam.$emelet.$terem;
+        $helyszin_cim = $ir_szam . ' ' . $kerulet . $street . ' ' . $housenumber . $floor . $room;
 
         return $helyszin_cim;
     }
 
-    public function getLocationNames(){
-            $locationNames = DB::table('helyszinek')->select('helyszinek.megnev','helyszinek.id')
+    public function getLocationNames()
+    {
+        $locationNames = DB::table('helyszinek')->select('helyszinek.name', 'helyszinek.id')
             ->get();
 
         return $locationNames;

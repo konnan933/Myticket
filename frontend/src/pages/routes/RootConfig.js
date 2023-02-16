@@ -86,7 +86,7 @@ export const adminConfig = [
     level: level.user
   },
   {
-    pageName: 'ROOT_DATA',
+    pageName: 'ROOT_DATA_PAGE',
     pagePath: '/rootData',
     element: <RootDataTablesPage />,
     level: level.admin

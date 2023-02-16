@@ -16,20 +16,20 @@ return new class extends Migration
     {
         Schema::create('helyszinek', function (Blueprint $table) {
             $table->id('id');
-            $table->string('megnev');
-            $table->smallInteger('iranyitoszam');
-            $table->string('kerulet')->default('');
-            $table->string('utca');
-            $table->smallInteger('hazszam');
-            $table->string('emelet')->default('');
-            $table->string('terem')->default('');
+            $table->string('name');
+            $table->smallInteger('postcode');
+            $table->string('district')->default('');
+            $table->string('street');
+            $table->smallInteger('housenumber');
+            $table->string('floor')->nullable()->default('');
+            $table->string('room')->nullable()->default('');
         });
 
-        Helyszinek::create(['megnev' => 'Alterego', 'iranyitoszam' => '2320', 'utca'=>'Szep utca', 'hazszam'=> '10']);
-        Helyszinek::create(['megnev' => 'Kek osztriga','iranyitoszam' => '2330', 'utca'=>'Ok utca', 'hazszam'=> '12']);
-        Helyszinek::create(['megnev' => 'A38','iranyitoszam' => '2120', 'utca'=>'Mezo utca', 'hazszam'=> '110']);
-        Helyszinek::create(['megnev' => 'Cat','iranyitoszam' => '1220', 'utca'=>'Alter utca', 'hazszam'=> '1']);
-        Helyszinek::create(['megnev' => 'Dog','iranyitoszam' => '1210', 'utca'=>'Bolti utca', 'hazszam'=> '101']);
+        Helyszinek::create(['name' => 'Alterego', 'postcode' => '2320', 'street' => 'Szep street', 'housenumber' => '10']);
+        Helyszinek::create(['name' => 'Kek osztriga', 'postcode' => '2330', 'street' => 'Ok street', 'housenumber' => '12']);
+        Helyszinek::create(['name' => 'A38', 'postcode' => '2120', 'street' => 'Mezo street', 'housenumber' => '110']);
+        Helyszinek::create(['name' => 'Cat', 'postcode' => '1220', 'street' => 'Alter street', 'housenumber' => '1']);
+        Helyszinek::create(['name' => 'Dog', 'postcode' => '1210', 'street' => 'Bolti street', 'housenumber' => '101']);
     }
 
     /**

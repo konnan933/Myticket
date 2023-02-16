@@ -61,7 +61,7 @@ class EsemenyekController extends Controller
         $esemeny->esem_kat = $request->esem_kat;
         $esemeny->jutalek = 17;
         $esemeny->statusz = $request->statusz;
-        $esemeny->kep= $request->kep;
+        $esemeny->kep = $request->kep;
         $esemeny->save();
     }
 
@@ -193,7 +193,7 @@ class EsemenyekController extends Controller
         $esemeny_neve = $esemeny->cim;
         $kezd_datum = $esemeny->kezd_datum;
         $veg_datum = $esemeny->veg_datum;
-        $helyszin_neve = Helyszinek::find($esemeny->helyszin)->megnev;
+        $helyszin_neve = Helyszinek::find($esemeny->helyszin)->name;
         $helyszin_cim = HelyszinController::eventLocationBuilder($esemeny->helyszin);
 
 
@@ -240,7 +240,7 @@ class EsemenyekController extends Controller
     public function getEventDetails()
     {
 
-        $eventDetails = DB::table('esemenyek')->select('esemenyek.id', 'esemenyek.cim', 'esemenyek.kezd_datum', 'esemenyek.veg_datum', 'esemenyek.leiras', 'esemenyek.buisness_email', 'esemenyek.buisness_tel', 'esemenyek.jutalek', 'esemenyek.statusz', 'esemenykategoria.megnev', 'helyszinek.iranyitoszam', 'helyszinek.kerulet', 'helyszinek.utca', 'helyszinek.hazszam', 'helyszinek.emelet', 'helyszinek.terem', 'users.fel_nev')
+        $eventDetails = DB::table('esemenyek')->select('esemenyek.id', 'esemenyek.cim', 'esemenyek.kezd_datum', 'esemenyek.veg_datum', 'esemenyek.leiras', 'esemenyek.buisness_email', 'esemenyek.buisness_tel', 'esemenyek.jutalek', 'esemenyek.statusz', 'esemenykategoria.name', 'helyszinek.postcode', 'helyszinek.kerulet', 'helyszinek.street', 'helyszinek.housenumber', 'helyszinek.floor', 'helyszinek.room', 'users.fel_nev')
             ->join('helyszinek', 'helyszinek.id', '=', 'esemenyek.helyszin')
             ->join('esemenykategoria', 'esemenykategoria.id', '=', 'esemenyek.esem_kat')
             ->join('users', 'users.id', '=', 'esemenyek.user')
@@ -251,7 +251,7 @@ class EsemenyekController extends Controller
     public function getSingleEventDetails($eventId)
     {
 
-        $eventDetails = DB::table('esemenyek')->select('esemenyek.id', 'esemenyek.cim', 'esemenyek.kezd_datum', 'esemenyek.veg_datum', 'esemenyek.leiras', 'esemenyek.buisness_email', 'esemenyek.buisness_tel', 'esemenyek.jutalek', 'esemenyek.statusz', 'esemenykategoria.megnev', 'helyszinek.iranyitoszam', 'helyszinek.kerulet', 'helyszinek.utca', 'helyszinek.hazszam', 'helyszinek.emelet', 'helyszinek.terem', 'users.fel_nev')
+        $eventDetails = DB::table('esemenyek')->select('esemenyek.id', 'esemenyek.cim', 'esemenyek.kezd_datum', 'esemenyek.veg_datum', 'esemenyek.leiras', 'esemenyek.buisness_email', 'esemenyek.buisness_tel', 'esemenyek.jutalek', 'esemenyek.statusz', 'esemenykategoria.name', 'helyszinek.postcode', 'helyszinek.kerulet', 'helyszinek.street', 'helyszinek.housenumber', 'helyszinek.floor', 'helyszinek.room', 'users.fel_nev')
             ->join('helyszinek', 'helyszinek.id', '=', 'esemenyek.helyszin')
             ->join('esemenykategoria', 'esemenykategoria.id', '=', 'esemenyek.esem_kat')
             ->join('users', 'users.id', '=', 'esemenyek.user')

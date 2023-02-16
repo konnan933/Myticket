@@ -1,27 +1,15 @@
 const locale = {
-  ADMIN_PAGE: 'Admin oldal',
-  USER_NAME: 'Név',
-  EMAIL: 'Email cím',
-  LEVEL: 'Szint',
-  PHONE_NUMBER: 'Telefonszám',
-  PENALTIES: 'Szabálysértés szám',
+  ROOT_DATA_PAGE: 'Törzs adat táblák',
   ACTIONS: 'Műveletek',
-  SEND: 'küldés',
-  EDIT_USER: 'Felhasználó változtatás',
-  FAULTS: 'Szabályszegések',
-  CONFIRMED: 'Ellenörzött',
-  CONFIRM_PASSWORD: 'Jelszó megerősítése',
-  DELETE: 'Törlés',
-  CONFIRM_DELETE_USER: 'Biztosan törölni szeretné a felhasználót ?',
-  YES: 'Igen',
-  NO: 'Nem',
-  ADD_USER: 'Felhasználó hozzáadása',
-  LOGIN_SEND: 'Hozzáadás',
-  PASSWORD: 'Jelszó',
-  LEVEL_1: 'Admin',
-  LEVEL_2: 'Felhasználó',
-  MANAGE_USER: 'Felhasználó szerkeztése',
-
+  FLOOR: 'Emelet',
+  HOUSE_NUMBER: 'Házszám',
+  POST_CODE: 'Irányító szám',
+  DISTRICT: 'Kerület',
+  NAME: 'Név',
+  STREET: 'Utca',
+  ROOM: 'Terem',
+  CONFIRM_DELETE_LOCATION: 'Biztosan törölni szeretné a helyszínt?',
+  MANAGE_LOCATION: 'Helyszin szerkeztése'
 };
 
 export default locale;

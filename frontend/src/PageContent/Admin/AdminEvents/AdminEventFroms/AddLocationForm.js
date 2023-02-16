@@ -1,5 +1,5 @@
 import { Button, Checkbox, MenuItem, Select, TextField } from '@mui/material';
-import Disctricts from 'PageContent/utils/Disctricts';
+import Disctricts from 'PageContent/utils/Districts';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -69,7 +69,7 @@ function AddLocationForm() {
               <h2 className="flex justify-start pb-16">{t('ADD_LOCATION')}</h2>
               <div className="grid grid-cols-2 gap-16">
                 <TextField
-                  {...register('megnev')}
+                  {...register('name')}
                   required
                   type="text"
                   value={locationNaming}
@@ -78,7 +78,7 @@ function AddLocationForm() {
                   className="border-2"
                 />
                 <TextField
-                  {...register('iranyitoszam')}
+                  {...register('postcode')}
                   required
                   type="number"
                   value={postcode}
@@ -98,7 +98,7 @@ function AddLocationForm() {
                   ))}
                 </Select>
                 <TextField
-                  {...register('utca')}
+                  {...register('street')}
                   required
                   type="text"
                   value={street}
@@ -107,7 +107,7 @@ function AddLocationForm() {
                   className="border-2"
                 />
                 <TextField
-                  {...register('hazszam')}
+                  {...register('housenumber')}
                   required
                   type="number"
                   value={streetNumber}
@@ -116,7 +116,7 @@ function AddLocationForm() {
                   className="border-2"
                 />
                 <TextField
-                  {...register('emelet')}
+                  {...register('floor')}
                   required
                   type="number"
                   value={floor}
@@ -125,7 +125,7 @@ function AddLocationForm() {
                   className="border-2"
                 />
                 <TextField
-                  {...register('terem')}
+                  {...register('room')}
                   required
                   type="text"
                   value={room}

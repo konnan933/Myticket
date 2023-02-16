@@ -97,7 +97,7 @@ function AddEventForm() {
               <Autocomplete
                 className="w-full"
                 options={locationNames}
-                getOptionLabel={(option) => (option.megnev ? option.megnev : '')}
+                getOptionLabel={(option) => (option.name ? option.name : '')}
                 value={locationName}
                 onChange={(event, newValue) => {
                   setLocationName(newValue);
@@ -128,7 +128,7 @@ function AddEventForm() {
                 inputProps={{ 'aria-label': 'Without label' }}>
                 {eventTypes.map((eventType) => (
                   <MenuItem key={eventType.id} value={eventType.id}>
-                    {eventType.megnev}
+                    {eventType.name}
                   </MenuItem>
                 ))}
               </Select>

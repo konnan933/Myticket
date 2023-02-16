@@ -7,11 +7,12 @@ use Illuminate\Http\Request;
 
 class JegyTipusController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $jegyTipusok =  JegyTipus::all();
         return $jegyTipusok;
     }
-    
+
     public function show($id)
     {
         $jegyTipusok = JegyTipus::find($id);
@@ -24,14 +25,14 @@ class JegyTipusController extends Controller
     public function store(Request $request)
     {
         $jegyTipus = new JegyTipus();
-        $jegyTipus->megnev = $request->megnev;
-        $jegyTipus->save(); 
+        $jegyTipus->name = $request->name;
+        $jegyTipus->save();
     }
 
     public function update(Request $request, $id)
     {
         $jegyTipus = jegyTipus::find($id);
-        $jegyTipus->megnev = $request->megnev;
-        $jegyTipus->save();        
+        $jegyTipus->name = $request->name;
+        $jegyTipus->save();
     }
 }

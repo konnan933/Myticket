@@ -1,27 +1,15 @@
 const locale = {
-  ADMIN_PAGE: 'Admin page',
-  USER_NAME: 'Name',
-  MANAGE_USER: 'Modify user',
-  EMAIL: 'Email address',
-  LEVEL: 'Level',
-  PHONE_NUMBER: 'Phone number',
-  PENALTIES: 'Penalties number',
+  ROOT_DATA_PAGE: 'Root data page',
   ACTIONS: 'Actions',
-  SEND: 'Send',
-  FAULTS: 'Rules broken',
-  CONFIRMED: 'Confirmed',
-  EDIT_USER: 'Edit user',
-  DELETE: 'Delete',
-  CONFIRM_DELETE_USER: 'Do you want to delete this user ?',
-  YES: 'Yes',
-  NO: 'No',
-  ADD_USER: 'Add user',
-  LOGIN_SEND: 'Add',
-  PASSWORD: 'Password',
-  CONFIRM_PASSWORD: 'Confirm password',
-  NAME: 'User name',
-  LEVEL_2: 'User',
-  LEVEL_1: 'Admin'
+  FLOOR: 'Floor',
+  HOUSE_NUMBER: 'House number',
+  POST_CODE: 'Post code',
+  DISTRICT: 'District',
+  NAME: 'Name',
+  STREET: 'Street',
+  ROOM: 'Room',
+  CONFIRM_DELETE_LOCATION: 'Do you want to delete this location?',
+  MANAGE_LOCATION: 'Modify location'
 };
 
 export default locale;

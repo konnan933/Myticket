@@ -12,11 +12,6 @@ function EditUserForm({ user }) {
 
   const dispatch = useDispatch();
 
-  const [open, setOpen] = useState(false);
-
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
   const [email, setEmail] = useState(user.email);
   const [faults, setFaults] = useState(user.faults);
   const [confirmed, setConfirmed] = useState(user.confirmed);

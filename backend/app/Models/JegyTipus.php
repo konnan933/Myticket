@@ -11,6 +11,6 @@ class JegyTipus extends Model
     public $table = 'jegy_tipus';
     public $timestamps = false;
     protected $fillable = [
-        'megnev',
+        'name',
     ];
 }
