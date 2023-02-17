@@ -13,6 +13,6 @@ export default configureStore({
     location: LocationSlice,
     eventTypes: EventTypes,
     ticketTypes: TicketTypes,
-    tickets: TicketSlice
+    ticket: TicketSlice
   }
 });

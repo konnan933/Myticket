@@ -6,7 +6,7 @@ const locale = {
   CONFIRM_DELETE_EVENT: 'Biztosan törölni szeretné az eseményt ?',
   YES: 'Igen',
   NO: 'Nem',
-  EVENT_D_PAGE: 'esemény odlala',
+  EVENT_D_PAGE: 'esemény oldala',
   EVENT_PICTURE: 'Esemény képe',
   CHANGE_PICTURE: 'Kép csere',
   ADD_EVENT: 'Esemény hozzáadása',
@@ -28,7 +28,13 @@ const locale = {
   END_DATE: 'Esemény vége',
   END_DATE_LOWER_START_DATE: 'Az esemény vége nem lehet kisebb mint az esemény kezdete',
   END_DATE_LOWER: 'Az esemény vége nem lehet kisebb mint ma',
-  START_DATE_LOWER: 'Az esemény kezdete nem lehet kisebb mint a holnapi dátum'
+  START_DATE_LOWER: 'Az esemény kezdete nem lehet kisebb mint a holnapi dátum',
+  TICKETS: 'Jegyek',
+  TICKET_TYPE_NAME: 'Jegy típusa',
+  ALL_TICKET: 'Összes jegy',
+  BOOKED_TICKET: 'Lefoglalt mennyiség',
+  FREE_TICKET: 'Szabad mennyiség',
+  PORTION : 'Darab'
 };
 
 export default locale;

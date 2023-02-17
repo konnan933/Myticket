@@ -28,7 +28,13 @@ const locale = {
   END_DATE: 'End date',
   END_DATE_LOWER_START_DATE: 'The event end date cannot be lower than the start date',
   END_DATE_LOWER: 'The end date cannot be lower than today',
-  START_DATE_LOWER: 'The start day cannot be lower than tomorrow'
+  START_DATE_LOWER: 'The start day cannot be lower than tomorrow',
+  TICKETS: 'Tickets',
+  TICKET_TYPE_NAME: 'Ticket type',
+  ALL_TICKET: 'All ticket',
+  BOOKED_TICKET: 'Booked quantity',
+  FREE_TICKET: 'Free quantity',
+  PORTION: 'Portion'
 };
 
 export default locale;

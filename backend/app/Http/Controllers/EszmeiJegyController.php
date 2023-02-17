@@ -54,7 +54,8 @@ class EszmeiJegyController extends Controller
 
     public function getAllEventTickets($event){
 
-        $allEventTickets = DB::table('eszmei_jegy')->select('*')
+        $allEventTickets = DB::table('eszmei_jegy')->select('eszmei_jegy.*', 'jegy_tipus.name')
+        ->join('jegy_tipus', 'jegy_tipus.id', '=', 'eszmei_jegy.tipus')
         ->where('esemeny_id', '=', $event)
         ->get();
 

@@ -60,10 +60,7 @@ function AddEventForm() {
     setEventType(event.target.value);
   };
 
-
   const startDateChangeHandler = (event) => {
-    setStartDate(event.target.value);
-    console.log(startDate);
     if (event.target.value <= date) {
       setStartDateError(true);
       setStartDateErrorMsg(t('START_DATE_LOWER'));
@@ -77,13 +74,11 @@ function AddEventForm() {
     if (event.target.value <= startDate) {
       setEndDateError(true);
       setEndDateErrorMsg(t('END_DATE_LOWER_START_DATE'));
-    } else {
-      setEndDateError(false);
-    }
-
-    if (event.target.value <= date) {
+      console.log(endDateErrorMsg);
+    } else if (event.target.value <= date) {
       setEndDateError(true);
       setEndDateErrorMsg(t('END_DATE_LOWER'));
+      console.log(endDateErrorMsg);
     } else {
       setEndDateError(false);
       setEndDateErrorMsg('');
@@ -201,6 +196,7 @@ function AddEventForm() {
                 {...register('kezd_datum')}
                 error={startDateError}
                 defaultValue={date}
+                onSelect={(event) => setStartDate(event.target.value)}
                 InputLabelProps={{ shrink: true }}
                 onChange={startDateChangeHandler}
                 helperText={startDateErrorMsg}

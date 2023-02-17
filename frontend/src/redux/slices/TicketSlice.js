@@ -3,7 +3,7 @@ import { getEventTickets } from 'redux/thunks/Ticket';
 
 const TICKET_INIT_STATE = {
   eventTicketsLoading: false,
-  eventTickes: []
+  eventTickets: []
 };
 const ticketSlice = createSlice({
   name: 'ticket',
@@ -15,7 +15,7 @@ const ticketSlice = createSlice({
     });
     builder.addCase(getEventTickets.fulfilled, (state, action) => {
       state.eventTicketsLoading = false;
-      state.eventTickes = action.payload;
+      state.eventTickets = action.payload;
     });
     builder.addCase(getEventTickets.rejected, (state) => {
       state.eventTicketsLoading = false;

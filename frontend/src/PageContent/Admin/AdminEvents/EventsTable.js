@@ -21,7 +21,6 @@ function EventsTable() {
   useEffect(() => {
     dispatch(getEvents());
   }, []);
-  console.log(events);
 
   const { t } = useTranslation('adminEvent');
   return (
@@ -51,7 +50,7 @@ function EventsTable() {
                 <StyledTableCell align="left">
                   <div className="flex">
                     <DeleteEvent id={event.eventId} />
-                    <EditEvent id={event.eventId} />
+                    <EditEvent event={event} />
                   </div>
                 </StyledTableCell>
                 <StyledTableCell align="left">

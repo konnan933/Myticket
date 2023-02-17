@@ -3,7 +3,7 @@ import ticket from '../../API/Ticket';
 import api from '../../axios/axois';
 
 export const getEventTickets = createAsyncThunk(
-  'eventTypes/getEventTickets',
+  'ticket/getEventTickets',
   async (eventId, { rejectWithValue }) => {
     try {
       const response = await api.get(`${ticket.eventTickets}/${eventId}`);
