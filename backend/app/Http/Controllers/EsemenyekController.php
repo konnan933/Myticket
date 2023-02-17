@@ -240,7 +240,7 @@ class EsemenyekController extends Controller
     public function getEventDetails()
     {
 
-        $eventDetails = DB::table('esemenyek')->select('esemenyek.id', 'esemenyek.cim', 'esemenyek.kezd_datum', 'esemenyek.veg_datum', 'esemenyek.leiras', 'esemenyek.buisness_email', 'esemenyek.buisness_tel', 'esemenyek.jutalek', 'esemenyek.statusz', 'esemenykategoria.name', 'helyszinek.postcode', 'helyszinek.district', 'helyszinek.street', 'helyszinek.housenumber', 'helyszinek.floor', 'helyszinek.room', 'users.fel_nev')
+        $eventDetails = DB::table('esemenyek')->select('esemenyek.id as eventId', 'esemenyek.cim', 'esemenyek.kezd_datum', 'esemenyek.veg_datum', 'esemenyek.leiras', 'esemenyek.buisness_email', 'esemenyek.buisness_tel', 'esemenyek.jutalek', 'esemenyek.statusz', 'esemenykategoria.name', 'helyszinek.postcode', 'helyszinek.district', 'helyszinek.street', 'helyszinek.housenumber', 'helyszinek.floor', 'helyszinek.room', 'users.fel_nev', 'helyszinek.id as locationId', 'users.id as organizerId', 'esemenykategoria.id as ekId')
             ->join('helyszinek', 'helyszinek.id', '=', 'esemenyek.helyszin')
             ->join('esemenykategoria', 'esemenykategoria.id', '=', 'esemenyek.esem_kat')
             ->join('users', 'users.id', '=', 'esemenyek.user')
@@ -251,7 +251,7 @@ class EsemenyekController extends Controller
     public function getSingleEventDetails($eventId)
     {
 
-        $eventDetails = DB::table('esemenyek')->select('esemenyek.id', 'esemenyek.cim', 'esemenyek.kezd_datum', 'esemenyek.veg_datum', 'esemenyek.leiras', 'esemenyek.buisness_email', 'esemenyek.buisness_tel', 'esemenyek.jutalek', 'esemenyek.statusz', 'esemenykategoria.name', 'helyszinek.postcode', 'helyszinek.district', 'helyszinek.street', 'helyszinek.housenumber', 'helyszinek.floor', 'helyszinek.room', 'users.fel_nev')
+        $eventDetails = DB::table('esemenyek')->select('esemenyek.id as eventId', 'esemenyek.cim', 'esemenyek.kezd_datum', 'esemenyek.veg_datum', 'esemenyek.leiras', 'esemenyek.buisness_email', 'esemenyek.buisness_tel', 'esemenyek.jutalek', 'esemenyek.statusz', 'esemenykategoria.name', 'helyszinek.postcode', 'helyszinek.district', 'helyszinek.street', 'helyszinek.housenumber', 'helyszinek.floor', 'helyszinek.room', 'users.fel_nev', 'helyszinek.id as locationId', 'users.id as organizerId', 'esemenykategoria.id as ekId')
             ->join('helyszinek', 'helyszinek.id', '=', 'esemenyek.helyszin')
             ->join('esemenykategoria', 'esemenykategoria.id', '=', 'esemenyek.esem_kat')
             ->join('users', 'users.id', '=', 'esemenyek.user')

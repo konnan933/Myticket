@@ -25,7 +25,10 @@ const locale = {
   SEND_EVENT: 'Esemény küldése',
   DESCRIPTION: 'Leírás',
   START_DATE: 'Esemény kezdete',
-  END_DATE: 'Esemény vége'
+  END_DATE: 'Esemény vége',
+  END_DATE_LOWER_START_DATE: 'Az esemény vége nem lehet kisebb mint az esemény kezdete',
+  END_DATE_LOWER: 'Az esemény vége nem lehet kisebb mint ma',
+  START_DATE_LOWER: 'Az esemény kezdete nem lehet kisebb mint a holnapi dátum'
 };
 
 export default locale;

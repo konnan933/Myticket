@@ -6,8 +6,10 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getSingleEvent } from 'redux/thunks/Admin';
+import { getEventTickets } from 'redux/thunks/Ticket';
 import BackToButton from './components/BackToButton';
 import EditEventPictures from './components/EditEventPicture';
+import SingleEventTickets from './SingleEventTickets';
 
 function DetailedAdminEvent() {
   const { t } = useTranslation('adminEvent');
@@ -19,6 +21,7 @@ function DetailedAdminEvent() {
   const { singleEvent, singleEventLoading } = useSelector((state) => state.admin);
   useEffect(() => {
     dispatch(getSingleEvent(id));
+    dispatch(getEventTickets(id));
   }, []);
 
   if (singleEventLoading) {
@@ -38,6 +41,7 @@ function DetailedAdminEvent() {
           <div className="flex justify-center">
             <EditEventPictures />
           </div>
+          <SingleEventTickets />
         </div>
       </div>
     </div>

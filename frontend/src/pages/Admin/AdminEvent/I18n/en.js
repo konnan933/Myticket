@@ -25,7 +25,10 @@ const locale = {
   SEND_EVENT: 'Send event',
   DESCRIPTION: 'Description',
   START_DATE: 'Start date',
-  END_DATE: 'End date'
+  END_DATE: 'End date',
+  END_DATE_LOWER_START_DATE: 'The event end date cannot be lower than the start date',
+  END_DATE_LOWER: 'The end date cannot be lower than today',
+  START_DATE_LOWER: 'The start day cannot be lower than tomorrow'
 };
 
 export default locale;

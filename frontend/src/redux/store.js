@@ -3,6 +3,7 @@ import AdminSlice from './slices/AdminSlice';
 import AuthSlice from './slices/AuthSlice';
 import EventTypes from './slices/EventTypes';
 import LocationSlice from './slices/LocationSlice';
+import TicketSlice from './slices/TicketSlice';
 import TicketTypes from './slices/TicketTypes';
 
 export default configureStore({
@@ -11,6 +12,7 @@ export default configureStore({
     admin: AdminSlice,
     location: LocationSlice,
     eventTypes: EventTypes,
-    ticketTypes: TicketTypes
+    ticketTypes: TicketTypes,
+    tickets: TicketSlice
   }
 });

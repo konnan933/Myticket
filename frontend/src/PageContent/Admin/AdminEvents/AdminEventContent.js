@@ -12,14 +12,12 @@ function AdminEventContent() {
   const { userNames, userNamesLoading } = useSelector((state) => state.admin);
   const { eventTypes, eventTypesLoading } = useSelector((state) => state.eventTypes);
   const { locationNames, locationNamesLoading } = useSelector((state) => state.location);
-  
+
   useEffect(() => {
     dispatch(getEventTypes());
     dispatch(getUserNames());
     dispatch(getLocationNames());
   }, []);
-
-  console.log(eventTypes);
 
   if (
     eventTypes.lenght === 0 ||

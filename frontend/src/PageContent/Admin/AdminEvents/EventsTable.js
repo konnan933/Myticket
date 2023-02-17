@@ -21,6 +21,7 @@ function EventsTable() {
   useEffect(() => {
     dispatch(getEvents());
   }, []);
+  console.log(events);
 
   const { t } = useTranslation('adminEvent');
   return (
@@ -46,15 +47,15 @@ function EventsTable() {
           </TableHead>
           <TableBody>
             {events.map((event) => (
-              <StyledTableRow key={event.id}>
+              <StyledTableRow key={event.eventId}>
                 <StyledTableCell align="left">
                   <div className="flex">
-                    <DeleteEvent id={event.id} />
-                    <EditEvent id={event.id} />
+                    <DeleteEvent id={event.eventId} />
+                    <EditEvent id={event.eventId} />
                   </div>
                 </StyledTableCell>
                 <StyledTableCell align="left">
-                  <Link to={`${event.id}`}>
+                  <Link to={`${event.eventId}`}>
                     <p className="cursor-pointer hover:text-blue-600 hover:underline">
                       {event.cim}
                     </p>
