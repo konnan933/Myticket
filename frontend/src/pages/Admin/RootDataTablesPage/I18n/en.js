@@ -6,11 +6,15 @@ const locale = {
   POST_CODE: 'Post code',
   DISTRICT: 'District',
   NAME: 'Name',
+  SEND: 'Send',
   STREET: 'Street',
   ROOM: 'Room',
   CONFIRM_DELETE_LOCATION: 'Do you want to delete this location?',
+  MANAGE_LOCATION: 'Modify location',
+  // * eventTypes
   CONFIRM_DELETE_ET: 'Do you want to delete this event type?',
-  MANAGE_LOCATION: 'Modify location'
+  EDIT_ET: 'Modify event type',
+  ADD_ET: 'Add event type'
 };
 
 export default locale;
