@@ -32,7 +32,7 @@ export default function Navbar() {
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" sx={{ backgroundColor: '#262626', marginBottom: 5 }}>
+        <AppBar position="static" sx={{ backgroundColor: '#262626', marginBottom: 2 }}>
           {matches && (
             <Toolbar>
               <IconButton

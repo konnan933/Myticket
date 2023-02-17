@@ -7,13 +7,13 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { StyledTableCell, StyledTableRow } from 'PageContent/utils/TableStyles';
-import EventTypesAdd from '../components/EventTypesAdd';
-import EventTypesEdit from '../components/EventTypesEdit';
-import EventTypeDelete from '../components/EventTypesDelete';
+import TicketTypeDelete from '../components/TicketTypesDelete';
+import TicketTypesEdit from '../components/TicketTypesEdit';
+import TicketTypesAdd from '../components/TicketTypesAdd';
 
-function EventTypesTable() {
+function TicketTypesTable() {
   const { t } = useTranslation('rootData');
-  const { eventTypes } = useSelector((state) => state.eventTypes);
+  const { ticketTypes } = useSelector((state) => state.ticketTypes);
 
   return (
     <>
@@ -23,18 +23,18 @@ function EventTypesTable() {
             <TableHead>
               <TableRow>
                 <StyledTableCell align="left">
-                  <EventTypesAdd />
+                  <TicketTypesAdd />
                 </StyledTableCell>
                 <StyledTableCell align="left">{t('NAME')}</StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {eventTypes.map((types) => (
+              {ticketTypes.map((types) => (
                 <StyledTableRow key={types.id}>
                   <StyledTableCell align="left">
                     <div className="flex">
-                      <EventTypesEdit eventType={types} />
-                      <EventTypeDelete id={types.id} />
+                      <TicketTypesEdit ticketType={types} />
+                      <TicketTypeDelete id={types.id} />
                     </div>
                   </StyledTableCell>
                   <StyledTableCell align="left">{types.name}</StyledTableCell>
@@ -47,4 +47,4 @@ function EventTypesTable() {
     </>
   );
 }
-export default EventTypesTable;
+export default TicketTypesTable;

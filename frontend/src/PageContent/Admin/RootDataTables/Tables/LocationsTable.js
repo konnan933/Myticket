@@ -24,8 +24,8 @@ function LocationsTable() {
   return (
     <>
       <div className="flex justify-center w-full">
-        <TableContainer style={{ margin: 10, width: '80%' }} component={Paper}>
-          <Table aria-label="customized table">
+        <TableContainer style={{ margin: 10, width: '80%', maxHeight: 450 }} component={Paper}>
+          <Table stickyHeader aria-label="customized table">
             <TableHead>
               <TableRow>
                 <StyledTableCell align="left">
