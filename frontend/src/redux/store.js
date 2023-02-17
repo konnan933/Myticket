@@ -3,12 +3,14 @@ import AdminSlice from './slices/AdminSlice';
 import AuthSlice from './slices/AuthSlice';
 import EventTypes from './slices/EventTypes';
 import LocationSlice from './slices/LocationSlice';
+import TicketTypes from './slices/TicketTypes';
 
 export default configureStore({
   reducer: {
     auth: AuthSlice,
     admin: AdminSlice,
     location: LocationSlice,
-    eventTypes: EventTypes
+    eventTypes: EventTypes,
+    ticketTypes: TicketTypes
   }
 });
