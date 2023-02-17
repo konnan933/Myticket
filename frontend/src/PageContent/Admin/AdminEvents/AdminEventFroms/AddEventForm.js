@@ -1,5 +1,12 @@
-import { Autocomplete, Button, MenuItem, Select, TextField } from '@mui/material';
-import { useState } from 'react';
+import {
+  Autocomplete,
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField
+} from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
@@ -7,6 +14,7 @@ import moment from 'moment/moment';
 import { useDispatch, useSelector } from 'react-redux';
 import { addEvent } from 'redux/thunks/Admin';
 import Addimage from '../../../utils/AddImage';
+import { useState } from 'react';
 
 function AddEventForm() {
   const { t } = useTranslation('adminEvent');
@@ -20,15 +28,15 @@ function AddEventForm() {
   const [organizerName, setOrganizername] = useState('');
   const [organizerNameinput, setOrganizerInput] = useState('');
   const [locationName, setLocationName] = useState('');
-  const { locationNames } = useSelector((state) => state.admin);
+  const { locationNames } = useSelector((state) => state.location);
   const [locationNameinput, setLocationNameInput] = useState('');
-
   const [imageId, setImageId] = useState('');
-  const [locationId, setLocationId] = useState('');
-
+  const [startDateError, setStartDateError] = useState(false);
+  const [endDateError, setEndDateError] = useState(false);
+  const [endDate, setEndDate] = useState(null);
+  const date = moment(new Date()).format('yyyy-MM-DDThh:mm');
+  const [startDate, setStartDate] = useState(date);
   const { eventTypes, userNames } = useSelector((state) => state.admin);
-
-  const date = moment(new Date()).format('YYYY-MM-DDTkk:mm');
 
   const eventNameChangeHandler = (event) => {
     setEventName(event.target.value);
@@ -45,9 +53,31 @@ function AddEventForm() {
   const eventDescriptionChangeHandler = (event) => {
     setEventDescription(event.target.value);
   };
+
   const eventTypeChangeHandler = (event) => {
     setEventType(event.target.value);
   };
+
+  const startDateChangeHandler = (event) => {
+    setStartDate(event.target.value);
+    console.log(startDate);
+    console.log(startDate < date);
+    if (startDate < date) {
+      setStartDateError(true);
+    } else {
+      setStartDateError(false);
+    }
+  };
+
+  const endDateChangeHandler = (event) => {
+    setEndDate(event.target.value);
+    if (endDate <= startDate) {
+      setEndDateError(true);
+    } else {
+      setEndDateError(false);
+    }
+  };
+
   return (
     <div className="flex justify-center flex-col">
       <div className="flex justify-center pb-16">
@@ -70,6 +100,7 @@ function AddEventForm() {
               <TextField
                 {...register('cim')}
                 required
+                autoComplete="on"
                 type="text"
                 value={eventName}
                 onChange={eventNameChangeHandler}
@@ -91,7 +122,7 @@ function AddEventForm() {
                 }}
                 id="organizer-name_picker"
                 renderInput={(params) => (
-                  <TextField value={organizerName} {...params} label="Controllable" />
+                  <TextField required value={organizerName} {...params} label={t('ORGANIZER')} />
                 )}
               />
               <Autocomplete
@@ -108,7 +139,7 @@ function AddEventForm() {
                 }}
                 id="location-name_picker"
                 renderInput={(params) => (
-                  <TextField value={locationName} {...params} label="Controllable" />
+                  <TextField required value={locationName} {...params} label={t('LOCATION')} />
                 )}
               />
 
@@ -116,26 +147,37 @@ function AddEventForm() {
                 {...register('buisness_email')}
                 required
                 type="email"
+                autoComplete="on"
                 value={buisnessEmail}
                 onChange={buisnessEmailChangeHandler}
                 label={t('BUISNESS_EMAIL')}
                 className="border-2"
               />
-              <Select
-                {...register('esem_kat')}
-                value={eventType}
-                onChange={eventTypeChangeHandler}
-                inputProps={{ 'aria-label': 'Without label' }}>
-                {eventTypes.map((eventType) => (
-                  <MenuItem key={eventType.id} value={eventType.id}>
-                    {eventType.name}
-                  </MenuItem>
-                ))}
-              </Select>
+
+              <FormControl>
+                <InputLabel shrink={true} id="demo-simple-select-label">
+                  {t('EVENT_TYPE')}
+                </InputLabel>
+                <Select
+                  {...register('esem_kat')}
+                  value={eventType}
+                  notched={true}
+                  required
+                  label={t('EVENT_TYPE')}
+                  onChange={eventTypeChangeHandler}
+                  inputProps={{ 'aria-label': 'Without label' }}>
+                  {eventTypes.map((eventType) => (
+                    <MenuItem key={eventType.id} value={eventType.id}>
+                      {eventType.name}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
 
               <TextField
                 {...register('buisness_tel')}
                 required
+                autoComplete="on"
                 type="text"
                 value={buisnessPhoneNum}
                 onChange={buisnessPhoneNumChangeHandler}
@@ -145,18 +187,24 @@ function AddEventForm() {
 
               <TextField
                 {...register('kezd_datum')}
-                required
-                defaultValue={date}
-                label="asd"
+                error={startDateError}
+                InputLabelProps={{ shrink: true }}
+                onChange={startDateChangeHandler}
+                helperText="Incorrect entry."
+                value={startDate}
+                label={t('START_DATE')}
                 type="datetime-local"
                 className="border-2 px-2 pt-2"
               />
 
               <TextField
                 {...register('veg_datum')}
-                required
-                defaultValue={date}
-                label="asd"
+                InputLabelProps={{ shrink: true }}
+                value={endDate}
+                onChange={endDateChangeHandler}
+                error={endDateError}
+                helperText="Incorrect entry."
+                label={t('END_DATE')}
                 type="datetime-local"
                 className="border-2 px-2 pt-2"
               />
@@ -176,11 +224,11 @@ function AddEventForm() {
             <Button
               variant="contained"
               color="info"
-              className=" w-28"
+              className=" w-48"
               aria-label="Event add"
               type="submit"
               size="lagre">
-              {t('LOGIN_SEND')}
+              {t('SEND_EVENT')}
             </Button>
           </div>
         </form>

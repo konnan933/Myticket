@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getEventTypes, getUserNames } from 'redux/thunks/Admin';
-import { getLocationNames } from 'redux/thunks/Location';
 import Loader from 'PageContent/utils/Loader';
 import EventsTable from './EventsTable';
 import AddEvent from './components/AddEvent';
+import { getLocationNames } from 'redux/thunks/Location';
 
 function AdminEventContent() {
   const dispatch = useDispatch();
@@ -12,12 +12,15 @@ function AdminEventContent() {
     (state) => state.admin
   );
 
-  const { locationNames, locationNamesLoading } = useSelector((state) => state.locations);
+  const { locationNames, locationNamesLoading } = useSelector((state) => state.location);
+
   useEffect(() => {
     dispatch(getEventTypes());
     dispatch(getUserNames());
     dispatch(getLocationNames());
   }, []);
+
+  console.log(eventTypes);
 
   if (
     eventTypes.lenght === 0 ||

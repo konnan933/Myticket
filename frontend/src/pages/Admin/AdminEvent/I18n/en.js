@@ -16,7 +16,16 @@ const locale = {
   MANAGE_EVENT: 'Modify event',
   EVENT_NAME: 'Event name',
   BACK_TO: 'Previous page',
-  DETAILED_INFO: 'Click the name of the event for the detailed page.'
+  DETAILED_INFO: 'Click the name of the event for the detailed page.',
+  BUISNESS_EMAIL: 'Buisness email',
+  EVENT_TYPE: 'Event type',
+  ADD_IMAGE: 'Add image',
+  REMOVE_IMAGE: 'Delete image',
+  SEND_IMAGE: 'Upload image',
+  SEND_EVENT: 'Send event',
+  DESCRIPTION: 'Description',
+  START_DATE: 'Start date',
+  END_DATE: 'End date'
 };
 
 export default locale;

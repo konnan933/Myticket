@@ -12,10 +12,11 @@ function Addimage({ setImageId }) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const { t } = useTranslation('adminEvent');
+  const [isSent, setIsSent] = useState(false);
 
-  const displayImage = path && !open ;
-  const displayRemoveButton = path && !open;
-  const displayAddButton = !path && !open;
+  const displayImage = path && !open && isSent;
+  const displayRemoveButton = path && !open && isSent;
+  const displayAddButton = !open && !isSent;
 
   return (
     <div>
@@ -25,7 +26,15 @@ function Addimage({ setImageId }) {
             {t('ADD_IMAGE')}
           </Button>
         )}
-        {displayRemoveButton && <Button onClick={() => setPath(null)}> {t('REMOVE_IMAGE')}</Button>}
+        {displayRemoveButton && (
+          <Button
+            onClick={() => {
+              setPath(null);
+              setIsSent(false);
+            }}>
+            {t('REMOVE_IMAGE')}
+          </Button>
+        )}
         <Modal
           open={open}
           onClose={handleClose}
@@ -48,10 +57,10 @@ function Addimage({ setImageId }) {
                 </div>
                 <br />
                 <div className="flex justify-center">
-                  <Button onClick={() => setPath(null)}> {t('REMOVE_IMAGE')}</Button>
                   <Button
                     onClick={() => {
                       dispatch(addPicture(path)).then((respone) => {
+                        setIsSent(true);
                         setImageId(respone.payload);
                       });
                     }}>

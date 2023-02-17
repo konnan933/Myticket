@@ -10,7 +10,7 @@ const LOCATIONS_INIT_STATE = {
   locationsLoading: false
 };
 const locationSlice = createSlice({
-  name: 'auth',
+  name: 'location',
   initialState: LOCATIONS_INIT_STATE,
   reducers: {},
   extraReducers: (builder) => {
