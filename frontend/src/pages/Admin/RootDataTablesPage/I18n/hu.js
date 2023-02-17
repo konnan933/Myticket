@@ -14,7 +14,11 @@ const locale = {
   // * eventTypes
   CONFIRM_DELETE_ET: 'Biztosan törölni szeretné a esemény tipust?',
   EDIT_ET: 'Esemény tipus szerkesztése',
-  ADD_ET: 'Esemény tipus hozzáadás'
+  ADD_ET: 'Esemény tipus hozzáadás',
+  // * ticketTypes
+  CONFIRM_DELETE_TT: 'Biztosan törölni szeretné a jegy tipust?',
+  EDIT_TT: 'Jegy tipus szerkesztése',
+  ADD_TT: 'Jegy tipus hozzáadás'
 };
 
 export default locale;

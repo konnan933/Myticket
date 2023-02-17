@@ -14,7 +14,11 @@ const locale = {
   // * eventTypes
   CONFIRM_DELETE_ET: 'Do you want to delete this event type?',
   EDIT_ET: 'Modify event type',
-  ADD_ET: 'Add event type'
+  ADD_ET: 'Add event type',
+  // * ticketTypes
+  CONFIRM_DELETE_TT: 'Do you want to delete this ticket type?',
+  EDIT_TT: 'Modify ticket type',
+  ADD_TT: 'Add ticket type'
 };
 
 export default locale;
