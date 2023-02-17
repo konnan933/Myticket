@@ -125,21 +125,6 @@ export const addEvent = createAsyncThunk('auth/addEvent', async (data, { rejectW
     return rejectWithValue({ data, status });
   }
 });
-export const getEventTypes = createAsyncThunk(
-  'admin/getEventTypes',
-  async (_, { rejectWithValue }) => {
-    try {
-      const response = await api.get(admin.eventTypes);
-      return response.data;
-    } catch (err) {
-      if (!err.response) {
-        throw err;
-      }
-      const { data, status } = err.response;
-      return rejectWithValue({ data, status });
-    }
-  }
-);
 
 export const getUserNames = createAsyncThunk(
   'admin/getUserNames',

@@ -8,7 +8,7 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import districts from 'PageContent/utils/Districts';
 
-function LocationEditForm() {
+function LocationAddForm() {
   const { t } = useTranslation('rootData');
   const { register, handleSubmit } = useForm();
 
@@ -134,4 +134,4 @@ function LocationEditForm() {
     </form>
   );
 }
-export default LocationEditForm;
+export default LocationAddForm;

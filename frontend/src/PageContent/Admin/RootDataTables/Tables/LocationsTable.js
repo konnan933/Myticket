@@ -1,7 +1,4 @@
-import Loader from 'PageContent/utils/Loader';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getLocations } from 'redux/thunks/Location';
+import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -16,15 +13,7 @@ import LocationAdd from '../components/LocationAdd';
 
 function LocationsTable() {
   const { t } = useTranslation('rootData');
-  const dispatch = useDispatch();
-  const { locations, locationsLoading } = useSelector((state) => state.location);
-
-  useEffect(() => {
-    dispatch(getLocations());
-  }, []);
-  if (locationsLoading || locations.length === 0) {
-    return <Loader />;
-  }
+  const { locations } = useSelector((state) => state.location);
 
   const returnEmpty = (data) => {
     if (data === '' || data === null) {
@@ -35,7 +24,7 @@ function LocationsTable() {
   return (
     <>
       <div className="flex justify-center w-full">
-        <TableContainer style={{ margin: 10, width: '70%' }} component={Paper}>
+        <TableContainer style={{ margin: 10, width: '80%' }} component={Paper}>
           <Table aria-label="customized table">
             <TableHead>
               <TableRow>

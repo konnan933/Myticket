@@ -9,6 +9,7 @@ const locale = {
   STREET: 'Street',
   ROOM: 'Room',
   CONFIRM_DELETE_LOCATION: 'Do you want to delete this location?',
+  CONFIRM_DELETE_ET: 'Do you want to delete this event type?',
   MANAGE_LOCATION: 'Modify location'
 };
 
