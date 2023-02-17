@@ -33,10 +33,12 @@ function AddEventForm() {
   const [imageId, setImageId] = useState('');
   const [startDateError, setStartDateError] = useState(false);
   const [endDateError, setEndDateError] = useState(false);
-  const [endDate, setEndDate] = useState(null);
-  const date = moment(new Date()).format('yyyy-MM-DDThh:mm');
-  const [startDate, setStartDate] = useState(date);
-  const { eventTypes, userNames } = useSelector((state) => state.admin);
+  const [startDateErrorMsg, setStartDateErrorMsg] = useState('');
+  const [endDateErrorMsg, setEndDateErrorMsg] = useState('');
+  const date = moment(new Date().setDate(new Date().getDate() + 1)).format('yyyy-MM-DDThh:mm');
+  const [startDate, setStartDate] = useState('');
+  const { userNames } = useSelector((state) => state.admin);
+  const { eventTypes } = useSelector((state) => state.eventTypes);
 
   const eventNameChangeHandler = (event) => {
     setEventName(event.target.value);
@@ -58,23 +60,33 @@ function AddEventForm() {
     setEventType(event.target.value);
   };
 
+
   const startDateChangeHandler = (event) => {
     setStartDate(event.target.value);
     console.log(startDate);
-    console.log(startDate < date);
-    if (startDate < date) {
+    if (event.target.value <= date) {
       setStartDateError(true);
+      setStartDateErrorMsg(t('START_DATE_LOWER'));
     } else {
       setStartDateError(false);
+      setStartDateErrorMsg('');
     }
   };
 
   const endDateChangeHandler = (event) => {
-    setEndDate(event.target.value);
-    if (endDate <= startDate) {
+    if (event.target.value <= startDate) {
       setEndDateError(true);
+      setEndDateErrorMsg(t('END_DATE_LOWER_START_DATE'));
     } else {
       setEndDateError(false);
+    }
+
+    if (event.target.value <= date) {
+      setEndDateError(true);
+      setEndDateErrorMsg(t('END_DATE_LOWER'));
+    } else {
+      setEndDateError(false);
+      setEndDateErrorMsg('');
     }
   };
 
@@ -188,10 +200,10 @@ function AddEventForm() {
               <TextField
                 {...register('kezd_datum')}
                 error={startDateError}
+                defaultValue={date}
                 InputLabelProps={{ shrink: true }}
                 onChange={startDateChangeHandler}
-                helperText="Incorrect entry."
-                value={startDate}
+                helperText={startDateErrorMsg}
                 label={t('START_DATE')}
                 type="datetime-local"
                 className="border-2 px-2 pt-2"
@@ -200,10 +212,9 @@ function AddEventForm() {
               <TextField
                 {...register('veg_datum')}
                 InputLabelProps={{ shrink: true }}
-                value={endDate}
                 onChange={endDateChangeHandler}
                 error={endDateError}
-                helperText="Incorrect entry."
+                helperText={endDateErrorMsg}
                 label={t('END_DATE')}
                 type="datetime-local"
                 className="border-2 px-2 pt-2"
