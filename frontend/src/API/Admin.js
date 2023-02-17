@@ -5,7 +5,6 @@ const admin = {
   event: 'api/event',
   location: 'api/location',
   locationNames: 'api/locationnames',
-  eventTypes: 'api/etype',
   addPicture: 'api/upload/images',
   eventPicture: 'http://localhost:8000/api/event/picture/'
 };

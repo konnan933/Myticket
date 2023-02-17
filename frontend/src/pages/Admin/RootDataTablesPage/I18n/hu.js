@@ -9,6 +9,7 @@ const locale = {
   STREET: 'Utca',
   ROOM: 'Terem',
   CONFIRM_DELETE_LOCATION: 'Biztosan törölni szeretné a helyszínt?',
+  CONFIRM_DELETE_ET: 'Biztosan törölni szeretné a esemény tipust?',
   MANAGE_LOCATION: 'Helyszin szerkeztése'
 };
 
