@@ -16,7 +16,16 @@ const locale = {
   MANAGE_EVENT: 'Esemény szerkeztése',
   EVENT_NAME: 'Esemény neve',
   BACK_TO: 'Elöző oldal',
-  DETAILED_INFO: 'Kattintson az esemény nevére a részletes oldalért'
+  DETAILED_INFO: 'Kattintson az esemény nevére a részletes oldalért',
+  BUISNESS_EMAIL: 'Buisness email',
+  EVENT_TYPE: 'Esemény típusa',
+  ADD_IMAGE: 'Kép hozzáadása',
+  REMOVE_IMAGE: 'Kép törlése',
+  SEND_IMAGE: 'Kép küldése',
+  SEND_EVENT: 'Esemény küldése',
+  DESCRIPTION: 'Leírás',
+  START_DATE: 'Esemény kezdete',
+  END_DATE: 'Esemény vége'
 };
 
 export default locale;
