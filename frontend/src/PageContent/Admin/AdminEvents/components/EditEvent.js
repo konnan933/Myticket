@@ -18,7 +18,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import moment from 'moment';
 import Addimage from 'PageContent/utils/AddImage';
-import { addEvent } from 'redux/thunks/Admin';
+import { putEvent } from 'redux/thunks/Admin';
+import Loader from 'PageContent/utils/Loader';
 
 function EditEvent({ event }) {
   const [open, setOpen] = useState(false);
@@ -31,11 +32,11 @@ function EditEvent({ event }) {
   const [buisnessEmail, setBuisnessEmail] = useState(event.buisness_email);
   const [buisnessPhoneNum, setBuisnessPhoneNum] = useState(event.buisness_tel);
   const [eventDescription, setEventDescription] = useState(event.leiras);
-  const [eventType, setEventType] = useState(event.ekName);
+  const [eventType, setEventType] = useState(event.ekId);
   const [organizerName, setOrganizername] = useState(event.fel_nev);
   const [organizerNameinput, setOrganizerInput] = useState('');
   const [locationName, setLocationName] = useState(event.locationName);
-  const { locationNames } = useSelector((state) => state.location);
+  const { locationNames, locationNamesLoading } = useSelector((state) => state.location);
   const [locationNameinput, setLocationNameInput] = useState('');
   const [imageId, setImageId] = useState('');
   const [startDateError, setStartDateError] = useState(false);
@@ -43,9 +44,14 @@ function EditEvent({ event }) {
   const [startDateErrorMsg, setStartDateErrorMsg] = useState('');
   const [endDateErrorMsg, setEndDateErrorMsg] = useState('');
   const date = moment(new Date().setDate(new Date().getDate() + 1)).format('yyyy-MM-DDThh:mm');
-  const [startDate, setStartDate] = useState('');
-  const { userNames } = useSelector((state) => state.admin);
-  const { eventTypes } = useSelector((state) => state.eventTypes);
+  const [startDate, setStartDate] = useState(moment(event.kezd_datum).format('yyyy-MM-DDThh:mm'));
+  const endDate = moment(event.veg_datum).format('yyyy-MM-DDThh:mm');
+  const { userNames, userNamesLoading } = useSelector((state) => state.admin);
+  const { eventTypes, eventTypesLoading } = useSelector((state) => state.eventTypes);
+
+  const isEventImage = event.kep === null || event.kep === undefined;
+
+  const datasLoading = userNamesLoading || eventTypesLoading || locationNamesLoading;
 
   const eventNameChangeHandler = (event) => {
     setEventName(event.target.value);
@@ -76,16 +82,13 @@ function EditEvent({ event }) {
       setStartDateErrorMsg('');
     }
   };
-  console.log(event);
   const endDateChangeHandler = (event) => {
     if (event.target.value <= startDate) {
       setEndDateError(true);
       setEndDateErrorMsg(t('END_DATE_LOWER_START_DATE'));
-      console.log(endDateErrorMsg);
     } else if (event.target.value <= date) {
       setEndDateError(true);
       setEndDateErrorMsg(t('END_DATE_LOWER'));
-      console.log(endDateErrorMsg);
     } else {
       setEndDateError(false);
       setEndDateErrorMsg('');
@@ -111,178 +114,182 @@ function EditEvent({ event }) {
               boxShadow: 24,
               borderRadius: 7
             }}>
-            <div className="flex justify-center flex-col">
-              <div className="flex justify-center p-16">
-                <h2>{t('ADD_EVENT')}</h2>
-              </div>
-              <div className="flex justify-center">
-                <form
-                  className="w-4/5"
-                  onSubmit={handleSubmit((data) => {
-                    data.kezd_datum = moment(data.kezd_datum).format('YYYY-MM-DD hh:mm:ss');
-                    data.veg_datum = moment(data.veg_datum).format('YYYY-MM-DD hh:mm:ss');
-                    data.user = organizerName.id;
-                    data.helyszin = locationName.id;
-                    data.kep = imageId;
-                    console.log(data);
-                    dispatch(addEvent(data));
-                  })}>
-                  <fieldset>
-                    <div className="flex justify-center pb-16">
-                      <TextField
-                        {...register('cim')}
-                        required
-                        autoComplete="on"
-                        type="text"
-                        value={eventName}
-                        onChange={eventNameChangeHandler}
-                        label={t('EVENT_NAME')}
-                        className="border-2 w-full mt-5"
-                      />
-                    </div>
-                    <div className="grid grid-cols-2 gap-16">
-                      <Autocomplete
-                        options={userNames}
-                        getOptionLabel={(option) =>
-                          option.fel_nev ? option.fel_nev : event.fel_nev
-                        }
-                        value={organizerName}
-                        onChange={(event, newValue) => {
-                          setOrganizername(newValue);
-                        }}
-                        inputValue={organizerNameinput}
-                        onInputChange={(event, newInputValue) => {
-                          setOrganizerInput(newInputValue);
-                        }}
-                        id="organizer-name_picker"
-                        renderInput={(params) => (
-                          <TextField
-                            required
-                            value={organizerName}
-                            {...params}
-                            label={t('ORGANIZER')}
-                          />
-                        )}
-                      />
-                      <Autocomplete
-                        className="w-full"
-                        options={locationNames}
-                        getOptionLabel={(option) =>
-                          option.name ? option.name : event.locationName
-                        }
-                        value={locationName}
-                        onChange={(event, newValue) => {
-                          setLocationName(newValue);
-                        }}
-                        inputValue={locationNameinput}
-                        onInputChange={(event, newInputValue) => {
-                          setLocationNameInput(newInputValue);
-                        }}
-                        id="location-name_picker"
-                        renderInput={(params) => (
-                          <TextField
-                            required
-                            value={locationName}
-                            {...params}
-                            label={t('LOCATION')}
-                          />
-                        )}
-                      />
-
-                      <TextField
-                        {...register('buisness_email')}
-                        required
-                        type="email"
-                        autoComplete="on"
-                        value={buisnessEmail}
-                        onChange={buisnessEmailChangeHandler}
-                        label={t('BUISNESS_EMAIL')}
-                        className="border-2"
-                      />
-
-                      <FormControl>
-                        <InputLabel shrink={true} id="demo-simple-select-label">
-                          {t('EVENT_TYPE')}
-                        </InputLabel>
-                        <Select
-                          {...register('esem_kat')}
-                          value={eventType}
-                          notched={true}
+            {datasLoading ? (
+              <Loader />
+            ) : (
+              <div className="flex justify-center flex-col">
+                <div className="flex justify-center p-10">
+                  <h2>{t('EDIT_EVENT')}</h2>
+                </div>
+                <div className="flex justify-center">
+                  <form
+                    className="w-4/5"
+                    onSubmit={handleSubmit((data) => {
+                      data.id = event.eventId;
+                      data.kezd_datum = moment(data.kezd_datum).format('YYYY-MM-DD hh:mm:ss');
+                      data.veg_datum = moment(data.veg_datum).format('YYYY-MM-DD hh:mm:ss');
+                      data.user =
+                        organizerName.id === undefined ? event.organizerId : organizerName.id;
+                      data.helyszin =
+                        locationName.id === undefined ? event.locationId : locationName.id;
+                      data.kep = imageId;
+                      dispatch(putEvent(data, event.id));
+                    })}>
+                    <fieldset>
+                      <div className="flex justify-center pb-9">
+                        <TextField
+                          {...register('cim')}
                           required
-                          label={t('EVENT_TYPE')}
-                          onChange={eventTypeChangeHandler}
-                          inputProps={{ 'aria-label': 'Without label' }}>
-                          {eventTypes.map((eventType) => (
-                            <MenuItem
-                              defaultValue={event.ekName}
-                              key={eventType.id}
-                              value={eventType.id}>
-                              {eventType.name}
-                            </MenuItem>
-                          ))}
-                        </Select>
-                      </FormControl>
+                          autoComplete="on"
+                          type="text"
+                          value={eventName}
+                          onChange={eventNameChangeHandler}
+                          label={t('EVENT_NAME')}
+                          className="border-2 w-full mt-5"
+                        />
+                      </div>
+                      <div className="grid grid-cols-2 gap-10">
+                        <Autocomplete
+                          options={userNames}
+                          getOptionLabel={(option) =>
+                            option.fel_nev ? option.fel_nev : event.fel_nev
+                          }
+                          value={organizerName}
+                          onChange={(event, newValue) => {
+                            setOrganizername(newValue);
+                          }}
+                          inputValue={organizerNameinput}
+                          onInputChange={(event, newInputValue) => {
+                            setOrganizerInput(newInputValue);
+                          }}
+                          id="organizer-name_picker"
+                          renderInput={(params) => (
+                            <TextField
+                              required
+                              value={organizerName}
+                              {...params}
+                              label={t('ORGANIZER')}
+                            />
+                          )}
+                        />
+                        <Autocomplete
+                          className="w-full"
+                          options={locationNames}
+                          getOptionLabel={(option) =>
+                            option.name ? option.name : event.locationName
+                          }
+                          value={locationName}
+                          onChange={(event, newValue) => {
+                            setLocationName(newValue);
+                          }}
+                          inputValue={locationNameinput}
+                          onInputChange={(event, newInputValue) => {
+                            setLocationNameInput(newInputValue);
+                          }}
+                          id="location-name_picker"
+                          renderInput={(params) => (
+                            <TextField
+                              required
+                              value={locationName}
+                              {...params}
+                              label={t('LOCATION')}
+                            />
+                          )}
+                        />
 
-                      <TextField
-                        {...register('buisness_tel')}
+                        <TextField
+                          {...register('buisness_email')}
+                          required
+                          type="email"
+                          autoComplete="on"
+                          value={buisnessEmail}
+                          onChange={buisnessEmailChangeHandler}
+                          label={t('BUISNESS_EMAIL')}
+                          className="border-2"
+                        />
+
+                        <FormControl>
+                          <InputLabel shrink={true} id="demo-simple-select-label">
+                            {t('EVENT_TYPE')}
+                          </InputLabel>
+                          <Select
+                            {...register('esem_kat')}
+                            value={eventType}
+                            notched={true}
+                            required
+                            label={t('EVENT_TYPE')}
+                            onChange={eventTypeChangeHandler}
+                            inputProps={{ 'aria-label': 'Without label' }}>
+                            {eventTypes.map((eventType) => (
+                              <MenuItem key={eventType.id} value={eventType.id}>
+                                {eventType.name}
+                              </MenuItem>
+                            ))}
+                          </Select>
+                        </FormControl>
+
+                        <TextField
+                          {...register('buisness_tel')}
+                          required
+                          autoComplete="on"
+                          type="text"
+                          value={buisnessPhoneNum}
+                          onChange={buisnessPhoneNumChangeHandler}
+                          label={t('BUISNESS_PHONE_NUMBER')}
+                          className="border-2"
+                        />
+
+                        <TextField
+                          {...register('kezd_datum')}
+                          error={startDateError}
+                          defaultValue={startDate}
+                          onSelect={(event) => setStartDate(event.target.value)}
+                          InputLabelProps={{ shrink: true }}
+                          onChange={startDateChangeHandler}
+                          helperText={startDateErrorMsg}
+                          label={t('START_DATE')}
+                          type="datetime-local"
+                          className="border-2 px-2 pt-2"
+                        />
+
+                        <TextField
+                          {...register('veg_datum')}
+                          InputLabelProps={{ shrink: true }}
+                          onChange={endDateChangeHandler}
+                          error={endDateError}
+                          defaultValue={endDate}
+                          helperText={endDateErrorMsg}
+                          label={t('END_DATE')}
+                          type="datetime-local"
+                          className="border-2 px-2 pt-2"
+                        />
+                      </div>
+                      <TextareaAutosize
+                        {...register('leiras')}
                         required
-                        autoComplete="on"
                         type="text"
-                        value={buisnessPhoneNum}
-                        onChange={buisnessPhoneNumChangeHandler}
-                        label={t('BUISNESS_PHONE_NUMBER')}
-                        className="border-2"
+                        value={eventDescription}
+                        onChange={eventDescriptionChangeHandler}
+                        placeholder={t('DESCRIPTION')}
+                        className="border-2 w-full p-3 mt-5"
                       />
-
-                      <TextField
-                        {...register('kezd_datum')}
-                        error={startDateError}
-                        defaultValue={date}
-                        onSelect={(event) => setStartDate(event.target.value)}
-                        InputLabelProps={{ shrink: true }}
-                        onChange={startDateChangeHandler}
-                        helperText={startDateErrorMsg}
-                        label={t('START_DATE')}
-                        type="datetime-local"
-                        className="border-2 px-2 pt-2"
-                      />
-
-                      <TextField
-                        {...register('veg_datum')}
-                        InputLabelProps={{ shrink: true }}
-                        onChange={endDateChangeHandler}
-                        error={endDateError}
-                        helperText={endDateErrorMsg}
-                        label={t('END_DATE')}
-                        type="datetime-local"
-                        className="border-2 px-2 pt-2"
-                      />
+                      {isEventImage && <Addimage setImageId={setImageId} />}
+                    </fieldset>
+                    <div className="flex justify-center p-9">
+                      <Button
+                        variant="contained"
+                        color="info"
+                        className=" w-48"
+                        aria-label="Event add"
+                        type="submit"
+                        size="lagre">
+                        {t('UPDATE_EVENT')}
+                      </Button>
                     </div>
-                    <TextareaAutosize
-                      {...register('leiras')}
-                      required
-                      type="text"
-                      value={eventDescription}
-                      onChange={eventDescriptionChangeHandler}
-                      placeholder={t('DESCRIPTION')}
-                      className="border-2 w-full p-3 mt-5"
-                    />
-                    <Addimage setImageId={setImageId} />
-                  </fieldset>
-                  <div className="flex justify-center p-6">
-                    <Button
-                      variant="contained"
-                      color="info"
-                      className=" w-48"
-                      aria-label="Event add"
-                      type="submit"
-                      size="lagre">
-                      {t('SEND_EVENT')}
-                    </Button>
-                  </div>
-                </form>
+                  </form>
+                </div>
               </div>
-            </div>
+            )}
           </Box>
         </Modal>
       </div>

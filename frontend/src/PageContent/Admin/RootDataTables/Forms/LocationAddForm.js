@@ -86,15 +86,18 @@ function LocationAddForm() {
               ))}
             </Select>
           </FormControl>
-          <TextField
-            {...register('street')}
-            required
-            type="text"
-            value={street}
-            onChange={streetChangeHandler}
-            label={t('STREET')}
-            className="border-2"
-          />
+          <div className="flex flex-row">
+            <TextField
+              {...register('street')}
+              required
+              type="text"
+              value={street}
+              onChange={streetChangeHandler}
+              label={t('STREET')}
+              className="border-2"
+            />
+            <p className='p-4'>{t('STREET')}</p>
+          </div>
           <TextField
             {...register('housenumber')}
             required

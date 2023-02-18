@@ -87,6 +87,7 @@ Route::get('api/event/category/{event}', [EsemenyekController::class, 'getEventB
 Route::get('api/event/filter/{date}/{place}/{category}', [EsemenyekController::class, 'eventFilter']);
 Route::get('api/eventdetails', [EsemenyekController::class, 'getEventDetails']);
 Route::get('api/eventdetails/{id}', [EsemenyekController::class, 'getSingleEventDetails']);
+Route::get('api/userevents/{id}', [EsemenyekController::class, 'getUserEvents']);
 
 
 

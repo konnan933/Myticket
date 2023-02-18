@@ -74,11 +74,9 @@ function AddEventForm() {
     if (event.target.value <= startDate) {
       setEndDateError(true);
       setEndDateErrorMsg(t('END_DATE_LOWER_START_DATE'));
-      console.log(endDateErrorMsg);
     } else if (event.target.value <= date) {
       setEndDateError(true);
       setEndDateErrorMsg(t('END_DATE_LOWER'));
-      console.log(endDateErrorMsg);
     } else {
       setEndDateError(false);
       setEndDateErrorMsg('');
@@ -99,7 +97,6 @@ function AddEventForm() {
             data.user = organizerName.id;
             data.helyszin = locationName.id;
             data.kep = imageId;
-            console.log(data);
             dispatch(addEvent(data));
           })}>
           <fieldset>

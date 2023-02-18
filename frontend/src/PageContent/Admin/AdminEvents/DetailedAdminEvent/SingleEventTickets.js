@@ -21,7 +21,6 @@ function SingleEventTickets() {
   if (eventTicketsLoading) {
     return <Loader />;
   }
-  console.log(eventTickets);
 
   return (
     <div>

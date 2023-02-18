@@ -25,11 +25,11 @@ return new class extends Migration
             $table->string('room')->nullable()->default('');
         });
 
-        Helyszinek::create(['name' => 'Alterego', 'postcode' => '2320', 'street' => 'Szep street', 'housenumber' => '10']);
-        Helyszinek::create(['name' => 'Kek osztriga', 'postcode' => '2330', 'street' => 'Ok street', 'housenumber' => '12']);
-        Helyszinek::create(['name' => 'A38', 'postcode' => '2120', 'street' => 'Mezo street', 'housenumber' => '110']);
-        Helyszinek::create(['name' => 'Cat', 'postcode' => '1220', 'street' => 'Alter street', 'housenumber' => '1']);
-        Helyszinek::create(['name' => 'Dog', 'postcode' => '1210', 'street' => 'Bolti street', 'housenumber' => '101']);
+        Helyszinek::create(['name' => 'Alterego', 'postcode' => '2320', 'street' => 'Szep', 'housenumber' => '10']);
+        Helyszinek::create(['name' => 'Kek osztriga', 'postcode' => '2330', 'street' => 'Ok', 'housenumber' => '12']);
+        Helyszinek::create(['name' => 'A38', 'postcode' => '2120', 'street' => 'Mezo', 'housenumber' => '110']);
+        Helyszinek::create(['name' => 'Cat', 'postcode' => '1220', 'street' => 'Alter', 'housenumber' => '1']);
+        Helyszinek::create(['name' => 'Dog', 'postcode' => '1210', 'street' => 'Bolti', 'housenumber' => '101']);
     }
 
     /**

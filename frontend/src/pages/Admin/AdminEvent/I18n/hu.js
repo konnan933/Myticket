@@ -34,7 +34,11 @@ const locale = {
   ALL_TICKET: 'Összes jegy',
   BOOKED_TICKET: 'Lefoglalt mennyiség',
   FREE_TICKET: 'Szabad mennyiség',
-  PORTION : 'Darab'
+  PORTION: 'Darab',
+  EDIT_EVENT: 'Esemény szerkeztése',
+  UPDATE_EVENT: 'Esemény frissítése',
+  USER_EVENTS: 'felhasználó eseményei',
+  IF_DELETE_USER: 'Ha törli a felhasználót, akkor a hozzátartozó események is törlődni fognak!',
+  CONFIRM_DELETE_USER: 'Biztosan törölni szeretné?'
 };
-
 export default locale;

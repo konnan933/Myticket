@@ -6,6 +6,7 @@ const admin = {
   location: 'api/location',
   locationNames: 'api/locationnames',
   addPicture: 'api/upload/images',
-  eventPicture: 'http://localhost:8000/api/event/picture/'
+  eventPicture: 'http://localhost:8000/api/event/picture/',
+  userEvents: 'api/userevents'
 };
 export default admin;

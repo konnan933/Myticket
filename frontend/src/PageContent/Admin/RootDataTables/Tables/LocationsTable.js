@@ -51,7 +51,9 @@ function LocationsTable() {
                   </StyledTableCell>
                   <StyledTableCell align="left">{oneLoc.name}</StyledTableCell>
                   <StyledTableCell align="left">{oneLoc.postcode}</StyledTableCell>
-                  <StyledTableCell align="left">{oneLoc.street}</StyledTableCell>
+                  <StyledTableCell align="left">{`${oneLoc.street} ${t(
+                    'STREET'
+                  )}`}</StyledTableCell>
                   <StyledTableCell align="left">{oneLoc.housenumber}</StyledTableCell>
                   <StyledTableCell align="left">{returnEmpty(oneLoc.district)}</StyledTableCell>
                   <StyledTableCell align="left">{returnEmpty(oneLoc.floor)}</StyledTableCell>

@@ -126,22 +126,20 @@ export const addEvent = createAsyncThunk('auth/addEvent', async (data, { rejectW
   }
 });
 
-export const putEvent = createAsyncThunk(
-  'auth/putEvent',
-  async (data, eventId, { rejectWithValue }) => {
-    try {
-      const response = await api.put(admin.event + '/' + eventId, data);
-      return response.data;
-    } catch (err) {
-      if (!err.response) {
-        throw err;
-      }
+export const putEvent = createAsyncThunk('admin/putEvent', async (data, { rejectWithValue }) => {
+  try {
+    const response = await api.put(`${admin.event}/${data.id}`, data);
+    return response.data;
+  } catch (err) {
 
-      const { data, status } = err.response;
-      return rejectWithValue({ data, status });
+    if (!err.response) {
+      throw err;
     }
+
+    const { data, status } = err.response;
+    return rejectWithValue({ data, status });
   }
-);
+});
 
 export const getUserNames = createAsyncThunk(
   'admin/getUserNames',
@@ -168,7 +166,21 @@ export const addPicture = createAsyncThunk(
       const response = await api.post(admin.addPicture, fd);
       return response.data;
     } catch (err) {
-      console.log(err);
+      if (!err.response) {
+        throw err;
+      }
+      const { data, status } = err.response;
+      return rejectWithValue({ data, status });
+    }
+  }
+);
+export const getUserEvents = createAsyncThunk(
+  'admin/getUserEvents',
+  async (id, { rejectWithValue }) => {
+    try {
+      const response = await api.get(`${admin.userEvents}/${id}`);
+      return response.data;
+    } catch (err) {
       if (!err.response) {
         throw err;
       }

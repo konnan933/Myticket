@@ -34,7 +34,11 @@ const locale = {
   ALL_TICKET: 'All ticket',
   BOOKED_TICKET: 'Booked quantity',
   FREE_TICKET: 'Free quantity',
-  PORTION: 'Portion'
+  PORTION: 'Portion',
+  EDIT_EVENT: 'Edit event',
+  UPDATE_EVENT: 'Update event',
+  USER_EVENTS: 'user events',
+  IF_DELETE_USER: 'If you delete this user, the linked events will be deletet too!'
 };
 
 export default locale;

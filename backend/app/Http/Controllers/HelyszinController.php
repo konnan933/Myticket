@@ -60,8 +60,8 @@ class HelyszinController extends Controller
     {
         $helyszin_cim = '';
         $helyszin = Helyszinek::find($id);
-        $ir_szam = $helyszin->postcode;
-        $kerulet = $helyszin->kerulet;
+        $postcode = $helyszin->postcode;
+        $distirct = $helyszin->distirct;
         $street = $helyszin->street;
         $housenumber = $helyszin->housenumber;
         $floor = $helyszin->floor;
@@ -74,7 +74,7 @@ class HelyszinController extends Controller
             $room = ' Terem ' . $floor;
         }
 
-        $helyszin_cim = $ir_szam . ' ' . $kerulet . $street . ' ' . $housenumber . $floor . $room;
+        $helyszin_cim = $postcode . ' ' . $distirct . $street .'utca'. ' ' . $housenumber . $floor . $room;
 
         return $helyszin_cim;
     }

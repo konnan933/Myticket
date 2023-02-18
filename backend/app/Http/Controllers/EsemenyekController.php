@@ -52,7 +52,6 @@ class EsemenyekController extends Controller
         $esemeny->cim = $request->cim;
         $esemeny->user = $request->user;
         $esemeny->helyszin = $request->helyszin;
-
         $esemeny->kezd_datum = $request->kezd_datum;
         $esemeny->veg_datum = $request->veg_datum;
         $esemeny->leiras = $request->leiras;
@@ -60,11 +59,11 @@ class EsemenyekController extends Controller
         $esemeny->buisness_tel = $request->buisness_tel;
         $esemeny->esem_kat = $request->esem_kat;
         $esemeny->jutalek = 17;
-        $esemeny->statusz = $request->statusz;
+        $esemeny->statusz = 0;
         $esemeny->kep = $request->kep;
         $esemeny->save();
     }
-
+/* 
     public function getUserEvents($user)
     {
 
@@ -73,7 +72,7 @@ class EsemenyekController extends Controller
             ->get();
 
         return $userEvents;
-    }
+    } */
 
     public function getEventRevenue($event)
     {
@@ -240,7 +239,7 @@ class EsemenyekController extends Controller
     public function getEventDetails()
     {
 
-        $eventDetails = DB::table('esemenyek')->select('esemenyek.id as eventId', 'esemenyek.cim', 'esemenyek.kezd_datum', 'esemenyek.veg_datum', 'esemenyek.leiras', 'esemenyek.buisness_email', 'esemenyek.buisness_tel', 'esemenyek.jutalek', 'esemenyek.statusz', 'esemenykategoria.name', 'helyszinek.postcode', 'helyszinek.district', 'helyszinek.street', 'helyszinek.housenumber', 'helyszinek.floor', 'helyszinek.room', 'users.fel_nev', 'helyszinek.id as locationId', 'users.id as organizerId', 'esemenykategoria.id as ekId', 'helyszinek.name as locationName', 'esemenykategoria.name as ekName')
+        $eventDetails = DB::table('esemenyek')->select('esemenyek.id as eventId', 'esemenyek.cim', 'esemenyek.kezd_datum', 'esemenyek.veg_datum', 'esemenyek.leiras', 'esemenyek.buisness_email', 'esemenyek.buisness_tel', 'esemenyek.jutalek', 'esemenyek.statusz', 'helyszinek.postcode', 'helyszinek.district', 'helyszinek.street', 'helyszinek.housenumber', 'helyszinek.floor', 'helyszinek.room', 'users.fel_nev', 'helyszinek.id as locationId', 'users.id as organizerId', 'esemenykategoria.id as ekId', 'helyszinek.name as locationName', 'esemenykategoria.name as ekName', 'esemenyek.kep')
             ->join('helyszinek', 'helyszinek.id', '=', 'esemenyek.helyszin')
             ->join('esemenykategoria', 'esemenykategoria.id', '=', 'esemenyek.esem_kat')
             ->join('users', 'users.id', '=', 'esemenyek.user')
@@ -260,4 +259,14 @@ class EsemenyekController extends Controller
 
         return $eventDetails;
     }
+
+    public function getUserEvents($userId){
+            $userEvents = DB::table('esemenyek')->select('esemenyek.id as eventId', 'esemenyek.cim', 'esemenyek.kezd_datum', 'esemenyek.veg_datum', 'users.fel_nev', 'users.id as organizerId',)
+            ->join('users', 'users.id', '=', 'esemenyek.user')
+            ->where('users.id', '=', $userId)
+            ->get();
+
+        return $userEvents;
+    }
+
 }

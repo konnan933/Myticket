@@ -55,7 +55,6 @@ export const updateLocation = createAsyncThunk(
   'location/updateLocation',
   async (data, { dispatch, rejectWithValue }) => {
     try {
-      console.log(data);
       await api.put(`${admin.location}/${data.id}`, data).then(() => {
         dispatch(getLocations());
       });
