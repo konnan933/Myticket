@@ -1,7 +1,7 @@
 import { Button } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
-import { deleteEvent } from 'redux/thunks/Admin';
+import { deleteUser } from 'redux/thunks/Admin';
 
 function ConfirmUserDelete({ id, setOpen }) {
   const { t } = useTranslation('adminEvent');
@@ -12,7 +12,7 @@ function ConfirmUserDelete({ id, setOpen }) {
 
   const onDelete = () => {
     handleClose();
-    dispatch(deleteEvent(id));
+    dispatch(deleteUser(id));
   };
   return (
     <div className="flex justify-evenly">
