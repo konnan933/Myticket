@@ -9,6 +9,7 @@ const locale = {
   EVENT_D_PAGE: 'esemény oldala',
   EVENT_PICTURE: 'Esemény képe',
   CHANGE_PICTURE: 'Kép csere',
+  CONFIRM_CHANGE_PICTURE: 'Elöző kép ki lesz törölve biztos le akarja cserélni?',
   ADD_EVENT: 'Esemény hozzáadása',
   EVENTNAME: 'Cím',
   ORGANIZER: 'Szervező',

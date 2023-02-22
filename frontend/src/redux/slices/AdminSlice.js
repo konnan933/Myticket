@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   getEvents,
   getSingleEvent,
+  getSingleEventsDetailed,
   getUserEvents,
   getUserNames,
   getUsers
@@ -16,6 +17,8 @@ const ADMIN_INIT_STATE = {
   events: [],
   singleEvent: {},
   singleEventLoading: false,
+  singleDetailedEvent: {},
+  singleDetailedEventLoading: false,
   userNames: [],
   userEvents: [],
   userNamesLoading: false,
@@ -77,6 +80,17 @@ const adminSlice = createSlice({
     });
     builder.addCase(getUserEvents.rejected, (state) => {
       state.userEventsLoading = false;
+    });
+
+    builder.addCase(getSingleEventsDetailed.pending, (state) => {
+      state.singleDetailedEventLoading = true;
+    });
+    builder.addCase(getSingleEventsDetailed.fulfilled, (state, action) => {
+      state.singleDetailedEventLoading = false;
+      state.singleDetailedEvent = action.payload[0];
+    });
+    builder.addCase(getSingleEventsDetailed.rejected, (state) => {
+      state.singleDetailedEventLoading = false;
     });
   }
 });
