@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\deviza;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DevizaController extends Controller
 {
@@ -36,5 +37,13 @@ class DevizaController extends Controller
         $deviza->penznem = $request->penznem;
         $deviza->penz_val = $request->penz_val;
         $deviza->save();
+    }
+
+     public function getCurrencyNames()
+    {
+        $currency = DB::table('deviza')
+            ->select('penznem')
+            ->get();
+        return $currency;
     }
 }

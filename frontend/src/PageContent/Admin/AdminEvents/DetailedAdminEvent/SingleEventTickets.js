@@ -12,11 +12,16 @@ import { StyledTableCell, StyledTableRow } from 'PageContent/utils/TableStyles';
 
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import AddTicket from './components/AddTicket';
+import DeleteTicket from './components/DeleteTicket';
+import EditTicket from './components/EditTicket';
 
 function SingleEventTickets() {
   const { t } = useTranslation('adminEvent');
 
   const { eventTickets, eventTicketsLoading } = useSelector((state) => state.ticket);
+
+  console.log(eventTickets);
 
   if (eventTicketsLoading) {
     return <Loader />;
@@ -32,6 +37,9 @@ function SingleEventTickets() {
           <Table aria-label="customized table">
             <TableHead>
               <TableRow>
+                <StyledTableCell align="left">
+                  <AddTicket />
+                </StyledTableCell>
                 <StyledTableCell align="left">{t('TICKET_TYPE_NAME')}</StyledTableCell>
                 <StyledTableCell align="left">{t('ALL_TICKET')}</StyledTableCell>
                 <StyledTableCell align="left">{t('BOOKED_TICKET')}</StyledTableCell>
@@ -41,6 +49,12 @@ function SingleEventTickets() {
             <TableBody>
               {eventTickets.map((ticket) => (
                 <StyledTableRow key={ticket.eszmei_jegy_id}>
+                  <StyledTableCell align="left">
+                    <div className="flex">
+                      <DeleteTicket ticketId={ticket.eszmei_jegy_id} />
+                      <EditTicket event={ticket} />
+                    </div>
+                  </StyledTableCell>
                   <StyledTableCell align="left">{ticket.name}</StyledTableCell>
                   <StyledTableCell align="left">{`${ticket.ossz_menny} ${t(
                     'PORTION'

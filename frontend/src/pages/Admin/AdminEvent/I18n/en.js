@@ -39,7 +39,12 @@ const locale = {
   EDIT_EVENT: 'Edit event',
   UPDATE_EVENT: 'Update event',
   USER_EVENTS: 'user events',
-  IF_DELETE_USER: 'If you delete this user, the linked events will be deletet too!'
+  IF_DELETE_USER: 'If you delete this user, the linked events will be deletet too!',
+  CURRENCY: 'Currency',
+  PRICE: 'Price',
+  SALE_START: 'Sale start',
+  SALE_DATE_LOWER: 'The sale start date cannot be higher than the event end date',
+  TICKET_TYPE: 'Ticket type'
 };
 
 export default locale;

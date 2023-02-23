@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getEventTickets } from 'redux/thunks/Ticket';
+import { deleteEventTicket, getEventTickets } from 'redux/thunks/Ticket';
 
 const TICKET_INIT_STATE = {
   eventTicketsLoading: false,
-  eventTickets: []
+  eventTickets: [],
+  deleteEventTicketLoading: false
 };
 const ticketSlice = createSlice({
   name: 'ticket',
@@ -19,6 +20,15 @@ const ticketSlice = createSlice({
     });
     builder.addCase(getEventTickets.rejected, (state) => {
       state.eventTicketsLoading = false;
+    });
+    builder.addCase(deleteEventTicket.pending, (state) => {
+      state.deleteEventTicketLoading = true;
+    });
+    builder.addCase(deleteEventTicket.fulfilled, (state) => {
+      state.deleteEventTicketLoading = false;
+    });
+    builder.addCase(deleteEventTicket.rejected, (state) => {
+      state.deleteEventTicketLoading = false;
     });
   }
 });

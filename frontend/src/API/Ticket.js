@@ -1,4 +1,5 @@
 const ticket = {
-  eventTickets: 'api/iticket/event/all'
+  eventAllTickets: 'api/iticket/event/all',
+  eventTickets: 'api/iticket'
 };
 export default ticket;

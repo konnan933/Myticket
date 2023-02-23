@@ -40,6 +40,11 @@ const locale = {
   UPDATE_EVENT: 'Esemény frissítése',
   USER_EVENTS: 'felhasználó eseményei',
   IF_DELETE_USER: 'Ha törli a felhasználót, akkor a hozzátartozó események is törlődni fognak!',
-  CONFIRM_DELETE_USER: 'Biztosan törölni szeretné?'
+  CONFIRM_DELETE_USER: 'Biztosan törölni szeretné?',
+  CURRENCY: 'Deviza',
+  PRICE: 'Ár',
+  SALE_START: 'Értékesítés kezdete',
+  SALE_DATE_LOWER: 'Az értékesítés kezdete nem lehet nagyobb mint az esemény vége',
+  TICKET_TYPE: 'Jegy típusa'
 };
 export default locale;

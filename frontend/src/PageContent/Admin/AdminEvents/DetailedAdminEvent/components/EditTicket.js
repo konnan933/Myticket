@@ -21,7 +21,7 @@ import Addimage from 'PageContent/utils/AddImage';
 import { putEvent } from 'redux/thunks/Admin';
 import Loader from 'PageContent/utils/Loader';
 
-function EditEvent({ event }) {
+function EditTicket() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -297,4 +297,4 @@ function EditEvent({ event }) {
   );
 }
 
-export default EditEvent;
+export default EditTicket;
