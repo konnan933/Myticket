@@ -63,7 +63,7 @@ class EsemenyekController extends Controller
         $esemeny->kep = $request->kep;
         $esemeny->save();
     }
-/* 
+    /* 
     public function getUserEvents($user)
     {
 
@@ -260,13 +260,13 @@ class EsemenyekController extends Controller
         return $eventDetails;
     }
 
-    public function getUserEvents($userId){
-            $userEvents = DB::table('esemenyek')->select('esemenyek.id as eventId', 'esemenyek.cim', 'esemenyek.kezd_datum', 'esemenyek.veg_datum', 'users.fel_nev', 'users.id as organizerId',)
+    public function getUserEvents($userId)
+    {
+        $userEvents = DB::table('esemenyek')->select('esemenyek.id as eventId', 'esemenyek.cim', 'esemenyek.kezd_datum', 'esemenyek.veg_datum', 'users.fel_nev', 'users.id as organizerId',)
             ->join('users', 'users.id', '=', 'esemenyek.user')
             ->where('users.id', '=', $userId)
             ->get();
 
         return $userEvents;
     }
-
 }
