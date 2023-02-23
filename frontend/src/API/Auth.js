@@ -1,7 +1,8 @@
 const auth = {
   login: 'login',
   register: 'register',
-  logout: 'logout'
+  logout: 'logout',
+  loggedIn: 'api/loggedIn'
 };
 
 export default auth;

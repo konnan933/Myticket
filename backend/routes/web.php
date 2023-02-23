@@ -45,6 +45,7 @@ Route::get('api/usernames', [UserController::class, 'getUserNames']);
 Route::post('api/users', [UserController::class, 'store']);
 Route::put('api/users/{id}', [UserController::class, 'update']);
 Route::delete('api/users/{id}', [UserController::class, 'destroy']);
+Route::get('api/loggedIn', [UserController::class, 'loggedInUser']);
 
 
 //Helyszin végpontok

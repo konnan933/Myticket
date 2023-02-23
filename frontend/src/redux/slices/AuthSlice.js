@@ -3,6 +3,7 @@ import { fetchLogin, fetchLogout, fetchRegister } from '../thunks/Auth';
 
 const AUTH_INIT_STATE = {
   login: [{ level: 0 }],
+  rememberMe: false,
   loginLoading: false,
   loggedIn: false,
   reg: [],
@@ -18,6 +19,9 @@ const authSlice = createSlice({
     },
     setLogin: (state) => {
       state.login = [{ level: 0 }];
+    },
+    setRememberMe: (state, action) => {
+      state.rememberMe = action.payload;
     }
   },
   extraReducers: (builder) => {
@@ -53,6 +57,6 @@ const authSlice = createSlice({
   }
 });
 
-export const { setLoggedIn, setLogin } = authSlice.actions;
+export const { setLoggedIn, setLogin, setRememberMe } = authSlice.actions;
 
 export default authSlice.reducer;

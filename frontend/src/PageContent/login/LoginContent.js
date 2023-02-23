@@ -1,4 +1,4 @@
-import { Button, TextField } from '@mui/material';
+import { Button, Checkbox, FormControlLabel, FormGroup, TextField } from '@mui/material';
 import Loader from 'PageContent/utils/Loader';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -16,12 +16,16 @@ function LoginContent() {
 
   const [email, setEmail] = useState('student1@gmail.com');
   const [password, setPassword] = useState('Aa123456');
+  const [rememberMe, setRememberMe] = useState(false);
 
   const emailChangeHandler = (event) => {
     setEmail(event.target.value);
   };
   const passwordChangeHandler = (event) => {
     setPassword(event.target.value);
+  };
+  const rememberMeChangeHandler = () => {
+    setRememberMe(!rememberMe);
   };
   // ! student1@gmail.com;
   // ! Aa123456;
@@ -34,7 +38,7 @@ function LoginContent() {
   return (
     <form
       onSubmit={handleSubmit((data) => {
-        dispatch(fetchLogin(data));
+        dispatch(fetchLogin({ data, rememberMe }));
       })}>
       <fieldset className="flex justify-center">
         <div className="grid gap-8 p-20 w-1/2">
@@ -65,6 +69,12 @@ function LoginContent() {
             size="large">
             {t('LOGIN_SEND')}
           </Button>
+          <FormGroup>
+            <FormControlLabel
+              control={<Checkbox onChange={rememberMeChangeHandler} />}
+              label={t('REMEMBER_ME')}
+            />
+          </FormGroup>
         </div>
       </fieldset>
     </form>

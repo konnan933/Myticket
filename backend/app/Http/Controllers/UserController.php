@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -88,10 +89,15 @@ class UserController extends Controller
         return response()->json(["user" => $user]);
     }
 
-    public function getUserNames(){
-            $userNames = DB::table('users')->select('users.id','users.fel_nev')
+    public function getUserNames()
+    {
+        $userNames = DB::table('users')->select('users.id', 'users.fel_nev')
             ->get();
         return $userNames;
     }
 
+    public function loggedInUser()
+    {
+        return Auth::User();
+    }
 }
