@@ -8,6 +8,7 @@ import { useParams } from 'react-router-dom';
 import { getSingleEventsDetailed } from 'redux/thunks/Admin';
 import { getEventTickets } from 'redux/thunks/Ticket';
 import BackToButton from './components/BackToButton';
+import DetailedData from './components/DetailedData';
 import EditEventPictures from './components/EditEventPicture';
 import SingleEventTickets from './SingleEventTickets';
 
@@ -27,6 +28,7 @@ function DetailedAdminEvent() {
   if (singleDetailedEventLoading) {
     return <Loader />;
   }
+  console.log(singleDetailedEvent);
 
   return (
     <div className="flex justify-center">
@@ -36,12 +38,11 @@ function DetailedAdminEvent() {
         </div>
         <div className="flex flex-col">
           <div>
-            <Typography variant="h4">{`${singleDetailedEvent.cim} ${t(
-              'EVENT_D_PAGE'
-            )}`}</Typography>
+            <Typography variant="h4">{`${singleDetailedEvent.cim} ${t('EVENTNAME')}`}</Typography>
           </div>
-          <div className="flex justify-center">
+          <div className="flex justify-between">
             <EditEventPictures />
+            <DetailedData />
           </div>
           <SingleEventTickets />
         </div>

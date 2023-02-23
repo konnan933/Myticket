@@ -1,15 +1,16 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { setLoggedIn, setLogin } from 'redux/slices/AuthSlice';
+import { setLoggedIn, setLogin, setRememberMe } from 'redux/slices/AuthSlice';
 import auth from '../../API/Auth';
 import api from '../../axios/axois';
 
 export const fetchLogin = createAsyncThunk(
   'auth/fetchLog',
-  async (data, { dispatch, rejectWithValue }) => {
+  async ({ data, rememberMe }, { dispatch, rejectWithValue }) => {
     try {
       await api.get('/sanctum/csrf-cookie');
       const response = await api.post(auth.login, data).then((response) => {
         dispatch(setLoggedIn(true));
+        dispatch(setRememberMe(rememberMe));
         return response;
       });
       return response.data;
@@ -49,6 +50,26 @@ export const fetchRegister = createAsyncThunk(
       await api.get('/sanctum/csrf-cookie');
       await api.post(auth.register, data).then(() => {
         dispatch(fetchLogin({ email: data.email, password: data.password }));
+      });
+    } catch (err) {
+      if (!err.response) {
+        throw err;
+      }
+
+      const { data, status } = err.response;
+      return rejectWithValue({ data, status });
+    }
+  }
+);
+
+export const fetchLoggedIn = createAsyncThunk(
+  'auth/fetchLoggedIn',
+  async (_, { dispatch, rejectWithValue }) => {
+    try {
+      await api.get(auth.loggedIn).then((response) => {
+        if (response.data !== '') {
+          dispatch(fetchLogin(response.data));
+        }
       });
     } catch (err) {
       if (!err.response) {

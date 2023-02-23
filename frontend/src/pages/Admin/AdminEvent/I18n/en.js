@@ -16,9 +16,13 @@ const locale = {
   LOCATION: 'Location',
   MANAGE_EVENT: 'Modify event',
   EVENT_NAME: 'Event name',
+  COMISSION: 'Comission',
   BACK_TO: 'Previous page',
   DETAILED_INFO: 'Click the name of the event for the detailed page.',
+  DETAILED_DESCRIPTION_INFO:
+    'Click the name of the descrtiption text to show the descrtiption for the event.',
   BUISNESS_EMAIL: 'Buisness email',
+  BUISNESS_PHON_NUM: 'Buisness phone number',
   EVENT_TYPE: 'Event type',
   ADD_IMAGE: 'Add image',
   REMOVE_IMAGE: 'Delete image',
