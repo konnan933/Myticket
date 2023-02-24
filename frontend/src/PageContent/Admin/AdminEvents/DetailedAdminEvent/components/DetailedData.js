@@ -53,6 +53,10 @@ function DetailedData() {
       <div className="flex ">
         <SingleEventDescription />
       </div>
+      <div className="flex ">
+        <Typography>{t(`STATUS`)}</Typography>
+        <Typography>{`: ${t(`STATUS_${singleDetailedEvent.statusz}`)}`}</Typography>
+      </div>
     </div>
   );
 }

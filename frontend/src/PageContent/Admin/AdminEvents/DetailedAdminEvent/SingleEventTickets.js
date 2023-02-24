@@ -21,8 +21,6 @@ function SingleEventTickets() {
 
   const { eventTickets, eventTicketsLoading } = useSelector((state) => state.ticket);
 
-  console.log(eventTickets);
-
   if (eventTicketsLoading) {
     return <Loader />;
   }

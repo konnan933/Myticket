@@ -14,6 +14,11 @@ const locale = {
   EVENTNAME: 'Cím',
   ORGANIZER: 'Szervező',
   LOCATION: 'Helyszín',
+  STATUS: 'Státusz',
+  STATUS_0: 'Nem elfogadott',
+  STATUS_1: 'Elfogadott',
+  STATUS_2: 'Lejárt',
+  STATUS_3: 'Elutasított',
   MANAGE_EVENT: 'Esemény szerkeztése',
   EVENT_NAME: 'Esemény neve',
   COMISSION: 'Jutalék',
@@ -48,6 +53,8 @@ const locale = {
   PRICE: 'Ár',
   SALE_START: 'Értékesítés kezdete',
   SALE_DATE_LOWER: 'Az értékesítés kezdete nem lehet nagyobb mint az esemény vége',
-  TICKET_TYPE: 'Jegy típusa'
+  TICKET_TYPE: 'Jegy típusa',
+  ACCEPT: 'Elfogadás',
+  DECLINE: 'Elutasítás'
 };
 export default locale;

@@ -30,7 +30,7 @@ function EditEventPictures() {
       <div className="flex  justify-center">
         <img
           src={`${admin.eventPicture}${id}`}
-          className="w-1/2 cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 duration-300"
+          className="w-3/5 cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 duration-300"
           onClick={handleClickOpen}
         />
       </div>
@@ -41,7 +41,7 @@ function EditEventPictures() {
         aria-describedby="modal-modal-description">
         <Box sx={pictureModalStyle}>
           <div className="flex justify-center pb-10 pt-5 ">
-            <Typography>{`${singleDetailedEvent.cim} ${t('EVENT_D_PAGE')}`}</Typography>
+            <Typography>{`${singleDetailedEvent.cim} ${t('EVENT_PICTURE')}`}</Typography>
           </div>
           <img src={`${admin.eventPicture}${id}`} className="w-full " />
         </Box>
