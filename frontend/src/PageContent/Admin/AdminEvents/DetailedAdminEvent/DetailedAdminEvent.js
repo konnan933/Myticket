@@ -5,7 +5,9 @@ import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getSingleEventsDetailed } from 'redux/thunks/Admin';
+import { getSingleEventsDetailed, getUserNames } from 'redux/thunks/Admin';
+import { getEventTypes } from 'redux/thunks/EventTypes';
+import { getLocationNames } from 'redux/thunks/Location';
 import { getEventTickets } from 'redux/thunks/Ticket';
 import BackToButton from './components/BackToButton';
 import DetailedData from './components/DetailedData';
@@ -23,6 +25,9 @@ function DetailedAdminEvent() {
   useEffect(() => {
     dispatch(getSingleEventsDetailed(id));
     dispatch(getEventTickets(id));
+    dispatch(getEventTypes());
+    dispatch(getUserNames());
+    dispatch(getLocationNames());
   }, []);
 
   if (singleDetailedEventLoading) {

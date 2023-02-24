@@ -1,6 +1,7 @@
 import { Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import EditEvent from '../../components/EditEvent';
 import SingleEventDescription from './SingleEventDescription';
 function DetailedData() {
   const { t } = useTranslation('adminEvent');
@@ -9,6 +10,10 @@ function DetailedData() {
 
   return (
     <div className="w-2/3">
+      <div className="flex justify-between">
+        <Typography>{t('EDIT_EVENT')}:</Typography>
+        <EditEvent event={singleDetailedEvent} />
+      </div>
       <div className="flex ">
         <Typography>{t('EVENTNAME')}</Typography>
         <Typography>{`: ${singleDetailedEvent.cim}`}</Typography>
