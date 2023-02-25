@@ -42,7 +42,7 @@ function AddTicket() {
           aria-describedby="modal-modal-description">
           <Box sx={modalStyle}>
             <div className="flex justify-center">
-              <h2>{t('MANAGE_LOCATION')}</h2>
+              <h2>{t('MANAGE_TICKETS')}</h2>
             </div>
             <TicketAddForm />
           </Box>

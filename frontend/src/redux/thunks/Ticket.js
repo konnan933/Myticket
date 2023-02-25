@@ -53,3 +53,21 @@ export const addTicket = createAsyncThunk(
     }
   }
 );
+
+export const putEventTicket = createAsyncThunk(
+  'ticket/putEventTickets',
+  async ({ data, ticketId, eventId }, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await api.put(`${ticket.eventTickets}/${ticketId}`, data).then(() => {
+        dispatch(getEventTickets(eventId));
+      });
+      return response.data;
+    } catch (err) {
+      if (!err.response) {
+        throw err;
+      }
+      const { data, status } = err.response;
+      return rejectWithValue({ data, status });
+    }
+  }
+);

@@ -38,13 +38,15 @@ class EszmeiJegyController extends Controller
         $eszmei_jegy->save();
     }
 
-    public function update(Request $request, $esemeny_id, $eszmei_jegy_id)
+    public function update(Request $request, $eszmei_jegy_id)
     {
+        
+
         $eszmei_jegy = EszmeiJegy::find($eszmei_jegy_id);
-        $eszmei_jegy->esemeny_id = $esemeny_id;
+        $eszmei_jegy->esemeny_id =$request->esemeny_id;
         $eszmei_jegy->tipus = $request->tipus;
         $eszmei_jegy->ossz_menny = $request->ossz_menny;
-        $eszmei_jegy->lefog_menny = $request->lefog_menny;
+        $eszmei_jegy->lefog_menny = $eszmei_jegy->lefog_menny;
         $eszmei_jegy->szabad_menny = $request->ossz_menny - $request->lefog_menny;
         $eszmei_jegy->penznem = $request->penznem;
         $eszmei_jegy->ara = $request->ara;

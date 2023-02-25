@@ -53,6 +53,8 @@ function EditEvent({ event }) {
 
   const datasLoading = userNamesLoading || eventTypesLoading || locationNamesLoading;
 
+  const errors = startDateError || endDateError;
+
   const eventNameChangeHandler = (event) => {
     setEventName(event.target.value);
   };
@@ -86,9 +88,6 @@ function EditEvent({ event }) {
     if (event.target.value <= startDate) {
       setEndDateError(true);
       setEndDateErrorMsg(t('END_DATE_LOWER_START_DATE'));
-    } else if (event.target.value <= date) {
-      setEndDateError(true);
-      setEndDateErrorMsg(t('END_DATE_LOWER'));
     } else {
       setEndDateError(false);
       setEndDateErrorMsg('');
@@ -277,10 +276,11 @@ function EditEvent({ event }) {
                     </fieldset>
                     <div className="flex justify-center p-9">
                       <Button
+                        disabled={errors}
                         variant="contained"
                         color="info"
                         className=" w-48"
-                        aria-label="Event add"
+                        aria-label="Event edit"
                         type="submit"
                         size="lagre">
                         {t('UPDATE_EVENT')}

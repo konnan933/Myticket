@@ -18,17 +18,28 @@ function TicketAddForm() {
   const [currency, setCurrency] = useState('');
   const [startDateErrorMsg, setStartDateErrorMsg] = useState('');
   const [startDateError, setStartDateError] = useState(false);
-  const [startDate, setStartDate] = useState(
-    moment(singleEvent.veg_datum).format('yyyy-MM-DDTHH:mm')
-  );
+  const startDate = moment(singleEvent.veg_datum).format('yyyy-MM-DDTHH:mm');
   const [allAmount, setAllAmount] = useState(0);
+  const [allAmountError, setAllAmountError] = useState(false);
+  const [allAmountErrorMsg, setAllAmountErrorMsg] = useState('');
   const [price, setPrice] = useState(0);
+  const [priceError, setPriceError] = useState(false);
+  const [priceErrorMsg, setPriceErrorMsg] = useState('');
   const { ticketTypes } = useSelector((state) => state.ticketTypes);
   const { currencies } = useSelector((state) => state.currency);
   const dispatch = useDispatch();
 
+  const errors = startDateError || allAmountError || priceError;
+
   const allAmountChangeHandler = (event) => {
     setAllAmount(event.target.value);
+    if (event.target.value <= 0 && !(event.target.value === '')) {
+      setAllAmountError(true);
+      setAllAmountErrorMsg(t('ALL_AMOUNT_LOWER'));
+    } else {
+      setAllAmountError(false);
+      setAllAmountErrorMsg('');
+    }
   };
   const ticketTypeChangeHandler = (event) => {
     setTicketType(event.target.value);
@@ -39,6 +50,13 @@ function TicketAddForm() {
 
   const priceChangeHandler = (event) => {
     setPrice(event.target.value);
+    if (event.target.value < 0) {
+      setPriceError(true);
+      setPriceErrorMsg(t('PRICE_LOWER'));
+    } else {
+      setPriceError(false);
+      setPriceErrorMsg('');
+    }
   };
 
   const startDateChangeHandler = (event) => {
@@ -82,7 +100,10 @@ function TicketAddForm() {
           <TextField
             {...register('ossz_menny')}
             required
+            error={allAmountError}
+            helperText={allAmountErrorMsg}
             type="number"
+            InputProps={{ inputProps: { min: 1 } }}
             value={allAmount}
             onChange={allAmountChangeHandler}
             label={t('PORTION')}
@@ -111,6 +132,8 @@ function TicketAddForm() {
           <TextField
             {...register('ara')}
             required
+            error={priceError}
+            helperText={priceErrorMsg}
             type="number"
             value={price}
             onChange={priceChangeHandler}
@@ -122,9 +145,8 @@ function TicketAddForm() {
             {...register('kezd_datum')}
             error={startDateError}
             defaultValue={startDate}
-            onSelect={(event) => setStartDate(event.target.value)}
+            onSelect={startDateChangeHandler}
             InputLabelProps={{ shrink: true }}
-            onChange={startDateChangeHandler}
             helperText={startDateErrorMsg}
             label={t('SALE_START')}
             type="datetime-local"
@@ -132,10 +154,11 @@ function TicketAddForm() {
           />
 
           <Button
+            disabled={errors}
             variant="contained"
             color="info"
             className=" w-full mt-16"
-            aria-label="Sign in"
+            aria-label="Add ticket"
             type="submit"
             size="large">
             {t('SEND')}

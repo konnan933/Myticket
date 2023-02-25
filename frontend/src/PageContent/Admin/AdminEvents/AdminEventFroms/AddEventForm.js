@@ -40,6 +40,8 @@ function AddEventForm() {
   const { userNames } = useSelector((state) => state.admin);
   const { eventTypes } = useSelector((state) => state.eventTypes);
 
+  const errors = startDateError || endDateError;
+
   const eventNameChangeHandler = (event) => {
     setEventName(event.target.value);
   };
@@ -226,6 +228,7 @@ function AddEventForm() {
           </fieldset>
           <div className="flex justify-center pt-6">
             <Button
+              disabled={errors}
               variant="contained"
               color="info"
               className=" w-48"

@@ -52,7 +52,7 @@ function SingleEventTickets() {
                   <StyledTableCell align="left">
                     <div className="flex">
                       <DeleteTicket ticketId={ticket.eszmei_jegy_id} />
-                      <EditTicket event={ticket} />
+                      <EditTicket ticket={ticket} />
                     </div>
                   </StyledTableCell>
                   <StyledTableCell align="left">{ticket.name}</StyledTableCell>
