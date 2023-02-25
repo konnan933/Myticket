@@ -22,12 +22,16 @@ import { putEvent } from 'redux/thunks/Admin';
 import Loader from 'PageContent/utils/Loader';
 
 function EditEvent({ event }) {
+  const { t } = useTranslation('adminEvent');
+
+  const { register, handleSubmit } = useForm();
+
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const { t } = useTranslation('adminEvent');
+
   const dispatch = useDispatch();
-  const { register, handleSubmit } = useForm();
+
   const [eventName, setEventName] = useState(event.cim);
   const [buisnessEmail, setBuisnessEmail] = useState(event.buisness_email);
   const [buisnessPhoneNum, setBuisnessPhoneNum] = useState(event.buisness_tel);
@@ -36,16 +40,18 @@ function EditEvent({ event }) {
   const [organizerName, setOrganizername] = useState(event.fel_nev);
   const [organizerNameinput, setOrganizerInput] = useState('');
   const [locationName, setLocationName] = useState(event.locationName);
-  const { locationNames, locationNamesLoading } = useSelector((state) => state.location);
   const [locationNameinput, setLocationNameInput] = useState('');
   const [imageId, setImageId] = useState('');
   const [startDateError, setStartDateError] = useState(false);
   const [endDateError, setEndDateError] = useState(false);
   const [startDateErrorMsg, setStartDateErrorMsg] = useState('');
   const [endDateErrorMsg, setEndDateErrorMsg] = useState('');
+
   const date = moment(new Date().setDate(new Date().getDate() + 1)).format('yyyy-MM-DDTHH:mm');
   const [startDate, setStartDate] = useState(moment(event.kezd_datum).format('yyyy-MM-DDTHH:mm'));
   const endDate = moment(event.veg_datum).format('yyyy-MM-DDTHH:mm');
+
+  const { locationNames, locationNamesLoading } = useSelector((state) => state.location);
   const { userNames, userNamesLoading } = useSelector((state) => state.admin);
   const { eventTypes, eventTypesLoading } = useSelector((state) => state.eventTypes);
 

@@ -5,8 +5,11 @@ import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getSingleEventsDetailed } from 'redux/thunks/Admin';
+import { getSingleEvent, getSingleEventsDetailed, getUserNames } from 'redux/thunks/Admin';
+import { getEventTypes } from 'redux/thunks/EventTypes';
+import { getLocationNames } from 'redux/thunks/Location';
 import { getEventTickets } from 'redux/thunks/Ticket';
+import AdminEventActions from './components/AdminEventActions';
 import BackToButton from './components/BackToButton';
 import DetailedData from './components/DetailedData';
 import EditEventPictures from './components/EditEventPicture';
@@ -22,13 +25,16 @@ function DetailedAdminEvent() {
   const { singleDetailedEvent, singleDetailedEventLoading } = useSelector((state) => state.admin);
   useEffect(() => {
     dispatch(getSingleEventsDetailed(id));
+    dispatch(getSingleEvent(id));
     dispatch(getEventTickets(id));
+    dispatch(getEventTypes());
+    dispatch(getUserNames());
+    dispatch(getLocationNames());
   }, []);
 
   if (singleDetailedEventLoading) {
     return <Loader />;
   }
-  console.log(singleDetailedEvent);
 
   return (
     <div className="flex justify-center">
@@ -40,9 +46,12 @@ function DetailedAdminEvent() {
           <div>
             <Typography variant="h4">{`${singleDetailedEvent.cim} ${t('EVENTNAME')}`}</Typography>
           </div>
-          <div className="flex justify-between">
-            <EditEventPictures />
-            <DetailedData />
+          <div className="flex flex-col justify-between">
+            <div className="flex justify-between">
+              <EditEventPictures />
+              <DetailedData />
+            </div>
+            <AdminEventActions />
           </div>
           <SingleEventTickets />
         </div>

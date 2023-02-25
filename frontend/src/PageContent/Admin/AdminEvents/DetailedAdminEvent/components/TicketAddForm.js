@@ -72,7 +72,6 @@ function TicketAddForm() {
     <form
       onSubmit={handleSubmit((data) => {
         data.esemeny_id = id;
-        console.log(data);
         dispatch(addTicket({ data, eventId: id }));
       })}>
       <fieldset>

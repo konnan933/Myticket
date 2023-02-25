@@ -22,7 +22,7 @@ function ChangeEventPicture() {
     <div>
       <div className="flex justify-center">
         {displayAddButton && (
-          <Button onClick={handleOpen} color="primary" component="label">
+          <Button onClick={handleOpen} color="primary" variant="outlined" component="label">
             {t('CHANGE_PICTURE')}
           </Button>
         )}

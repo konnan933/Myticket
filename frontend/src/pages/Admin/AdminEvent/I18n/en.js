@@ -14,6 +14,11 @@ const locale = {
   EVENTNAME: 'Name',
   ORGANIZER: 'Organizer',
   LOCATION: 'Location',
+  STATUS: 'Status',
+  STATUS_0: 'Not accepted',
+  STATUS_1: 'Accepted',
+  STATUS_2: 'Expired',
+  STATUS_3: 'Declined',
   MANAGE_EVENT: 'Modify event',
   EVENT_NAME: 'Event name',
   COMISSION: 'Comission',
@@ -48,7 +53,9 @@ const locale = {
   PRICE: 'Price',
   SALE_START: 'Sale start',
   SALE_DATE_LOWER: 'The sale start date cannot be higher than the event end date',
-  TICKET_TYPE: 'Ticket type'
+  TICKET_TYPE: 'Ticket type',
+  ACCEPT: 'Accept',
+  DECLINE: 'Decline'
 };
 
 export default locale;
