@@ -262,7 +262,7 @@ class EsemenyekController extends Controller
 
     public function getUserEvents($userId)
     {
-        $userEvents = DB::table('esemenyek')->select('esemenyek.id as eventId', 'esemenyek.cim', 'esemenyek.kezd_datum', 'esemenyek.veg_datum', 'users.fel_nev', 'users.id as organizerId',)
+        $userEvents = DB::table('esemenyek')->select('esemenyek.id as eventId', 'esemenyek.cim', 'esemenyek.kezd_datum', 'esemenyek.veg_datum', 'users.fel_nev', 'users.id as organizerId', 'esemenyek.statusz')
             ->join('users', 'users.id', '=', 'esemenyek.user')
             ->where('users.id', '=', $userId)
             ->get();

@@ -55,7 +55,11 @@ const locale = {
   SALE_DATE_LOWER: 'The sale start date cannot be higher than the event end date',
   TICKET_TYPE: 'Ticket type',
   ACCEPT: 'Accept',
-  DECLINE: 'Decline'
+  DECLINE: 'Decline',
+  TICKET_AMOUNT_LOWER: 'The ticket amount cannot be lower than the booked amount',
+  ALL_TICKET_AMOUNT: 'All amount',
+  EDIT_TICKET_TYPE: 'Edit ticket type',
+  EDIT_TICKET: 'Edit tickets'
 };
 
 export default locale;

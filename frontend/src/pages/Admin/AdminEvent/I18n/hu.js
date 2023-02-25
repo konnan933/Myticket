@@ -58,6 +58,7 @@ const locale = {
   ALL_TICKET_AMOUNT: 'Összes mennyiség',
   EDIT_TICKET_TYPE: 'Jegyek módosítása',
   ACCEPT: 'Elfogadás',
-  DECLINE: 'Elutasítás'
+  DECLINE: 'Elutasítás',
+  EDIT_TICKET: 'Jegyek szerkeztése'
 };
 export default locale;

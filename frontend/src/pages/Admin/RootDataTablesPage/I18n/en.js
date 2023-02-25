@@ -18,7 +18,8 @@ const locale = {
   // * ticketTypes
   CONFIRM_DELETE_TT: 'Do you want to delete this ticket type?',
   EDIT_TT: 'Modify ticket type',
-  ADD_TT: 'Add ticket type'
+  ADD_TT: 'Add ticket type',
+  ADD_TICKETS: 'Add tickets'
 };
 
 export default locale;

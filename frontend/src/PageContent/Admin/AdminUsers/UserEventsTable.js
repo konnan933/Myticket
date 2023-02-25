@@ -23,6 +23,7 @@ function UserEventsTable({ userEvents }) {
                 <StyledTableCell align="left">{t('EVENT_NAME')}</StyledTableCell>
                 <StyledTableCell align="left">{t('START_DATE')}</StyledTableCell>
                 <StyledTableCell align="left">{t('END_DATE')}</StyledTableCell>
+                <StyledTableCell align="left">{t('STATUS')}</StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -37,6 +38,7 @@ function UserEventsTable({ userEvents }) {
                   </StyledTableCell>
                   <StyledTableCell align="left">{userEvent.kezd_datum}</StyledTableCell>
                   <StyledTableCell align="left">{userEvent.veg_datum}</StyledTableCell>
+                  <StyledTableCell align="left">{userEvent.statusz}</StyledTableCell>
                 </StyledTableRow>
               ))}
             </TableBody>

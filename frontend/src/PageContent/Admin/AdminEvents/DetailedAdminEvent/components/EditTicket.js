@@ -97,7 +97,7 @@ function EditTicket({ ticket }) {
               borderRadius: 7
             }}>
             <div className="flex justify-center flex-col">
-              <div className="flex justify-center p-10">
+              <div className="flex justify-center ">
                 <h2>{t('EDIT_TICKET')}</h2>
               </div>
               <div className="flex justify-center">
@@ -105,13 +105,12 @@ function EditTicket({ ticket }) {
                   onSubmit={handleSubmit((data) => {
                     data.esemeny_id = id;
                     data.eszmei_jegy_id = ticket.eszmei_jegy_id;
-                    console.log(data);
                     dispatch(
                       putEventTicket({ data, ticketId: ticket.eszmei_jegy_id, eventId: id })
                     );
                   })}>
                   <fieldset>
-                    <div className="grid gap-8 p-4">
+                    <div className="grid gap-8 p-5">
                       <FormControl>
                         <InputLabel shrink={true} id="demo-simple-select-label">
                           {t('EDIT_TICKET_TYPE')}
