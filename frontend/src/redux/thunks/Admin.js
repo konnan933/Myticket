@@ -145,6 +145,7 @@ export const addEvent = createAsyncThunk('auth/addEvent', async (data, { rejectW
 
 export const putEvent = createAsyncThunk('admin/putEvent', async (data, { rejectWithValue }) => {
   try {
+    console.log(data);
     const response = await api.put(`${admin.event}/${data.id}`, data);
     return response.data;
   } catch (err) {

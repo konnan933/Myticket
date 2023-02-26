@@ -58,8 +58,8 @@ class EsemenyekController extends Controller
         $esemeny->buisness_email = $request->buisness_email;
         $esemeny->buisness_tel = $request->buisness_tel;
         $esemeny->esem_kat = $request->esem_kat;
-        $esemeny->jutalek = 17;
-        $esemeny->statusz = 0;
+        $esemeny->jutalek = $request->jutalek;
+        $esemeny->statusz = $request->statusz;
         $esemeny->kep = $request->kep;
         $esemeny->save();
     }
