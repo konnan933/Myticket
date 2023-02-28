@@ -34,19 +34,21 @@ export default function Navbar() {
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static" sx={{ backgroundColor: '#262626', marginBottom: 2 }}>
           {matches && (
-            <Toolbar>
-              <IconButton
-                size="large"
-                edge="start"
-                color="inherit"
-                aria-label="menu"
-                sx={{ mr: 2 }}
-                onClick={() => {
-                  setDrawer(true);
-                }}>
-                <MenuIcon />
-              </IconButton>
-            </Toolbar>
+            <div className="flex justify-end">
+              <Toolbar>
+                <IconButton
+                  size="large"
+                  edge="end"
+                  color="inherit"
+                  aria-label="menu"
+                  sx={{ mr: 2 }}
+                  onClick={() => {
+                    setDrawer(true);
+                  }}>
+                  <MenuIcon />
+                </IconButton>
+              </Toolbar>
+            </div>
           )}
           <div className="flex flex-row justify-evenly">
             {!matches &&
@@ -65,8 +67,8 @@ export default function Navbar() {
               })}
             {!loggedIn && <LoginButton />}
             {!loggedIn && <RegisterButton />}
-            <LangChanger />
-            {loggedIn && <LogoutButton />}
+            {!matches && <LangChanger />}
+            {loggedIn && !matches && <LogoutButton />}
           </div>
         </AppBar>
       </Box>

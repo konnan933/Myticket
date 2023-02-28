@@ -12,6 +12,7 @@ function LangChanger() {
 
   return (
     <Select
+      sx={{ borderWidth: 1, borderColor: 'white', color: 'white' }}
       value={lang}
       onChange={handleChange}
       displayEmpty
