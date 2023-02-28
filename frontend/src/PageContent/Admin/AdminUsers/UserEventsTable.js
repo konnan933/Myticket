@@ -30,7 +30,7 @@ function UserEventsTable({ userEvents, hasAcceptedEvent }) {
               {userEvents.map((userEvent) => (
                 <StyledTableRow key={userEvent.eventId}>
                   <StyledTableCell align="left">
-                    <Link to={`${userEvent.eventId}`}>
+                    <Link to={`adminEvents/${userEvent.eventId}`} replace >
                       <p className="cursor-pointer hover:text-blue-600 hover:underline">
                         {userEvent.cim}
                       </p>

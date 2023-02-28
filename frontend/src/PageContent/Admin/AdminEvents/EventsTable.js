@@ -62,7 +62,9 @@ function EventsTable() {
                 </StyledTableCell>
                 <StyledTableCell align="left">{event.fel_nev}</StyledTableCell>
                 <StyledTableCell align="left">
-                  {`${event.postcode} ${event.district} ${event.street} ${event.housenumber}`}
+                  {`${event.postcode} ${event.district} ${event.street} ${t('STREET')} ${
+                    event.housenumber
+                  }`}
                 </StyledTableCell>
               </StyledTableRow>
             ))}
