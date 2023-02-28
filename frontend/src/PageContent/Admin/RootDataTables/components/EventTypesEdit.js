@@ -4,6 +4,8 @@ import modalStyle from 'PageContent/utils/ModalStyle';
 import { useTranslation } from 'react-i18next';
 import EditIcon from '@mui/icons-material/Edit';
 import EventTypesEditForm from '../Forms/EventTypesEditForm';
+import CloseIcon from '@mui/icons-material/Close';
+
 function EventTypesEdit({ eventType }) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -26,6 +28,11 @@ function EventTypesEdit({ eventType }) {
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description">
           <Box sx={modalStyle}>
+            <div className="flex justify-end">
+              <IconButton color="error" onClick={handleClose}>
+                <CloseIcon fontSize="medium" />
+              </IconButton>
+            </div>
             <div className="flex justify-center">
               <h2>{t('EDIT_ET')}</h2>
             </div>

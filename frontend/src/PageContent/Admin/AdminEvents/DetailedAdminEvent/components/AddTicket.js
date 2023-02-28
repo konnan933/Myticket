@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import { getTicketTypes } from 'redux/thunks/TicketTypes';
 import { useParams } from 'react-router-dom';
 import { getSingleEvent } from 'redux/thunks/Admin';
+import CloseIcon from '@mui/icons-material/Close';
 
 function AddTicket() {
   const [open, setOpen] = useState(false);
@@ -42,7 +43,14 @@ function AddTicket() {
           aria-describedby="modal-modal-description">
           <Box sx={modalStyle}>
             <div className="flex justify-center">
-              <h2>{t('ADD_TICKETS')}</h2>
+              <div className="flex justify-end">
+                <IconButton color="error" onClick={handleClose}>
+                  <CloseIcon fontSize="medium" />
+                </IconButton>
+              </div>
+              <div className="flex justify-center">
+                <h2>{t('ADD_TICKETS')}</h2>
+              </div>
             </div>
             <TicketAddForm />
           </Box>

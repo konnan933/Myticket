@@ -17,6 +17,7 @@ import { useForm } from 'react-hook-form';
 import moment from 'moment';
 import { useParams } from 'react-router-dom';
 import { putEventTicket } from 'redux/thunks/Ticket';
+import CloseIcon from '@mui/icons-material/Close';
 
 function EditTicket({ ticket }) {
   const [open, setOpen] = useState(false);
@@ -97,7 +98,12 @@ function EditTicket({ ticket }) {
               borderRadius: 7
             }}>
             <div className="flex justify-center flex-col">
-              <div className="flex justify-center ">
+              <div className="flex justify-end">
+                <IconButton color="error" onClick={handleClose}>
+                  <CloseIcon fontSize="medium" />
+                </IconButton>
+              </div>
+              <div className="flex justify-end w-3/4">
                 <h2>{t('EDIT_TICKET')}</h2>
               </div>
               <div className="flex justify-center">

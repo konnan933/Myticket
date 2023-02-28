@@ -8,6 +8,7 @@ import Loader from 'PageContent/utils/Loader';
 import bigModalStyle from 'PageContent/utils/BigModalStyle';
 import ConfirmUserDelete from './ConfirmUserDelete';
 import UserEventsTable from '../UserEventsTable';
+import CloseIcon from '@mui/icons-material/Close';
 
 function DeleteUser({ id }) {
   const { t } = useTranslation('adminEvent');
@@ -37,6 +38,11 @@ function DeleteUser({ id }) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
         <Box sx={bigModalStyle}>
+          <div className="flex justify-end">
+            <IconButton color="error" onClick={handleClose}>
+              <CloseIcon fontSize="medium" />
+            </IconButton>
+          </div>
           {userEventsLoading ? (
             <Loader />
           ) : (

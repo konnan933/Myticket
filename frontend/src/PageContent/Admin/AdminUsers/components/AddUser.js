@@ -4,6 +4,7 @@ import modalStyle from 'PageContent/utils/ModalStyle';
 import { useTranslation } from 'react-i18next';
 import AddUserForm from '../AdminUserForms/AddUserForm';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import CloseIcon from '@mui/icons-material/Close';
 
 function AddUser() {
   const [open, setOpen] = useState(false);
@@ -27,6 +28,11 @@ function AddUser() {
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description">
           <Box sx={modalStyle}>
+            <div className="flex justify-end">
+              <IconButton color="error" onClick={handleClose}>
+                <CloseIcon fontSize="medium" />
+              </IconButton>
+            </div>
             <div className="flex justify-center">
               <h2>{t('ADD_USER')}</h2>
             </div>

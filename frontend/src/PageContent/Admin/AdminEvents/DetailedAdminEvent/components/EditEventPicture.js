@@ -1,4 +1,4 @@
-import { Box, Modal, Typography } from '@mui/material';
+import { Box, IconButton, Modal, Typography } from '@mui/material';
 import admin from 'API/Admin';
 import pictureModalStyle from 'PageContent/utils/PictureModalStyle';
 import { useState } from 'react';
@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import ChangeEventPicture from './ChangeEventPicture';
+import CloseIcon from '@mui/icons-material/Close';
 
 function EditEventPictures() {
   const { t } = useTranslation('adminEvent');
@@ -40,6 +41,11 @@ function EditEventPictures() {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
         <Box sx={pictureModalStyle}>
+          <div className="flex justify-end">
+            <IconButton color="error" onClick={handleClose}>
+              <CloseIcon fontSize="medium" />
+            </IconButton>
+          </div>
           <div className="flex justify-center pb-10 pt-5 ">
             <Typography>{`${singleDetailedEvent.cim} ${t('EVENT_PICTURE')}`}</Typography>
           </div>

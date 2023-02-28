@@ -1,10 +1,11 @@
-import { Box, Button, Modal, Typography } from '@mui/material';
+import { Box, Button, IconButton, Modal, Typography } from '@mui/material';
 import modalStyle from 'PageContent/utils/ModalStyle';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { changePicture } from 'redux/thunks/Admin';
+import CloseIcon from '@mui/icons-material/Close';
 
 function ChangeEventPicture() {
   const dispatch = useDispatch();
@@ -32,6 +33,14 @@ function ChangeEventPicture() {
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description">
           <Box sx={modalStyle}>
+            <div className="flex justify-end">
+              <IconButton color="error" onClick={handleClose}>
+                <CloseIcon fontSize="medium" />
+              </IconButton>
+            </div>
+            <div className="flex justify-center">
+              <h2>{t('ADD_IMAGE')}</h2>
+            </div>
             {!path && (
               <input
                 type="file"

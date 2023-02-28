@@ -1,9 +1,10 @@
-import { Box, Button, Modal } from '@mui/material';
+import { Box, Button, IconButton, Modal } from '@mui/material';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { addPicture } from 'redux/thunks/Admin';
 import ModalStyle from './BigModalStyle';
+import CloseIcon from '@mui/icons-material/Close';
 
 function Addimage({ setImageId }) {
   const dispatch = useDispatch();
@@ -41,6 +42,11 @@ function Addimage({ setImageId }) {
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description">
           <Box sx={ModalStyle}>
+            <div className="flex justify-end">
+              <IconButton color="error" onClick={handleClose}>
+                <CloseIcon fontSize="medium" />
+              </IconButton>
+            </div>
             {!path && (
               <input
                 type="file"

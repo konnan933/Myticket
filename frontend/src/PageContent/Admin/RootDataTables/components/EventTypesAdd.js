@@ -4,6 +4,8 @@ import modalStyle from 'PageContent/utils/ModalStyle';
 import { useTranslation } from 'react-i18next';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import EventTypesAddForm from '../Forms/EventTypesAddForm';
+import CloseIcon from '@mui/icons-material/Close';
+
 function EventTypesAdd() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -27,6 +29,11 @@ function EventTypesAdd() {
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description">
           <Box sx={modalStyle}>
+            <div className="flex justify-end">
+              <IconButton color="error" onClick={handleClose}>
+                <CloseIcon fontSize="medium" />
+              </IconButton>
+            </div>
             <div className="flex justify-center">
               <h2>{t('ADD_ET')}</h2>
             </div>

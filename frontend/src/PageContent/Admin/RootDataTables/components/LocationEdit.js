@@ -4,6 +4,7 @@ import modalStyle from 'PageContent/utils/ModalStyle';
 import { useTranslation } from 'react-i18next';
 import EditIcon from '@mui/icons-material/Edit';
 import LocationEditForm from '../Forms/LocationEditForm';
+import CloseIcon from '@mui/icons-material/Close';
 
 function LocationEdit({ location }) {
   const [open, setOpen] = useState(false);
@@ -27,6 +28,11 @@ function LocationEdit({ location }) {
           aria-describedby="modal-modal-description">
           <Box sx={modalStyle}>
             <div className="flex justify-center">
+              <div className="flex justify-end">
+                <IconButton color="error" onClick={handleClose}>
+                  <CloseIcon fontSize="medium" />
+                </IconButton>
+              </div>
               <h2>{t('MANAGE_LOCATION')}</h2>
             </div>
             <LocationEditForm location={location} />

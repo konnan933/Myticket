@@ -4,6 +4,8 @@ import modalStyle from 'PageContent/utils/ModalStyle';
 import { useTranslation } from 'react-i18next';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import TicketTypesAddForm from '../Forms/TicketTypesAddForm';
+import CloseIcon from '@mui/icons-material/Close';
+
 function TicketTypesAdd() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -28,6 +30,11 @@ function TicketTypesAdd() {
           aria-describedby="modal-modal-description">
           <Box sx={modalStyle}>
             <div className="flex justify-center">
+              <div className="flex justify-end">
+                <IconButton color="error" onClick={handleClose}>
+                  <CloseIcon fontSize="medium" />
+                </IconButton>
+              </div>
               <h2>{t('ADD_TT')}</h2>
             </div>
             <TicketTypesAddForm handleClose={handleClose} />

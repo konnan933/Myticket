@@ -36,7 +36,9 @@ function DetailedData() {
       </div>
       <div className="flex ">
         <Typography>{t('LOCATION')}</Typography>
-        <Typography>{`: ${singleDetailedEvent.postcode} ${singleDetailedEvent.district} ${singleDetailedEvent.street} ${singleDetailedEvent.housenumber}`}</Typography>
+        <Typography>{`: ${singleDetailedEvent.postcode} ${singleDetailedEvent.district} ${
+          singleDetailedEvent.street
+        } ${t('STREET')} ${singleDetailedEvent.housenumber}`}</Typography>
       </div>
       <div className="flex ">
         <Typography>{t('START_DATE')}</Typography>

@@ -20,6 +20,7 @@ import moment from 'moment';
 import Addimage from 'PageContent/utils/AddImage';
 import { putEvent } from 'redux/thunks/Admin';
 import Loader from 'PageContent/utils/Loader';
+import CloseIcon from '@mui/icons-material/Close';
 
 function EditEvent({ event }) {
   const { t } = useTranslation('adminEvent');
@@ -113,8 +114,11 @@ function EditEvent({ event }) {
               position: 'absolute',
               top: '50%',
               left: '50%',
+              display: 'block',
               transform: 'translate(-50%, -50%)',
-              width: 900,
+              width: '80%',
+              maxHeight: '90%',
+              overflow: 'scroll',
               bgcolor: 'white',
               boxShadow: 24,
               borderRadius: 7
@@ -123,7 +127,12 @@ function EditEvent({ event }) {
               <Loader />
             ) : (
               <div className="flex justify-center flex-col">
-                <div className="flex justify-center p-10">
+                <div className="flex justify-end">
+                  <IconButton color="error" onClick={handleClose}>
+                    <CloseIcon fontSize="medium" />
+                  </IconButton>
+                </div>
+                <div className="flex justify-center">
                   <h2>{t('EDIT_EVENT')}</h2>
                 </div>
                 <div className="flex justify-center">

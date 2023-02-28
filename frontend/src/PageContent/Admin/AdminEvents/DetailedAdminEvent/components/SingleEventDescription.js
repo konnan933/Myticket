@@ -1,9 +1,10 @@
-import { Box, Modal, Tooltip, Typography } from '@mui/material';
+import { Box, IconButton, Modal, Tooltip, Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import modalStyle from 'PageContent/utils/ModalStyle';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import CloseIcon from '@mui/icons-material/Close';
 
 function SingleEventDescription() {
   const { t } = useTranslation('adminEvent');
@@ -35,6 +36,11 @@ function SingleEventDescription() {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
         <Box sx={modalStyle}>
+          <div className="flex justify-end">
+            <IconButton color="error" onClick={handleClose}>
+              <CloseIcon fontSize="medium" />
+            </IconButton>
+          </div>
           <div className="flex justify-center pb-10 pt-5">
             <Typography>{t('DESCRIPTION')}</Typography>
           </div>
