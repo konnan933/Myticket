@@ -38,11 +38,6 @@ function DeleteUser({ id }) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
         <Box sx={bigModalStyle}>
-          <div className="flex justify-end">
-            <IconButton color="error" onClick={handleClose}>
-              <CloseIcon fontSize="medium" />
-            </IconButton>
-          </div>
           {userEventsLoading ? (
             <Loader />
           ) : (
@@ -50,11 +45,18 @@ function DeleteUser({ id }) {
               {hasEvent ? (
                 <div>
                   {hasAcceptedEvent ? (
-                    <UserEventsTable
-                      userEvents={userEvents}
-                      setOpen={setOpen}
-                      hasAcceptedEvent={hasAcceptedEvent}
-                    />
+                    <div>
+                      <div className="flex justify-end">
+                        <IconButton color="error" onClick={handleClose}>
+                          <CloseIcon fontSize="medium" />
+                        </IconButton>
+                      </div>
+                      <UserEventsTable
+                        userEvents={userEvents}
+                        setOpen={setOpen}
+                        hasAcceptedEvent={hasAcceptedEvent}
+                      />
+                    </div>
                   ) : (
                     <div>
                       <UserEventsTable

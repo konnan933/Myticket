@@ -33,7 +33,7 @@ function AdminEventContent() {
   return (
     <div className="flex justify-center ">
       <div className="w-3/4">
-        <div className="flex justify-start">
+        <div className="flex justify-center">
           <AddEvent />
         </div>
         <div className="flex justify-center w-full">

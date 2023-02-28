@@ -118,7 +118,7 @@ function EditEvent({ event }) {
               transform: 'translate(-50%, -50%)',
               width: '80%',
               maxHeight: '90%',
-              overflow: 'scroll',
+              overflow: 'hidden',
               bgcolor: 'white',
               boxShadow: 24,
               borderRadius: 7
@@ -126,13 +126,13 @@ function EditEvent({ event }) {
             {datasLoading ? (
               <Loader />
             ) : (
-              <div className="flex justify-center flex-col">
+              <div className="flex justify-center flex-col overflow-y-scroll">
                 <div className="flex justify-end">
                   <IconButton color="error" onClick={handleClose}>
                     <CloseIcon fontSize="medium" />
                   </IconButton>
                 </div>
-                <div className="flex justify-center">
+                <div className="flex justify-center ">
                   <h2>{t('EDIT_EVENT')}</h2>
                 </div>
                 <div className="flex justify-center">

@@ -14,6 +14,7 @@ import AdminEventPage from 'pages/Admin/AdminEvent/AdminEventPage';
 import DetailedEventPage from 'pages/Admin/AdminEvent/DetailedEventPage';
 import AdminAddEventPage from 'pages/Admin/AdminEvent/AddEventPage';
 import RootDataTablesPage from 'pages/Admin/RootDataTablesPage/RootDataTablesPage';
+import UserAddEventPage from 'pages/User/UserAddEventPage';
 
 i18n.addResourceBundle('en', 'rootes', en);
 i18n.addResourceBundle('hu', 'rootes', hu);
@@ -54,6 +55,10 @@ export const allRootConfig = [
   {
     pagePath: '/rootData',
     element: <RootDataTablesPage />
+  },
+  {
+    pagePath: '/userAddEvent',
+    element: <UserAddEventPage />
   }
 ];
 
@@ -69,6 +74,12 @@ export const navbarConfig = [
     pagePath: '/admin',
     element: <AdminMenuList />,
     level: level.admin
+  },
+  {
+    pageName: 'ADDEVENT',
+    pagePath: '/userAddEvent',
+    element: <UserAddEventPage />,
+    level: level.user
   }
 ];
 
@@ -83,7 +94,7 @@ export const adminConfig = [
     pageName: 'ADMINEVENT',
     pagePath: '/adminEvents',
     element: <AdminEventContent />,
-    level: level.user
+    level: level.admin
   },
   {
     pageName: 'ROOT_DATA',

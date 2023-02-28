@@ -15,6 +15,7 @@ function UserEventsTable({ userEvents, hasAcceptedEvent }) {
       ) : (
         <CanDeleteUserDialog userEvents={userEvents} />
       )}
+
       <div className="flex justify-center pb-10 pt-5">
         <TableContainer style={{ margin: 10, width: '70%' }} component={Paper}>
           <Table aria-label="customized table">
