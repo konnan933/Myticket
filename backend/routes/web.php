@@ -89,6 +89,7 @@ Route::get('api/event/filter/{date}/{place}/{category}', [EsemenyekController::c
 Route::get('api/eventdetails', [EsemenyekController::class, 'getEventDetails']);
 Route::get('api/eventdetails/{id}', [EsemenyekController::class, 'getSingleEventDetails']);
 Route::get('api/userevents/{id}', [EsemenyekController::class, 'getUserEvents']);
+Route::get('api/events/accepted', [EsemenyekController::class, 'acceptedEvents']);
 
 
 
@@ -111,6 +112,8 @@ Route::get('api/iticket/{id}', [EszmeiJegyController::class, 'show']);
 Route::put('api/iticket/{id}', [EszmeiJegyController::class, 'update']);
 Route::delete('api/iticket/{id}', [EszmeiJegyController::class, 'destroy']);
 Route::get('api/iticket/event/all/{id}', [EszmeiJegyController::class, 'getAllEventTickets']);
+Route::get('api/iticket/event/sales/{id}', [EszmeiJegyController::class, 'getTicketHaveSales']);
+
 
 //EszmeiJegyValt vegpontok
 Route::get('api/ticketchange', [EszmeiJegyValtController::class, 'index']);

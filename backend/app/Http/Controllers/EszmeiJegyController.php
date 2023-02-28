@@ -40,10 +40,10 @@ class EszmeiJegyController extends Controller
 
     public function update(Request $request, $eszmei_jegy_id)
     {
-        
+
 
         $eszmei_jegy = EszmeiJegy::find($eszmei_jegy_id);
-        $eszmei_jegy->esemeny_id =$request->esemeny_id;
+        $eszmei_jegy->esemeny_id = $request->esemeny_id;
         $eszmei_jegy->tipus = $request->tipus;
         $eszmei_jegy->ossz_menny = $request->ossz_menny;
         $eszmei_jegy->lefog_menny = $eszmei_jegy->lefog_menny;
@@ -54,13 +54,31 @@ class EszmeiJegyController extends Controller
         $eszmei_jegy->save();
     }
 
-    public function getAllEventTickets($event){
+    public static function getAllEventTickets($event)
+    {
 
         $allEventTickets = DB::table('eszmei_jegy')->select('eszmei_jegy.*', 'jegy_tipus.name')
-        ->join('jegy_tipus', 'jegy_tipus.id', '=', 'eszmei_jegy.tipus')
-        ->where('esemeny_id', '=', $event)
-        ->get();
+            ->join('jegy_tipus', 'jegy_tipus.id', '=', 'eszmei_jegy.tipus')
+            ->where('esemeny_id', '=', $event)
+            ->get();
 
-    return $allEventTickets;
+        return $allEventTickets;
+    }
+
+    public static function getTicketHaveSales($ticket_id)
+    {
+
+        $allEventTickets = DB::table('jegyek')->select('*')
+            ->whereExists(function ($query) use ($ticket_id) {
+                $query->from('jegyek')
+                    ->select('*')
+                    ->where('jegyek.eszmei_jegy_id', $ticket_id);
+            })
+            ->get();
+
+        if ($allEventTickets->isEmpty()) {
+            return false;
+        }
+        return true;
     }
 }

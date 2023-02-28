@@ -260,7 +260,7 @@ class EsemenyekController extends Controller
         return $eventDetails;
     }
 
-    public function getUserEvents($userId)
+    public static function getUserEvents($userId)
     {
         $userEvents = DB::table('esemenyek')->select('esemenyek.id as eventId', 'esemenyek.cim', 'esemenyek.kezd_datum', 'esemenyek.veg_datum', 'users.fel_nev', 'users.id as organizerId', 'esemenyek.statusz')
             ->join('users', 'users.id', '=', 'esemenyek.user')
@@ -268,5 +268,14 @@ class EsemenyekController extends Controller
             ->get();
 
         return $userEvents;
+    }
+
+    public static function acceptedEvents()
+    {
+        $acceptedEvents = DB::table('esemenyek')->select('*')
+            ->where('statusz', '=', 1)
+            ->get();
+
+        return $acceptedEvents;
     }
 }

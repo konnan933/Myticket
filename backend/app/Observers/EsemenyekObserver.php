@@ -3,8 +3,10 @@
 namespace App\Observers;
 
 use App\Http\Controllers\EsemenyekController;
+use App\Http\Controllers\EszmeiJegyController;
 use App\Models\Esemenyek;
 use App\Models\EsemenyValt;
+use App\Models\EszmeiJegy;
 use Illuminate\Http\Response;
 
 class EsemenyekObserver
@@ -61,15 +63,15 @@ class EsemenyekObserver
             Esemenyek::find($esemenyek->id)->delete();
         }
 
-         if ($esemenyek->getOriginal('kezd_datum') != $esemenyek->kezd_datum  
-         || 
-         $esemenyek->getOriginal('veg_datum') != $esemenyek->veg_datum 
-         || 
-         $esemenyek->getOriginal('helyszin') != $esemenyek->helyszin 
-         ){
-             EsemenyekController::sendEmailEventChange($esemenyek);
-        } 
-       
+        if (
+            $esemenyek->getOriginal('kezd_datum') != $esemenyek->kezd_datum
+            ||
+            $esemenyek->getOriginal('veg_datum') != $esemenyek->veg_datum
+            ||
+            $esemenyek->getOriginal('helyszin') != $esemenyek->helyszin
+        ) {
+            EsemenyekController::sendEmailEventChange($esemenyek);
+        }
     }
 
     /**
@@ -78,6 +80,16 @@ class EsemenyekObserver
      * @param  \App\Models\Esemenyek  $esemenyek
      * @return void
      */
+
+    public function deleting(Esemenyek $esemenyek)
+    {
+        $eventTickets = EszmeiJegyController::getAllEventTickets($esemenyek->id);
+
+        foreach ($eventTickets as $ticket) {
+            EszmeiJegy::destroy($ticket->eszmei_jegy_id);
+        }
+    }
+
     public function deleted(Esemenyek $esemenyek)
     {
         //

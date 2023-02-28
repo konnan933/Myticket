@@ -115,10 +115,11 @@ export const updateUser = createAsyncThunk(
 
 export const deleteEvent = createAsyncThunk(
   'admin/deleteEvent',
-  async (id, { rejectWithValue }) => {
+  async (id, { dispatch, rejectWithValue }) => {
     try {
-      const response = await api.delete(admin.event + '/' + id);
-      return response.data;
+      await api.delete(admin.event + '/' + id).then(() => {
+        dispatch(getEvents());
+      });
     } catch (err) {
       if (!err.response) {
         throw err;
