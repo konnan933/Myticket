@@ -53,6 +53,7 @@ const locale = {
   PRICE: 'Ár',
   SALE_START: 'Értékesítés kezdete',
   SALE_DATE_LOWER: 'Az értékesítés kezdete nem lehet nagyobb mint az esemény vége',
+  SALE_DATE_LOWER_TODAY: 'Az értékesítés kezdete nem lehet kisebb mint ma',
   TICKET_TYPE: 'Jegy típusa',
   TICKET_AMOUNT_LOWER: 'Az összes mennyiség nem lehet kevesebb mint a lefoglalt mennyiség',
   ALL_TICKET_AMOUNT: 'Összes mennyiség',

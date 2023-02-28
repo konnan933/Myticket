@@ -39,6 +39,7 @@ const locale = {
   END_DATE_LOWER_START_DATE: 'The event end date cannot be lower than the start date',
   END_DATE_LOWER: 'The end date cannot be lower than today',
   START_DATE_LOWER: 'The start day cannot be lower than tomorrow',
+  SALE_DATE_LOWER_TODAY: 'The sale date cannot be lower today',
   TICKETS: 'Tickets',
   TICKET_TYPE_NAME: 'Ticket type',
   ALL_TICKET: 'All ticket',
@@ -61,7 +62,7 @@ const locale = {
   EDIT_TICKET_TYPE: 'Edit ticket type',
   EDIT_TICKET: 'Edit tickets',
   CANNOT_DELETE_USER: 'You cannot delete this user, because he/she has accepted event',
-  STREET : 'street'
+  STREET: 'street'
 };
 
 export default locale;
