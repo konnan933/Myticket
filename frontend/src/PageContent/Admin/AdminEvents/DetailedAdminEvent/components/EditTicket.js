@@ -32,7 +32,7 @@ function EditTicket({ ticket }) {
   const [allAmountErrorMsg, setAllAmountErrorMsg] = useState('');
   const [startDateError, setStartDateError] = useState(false);
   const [allAmountError, setAllamountError] = useState(false);
-  const startDate = moment(singleEvent.veg_datum).format('yyyy-MM-DDTHH:mm');
+  const startDate = moment(singleEvent.kezd_datum).format('yyyy-MM-DDTHH:mm');
   const date = moment(new Date()).format('yyyy-MM-DDTHH:mm');
   const [allAmount, setAllAmount] = useState(ticket.szabad_menny);
   const [price, setPrice] = useState(ticket.ara);

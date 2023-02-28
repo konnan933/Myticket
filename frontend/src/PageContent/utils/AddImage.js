@@ -66,6 +66,13 @@ function Addimage({ setImageId }) {
                     }}>
                     {t('SEND_IMAGE')}
                   </Button>
+                  <Button
+                    onClick={() => {
+                      setPath(null);
+                      setIsSent(false);
+                    }}>
+                    {t('CHANGE_PICTURE')}
+                  </Button>
                 </div>
               </div>
             )}
