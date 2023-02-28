@@ -15,6 +15,7 @@ function DeleteUser({ id }) {
   const { userEvents, userEventsLoading } = useSelector((state) => state.admin);
   const [open, setOpen] = useState(false);
   const hasEvent = userEvents[0] != undefined;
+  const hasAcceptedEvent = hasEvent && userEvents[0].statusz === 1;
 
   const handleClickOpen = () => {
     dispatch(getUserEvents(id));
@@ -42,8 +43,22 @@ function DeleteUser({ id }) {
             <div>
               {hasEvent ? (
                 <div>
-                  <UserEventsTable userEvents={userEvents} setOpen={setOpen} />
-                  <ConfirmUserDelete setOpen={setOpen} id={id} />
+                  {hasAcceptedEvent ? (
+                    <UserEventsTable
+                      userEvents={userEvents}
+                      setOpen={setOpen}
+                      hasAcceptedEvent={hasAcceptedEvent}
+                    />
+                  ) : (
+                    <div>
+                      <UserEventsTable
+                        userEvents={userEvents}
+                        setOpen={setOpen}
+                        hasAcceptedEvent={hasAcceptedEvent}
+                      />
+                      <ConfirmUserDelete setOpen={setOpen} id={id} />
+                    </div>
+                  )}
                 </div>
               ) : (
                 <div>

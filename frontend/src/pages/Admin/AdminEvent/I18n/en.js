@@ -59,7 +59,8 @@ const locale = {
   TICKET_AMOUNT_LOWER: 'The ticket amount cannot be lower than the booked amount',
   ALL_TICKET_AMOUNT: 'All amount',
   EDIT_TICKET_TYPE: 'Edit ticket type',
-  EDIT_TICKET: 'Edit tickets'
+  EDIT_TICKET: 'Edit tickets',
+  CANNOT_DELETE_USER: 'You cannot delete this user, because he/she has accepted event'
 };
 
 export default locale;

@@ -27,7 +27,7 @@ function UsersTable() {
             <StyledTableCell align="left">{t('USER_NAME')}</StyledTableCell>
             <StyledTableCell align="left">{t('EMAIL')}</StyledTableCell>
             <StyledTableCell align="left">{t('LEVEL')}</StyledTableCell>
-            <StyledTableCell align="left">{t('PHONENUMBER')}</StyledTableCell>
+            <StyledTableCell align="left">{t('PHONE_NUMBER')}</StyledTableCell>
             <StyledTableCell align="center">{t('PENALTIES')}</StyledTableCell>
           </TableRow>
         </TableHead>

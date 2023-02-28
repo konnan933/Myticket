@@ -59,6 +59,7 @@ const locale = {
   EDIT_TICKET_TYPE: 'Jegyek módosítása',
   ACCEPT: 'Elfogadás',
   DECLINE: 'Elutasítás',
-  EDIT_TICKET: 'Jegyek szerkeztése'
+  EDIT_TICKET: 'Jegyek szerkeztése',
+  CANNOT_DELETE_USER: 'A kiválaszott felhasználó nem törölhető, mert van elfogadott eseménye'
 };
 export default locale;

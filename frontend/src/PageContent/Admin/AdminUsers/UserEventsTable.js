@@ -2,19 +2,19 @@ import { Paper, Table, TableBody, TableContainer, TableHead, TableRow } from '@m
 import { StyledTableCell, StyledTableRow } from 'PageContent/utils/TableStyles';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import CanDeleteUserDialog from './components/CanDeleteUSerDialog';
+import CantDeleteUserDialog from './components/CantDeleteUserDialog';
 
-function UserEventsTable({ userEvents }) {
+function UserEventsTable({ userEvents, hasAcceptedEvent }) {
   const { t } = useTranslation('adminEvent');
 
   return (
     <div>
-      <div className="p-4">
-        <p>{`${userEvents[0].fel_nev} ${t('USER_EVENTS')}`}</p>
-        <br></br>
-        <p>{t('IF_DELETE_USER')}</p>
-        <br></br>
-        <p>{t('CONFIRM_DELETE_USER')}</p>
-      </div>
+      {hasAcceptedEvent ? (
+        <CantDeleteUserDialog userEvents={userEvents} />
+      ) : (
+        <CanDeleteUserDialog userEvents={userEvents} />
+      )}
       <div className="flex justify-center pb-10 pt-5">
         <TableContainer style={{ margin: 10, width: '70%' }} component={Paper}>
           <Table aria-label="customized table">
