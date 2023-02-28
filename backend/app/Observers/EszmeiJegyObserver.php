@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Http\Controllers\EszmeiJegyController;
 use App\Models\EszmeiJegy;
 use App\Models\EszmeiJegyValt;
 
@@ -57,6 +58,16 @@ class EszmeiJegyObserver
      * @param  \App\Models\EszmeiJegy  $eszmeiJegy
      * @return void
      */
+
+    public function deleting(EszmeiJegy $eszmeiJegy)
+    {
+        $hasSale = EszmeiJegyController::getTicketHaveSales($eszmeiJegy->eszmei_jegy_id);
+
+        if ($hasSale) {
+            return false;
+        }
+    }
+
     public function deleted(EszmeiJegy $eszmeiJegy)
     {
         //

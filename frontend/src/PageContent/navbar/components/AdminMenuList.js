@@ -16,7 +16,7 @@ function AdminMenuList() {
         return (
           <MenuItem key={index} value={root.pageName}>
             <Link to={root.pagePath} key={index}>
-              <Button sx={{ color: 'white', borderColor: 'white' }}>{t(root.pageName)}</Button>
+              <Button>{t(root.pageName)}</Button>
             </Link>
           </MenuItem>
         );

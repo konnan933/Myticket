@@ -15,7 +15,7 @@ function LogoutButton() {
 
   return (
     <Link to="/">
-      <Button onClick={handleLogout}>{t('LOGOUT')}</Button>;
+      <Button onClick={handleLogout}>{t('LOGOUT')}</Button>
     </Link>
   );
 }
