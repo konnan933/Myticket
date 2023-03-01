@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Kosar;
+use App\Models\Basket;
 use Carbon\Carbon;
 use DateTime;
 use Illuminate\Console\Command;
@@ -21,7 +21,7 @@ class BasketCleaning extends Command
      *
      * @var string
      */
-    protected $description = 'Cleaning of the basket when the lefog_ido
+    protected $description = 'Cleaning of the basket when the boookedTime
                              is past 10 minutes of its creation and its 
                              no bougth it will be deleted';
 
@@ -32,10 +32,10 @@ class BasketCleaning extends Command
 
     public function handle()
     {
-        $kosarTartalom = Kosar::all();
+        $kosarTartalom = Basket::all();
         foreach ($kosarTartalom as $kosarAdat) {
             //TODO feltétel kibővítés
-            if (!(now()->lessThan(Carbon::parse($kosarAdat->lefog_ido)->addMinutes(10)))) {
+            if (!(now()->lessThan(Carbon::parse($kosarAdat->boookedTime)->addMinutes(10)))) {
                 $kosarAdat->delete();
             }
         }

@@ -18,7 +18,7 @@ function TicketAddForm() {
   const [currency, setCurrency] = useState('');
   const [startDateErrorMsg, setStartDateErrorMsg] = useState('');
   const [startDateError, setStartDateError] = useState(false);
-  const startDate = moment(singleEvent.veg_datum).format('yyyy-MM-DDTHH:mm');
+  const startDate = moment(singleEvent.endDate).format('yyyy-MM-DDTHH:mm');
   const [allAmount, setAllAmount] = useState(0);
   const [allAmountError, setAllAmountError] = useState(false);
   const [allAmountErrorMsg, setAllAmountErrorMsg] = useState('');
@@ -26,7 +26,7 @@ function TicketAddForm() {
   const [priceError, setPriceError] = useState(false);
   const [priceErrorMsg, setPriceErrorMsg] = useState('');
   const { ticketTypes } = useSelector((state) => state.ticketTypes);
-  const { currencies } = useSelector((state) => state.currency);
+  const { currencies } = useSelector((state) => state.currencies);
   const dispatch = useDispatch();
 
   const errors = startDateError || allAmountError || priceError;
@@ -71,7 +71,7 @@ function TicketAddForm() {
   return (
     <form
       onSubmit={handleSubmit((data) => {
-        data.esemeny_id = id;
+        data.eventId = id;
         dispatch(addTicket({ data, eventId: id }));
       })}>
       <fieldset>
@@ -81,23 +81,23 @@ function TicketAddForm() {
               {t('TICKET_TYPE')}
             </InputLabel>
             <Select
-              {...register('tipus')}
+              {...register('type')}
               value={ticketType}
               notched={true}
               required
               label={t('TICKET_TYPE')}
               onChange={ticketTypeChangeHandler}
               inputProps={{ 'aria-label': 'Without label' }}>
-              {ticketTypes.map((ticketType) => (
-                <MenuItem key={ticketType.id} value={ticketType.id}>
-                  {ticketType.name}
+              {ticketTypes.map((ticketTypes) => (
+                <MenuItem key={ticketTypes.id} value={ticketTypes.id}>
+                  {ticketTypes.name}
                 </MenuItem>
               ))}
             </Select>
           </FormControl>
 
           <TextField
-            {...register('ossz_menny')}
+            {...register('allTicket')}
             required
             error={allAmountError}
             helperText={allAmountErrorMsg}
@@ -113,23 +113,23 @@ function TicketAddForm() {
               {t('CURRENCY')}
             </InputLabel>
             <Select
-              {...register('penznem')}
+              {...register('name')}
               value={currency}
               notched={true}
               required
               label={t('CURRENCY')}
               onChange={currencyChangeHandler}
               inputProps={{ 'aria-label': 'Without label' }}>
-              {currencies.map((currency) => (
-                <MenuItem key={currency.penznem} value={currency.penznem}>
-                  {currency.penznem}
+              {currencies.map((currencies) => (
+                <MenuItem key={currencies.name} value={currencies.name}>
+                  {currencies.name}
                 </MenuItem>
               ))}
             </Select>
           </FormControl>
 
           <TextField
-            {...register('ara')}
+            {...register('price')}
             required
             error={priceError}
             helperText={priceErrorMsg}
@@ -141,7 +141,7 @@ function TicketAddForm() {
           />
 
           <TextField
-            {...register('kezd_datum')}
+            {...register('startDate')}
             error={startDateError}
             defaultValue={startDate}
             onSelect={startDateChangeHandler}

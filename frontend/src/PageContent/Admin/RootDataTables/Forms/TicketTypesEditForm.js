@@ -6,13 +6,13 @@ import { useDispatch } from 'react-redux';
 import {} from 'redux/thunks/EventTypes';
 import { updateTicketType } from 'redux/thunks/TicketTypes';
 
-function TicketTypesEditForm({ ticketType, handleClose }) {
+function TicketTypesEditForm({ ticketTypes, handleClose }) {
   const { t } = useTranslation('rootData');
   const { register, handleSubmit } = useForm();
 
   const dispatch = useDispatch();
 
-  const [name, setName] = useState(ticketType.name);
+  const [name, setName] = useState(ticketTypes.name);
 
   const nameChangeHandler = (event) => {
     setName(event.target.value);
@@ -21,7 +21,7 @@ function TicketTypesEditForm({ ticketType, handleClose }) {
   return (
     <form
       onSubmit={handleSubmit((data) => {
-        data.id = ticketType.id;
+        data.id = ticketTypes.id;
         handleClose();
         dispatch(updateTicketType(data));
       })}>

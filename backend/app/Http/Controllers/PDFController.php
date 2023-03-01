@@ -10,7 +10,7 @@ class PDFController extends Controller
 {
     public function createPDF($user, $qrcode)
     {
-        $fel_nev = User::find($user)->fel_nev;
-        return view('pdf', compact('qrcode', 'fel_nev'));
+        $userName = User::find($user)->userName;
+        return view('pdf', compact('qrcode', 'userName'));
     }
 }

@@ -6,7 +6,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import TicketTypesEditForm from '../Forms/TicketTypesEditForm';
 import CloseIcon from '@mui/icons-material/Close';
 
-function TicketTypesEdit({ ticketType }) {
+function TicketTypesEdit({ ticketTypes }) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -36,7 +36,7 @@ function TicketTypesEdit({ ticketType }) {
             <div className="flex justify-center">
               <h2>{t('EDIT_TT')}</h2>
             </div>
-            <TicketTypesEditForm ticketType={ticketType} handleClose={handleClose} />
+            <TicketTypesEditForm ticketTypes={ticketTypes} handleClose={handleClose} />
           </Box>
         </Modal>
       </div>

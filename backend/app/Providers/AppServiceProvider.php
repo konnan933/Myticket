@@ -2,11 +2,11 @@
 
 namespace App\Providers;
 
-use App\Models\Esemenyek;
-use App\Models\EszmeiJegy;
-use App\Models\Jegyek;
-use App\Models\Kosar;
-use App\Models\Szamlafej;
+use App\Models\Events;
+use App\Models\ConceptTicket;
+use App\Models\Tickets;
+use App\Models\Basket;
+use App\Models\Reciept;
 use App\Models\User;
 use App\Observers\EsemenyekObserver;
 use App\Observers\EszmeiJegyObserver;
@@ -36,10 +36,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         User::observe(UserObserver::class);
-        Esemenyek::observe(EsemenyekObserver::class);
-        EszmeiJegy::observe(EszmeiJegyObserver::class);
-        Kosar::observe(KosarObserver::class);
-        Szamlafej::observe(SzamlafejObserver::class);
-        Jegyek::observe(JegyekObserver::class);
+        Events::observe(EsemenyekObserver::class);
+        ConceptTicket::observe(EszmeiJegyObserver::class);
+        Basket::observe(KosarObserver::class);
+        Reciept::observe(SzamlafejObserver::class);
+        Tickets::observe(JegyekObserver::class);
     }
 }

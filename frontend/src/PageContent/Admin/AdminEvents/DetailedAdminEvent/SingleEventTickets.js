@@ -46,21 +46,21 @@ function SingleEventTickets() {
             </TableHead>
             <TableBody>
               {eventTickets.map((ticket) => (
-                <StyledTableRow key={ticket.eszmei_jegy_id}>
+                <StyledTableRow key={ticket.conceptTicketId}>
                   <StyledTableCell align="left">
                     <div className="flex">
-                      <DeleteTicket ticketId={ticket.eszmei_jegy_id} />
+                      <DeleteTicket ticketId={ticket.conceptTicketId} />
                       <EditTicket ticket={ticket} />
                     </div>
                   </StyledTableCell>
                   <StyledTableCell align="left">{ticket.name}</StyledTableCell>
-                  <StyledTableCell align="left">{`${ticket.ossz_menny} ${t(
+                  <StyledTableCell align="left">{`${ticket.allTicket} ${t(
                     'PORTION'
                   )}`}</StyledTableCell>
-                  <StyledTableCell align="left">{`${ticket.lefog_menny} ${t(
+                  <StyledTableCell align="left">{`${ticket.bookedTicket} ${t(
                     'PORTION'
                   )}`}</StyledTableCell>
-                  <StyledTableCell align="left">{`${ticket.szabad_menny} ${t(
+                  <StyledTableCell align="left">{`${ticket.freeTicket} ${t(
                     'PORTION'
                   )}`}</StyledTableCell>
                 </StyledTableRow>

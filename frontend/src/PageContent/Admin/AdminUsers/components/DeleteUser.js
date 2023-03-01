@@ -16,7 +16,7 @@ function DeleteUser({ id }) {
   const { userEvents, userEventsLoading } = useSelector((state) => state.admin);
   const [open, setOpen] = useState(false);
   const hasEvent = userEvents[0] != undefined;
-  const hasAcceptedEvent = hasEvent && userEvents[0].statusz === 1;
+  const hasAcceptedEvent = hasEvent && userEvents[0].status === 1;
 
   const handleClickOpen = () => {
     dispatch(getUserEvents(id));

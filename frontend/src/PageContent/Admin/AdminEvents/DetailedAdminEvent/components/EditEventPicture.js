@@ -47,7 +47,7 @@ function EditEventPictures() {
             </IconButton>
           </div>
           <div className="flex justify-center pb-10 pt-5 ">
-            <Typography>{`${singleDetailedEvent.cim} ${t('EVENT_PICTURE')}`}</Typography>
+            <Typography>{`${singleDetailedEvent.title} ${t('EVENT_PICTURE')}`}</Typography>
           </div>
           <img src={`${admin.eventPicture}${id}`} className="w-full " />
         </Box>

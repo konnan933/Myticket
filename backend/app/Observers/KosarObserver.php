@@ -2,10 +2,10 @@
 
 namespace App\Observers;
 
-use App\Models\EszmeiJegy;
-use App\Models\Jegyek;
-use App\Models\Kosar;
-use App\Models\Szamlafej;
+use App\Models\ConceptTicket;
+use App\Models\Tickets;
+use App\Models\Basket;
+use App\Models\Reciept;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
@@ -15,74 +15,74 @@ class KosarObserver
 
 
     /**
-     * Handle the Kosar "created" event.
+     * Handle the Basket "created" event.
      *
-     * @param  \App\Models\Kosar  $kosar
+     * @param  \App\Models\Basket  $basket
      * @return void
      */
-    public function created(Kosar $kosar)
+    public function created(Basket $basket)
     {
-        $eszmeiJegy = EszmeiJegy::find($kosar->eszmei_jegy_id);
-        $eszmeiJegy->lefog_menny = $eszmeiJegy->lefog_menny + $kosar->db;
-        $eszmeiJegy->szabad_menny = $eszmeiJegy->szabad_menny - $kosar->db;
+        $eszmeiJegy = ConceptTicket::find($basket->conceptTicketId);
+        $eszmeiJegy->bookedTicket = $eszmeiJegy->bookedTicket + $basket->numberOfTickets;
+        $eszmeiJegy->freeTicket = $eszmeiJegy->freeTicket - $basket->numberOfTickets;
         $eszmeiJegy->save();
     }
 
-    public function updated(Kosar $kosar)
+    public function updated(Basket $basket)
     {
-        if ($kosar->kifizetve == 1) {
-            $szamlaId = KosarObserver::szamlaLetrehozas($kosar);
-            for ($i = 0; $i < $kosar->db; $i++) {
-                KosarObserver::jegyekLetrehozas($kosar, $szamlaId);
+        if ($basket->payed == 1) {
+            $szamlaId = KosarObserver::szamlaLetrehozas($basket);
+            for ($i = 0; $i < $basket->numberOfTickets; $i++) {
+                KosarObserver::jegyekLetrehozas($basket, $szamlaId);
             }
         }
     }
-    public function jegyekLetrehozas($kosar, $szamlaId)
+    public function jegyekLetrehozas($basket, $szamlaId)
     {
-        $jegyek = new Jegyek();
-        $jegyek->esemeny_id = $kosar->esemeny_id;
-        $jegyek->eszmei_jegy_id = $kosar->eszmei_jegy_id;
-        $jegyek->user = $kosar->user;
-        $jegyek->kosarSzam = $kosar->id;
-        $jegyek->szamlaszam = $szamlaId;
-        $jegyek->qrkod = Hash::make($kosar->eszmei_jegy_id);
-        $jegyek->save();
+        $tickets = new Tickets();
+        $tickets->eventId = $basket->eventId;
+        $tickets->conceptTicketId = $basket->conceptTicketId;
+        $tickets->user = $basket->user;
+        $tickets->basketNumber = $basket->id;
+        $tickets->recieptNumber = $szamlaId;
+        $tickets->qrCode = Hash::make($basket->conceptTicketId);
+        $tickets->save();
     }
-    public function szamlaLetrehozas($kosar)
+    public function szamlaLetrehozas($basket)
     {
-        $afas_ar = KosarObserver::afasArKiszamolo($kosar->db, EszmeiJegy::find($kosar->eszmei_jegy_id)->ara);
-        $szamlafej = new Szamlafej();
-        $szamlafej->kib_neve = "MyTicket";
-        $szamlafej->vevo_nev = User::find($kosar->user)->fel_nev;
-        $szamlafej->user = $kosar->user;
-        $szamlafej->kib_datum = now();
-        $szamlafej->afa_nelk_ar  = $afas_ar - ($afas_ar * 0.27);
-        $szamlafej->afas_ar  = $afas_ar;
-        $szamlafej->save();
-        return $szamlafej->getKey();
+        $withVatPrice = KosarObserver::afasArKiszamolo($basket->numberOfTickets, ConceptTicket::find($basket->conceptTicketId)->price);
+        $reciept = new Reciept();
+        $reciept->senderName = "MyTicket";
+        $reciept->buyerName = User::find($basket->user)->userName;
+        $reciept->user = $basket->user;
+        $reciept->sendedAt = now();
+        $reciept->withoutVatPrice  = $withVatPrice - ($withVatPrice * 0.27);
+        $reciept->withVatPrice  = $withVatPrice;
+        $reciept->save();
+        return $reciept->getKey();
     }
-    public function afasArKiszamolo($db, $ara)
+    public function afasArKiszamolo($numberOfTickets, $price)
     {
-        $ar = $db * $ara;
+        $ar = $numberOfTickets * $price;
         return $ar;
     }
 
 
-    public function deleted(Kosar $kosar)
+    public function deleted(Basket $basket)
     {
-        $eszmeiJegy = EszmeiJegy::find($kosar->eszmei_jegy_id);
-        $eszmeiJegy->lefog_menny = $eszmeiJegy->lefog_menny - $kosar->db;
-        $eszmeiJegy->szabad_menny = $eszmeiJegy->szabad_menny + $kosar->db;
+        $eszmeiJegy = ConceptTicket::find($basket->conceptTicketId);
+        $eszmeiJegy->bookedTicket = $eszmeiJegy->bookedTicket - $basket->numberOfTickets;
+        $eszmeiJegy->freeTicket = $eszmeiJegy->freeTicket + $basket->numberOfTickets;
         $eszmeiJegy->save();
     }
 
 
-    public function restored(Kosar $kosar)
+    public function restored(Basket $basket)
     {
     }
 
 
-    public function forceDeleted(Kosar $kosar)
+    public function forceDeleted(Basket $basket)
     {
     }
 }

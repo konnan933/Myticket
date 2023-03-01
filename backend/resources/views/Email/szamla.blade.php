@@ -8,7 +8,7 @@
 <body>
 
     <div>
-        Szia {{ $vevo_nev }}!,
+        Szia {{ $buyerName }}!,
         <br>
         Köszönjük a vásárlást!
         <br>

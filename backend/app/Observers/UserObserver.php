@@ -2,8 +2,8 @@
 
 namespace App\Observers;
 
-use App\Http\Controllers\EsemenyekController;
-use App\Models\Esemenyek;
+use App\Http\Controllers\EventsController;
+use App\Models\Events;
 use App\Models\User;
 use Illuminate\Contracts\Queue\Queue;
 
@@ -55,10 +55,10 @@ class UserObserver
 
     public function deleting(User $user)
     {
-        $userEvents = EsemenyekController::getUserEvents($user->id);
+        $userEvents = EventsController::getUserEvents($user->id);
 
         foreach ($userEvents as $event) {
-            Esemenyek::destroy($event->eventId);
+            Events::destroy($event->eventId);
         }
     }
 

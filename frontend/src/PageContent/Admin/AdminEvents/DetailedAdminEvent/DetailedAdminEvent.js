@@ -44,7 +44,7 @@ function DetailedAdminEvent() {
         </div>
         <div className="flex flex-col">
           <div>
-            <Typography variant="h4">{`${singleDetailedEvent.cim} ${t('EVENTNAME')}`}</Typography>
+            <Typography variant="h4">{`${singleDetailedEvent.title} ${t('EVENTNAME')}`}</Typography>
           </div>
           <div className="flex flex-col justify-between">
             <div className="flex justify-between">

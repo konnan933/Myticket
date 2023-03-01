@@ -3,71 +3,71 @@
 namespace App\Observers;
 
 use App\Http\Controllers\EmailController;
-use App\Http\Controllers\JegyekController;
-use App\Http\Controllers\KosarController;
-use App\Models\Jegyek;
-use App\Models\Kosar;
+use App\Http\Controllers\TicketsController;
+use App\Http\Controllers\BasketController;
+use App\Models\Tickets;
+use App\Models\Basket;
 use Illuminate\Support\Facades\Hash;
 
 class JegyekObserver
 {
     /**
-     * Handle the Jegyek "created" event.
+     * Handle the Tickets "created" event.
      *
-     * @param  \App\Models\Jegyek  $jegyek
+     * @param  \App\Models\Tickets  $tickets
      * @return void
      */
-    public function created(Jegyek $jegyek)
+    public function created(Tickets $tickets)
     {
-        $dbSzam = Kosar::find($jegyek->kosarSzam);
-        $jegyek->qrkod = str_replace('/', '0', Hash::make($jegyek->id));
-        $jegyek->save();
-        $qrCodes = JegyekController::getUserQrCodes($jegyek);
-        if (count($qrCodes) == $dbSzam->db) {
-            EmailController::sendPDF($jegyek, $qrCodes);
+        $dbSzam = Basket::find($tickets->basketNumber);
+        $tickets->qrCode = str_replace('/', '0', Hash::make($tickets->id));
+        $tickets->save();
+        $qrCodes = TicketsController::getUserQrCodes($tickets);
+        if (count($qrCodes) == $dbSzam->numberOfTickets) {
+            EmailController::sendPDF($tickets, $qrCodes);
         }
     }
 
     /**
-     * Handle the Jegyek "updated" event.
+     * Handle the Tickets "updated" event.
      *
-     * @param  \App\Models\Jegyek  $jegyek
+     * @param  \App\Models\Tickets  $tickets
      * @return void
      */
-    public function updated(Jegyek $jegyek)
+    public function updated(Tickets $tickets)
     {
         //
     }
 
     /**
-     * Handle the Jegyek "deleted" event.
+     * Handle the Tickets "deleted" event.
      *
-     * @param  \App\Models\Jegyek  $jegyek
+     * @param  \App\Models\Tickets  $tickets
      * @return void
      */
-    public function deleted(Jegyek $jegyek)
+    public function deleted(Tickets $tickets)
     {
         //
     }
 
     /**
-     * Handle the Jegyek "restored" event.
+     * Handle the Tickets "restored" event.
      *
-     * @param  \App\Models\Jegyek  $jegyek
+     * @param  \App\Models\Tickets  $tickets
      * @return void
      */
-    public function restored(Jegyek $jegyek)
+    public function restored(Tickets $tickets)
     {
         //
     }
 
     /**
-     * Handle the Jegyek "force deleted" event.
+     * Handle the Tickets "force deleted" event.
      *
-     * @param  \App\Models\Jegyek  $jegyek
+     * @param  \App\Models\Tickets  $tickets
      * @return void
      */
-    public function forceDeleted(Jegyek $jegyek)
+    public function forceDeleted(Tickets $tickets)
     {
         //
     }

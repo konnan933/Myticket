@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getCurrency } from 'redux/thunks/Currency';
+import { getCurrency } from 'redux/thunks/Currencies';
 
 const CURRENCY_INIT_STATE = {
   currenciesLoading: false,
   currencies: []
 };
 const currencySlice = createSlice({
-  name: 'currency',
+  name: 'currencies',
   initialState: CURRENCY_INIT_STATE,
   reducers: {},
   extraReducers: (builder) => {

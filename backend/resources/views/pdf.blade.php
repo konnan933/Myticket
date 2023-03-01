@@ -96,22 +96,22 @@
 
         <div class="ticket">
             <div>
-                <img src="{{$esemeny_kep}}" alt=" Esemény képe" width="500" height="300">
+                <img src="{{$eventPicture}}" alt=" Esemény képe" width="500" height="300">
             </div>
             <div class="bottom">
                 <div class="column">
                     <div class="row">
                         <div class="col-md-4">
-                            <h2><span>Esemény cime: </span>{{$esemeny->cim}}</h2>
+                            <h2><span>Esemény cime: </span>{{$esemeny->title}}</h2>
                             <h2><span>Helyszin: </span>{{$helyszin_cim}}</h2>
                         </div>
                         <div class="col-md-4">
-                            <h2><span>Esemény kezdete: </span>{{$esemeny->kezd_datum}}</h2>
-                            <h2><span>Esemény vége: </span>{{$esemeny->veg_datum}}</h2>
+                            <h2><span>Esemény kezdete: </span>{{$esemeny->startDate}}</h2>
+                            <h2><span>Esemény vége: </span>{{$esemeny->endDate}}</h2>
                         </div>
                         <div class="col-md-4">
-                            <h2><span>A Neved: </span>{{$fel_nev}}</h2>
-                            <h2><span>Jegy tipus: </span>{{$jegy_tipus}}</h2>
+                            <h2><span>A Neved: </span>{{$userName}}</h2>
+                            <h2><span>Jegy type: </span>{{$ticketTypes}}</h2>
                             <h2><span>Ár: </span>{{$jegy_ar}}</h2>
                         </div>
                     </div>

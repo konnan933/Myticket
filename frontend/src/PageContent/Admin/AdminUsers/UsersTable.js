@@ -40,12 +40,12 @@ function UsersTable() {
                   <DeleteUser id={user.id} />
                 </div>
               </StyledTableCell>
-              <StyledTableCell align="left">{user.fel_nev}</StyledTableCell>
+              <StyledTableCell align="left">{user.userName}</StyledTableCell>
               <StyledTableCell align="left">{user.email}</StyledTableCell>
 
               <StyledTableCell align="left">{t('LEVEL_' + user.level)}</StyledTableCell>
 
-              <StyledTableCell align="left">{user.telefonszam}</StyledTableCell>
+              <StyledTableCell align="left">{user.phoneNumber}</StyledTableCell>
               <StyledTableCell align="center">{user.faults}</StyledTableCell>
             </StyledTableRow>
           ))}

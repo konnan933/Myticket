@@ -8,9 +8,9 @@
 <body>
 
     <div>
-        Szia {{ $vevo_nev }}!,
+        Szia {{ $buyerName }}!,
         <br>
-        A(z) ({{ $cim }}) esemény sajnos elmarad.
+        A(z) ({{ $title }}) esemény sajnos elmarad.
         <br>
         A jegy árát pontokban jóváirtuk Neked.
         <br>

@@ -31,15 +31,15 @@ function UserEventsTable({ userEvents, hasAcceptedEvent }) {
               {userEvents.map((userEvent) => (
                 <StyledTableRow key={userEvent.eventId}>
                   <StyledTableCell align="left">
-                    <Link to={`adminEvents/${userEvent.eventId}`} replace >
+                    <Link to={`adminEvents/${userEvent.eventId}`} replace>
                       <p className="cursor-pointer hover:text-blue-600 hover:underline">
-                        {userEvent.cim}
+                        {userEvent.title}
                       </p>
                     </Link>
                   </StyledTableCell>
-                  <StyledTableCell align="left">{userEvent.kezd_datum}</StyledTableCell>
-                  <StyledTableCell align="left">{userEvent.veg_datum}</StyledTableCell>
-                  <StyledTableCell align="left">{userEvent.statusz}</StyledTableCell>
+                  <StyledTableCell align="left">{userEvent.startDate}</StyledTableCell>
+                  <StyledTableCell align="left">{userEvent.endDate}</StyledTableCell>
+                  <StyledTableCell align="left">{userEvent.status}</StyledTableCell>
                 </StyledTableRow>
               ))}
             </TableBody>

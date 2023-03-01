@@ -33,12 +33,12 @@ function EditEvent({ event }) {
 
   const dispatch = useDispatch();
 
-  const [eventName, setEventName] = useState(event.cim);
-  const [buisnessEmail, setBuisnessEmail] = useState(event.buisness_email);
-  const [buisnessPhoneNum, setBuisnessPhoneNum] = useState(event.buisness_tel);
-  const [eventDescription, setEventDescription] = useState(event.leiras);
+  const [eventName, setEventName] = useState(event.title);
+  const [buisnessEmail, setBuisnessEmail] = useState(event.email);
+  const [buisnessPhoneNum, setBuisnessPhoneNum] = useState(event.phoneNumber);
+  const [eventDescription, setEventDescription] = useState(event.description);
   const [eventType, setEventType] = useState(event.ekId);
-  const [organizerName, setOrganizername] = useState(event.fel_nev);
+  const [organizerName, setOrganizername] = useState(event.userName);
   const [organizerNameinput, setOrganizerInput] = useState('');
   const [locationName, setLocationName] = useState(event.locationName);
   const [locationNameinput, setLocationNameInput] = useState('');
@@ -49,14 +49,14 @@ function EditEvent({ event }) {
   const [endDateErrorMsg, setEndDateErrorMsg] = useState('');
 
   const date = moment(new Date().setDate(new Date().getDate() + 1)).format('yyyy-MM-DDTHH:mm');
-  const [startDate, setStartDate] = useState(moment(event.kezd_datum).format('yyyy-MM-DDTHH:mm'));
-  const endDate = moment(event.veg_datum).format('yyyy-MM-DDTHH:mm');
+  const [startDate, setStartDate] = useState(moment(event.startDate).format('yyyy-MM-DDTHH:mm'));
+  const endDate = moment(event.endDate).format('yyyy-MM-DDTHH:mm');
 
   const { locationNames, locationNamesLoading } = useSelector((state) => state.location);
   const { userNames, userNamesLoading } = useSelector((state) => state.admin);
   const { eventTypes, eventTypesLoading } = useSelector((state) => state.eventTypes);
 
-  const isEventImage = event.kep === null || event.kep === undefined;
+  const isEventImage = event.image === null || event.image === undefined;
 
   const datasLoading = userNamesLoading || eventTypesLoading || locationNamesLoading;
 
@@ -140,19 +140,19 @@ function EditEvent({ event }) {
                     className="w-4/5"
                     onSubmit={handleSubmit((data) => {
                       data.id = event.eventId;
-                      data.kezd_datum = moment(data.kezd_datum).format('YYYY-MM-DD hh:mm:ss');
-                      data.veg_datum = moment(data.veg_datum).format('YYYY-MM-DD hh:mm:ss');
+                      data.startDate = moment(data.startDate).format('YYYY-MM-DD hh:mm:ss');
+                      data.endDate = moment(data.endDate).format('YYYY-MM-DD hh:mm:ss');
                       data.user =
                         organizerName.id === undefined ? event.organizerId : organizerName.id;
-                      data.helyszin =
+                      data.location =
                         locationName.id === undefined ? event.locationId : locationName.id;
-                      data.kep = imageId;
+                      data.image = imageId;
                       dispatch(putEvent(data, event.id));
                     })}>
                     <fieldset>
                       <div className="flex justify-center pb-9">
                         <TextField
-                          {...register('cim')}
+                          {...register('title')}
                           required
                           autoComplete="on"
                           type="text"
@@ -166,7 +166,7 @@ function EditEvent({ event }) {
                         <Autocomplete
                           options={userNames}
                           getOptionLabel={(option) =>
-                            option.fel_nev ? option.fel_nev : event.fel_nev
+                            option.userName ? option.userName : event.userName
                           }
                           value={organizerName}
                           onChange={(event, newValue) => {
@@ -212,7 +212,7 @@ function EditEvent({ event }) {
                         />
 
                         <TextField
-                          {...register('buisness_email')}
+                          {...register('email')}
                           required
                           type="email"
                           autoComplete="on"
@@ -227,7 +227,7 @@ function EditEvent({ event }) {
                             {t('EVENT_TYPE')}
                           </InputLabel>
                           <Select
-                            {...register('esem_kat')}
+                            {...register('eventType')}
                             value={eventType}
                             notched={true}
                             required
@@ -243,7 +243,7 @@ function EditEvent({ event }) {
                         </FormControl>
 
                         <TextField
-                          {...register('buisness_tel')}
+                          {...register('phoneNumber')}
                           required
                           autoComplete="on"
                           type="text"
@@ -254,7 +254,7 @@ function EditEvent({ event }) {
                         />
 
                         <TextField
-                          {...register('kezd_datum')}
+                          {...register('startDate')}
                           error={startDateError}
                           defaultValue={startDate}
                           onSelect={(event) => setStartDate(event.target.value)}
@@ -267,7 +267,7 @@ function EditEvent({ event }) {
                         />
 
                         <TextField
-                          {...register('veg_datum')}
+                          {...register('endDate')}
                           InputLabelProps={{ shrink: true }}
                           onChange={endDateChangeHandler}
                           error={endDateError}
@@ -279,7 +279,7 @@ function EditEvent({ event }) {
                         />
                       </div>
                       <TextareaAutosize
-                        {...register('leiras')}
+                        {...register('description')}
                         required
                         type="text"
                         value={eventDescription}

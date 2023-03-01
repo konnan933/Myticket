@@ -49,7 +49,7 @@ function RegisterContent() {
       <fieldset className="flex justify-center">
         <div className="grid gap-8 p-20 w-1/2">
           <TextField
-            {...register('fel_nev')}
+            {...register('userName')}
             required
             type="text"
             value={felNev}
@@ -85,7 +85,7 @@ function RegisterContent() {
             className="border-2"
           />
           <TextField
-            {...register('telefonszam')}
+            {...register('phoneNumber')}
             required
             type="text"
             value={phonNum}

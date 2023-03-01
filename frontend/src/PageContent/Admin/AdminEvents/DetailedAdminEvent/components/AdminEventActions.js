@@ -13,7 +13,7 @@ function AdminEventActions() {
   const handleAccept = (isAccepted) => {
     const localEvent = { ...singleEvent };
 
-    localEvent.statusz = isAccepted;
+    localEvent.status = isAccepted;
 
     console.log(localEvent);
 

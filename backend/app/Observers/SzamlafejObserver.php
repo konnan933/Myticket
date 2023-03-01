@@ -3,60 +3,60 @@
 namespace App\Observers;
 
 use App\Http\Controllers\EmailController;
-use App\Models\Szamlafej;
+use App\Models\Reciept;
 
 class SzamlafejObserver
 {
     /**
-     * Handle the Szamlafej "created" event.
+     * Handle the Reciept "created" event.
      *
-     * @param  \App\Models\Szamlafej  $szamlafej
+     * @param  \App\Models\Reciept  $reciept
      * @return void
      */
-    public function created(Szamlafej $szamlafej)
+    public function created(Reciept $reciept)
     {
-        EmailController::szamlaEmail($szamlafej);
+        EmailController::szamlaEmail($reciept);
     }
 
     /**
-     * Handle the Szamlafej "updated" event.
+     * Handle the Reciept "updated" event.
      *
-     * @param  \App\Models\Szamlafej  $szamlafej
+     * @param  \App\Models\Reciept  $reciept
      * @return void
      */
-    public function updated(Szamlafej $szamlafej)
-    {
-        //
-    }
-
-    /**
-     * Handle the Szamlafej "deleted" event.
-     *
-     * @param  \App\Models\Szamlafej  $szamlafej
-     * @return void
-     */
-    public function deleted(Szamlafej $szamlafej)
+    public function updated(Reciept $reciept)
     {
         //
     }
 
     /**
-     * Handle the Szamlafej "restored" event.
+     * Handle the Reciept "deleted" event.
      *
-     * @param  \App\Models\Szamlafej  $szamlafej
+     * @param  \App\Models\Reciept  $reciept
      * @return void
      */
-    public function restored(Szamlafej $szamlafej)
+    public function deleted(Reciept $reciept)
+    {
+        //
+    }
+
+    /**
+     * Handle the Reciept "restored" event.
+     *
+     * @param  \App\Models\Reciept  $reciept
+     * @return void
+     */
+    public function restored(Reciept $reciept)
     {
     }
 
     /**
-     * Handle the Szamlafej "force deleted" event.
+     * Handle the Reciept "force deleted" event.
      *
-     * @param  \App\Models\Szamlafej  $szamlafej
+     * @param  \App\Models\Reciept  $reciept
      * @return void
      */
-    public function forceDeleted(Szamlafej $szamlafej)
+    public function forceDeleted(Reciept $reciept)
     {
         //
     }

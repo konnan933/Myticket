@@ -90,18 +90,18 @@ function UserAddEventForm() {
         <form
           className="w-2/5"
           onSubmit={handleSubmit((data) => {
-            data.kezd_datum = moment(data.kezd_datum).format('YYYY-MM-DD hh:mm:ss');
-            data.veg_datum = moment(data.veg_datum).format('YYYY-MM-DD hh:mm:ss');
+            data.startDate = moment(data.startDate).format('YYYY-MM-DD hh:mm:ss');
+            data.endDate = moment(data.endDate).format('YYYY-MM-DD hh:mm:ss');
             data.user = organizerName.id;
-            data.helyszin = locationName.id;
-            data.kep = imageId;
+            data.location = locationName.id;
+            data.image = imageId;
             dispatch(addEvent(data));
           })}>
           <fieldset>
             <div className="flex flex-col">
               <div className="flex">
                 <TextField
-                  {...register('cim')}
+                  {...register('title')}
                   required
                   helperText={t('EVENT_NAME_HELPER')}
                   autoComplete="on"
@@ -148,7 +148,7 @@ function UserAddEventForm() {
               />
 
               <TextField
-                {...register('buisness_email')}
+                {...register('email')}
                 required
                 helperText={t('USER_BUISNESS_EMAIL')}
                 type="email"
@@ -164,7 +164,7 @@ function UserAddEventForm() {
                   {t('EVENT_TYPE')}
                 </InputLabel>
                 <Select
-                  {...register('esem_kat')}
+                  {...register('eventType')}
                   value={eventType}
                   notched={true}
                   required
@@ -180,7 +180,7 @@ function UserAddEventForm() {
               </FormControl>
 
               <TextField
-                {...register('buisness_tel')}
+                {...register('phoneNumber')}
                 required
                 helperText={t('USER_BUISNESS_PHONE')}
                 autoComplete="on"
@@ -192,7 +192,7 @@ function UserAddEventForm() {
               />
 
               <TextField
-                {...register('kezd_datum')}
+                {...register('startDate')}
                 error={startDateError}
                 defaultValue={date}
                 onSelect={(event) => setStartDate(event.target.value)}
@@ -205,7 +205,7 @@ function UserAddEventForm() {
               />
 
               <TextField
-                {...register('veg_datum')}
+                {...register('endDate')}
                 InputLabelProps={{ shrink: true }}
                 onChange={endDateChangeHandler}
                 error={endDateError}
@@ -216,7 +216,7 @@ function UserAddEventForm() {
               />
             </div>
             <TextareaAutosize
-              {...register('leiras')}
+              {...register('description')}
               required
               type="text"
               value={eventDescription}

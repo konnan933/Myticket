@@ -1,22 +1,22 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DevizaController;
+use App\Http\Controllers\CurrenciesController;
 use App\Http\Controllers\EmailController;
-use App\Http\Controllers\EsemenyekController;
-use App\Http\Controllers\EsemenyKategoriaController;
-use App\Http\Controllers\EsemenyValtController;
-use App\Http\Controllers\HelyszinController;
-use App\Http\Controllers\JegyTipusController;
+use App\Http\Controllers\EventsController;
+use App\Http\Controllers\EventCategoriesController;
+use App\Http\Controllers\EventsChangesController;
+use App\Http\Controllers\LocationsController;
+use App\Http\Controllers\TicketTypesController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\EszmeiJegyController;
-use App\Http\Controllers\EszmeiJegyValtController;
-use App\Http\Controllers\JegyekController;
-use App\Http\Controllers\KepController;
-use App\Http\Controllers\KosarController;
+use App\Http\Controllers\ConceptTicketController;
+use App\Http\Controllers\ConceptTicketChangesController;
+use App\Http\Controllers\TicketsController;
+use App\Http\Controllers\ImageController;
+use App\Http\Controllers\BasketController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\QrCodeController;
-use App\Http\Controllers\SzamlafejController;
+use App\Http\Controllers\RecieptController;
 use App\Http\Controllers\UserController;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
@@ -49,96 +49,96 @@ Route::get('api/loggedIn', [UserController::class, 'loggedInUser']);
 
 
 //Helyszin végpontok
-Route::post('api/location', [HelyszinController::class, 'store']);
-Route::get('api/location', [HelyszinController::class, 'index']);
-Route::get('api/locationnames', [HelyszinController::class, 'getLocationNames']);
-Route::get('api/location/{id}', [HelyszinController::class, 'show']);
-Route::put('api/location/{id}', [HelyszinController::class, 'update']);
-Route::delete('api/location/{id}', [HelyszinController::class, 'destroy']);
+Route::post('api/location', [LocationsController::class, 'store']);
+Route::get('api/location', [LocationsController::class, 'index']);
+Route::get('api/locationnames', [LocationsController::class, 'getLocationNames']);
+Route::get('api/location/{id}', [LocationsController::class, 'show']);
+Route::put('api/location/{id}', [LocationsController::class, 'update']);
+Route::delete('api/location/{id}', [LocationsController::class, 'destroy']);
 
-//Esemenyek kategoria végpontok
-Route::post('api/etype', [EsemenyKategoriaController::class, 'store']);
-Route::get('api/etype', [EsemenyKategoriaController::class, 'index']);
-Route::get('api/etype/{id}', [EsemenyKategoriaController::class, 'show']);
-Route::put('api/etype/{id}', [EsemenyKategoriaController::class, 'update']);
-Route::delete('api/etype/{id}', [EsemenyKategoriaController::class, 'destroy']);
+//Events kategoria végpontok
+Route::post('api/etype', [EventCategoriesController::class, 'store']);
+Route::get('api/etype', [EventCategoriesController::class, 'index']);
+Route::get('api/etype/{id}', [EventCategoriesController::class, 'show']);
+Route::put('api/etype/{id}', [EventCategoriesController::class, 'update']);
+Route::delete('api/etype/{id}', [EventCategoriesController::class, 'destroy']);
 
 //Jegy tipusai vegpontok
-Route::post('api/ttype', [JegyTipusController::class, 'store']);
-Route::get('api/ttype', [JegyTipusController::class, 'index']);
-Route::get('api/ttype/{id}', [JegyTipusController::class, 'show']);
-Route::put('api/ttype/{id}', [JegyTipusController::class, 'update']);
-Route::delete('api/ttype/{id}', [JegyTipusController::class, 'destroy']);
+Route::post('api/ttype', [TicketTypesController::class, 'store']);
+Route::get('api/ttype', [TicketTypesController::class, 'index']);
+Route::get('api/ttype/{id}', [TicketTypesController::class, 'show']);
+Route::put('api/ttype/{id}', [TicketTypesController::class, 'update']);
+Route::delete('api/ttype/{id}', [TicketTypesController::class, 'destroy']);
 
-//Esemenyek vegpontok
-Route::post('api/event', [EsemenyekController::class, 'store']);
-Route::get('api/event', [EsemenyekController::class, 'index']);
-Route::get('api/event/{id}', [EsemenyekController::class, 'show']);
-// * kep lekerese
-Route::get('api/event/picture/{id}', [EsemenyekController::class, 'getPicture']);
-Route::post('api/event/picture/new/{id}', [EsemenyekController::class, 'changePicture']);
-Route::put('api/event/{id}', [EsemenyekController::class, 'update']);
-Route::delete('api/event/{id}', [EsemenyekController::class, 'destroy']);
-Route::get('api/userevents/{user}', [EsemenyekController::class, 'getUserEvents']);
-Route::get('api/event/profit/{event}', [EsemenyekController::class, 'getEventRevenue']);
-Route::get('api/event/place/{event}', [EsemenyekController::class, 'getEventByPlace']);
-Route::get('api/event/date/{event}', [EsemenyekController::class, 'getEventByDate']);
-Route::get('api/event/category/{event}', [EsemenyekController::class, 'getEventByCategory']);
+//Events vegpontok
+Route::post('api/event', [EventsController::class, 'store']);
+Route::get('api/event', [EventsController::class, 'index']);
+Route::get('api/event/{id}', [EventsController::class, 'show']);
+// * image lekerese
+Route::get('api/event/picture/{id}', [EventsController::class, 'getPicture']);
+Route::post('api/event/picture/new/{id}', [EventsController::class, 'changePicture']);
+Route::put('api/event/{id}', [EventsController::class, 'update']);
+Route::delete('api/event/{id}', [EventsController::class, 'destroy']);
+Route::get('api/userevents/{user}', [EventsController::class, 'getUserEvents']);
+Route::get('api/event/profit/{event}', [EventsController::class, 'getEventRevenue']);
+Route::get('api/event/place/{event}', [EventsController::class, 'getEventByPlace']);
+Route::get('api/event/date/{event}', [EventsController::class, 'getEventByDate']);
+Route::get('api/event/category/{event}', [EventsController::class, 'getEventByCategory']);
 // ! ha nem akarunk paraméter akkor *-ot kell rakni
-Route::get('api/event/filter/{date}/{place}/{category}', [EsemenyekController::class, 'eventFilter']);
-Route::get('api/eventdetails', [EsemenyekController::class, 'getEventDetails']);
-Route::get('api/eventdetails/{id}', [EsemenyekController::class, 'getSingleEventDetails']);
-Route::get('api/userevents/{id}', [EsemenyekController::class, 'getUserEvents']);
-Route::get('api/events/accepted', [EsemenyekController::class, 'acceptedEvents']);
+Route::get('api/event/filter/{date}/{place}/{category}', [EventsController::class, 'eventFilter']);
+Route::get('api/eventdetails', [EventsController::class, 'getEventDetails']);
+Route::get('api/eventdetails/{id}', [EventsController::class, 'getSingleEventDetails']);
+Route::get('api/userevents/{id}', [EventsController::class, 'getUserEvents']);
+Route::get('api/events/accepted', [EventsController::class, 'acceptedEvents']);
 
 
 
 //Esemenyvaltozas vegpontok
-Route::get('api/eventchange', [EsemenyValtController::class, 'index']);
-Route::get('api/eventchange/{id}', [EsemenyValtController::class, 'show']);
+Route::get('api/eventchange', [EventsChangesController::class, 'index']);
+Route::get('api/eventchange/{id}', [EventsChangesController::class, 'show']);
 
 //Penznem vegpontok
-Route::post('api/dtype', [DevizaController::class, 'store']);
-Route::get('api/dtype', [DevizaController::class, 'index']);
-Route::get('api/dtypenames', [DevizaController::class, 'getCurrencyNames']);
-Route::get('api/dtype/{id}', [DevizaController::class, 'show']);
-Route::put('api/dtype/{id}', [DevizaController::class, 'update']);
-Route::delete('api/dtype/{id}', [DevizaController::class, 'destroy']);
+Route::post('api/dtype', [CurrenciesController::class, 'store']);
+Route::get('api/dtype', [CurrenciesController::class, 'index']);
+Route::get('api/dtypenames', [CurrenciesController::class, 'getCurrencyNames']);
+Route::get('api/dtype/{id}', [CurrenciesController::class, 'show']);
+Route::put('api/dtype/{id}', [CurrenciesController::class, 'update']);
+Route::delete('api/dtype/{id}', [CurrenciesController::class, 'destroy']);
 
-//EszmeiJegy vegpontok
-Route::post('api/iticket', [EszmeiJegyController::class, 'store']);
-Route::get('api/iticket', [EszmeiJegyController::class, 'index']);
-Route::get('api/iticket/{id}', [EszmeiJegyController::class, 'show']);
-Route::put('api/iticket/{id}', [EszmeiJegyController::class, 'update']);
-Route::delete('api/iticket/{id}', [EszmeiJegyController::class, 'destroy']);
-Route::get('api/iticket/event/all/{id}', [EszmeiJegyController::class, 'getAllEventTickets']);
-Route::get('api/iticket/event/sales/{id}', [EszmeiJegyController::class, 'getTicketHaveSales']);
+//ConceptTicket vegpontok
+Route::post('api/iticket', [ConceptTicketController::class, 'store']);
+Route::get('api/iticket', [ConceptTicketController::class, 'index']);
+Route::get('api/iticket/{id}', [ConceptTicketController::class, 'show']);
+Route::put('api/iticket/{id}', [ConceptTicketController::class, 'update']);
+Route::delete('api/iticket/{id}', [ConceptTicketController::class, 'destroy']);
+Route::get('api/iticket/event/all/{id}', [ConceptTicketController::class, 'getAllEventTickets']);
+Route::get('api/iticket/event/sales/{id}', [ConceptTicketController::class, 'getTicketHaveSales']);
 
 
-//EszmeiJegyValt vegpontok
-Route::get('api/ticketchange', [EszmeiJegyValtController::class, 'index']);
-Route::get('api/ticketchange/{id}', [EszmeiJegyValtController::class, 'show']);
+//conceptTicketChanges vegpontok
+Route::get('api/ticketchange', [ConceptTicketChangesController::class, 'index']);
+Route::get('api/ticketchange/{id}', [ConceptTicketChangesController::class, 'show']);
 
-//Kosar végpontok
-Route::post('api/basket', [KosarController::class, 'store']);
-Route::get('api/basket', [KosarController::class, 'index']);
-Route::get('api/basket/{id}', [KosarController::class, 'show']);
-Route::put('api/basket/{id}', [KosarController::class, 'update']);
-Route::delete('api/basket', [KosarController::class, 'destroyAll']);
-Route::delete('api/basket/{id}', [KosarController::class, 'destroy']);
+//Basket végpontok
+Route::post('api/basket', [BasketController::class, 'store']);
+Route::get('api/basket', [BasketController::class, 'index']);
+Route::get('api/basket/{id}', [BasketController::class, 'show']);
+Route::put('api/basket/{id}', [BasketController::class, 'update']);
+Route::delete('api/basket', [BasketController::class, 'destroyAll']);
+Route::delete('api/basket/{id}', [BasketController::class, 'destroy']);
 
 //Számla vegpontok
-Route::get('api/bill', [SzamlafejController::class, 'index']);
-Route::get('api/bill/{id}', [SzamlafejController::class, 'show']);
+Route::get('api/bill', [RecieptController::class, 'index']);
+Route::get('api/bill/{id}', [RecieptController::class, 'show']);
 
-//Vásárolt jegyek vegpontok
-Route::get('api/bticket', [JegyekController::class, 'index']);
-Route::get('api/bticket/{id}', [JegyekController::class, 'show']);
-Route::get('api/usertickets/{user}', [JegyekController::class, 'getUserAllTickets']);
-Route::get('api/usereventtickets/{user}/{event}', [JegyekController::class, 'getUserEvenTickets']);
-Route::get('api/bticket/all/{event}', [JegyekController::class, 'getEventBuyedTickets']);
+//Vásárolt tickets vegpontok
+Route::get('api/bticket', [TicketsController::class, 'index']);
+Route::get('api/bticket/{id}', [TicketsController::class, 'show']);
+Route::get('api/usertickets/{user}', [TicketsController::class, 'getUserAllTickets']);
+Route::get('api/usereventtickets/{user}/{event}', [TicketsController::class, 'getUserEvenTickets']);
+Route::get('api/bticket/all/{event}', [TicketsController::class, 'getEventBuyedTickets']);
 // * qr kod letezik
-Route::get('api/bticket/qrcode/{qrcode}', [JegyekController::class, 'qrCodeExists']);
+Route::get('api/bticket/qrcode/{qrcode}', [TicketsController::class, 'qrCodeExists']);
 
 // ! kell composer require simplesoftwareio/simple-qrcode "~4" 
 // ! kell baconQrcode ot composer.lock-ba átírni 2.0.8 ra
@@ -148,11 +148,11 @@ Route::get('api/bticket/qrcode/{qrcode}', [JegyekController::class, 'qrCodeExist
 Route::get('/qrcode/{user}/{jegyId}', [PDFController::class, 'createPDF']);
 
 //Kép
-Route::post('api/upload/images', [KepController::class, 'store']);
+Route::post('api/upload/images', [ImageController::class, 'store']);
 
 
 
-Route::get('api/getusertickets/{esemeny_id}/{eszmei_jegy_id}/{user}', [JegyekController::class, 'getUserTickets']);
+Route::get('api/getusertickets/{eventId}/{conceptTicketId}/{user}', [TicketsController::class, 'getUserTickets']);
 Route::get('/', function () {
     return ['Laravel' => app()->version()];
 });

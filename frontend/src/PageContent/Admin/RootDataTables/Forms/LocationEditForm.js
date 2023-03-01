@@ -18,7 +18,7 @@ function LocationEditForm({ location }) {
   const [postCode, setPostCode] = useState(location.postcode);
   const [district, setDistrict] = useState(location.district);
   const [street, setStreet] = useState(location.street);
-  const [houseNumber, setHouseNumber] = useState(location.housenumber);
+  const [houseNumber, setHouseNumber] = useState(location.houseNumber);
   const [floor, setFloor] = useState(location.floor);
   const [room, setRoom] = useState(location.room);
 
@@ -97,7 +97,7 @@ function LocationEditForm({ location }) {
             className="border-2"
           />
           <TextField
-            {...register('housenumber')}
+            {...register('houseNumber')}
             required
             type="number"
             value={houseNumber}

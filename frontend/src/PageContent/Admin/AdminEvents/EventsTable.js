@@ -56,14 +56,14 @@ function EventsTable() {
                 <StyledTableCell align="left">
                   <Link to={`${event.eventId}`}>
                     <p className="cursor-pointer hover:text-blue-600 hover:underline">
-                      {event.cim}
+                      {event.title}
                     </p>
                   </Link>
                 </StyledTableCell>
-                <StyledTableCell align="left">{event.fel_nev}</StyledTableCell>
+                <StyledTableCell align="left">{event.userName}</StyledTableCell>
                 <StyledTableCell align="left">
                   {`${event.postcode} ${event.district} ${event.street} ${t('STREET')} ${
-                    event.housenumber
+                    event.houseNumber
                   }`}
                 </StyledTableCell>
               </StyledTableRow>

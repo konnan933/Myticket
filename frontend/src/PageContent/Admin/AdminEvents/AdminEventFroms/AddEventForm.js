@@ -94,17 +94,17 @@ function AddEventForm() {
         <form
           className="w-2/5"
           onSubmit={handleSubmit((data) => {
-            data.kezd_datum = moment(data.kezd_datum).format('YYYY-MM-DD hh:mm:ss');
-            data.veg_datum = moment(data.veg_datum).format('YYYY-MM-DD hh:mm:ss');
+            data.startDate = moment(data.startDate).format('YYYY-MM-DD hh:mm:ss');
+            data.endDate = moment(data.endDate).format('YYYY-MM-DD hh:mm:ss');
             data.user = organizerName.id;
-            data.helyszin = locationName.id;
-            data.kep = imageId;
+            data.location = locationName.id;
+            data.image = imageId;
             dispatch(addEvent(data));
           })}>
           <fieldset>
             <div className="flex justify-center pb-16">
               <TextField
-                {...register('cim')}
+                {...register('title')}
                 required
                 autoComplete="on"
                 type="text"
@@ -117,7 +117,7 @@ function AddEventForm() {
             <div className="grid grid-cols-2 gap-16">
               <Autocomplete
                 options={userNames}
-                getOptionLabel={(option) => (option.fel_nev ? option.fel_nev : '')}
+                getOptionLabel={(option) => (option.userName ? option.userName : '')}
                 value={organizerName}
                 onChange={(event, newValue) => {
                   setOrganizername(newValue);
@@ -150,7 +150,7 @@ function AddEventForm() {
               />
 
               <TextField
-                {...register('buisness_email')}
+                {...register('email')}
                 required
                 type="email"
                 autoComplete="on"
@@ -165,7 +165,7 @@ function AddEventForm() {
                   {t('EVENT_TYPE')}
                 </InputLabel>
                 <Select
-                  {...register('esem_kat')}
+                  {...register('eventType')}
                   value={eventType}
                   notched={true}
                   required
@@ -181,7 +181,7 @@ function AddEventForm() {
               </FormControl>
 
               <TextField
-                {...register('buisness_tel')}
+                {...register('phoneNumber')}
                 required
                 autoComplete="on"
                 type="text"
@@ -192,7 +192,7 @@ function AddEventForm() {
               />
 
               <TextField
-                {...register('kezd_datum')}
+                {...register('startDate')}
                 error={startDateError}
                 defaultValue={date}
                 onSelect={(event) => setStartDate(event.target.value)}
@@ -205,7 +205,7 @@ function AddEventForm() {
               />
 
               <TextField
-                {...register('veg_datum')}
+                {...register('endDate')}
                 InputLabelProps={{ shrink: true }}
                 onChange={endDateChangeHandler}
                 error={endDateError}
@@ -216,7 +216,7 @@ function AddEventForm() {
               />
             </div>
             <TextareaAutosize
-              {...register('leiras')}
+              {...register('description')}
               required
               type="text"
               value={eventDescription}

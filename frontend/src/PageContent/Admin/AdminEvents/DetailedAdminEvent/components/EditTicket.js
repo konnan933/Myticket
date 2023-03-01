@@ -27,27 +27,27 @@ function EditTicket({ ticket }) {
   const { singleEvent } = useSelector((state) => state.admin);
   const { register, handleSubmit } = useForm();
   const { id } = useParams();
-  const [ticketType, setTicketType] = useState(ticket.tipus);
-  const [currency, setCurrency] = useState(ticket.penznem);
+  const [ticketType, setTicketType] = useState(ticket.type);
+  const [currency, setCurrency] = useState(ticket.name);
   const [startDateErrorMsg, setStartDateErrorMsg] = useState('');
   const [allAmountErrorMsg, setAllAmountErrorMsg] = useState('');
   const [startDateError, setStartDateError] = useState(false);
   const [allAmountError, setAllamountError] = useState(false);
-  const startDate = moment(singleEvent.kezd_datum).format('yyyy-MM-DDTHH:mm');
+  const startDate = moment(singleEvent.startDate).format('yyyy-MM-DDTHH:mm');
   const date = moment(new Date()).format('yyyy-MM-DDTHH:mm');
-  const [allAmount, setAllAmount] = useState(ticket.szabad_menny);
-  const [price, setPrice] = useState(ticket.ara);
+  const [allAmount, setAllAmount] = useState(ticket.freeTicket);
+  const [price, setPrice] = useState(ticket.price);
   const { ticketTypes } = useSelector((state) => state.ticketTypes);
-  const { currencies } = useSelector((state) => state.currency);
+  const { currencies } = useSelector((state) => state.currencies);
   const dispatch = useDispatch();
 
   const errors = allAmountError || startDateError;
 
   const allAmountChangeHandler = (event) => {
     setAllAmount(event.target.value);
-    if (event.target.value <= ticket.lefog_menny) {
+    if (event.target.value <= ticket.bookedTicket) {
       setAllamountError(true);
-      setAllAmountErrorMsg(t('TICKET_AMOUNT_LOWER') + ` (${ticket.lefog_menny})`);
+      setAllAmountErrorMsg(t('TICKET_AMOUNT_LOWER') + ` (${ticket.bookedTicket})`);
     } else {
       setAllamountError(false);
       setAllAmountErrorMsg('');
@@ -109,10 +109,10 @@ function EditTicket({ ticket }) {
               <div className="flex justify-center">
                 <form
                   onSubmit={handleSubmit((data) => {
-                    data.esemeny_id = id;
-                    data.eszmei_jegy_id = ticket.eszmei_jegy_id;
+                    data.eventId = id;
+                    data.conceptTicketId = ticket.conceptTicketId;
                     dispatch(
-                      putEventTicket({ data, ticketId: ticket.eszmei_jegy_id, eventId: id })
+                      putEventTicket({ data, ticketId: ticket.conceptTicketId, eventId: id })
                     );
                   })}>
                   <fieldset>
@@ -122,23 +122,23 @@ function EditTicket({ ticket }) {
                           {t('EDIT_TICKET_TYPE')}
                         </InputLabel>
                         <Select
-                          {...register('tipus')}
+                          {...register('type')}
                           value={ticketType}
                           notched={true}
                           required
                           label={t('TICKET_TYPE')}
                           onChange={ticketTypeChangeHandler}
                           inputProps={{ 'aria-label': 'Without label' }}>
-                          {ticketTypes.map((ticketType) => (
-                            <MenuItem key={ticketType.id} value={ticketType.id}>
-                              {ticketType.name}
+                          {ticketTypes.map((ticketTypes) => (
+                            <MenuItem key={ticketTypes.id} value={ticketTypes.id}>
+                              {ticketTypes.name}
                             </MenuItem>
                           ))}
                         </Select>
                       </FormControl>
 
                       <TextField
-                        {...register('ossz_menny')}
+                        {...register('allTicket')}
                         required
                         type="number"
                         error={allAmountError}
@@ -154,23 +154,23 @@ function EditTicket({ ticket }) {
                           {t('CURRENCY')}
                         </InputLabel>
                         <Select
-                          {...register('penznem')}
+                          {...register('name')}
                           value={currency}
                           notched={true}
                           required
                           label={t('CURRENCY')}
                           onChange={currencyChangeHandler}
                           inputProps={{ 'aria-label': 'Without label' }}>
-                          {currencies.map((currency) => (
-                            <MenuItem key={currency.penznem} value={currency.penznem}>
-                              {currency.penznem}
+                          {currencies.map((currencies) => (
+                            <MenuItem key={currencies.name} value={currencies.name}>
+                              {currencies.name}
                             </MenuItem>
                           ))}
                         </Select>
                       </FormControl>
 
                       <TextField
-                        {...register('ara')}
+                        {...register('price')}
                         required
                         type="number"
                         value={price}
@@ -180,7 +180,7 @@ function EditTicket({ ticket }) {
                       />
 
                       <TextField
-                        {...register('kezd_datum')}
+                        {...register('startDate')}
                         error={startDateError}
                         defaultValue={startDate}
                         onSelect={startDateChangeHandler}

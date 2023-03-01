@@ -10,7 +10,7 @@
 
 <body>
     <div class="container mt-4">
-        <h2>Kedves {{$fel_nev}}</h2>
+        <h2>Kedves {{$userName}}</h2>
         <div class="card">
             <div class="card-header">
                 <h3>Jegy azonosítód</h3>

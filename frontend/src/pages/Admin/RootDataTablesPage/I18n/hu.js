@@ -13,12 +13,12 @@ const locale = {
   MANAGE_LOCATION: 'Helyszin szerkeztése',
   // * eventTypes
   CONFIRM_DELETE_ET: 'Biztosan törölni szeretné a esemény tipust?',
-  EDIT_ET: 'Esemény tipus szerkesztése',
-  ADD_ET: 'Esemény tipus hozzáadás',
+  EDIT_ET: 'Esemény type szerkesztése',
+  ADD_ET: 'Esemény type hozzáadás',
   // * ticketTypes
   CONFIRM_DELETE_TT: 'Biztosan törölni szeretné a jegy tipust?',
-  EDIT_TT: 'Jegy tipus szerkesztése',
-  ADD_TT: 'Jegy tipus hozzáadás',
+  EDIT_TT: 'Jegy type szerkesztése',
+  ADD_TT: 'Jegy type hozzáadás',
   ADD_TICKETS: 'Jegyek hozzáadása'
 };
 

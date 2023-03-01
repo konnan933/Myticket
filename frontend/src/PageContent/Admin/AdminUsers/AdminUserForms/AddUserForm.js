@@ -41,7 +41,7 @@ function AddUserForm() {
       <fieldset>
         <div className="grid gap-8 p-4">
           <TextField
-            {...register('fel_nev')}
+            {...register('userName')}
             required
             type="text"
             value={felNev}
@@ -77,7 +77,7 @@ function AddUserForm() {
             className="border-2"
           />
           <TextField
-            {...register('telefonszam')}
+            {...register('phoneNumber')}
             required
             type="text"
             value={phonNum}

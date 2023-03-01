@@ -20,9 +20,9 @@ class User extends Authenticatable
     protected $fillable = [
         'email',
         'password',
-        'fel_nev',
+        'userName',
         'level',
-        'telefonszam',
+        'phoneNumber',
     ];
     public $timestamps = false;
 
@@ -44,5 +44,4 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
 }

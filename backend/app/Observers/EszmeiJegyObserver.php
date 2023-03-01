@@ -2,95 +2,95 @@
 
 namespace App\Observers;
 
-use App\Http\Controllers\EszmeiJegyController;
-use App\Models\EszmeiJegy;
-use App\Models\EszmeiJegyValt;
+use App\Http\Controllers\ConceptTicketController;
+use App\Models\ConceptTicket;
+use App\Models\conceptTicketChanges;
 
 class EszmeiJegyObserver
 {
     /**
-     * Handle the EszmeiJegy "created" event.
+     * Handle the ConceptTicket "created" event.
      *
-     * @param  \App\Models\EszmeiJegy  $eszmeiJegy
+     * @param  \App\Models\ConceptTicket  $eszmeiJegy
      * @return void
      */
-    public function creating(EszmeiJegy $eszmeiJegy)
+    public function creating(ConceptTicket $eszmeiJegy)
     {
-        if ($eszmeiJegy->kezd_datum < now()) {
+        if ($eszmeiJegy->startDate < now()) {
             return false;
         }
     }
-    public function created(EszmeiJegy $eszmeiJegy)
+    public function created(ConceptTicket $eszmeiJegy)
     {
     }
 
-    public function updating(EszmeiJegy $eszmeiJegy)
+    public function updating(ConceptTicket $eszmeiJegy)
     {
-        if ($eszmeiJegy->kezd_datum < now()) {
+        if ($eszmeiJegy->startDate < now()) {
             return false;
         }
-        $eszmei_jegy_valt =  new EszmeiJegyValt();
-        $eszmei_jegy_valt->esemeny_id =  $eszmeiJegy->esemeny_id;
-        $eszmei_jegy_valt->eszmei_jegy_id =  $eszmeiJegy->eszmei_jegy_id;
-        $eszmei_jegy_valt->tipus = $eszmeiJegy->getOriginal('tipus');
-        $eszmei_jegy_valt->ossz_menny = $eszmeiJegy->getOriginal('ossz_menny');
-        $eszmei_jegy_valt->penznem = $eszmeiJegy->getOriginal('penznem');
-        $eszmei_jegy_valt->ara = $eszmeiJegy->getOriginal('ara');
-        $eszmei_jegy_valt->kezd_datum = $eszmeiJegy->getOriginal('kezd_datum');
-        $eszmei_jegy_valt->datumig = now();
+        $eszmei_jegy_valt =  new conceptTicketChanges();
+        $eszmei_jegy_valt->eventId =  $eszmeiJegy->eventId;
+        $eszmei_jegy_valt->conceptTicketId =  $eszmeiJegy->conceptTicketId;
+        $eszmei_jegy_valt->type = $eszmeiJegy->getOriginal('type');
+        $eszmei_jegy_valt->allTicket = $eszmeiJegy->getOriginal('allTicket');
+        $eszmei_jegy_valt->name = $eszmeiJegy->getOriginal('name');
+        $eszmei_jegy_valt->price = $eszmeiJegy->getOriginal('price');
+        $eszmei_jegy_valt->startDate = $eszmeiJegy->getOriginal('startDate');
+        $eszmei_jegy_valt->untilDate = now();
         $eszmei_jegy_valt->save();
     }
 
     /**
-     * Handle the EszmeiJegy "updated" event.
+     * Handle the ConceptTicket "updated" event.
      *
-     * @param  \App\Models\EszmeiJegy  $eszmeiJegy
+     * @param  \App\Models\ConceptTicket  $eszmeiJegy
      * @return void
      */
-    public function updated(EszmeiJegy $eszmeiJegy)
+    public function updated(ConceptTicket $eszmeiJegy)
     {
         //
     }
 
     /**
-     * Handle the EszmeiJegy "deleted" event.
+     * Handle the ConceptTicket "deleted" event.
      *
-     * @param  \App\Models\EszmeiJegy  $eszmeiJegy
+     * @param  \App\Models\ConceptTicket  $eszmeiJegy
      * @return void
      */
 
-    public function deleting(EszmeiJegy $eszmeiJegy)
+    public function deleting(ConceptTicket $eszmeiJegy)
     {
-        $hasSale = EszmeiJegyController::getTicketHaveSales($eszmeiJegy->eszmei_jegy_id);
+        $hasSale = ConceptTicketController::getTicketHaveSales($eszmeiJegy->conceptTicketId);
 
         if ($hasSale) {
             return false;
         }
     }
 
-    public function deleted(EszmeiJegy $eszmeiJegy)
+    public function deleted(ConceptTicket $eszmeiJegy)
     {
         //
     }
 
     /**
-     * Handle the EszmeiJegy "restored" event.
+     * Handle the ConceptTicket "restored" event.
      *
-     * @param  \App\Models\EszmeiJegy  $eszmeiJegy
+     * @param  \App\Models\ConceptTicket  $eszmeiJegy
      * @return void
      */
-    public function restored(EszmeiJegy $eszmeiJegy)
+    public function restored(ConceptTicket $eszmeiJegy)
     {
         //
     }
 
     /**
-     * Handle the EszmeiJegy "force deleted" event.
+     * Handle the ConceptTicket "force deleted" event.
      *
-     * @param  \App\Models\EszmeiJegy  $eszmeiJegy
+     * @param  \App\Models\ConceptTicket  $eszmeiJegy
      * @return void
      */
-    public function forceDeleted(EszmeiJegy $eszmeiJegy)
+    public function forceDeleted(ConceptTicket $eszmeiJegy)
     {
         //
     }

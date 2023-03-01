@@ -15,8 +15,8 @@ function EditUserForm({ user }) {
   const [email, setEmail] = useState(user.email);
   const [faults, setFaults] = useState(user.faults);
   const [confirmed, setConfirmed] = useState(user.confirmed);
-  const [felNev, setFelNev] = useState(user.fel_nev);
-  const [phonNum, setPhonNum] = useState(user.telefonszam);
+  const [felNev, setFelNev] = useState(user.userName);
+  const [phonNum, setPhonNum] = useState(user.phoneNumber);
   const [level, setLevel] = useState(user.level);
 
   const emailChangeHandler = (event) => {
@@ -48,7 +48,7 @@ function EditUserForm({ user }) {
       <fieldset>
         <div className="grid gap-8 p-4">
           <TextField
-            {...register('fel_nev')}
+            {...register('userName')}
             required
             type="text"
             value={felNev}
@@ -84,7 +84,7 @@ function EditUserForm({ user }) {
             className="border-2"
           />
           <TextField
-            {...register('telefonszam')}
+            {...register('phoneNumber')}
             required
             type="text"
             value={phonNum}

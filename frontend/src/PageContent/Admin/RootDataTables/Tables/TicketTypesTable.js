@@ -33,7 +33,7 @@ function TicketTypesTable() {
                 <StyledTableRow key={types.id}>
                   <StyledTableCell align="left">
                     <div className="flex">
-                      <TicketTypesEdit ticketType={types} />
+                      <TicketTypesEdit ticketTypes={types} />
                       <TicketTypeDelete id={types.id} />
                     </div>
                   </StyledTableCell>

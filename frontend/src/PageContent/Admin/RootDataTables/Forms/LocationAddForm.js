@@ -96,10 +96,10 @@ function LocationAddForm() {
               label={t('STREET')}
               className="border-2"
             />
-            <p className='p-4'>{t('STREET')}</p>
+            <p className="p-4">{t('STREET')}</p>
           </div>
           <TextField
-            {...register('housenumber')}
+            {...register('houseNumber')}
             required
             type="number"
             value={houseNumber}

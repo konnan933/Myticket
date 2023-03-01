@@ -4,7 +4,7 @@ import modalStyle from 'PageContent/utils/ModalStyle';
 import { useTranslation } from 'react-i18next';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import TicketAddForm from './TicketAddForm';
-import { getCurrency } from 'redux/thunks/Currency';
+import { getCurrency } from 'redux/thunks/Currencies';
 import { useDispatch } from 'react-redux';
 import { getTicketTypes } from 'redux/thunks/TicketTypes';
 import { useParams } from 'react-router-dom';

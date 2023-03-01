@@ -54,7 +54,7 @@ function LocationsTable() {
                   <StyledTableCell align="left">{`${oneLoc.street} ${t(
                     'STREET'
                   )}`}</StyledTableCell>
-                  <StyledTableCell align="left">{oneLoc.housenumber}</StyledTableCell>
+                  <StyledTableCell align="left">{oneLoc.houseNumber}</StyledTableCell>
                   <StyledTableCell align="left">{returnEmpty(oneLoc.district)}</StyledTableCell>
                   <StyledTableCell align="left">{returnEmpty(oneLoc.floor)}</StyledTableCell>
                   <StyledTableCell align="left">{returnEmpty(oneLoc.room)}</StyledTableCell>

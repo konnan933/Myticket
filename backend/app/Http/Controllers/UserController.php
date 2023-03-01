@@ -45,9 +45,9 @@ class UserController extends Controller
             return response()->json(["message" => $validator->errors()->all()], 400);
         }
         $user->password = Hash::make($request->password);;
-        $user->fel_nev = $request->fel_nev;
+        $user->userName = $request->userName;
         $user->level = 2;
-        $user->telefonszam = $request->telefonszam;
+        $user->phoneNumber = $request->phoneNumber;
         $user->faults = 0;
         $user->save();
     }
@@ -57,9 +57,9 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $user->email = $request->email;
-        $user->fel_nev = $request->fel_nev;
+        $user->userName = $request->userName;
         $user->level = $request->level;
-        $user->telefonszam = $request->telefonszam;
+        $user->phoneNumber = $request->phoneNumber;
         $user->faults = $request->faults;
         $user->confirmed = $request->confirmed;
         $user->save();
@@ -91,7 +91,7 @@ class UserController extends Controller
 
     public function getUserNames()
     {
-        $userNames = DB::table('users')->select('users.id', 'users.fel_nev')
+        $userNames = DB::table('users')->select('users.id', 'users.userName')
             ->get();
         return $userNames;
     }

@@ -8,7 +8,7 @@
 <body>
 
     <div>
-        Szia {{ $fel_nev }}!,
+        Szia {{ $userName }}!,
         <br>
         A vásárolt jegyed eseményén ({{ $esemeny_neve }}) változás történt.
         <br>
@@ -21,17 +21,17 @@
             </li>
             <li>
                 <p>
-                    Helyszín cim: {{ $helyszin_cim }}
+                    Helyszín title: {{ $helyszin_cim }}
                 </p>
             </li>
             <li>
                 <p>
-                    Esemény kezdete: {{ $kezd_datum }}
+                    Esemény kezdete: {{ $startDate }}
                 </p>
             </li>
             <li>
                 <p>
-                    Esemény vége: {{ $veg_datum }}
+                    Esemény vége: {{ $endDate }}
                 </p>
             </li>
         </ul>

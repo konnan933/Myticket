@@ -16,19 +16,19 @@ function DetailedData() {
       </div>
       <div className="flex ">
         <Typography>{t('EVENTNAME')}</Typography>
-        <Typography>{`: ${singleDetailedEvent.cim}`}</Typography>
+        <Typography>{`: ${singleDetailedEvent.title}`}</Typography>
       </div>
       <div className="flex ">
         <Typography>{t('ORGANIZER')}</Typography>
-        <Typography>{`: ${singleDetailedEvent.fel_nev}`}</Typography>
+        <Typography>{`: ${singleDetailedEvent.userName}`}</Typography>
       </div>
       <div className="flex ">
         <Typography>{t('BUISNESS_EMAIL')}</Typography>
-        <Typography>{`: ${singleDetailedEvent.buisness_email}`}</Typography>
+        <Typography>{`: ${singleDetailedEvent.email}`}</Typography>
       </div>
       <div className="flex ">
         <Typography>{t('BUISNESS_PHON_NUM')}</Typography>
-        <Typography>{`: ${singleDetailedEvent.buisness_tel}`}</Typography>
+        <Typography>{`: ${singleDetailedEvent.phoneNumber}`}</Typography>
       </div>
       <div className="flex ">
         <Typography>{t('EVENT_TYPE')}</Typography>
@@ -38,26 +38,26 @@ function DetailedData() {
         <Typography>{t('LOCATION')}</Typography>
         <Typography>{`: ${singleDetailedEvent.postcode} ${singleDetailedEvent.district} ${
           singleDetailedEvent.street
-        } ${t('STREET')} ${singleDetailedEvent.housenumber}`}</Typography>
+        } ${t('STREET')} ${singleDetailedEvent.houseNumber}`}</Typography>
       </div>
       <div className="flex ">
         <Typography>{t('START_DATE')}</Typography>
-        <Typography>{`: ${singleDetailedEvent.kezd_datum}`}</Typography>
+        <Typography>{`: ${singleDetailedEvent.startDate}`}</Typography>
       </div>
       <div className="flex ">
         <Typography>{t('END_DATE')}</Typography>
-        <Typography>{`: ${singleDetailedEvent.veg_datum}`}</Typography>
+        <Typography>{`: ${singleDetailedEvent.endDate}`}</Typography>
       </div>
       <div className="flex ">
         <Typography>{t('COMISSION')}</Typography>
-        <Typography>{`: ${singleDetailedEvent.jutalek}%`}</Typography>
+        <Typography>{`: ${singleDetailedEvent.comission}%`}</Typography>
       </div>
       <div className="flex ">
         <SingleEventDescription />
       </div>
       <div className="flex ">
         <Typography>{t(`STATUS`)}</Typography>
-        <Typography>{`: ${t(`STATUS_${singleDetailedEvent.statusz}`)}`}</Typography>
+        <Typography>{`: ${t(`STATUS_${singleDetailedEvent.status}`)}`}</Typography>
       </div>
     </div>
   );

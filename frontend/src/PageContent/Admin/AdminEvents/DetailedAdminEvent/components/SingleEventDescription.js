@@ -45,7 +45,7 @@ function SingleEventDescription() {
             <Typography>{t('DESCRIPTION')}</Typography>
           </div>
           <div className="flex justify-center">
-            <Typography>{singleDetailedEvent.leiras}</Typography>
+            <Typography>{singleDetailedEvent.description}</Typography>
           </div>
         </Box>
       </Modal>

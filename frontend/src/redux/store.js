@@ -15,6 +15,6 @@ export default configureStore({
     eventTypes: EventTypes,
     ticketTypes: TicketTypes,
     ticket: TicketSlice,
-    currency: CurrencySlice
+    currencies: CurrencySlice
   }
 });
