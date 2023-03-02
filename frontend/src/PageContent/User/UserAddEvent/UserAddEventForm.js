@@ -13,11 +13,16 @@ import TextareaAutosize from '@mui/base/TextareaAutosize';
 import moment from 'moment/moment';
 import { useDispatch, useSelector } from 'react-redux';
 import { addEvent } from 'redux/thunks/Admin';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Addimage from 'PageContent/utils/AddImage';
 import UserAddLocation from './UserAddEventForm/UserAddLocation';
+import Loader from 'PageContent/utils/Loader';
+import { getEventTypes } from 'redux/thunks/EventTypes';
+import { getLocationNames } from 'redux/thunks/Location';
 
 function UserAddEventForm() {
+  const { locationNames } = useSelector((state) => state.location);
+  const { addedLocation } = useSelector((state) => state.location);
   const { t } = useTranslation('adminEvent');
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
@@ -28,7 +33,6 @@ function UserAddEventForm() {
   const [eventType, setEventType] = useState('');
   const organizerName = 'ASD';
   const [locationName, setLocationName] = useState('');
-  const { locationNames } = useSelector((state) => state.location);
   const [locationNameinput, setLocationNameInput] = useState('');
   const [imageId, setImageId] = useState('');
   const [startDateError, setStartDateError] = useState(false);
@@ -38,6 +42,14 @@ function UserAddEventForm() {
   const date = moment(new Date().setDate(new Date().getDate() + 1)).format('yyyy-MM-DDTHH:mm');
   const [startDate, setStartDate] = useState('');
   const { eventTypes } = useSelector((state) => state.eventTypes);
+
+  useEffect(() => {
+    dispatch(getEventTypes());
+    dispatch(getLocationNames());
+    if (addedLocation.name !== '') {
+      setLocationName(addedLocation);
+    }
+  }, [addedLocation]);
 
   const errors = startDateError || endDateError;
 
@@ -84,8 +96,15 @@ function UserAddEventForm() {
     }
   };
 
+  if (locationNames.lenght === 0 || eventTypes.lenght === 0) {
+    return <Loader />;
+  }
+
   return (
     <div className="flex justify-center flex-col">
+      <div className="flex justify-center">
+        <UserAddLocation />
+      </div>
       <div className="flex justify-center">
         <form
           className="w-2/5"
@@ -112,9 +131,7 @@ function UserAddEventForm() {
                   className="border-2 w-full mt-5"
                 />
               </div>
-              <div className="flex justify-center p-5">
-                <UserAddLocation />
-              </div>
+              <div className="flex justify-center p-5"></div>
             </div>
             <div className="grid grid-cols-2 gap-16">
               <TextField
@@ -135,7 +152,7 @@ function UserAddEventForm() {
                 onInputChange={(event, newInputValue) => {
                   setLocationNameInput(newInputValue);
                 }}
-                id="location-name_picker"
+                id="user-location-name_picker"
                 renderInput={(params) => (
                   <TextField
                     helperText={t('USER_LOCATION_ADD')}

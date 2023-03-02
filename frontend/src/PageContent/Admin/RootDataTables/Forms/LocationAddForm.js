@@ -63,6 +63,7 @@ function LocationAddForm() {
           <TextField
             {...register('postcode')}
             required
+            autoComplete="on"
             type="number"
             value={postCode}
             onChange={postCodeChangeHandler}
@@ -90,6 +91,7 @@ function LocationAddForm() {
             <TextField
               {...register('street')}
               required
+              autoComplete="on"
               type="text"
               value={street}
               onChange={streetChangeHandler}
@@ -101,6 +103,7 @@ function LocationAddForm() {
           <TextField
             {...register('houseNumber')}
             required
+            autoComplete="on"
             type="number"
             value={houseNumber}
             onChange={houseNumberChangeHandler}
@@ -110,6 +113,7 @@ function LocationAddForm() {
           <TextField
             {...register('floor')}
             type="text"
+            autoComplete="on"
             value={floor}
             onChange={floorChangeHandler}
             label={t('FLOOR')}
@@ -118,6 +122,7 @@ function LocationAddForm() {
           <TextField
             {...register('room')}
             type="text"
+            autoComplete="on"
             value={room}
             onChange={roomChangeHandler}
             label={t('ROOM')}
@@ -127,7 +132,7 @@ function LocationAddForm() {
             variant="contained"
             color="info"
             className=" w-full mt-16"
-            aria-label="Sign in"
+            aria-label="Location Add"
             type="submit"
             size="large">
             {t('SEND')}

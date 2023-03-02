@@ -18,7 +18,7 @@ return new class extends Migration
             $table->id('id');
             $table->char('name', 50);
             $table->smallInteger('postcode');
-            $table->char('district', 3)->default('');
+            $table->char('district', 9)->default('');
             $table->string('street');
             $table->smallInteger('houseNumber');
             $table->char('floor', 3)->nullable()->default('');

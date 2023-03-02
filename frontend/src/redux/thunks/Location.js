@@ -1,13 +1,16 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import admin from 'API/Admin';
+import { setAddedLocation } from 'redux/slices/LocationSlice';
 import api from '../../axios/axois';
 
 export const addLocation = createAsyncThunk(
   'location/addLocation',
   async (location, { dispatch, rejectWithValue }) => {
     try {
-      const response = await api.post(admin.location, location).then(() => {
+      const response = await api.post(admin.location, location).then((response) => {
+        dispatch(setAddedLocation({ id: response.data.id, name: response.data.name }));
         dispatch(getLocations());
+        dispatch(getLocationNames());
       });
       return response.data;
     } catch (err) {

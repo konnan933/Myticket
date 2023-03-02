@@ -31,7 +31,7 @@ function UserAddLocation() {
               </IconButton>
             </div>
             <div className="flex justify-center">
-              <h2>{t('MANAGE_LOCATION')}</h2>
+              <h2>{t('ADD_LOCATION')}</h2>
             </div>
             <LocationAddForm />
           </Box>
