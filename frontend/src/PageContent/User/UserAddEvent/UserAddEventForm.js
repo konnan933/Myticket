@@ -25,6 +25,7 @@ function UserAddEventForm() {
   const { loggedUser } = useSelector((state) => state.auth);
   const { t } = useTranslation('userAddEvent');
   const dispatch = useDispatch();
+
   const { register, handleSubmit } = useForm();
   const [eventName, setEventName] = useState('');
   const [buisnessEmail, setBuisnessEmail] = useState(loggedUser.email);
@@ -41,6 +42,7 @@ function UserAddEventForm() {
   const [endDateErrorMsg, setEndDateErrorMsg] = useState('');
   const date = moment(new Date().setDate(new Date().getDate() + 1)).format('yyyy-MM-DDTHH:mm');
   const [startDate, setStartDate] = useState('');
+
   const { eventTypes } = useSelector((state) => state.eventTypes);
 
   useEffect(() => {

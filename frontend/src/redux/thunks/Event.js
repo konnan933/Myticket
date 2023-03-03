@@ -95,3 +95,19 @@ export const deleteEvent = createAsyncThunk(
     }
   }
 );
+
+export const getFilteredEvent = createAsyncThunk(
+  'event/getFilteredEvent',
+  async ({ date, eventType, location }, { rejectWithValue }) => {
+    try {
+      const response = await api.get(`${event.eventFilter}${date}/${location}/${eventType}`);
+      return response.data;
+    } catch (err) {
+      if (!err.response) {
+        throw err;
+      }
+      const { data, status } = err.response;
+      return rejectWithValue({ data, status });
+    }
+  }
+);

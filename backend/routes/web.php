@@ -85,7 +85,7 @@ Route::get('api/event/place/{event}', [EventsController::class, 'getEventByPlace
 Route::get('api/event/date/{event}', [EventsController::class, 'getEventByDate']);
 Route::get('api/event/category/{event}', [EventsController::class, 'getEventByCategory']);
 // ! ha nem akarunk paraméter akkor *-ot kell rakni
-Route::get('api/event/filter/{date}/{place}/{category}', [EventsController::class, 'eventFilter']);
+Route::get('api/event/filter/{date}/{location}/{category}', [EventsController::class, 'eventFilter']);
 Route::get('api/eventdetails', [EventsController::class, 'getEventDetails']);
 Route::get('api/eventdetails/{id}', [EventsController::class, 'getSingleEventDetails']);
 Route::get('api/userevents/{id}', [EventsController::class, 'getUserEvents']);
