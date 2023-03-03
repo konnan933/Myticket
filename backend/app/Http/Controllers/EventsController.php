@@ -63,16 +63,6 @@ class EventsController extends Controller
         $event->image = $request->image;
         $event->save();
     }
-    /* 
-    public function getUserEvents($user)
-    {
-
-        $userEvents = DB::table('events')->select('*')
-            ->where('user', '=', $user)
-            ->get();
-
-        return $userEvents;
-    } */
 
     public function getEventRevenue($event)
     {
@@ -266,6 +256,20 @@ class EventsController extends Controller
     {
         $userEvents = DB::table('events')->select('events.id as eventId', 'events.title', 'events.startDate', 'events.endDate', 'users.userName', 'users.id as organizerId', 'events.status')
             ->join('users', 'users.id', '=', 'events.user')
+            
+            
+            ->where('users.id', '=', $userId)
+            ->get();
+
+        return $userEvents;
+    }
+
+        public static function getUserEventsWithDetails($userId)
+    {
+        $userEvents = DB::table('events')->select('events.id as eventId', 'events.title', 'events.startDate', 'events.endDate', 'events.description', 'events.email', 'events.phoneNumber', 'events.comission', 'events.status','locations.id as locationId', 'users.id as organizerId', 'eventCategories.id as ekId', 'locations.name as locationName', 'eventCategories.name as ekName', 'events.image')
+            ->join('users', 'users.id', '=', 'events.user')
+            ->join('locations', 'locations.id', '=', 'events.location')
+            ->join('eventCategories', 'eventCategories.id', '=', 'events.eventType')
             ->where('users.id', '=', $userId)
             ->get();
 

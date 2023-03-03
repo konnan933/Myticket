@@ -14,7 +14,9 @@ import AdminEventPage from 'pages/Admin/AdminEvent/AdminEventPage';
 import DetailedEventPage from 'pages/Admin/AdminEvent/DetailedEventPage';
 import AdminAddEventPage from 'pages/Admin/AdminEvent/AddEventPage';
 import RootDataTablesPage from 'pages/Admin/RootDataTablesPage/RootDataTablesPage';
-import UserAddEventPage from 'pages/User/UserAddEventPage';
+import UserAddEventPage from 'pages/User/UserAddEventPage/UserAddEventPage';
+import UserEventsPage from 'pages/User/UserEventsPage/UserEventsPage';
+import UserEditEvent from 'PageContent/User/UserEditEvent/UserDetailedEvent';
 
 i18n.addResourceBundle('en', 'rootes', en);
 i18n.addResourceBundle('hu', 'rootes', hu);
@@ -59,6 +61,14 @@ export const allRootConfig = [
   {
     pagePath: '/userAddEvent',
     element: <UserAddEventPage />
+  },
+  {
+    pagePath: '/userEvents',
+    element: <UserEventsPage />
+  },
+  {
+    pagePath: '/userEventsEdit/:id',
+    element: <UserEditEvent />
   }
 ];
 
@@ -79,6 +89,12 @@ export const navbarConfig = [
     pageName: 'ADDEVENT',
     pagePath: '/userAddEvent',
     element: <UserAddEventPage />,
+    level: level.user
+  },
+  {
+    pageName: 'USEREVENTS',
+    pagePath: '/userEvents',
+    element: <UserEventsPage />,
     level: level.user
   }
 ];

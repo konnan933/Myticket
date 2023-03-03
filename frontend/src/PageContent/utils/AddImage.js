@@ -6,7 +6,7 @@ import ModalStyle from './BigModalStyle';
 import CloseIcon from '@mui/icons-material/Close';
 import { addPicture } from 'redux/thunks/Picture';
 
-function Addimage({ setImageId, imageId }) {
+function Addimage({ setImageId }) {
   const dispatch = useDispatch();
   const [path, setPath] = useState(null);
   const [open, setOpen] = useState(false);
@@ -85,6 +85,7 @@ function Addimage({ setImageId, imageId }) {
                     onClick={() => {
                       setPath(null);
                       setIsSent(false);
+                      setImageId('');
                     }}>
                     {t('CHANGE_PICTURE')}
                   </Button>

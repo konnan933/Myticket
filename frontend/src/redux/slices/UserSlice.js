@@ -1,9 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getUserEvents } from 'redux/thunks/User';
+import { getUserEvents, getUserEventsWithDetails } from 'redux/thunks/User';
 
 const USER_INIT_STATE = {
   userEvents: [],
-  userEventsLoading: false
+  userEventsWithDetails: [],
+  userEventsLoading: false,
+  userEventsWithDetailsLoading: false
 };
 const userSlice = createSlice({
   name: 'user',
@@ -19,6 +21,16 @@ const userSlice = createSlice({
     });
     builder.addCase(getUserEvents.rejected, (state) => {
       state.userEventsLoading = false;
+    });
+    builder.addCase(getUserEventsWithDetails.pending, (state) => {
+      state.userEventsWithDetailsLoading = true;
+    });
+    builder.addCase(getUserEventsWithDetails.fulfilled, (state, action) => {
+      state.userEventsWithDetailsLoading = false;
+      state.userEventsWithDetails = action.payload;
+    });
+    builder.addCase(getUserEventsWithDetails.rejected, (state) => {
+      state.userEventsWithDetailsLoading = false;
     });
   }
 });
