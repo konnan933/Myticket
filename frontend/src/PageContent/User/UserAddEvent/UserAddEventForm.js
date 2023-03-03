@@ -19,7 +19,9 @@ import UserAddLocation from './UserAddEventForm/UserAddLocation';
 
 function UserAddEventForm() {
   const { t } = useTranslation('adminEvent');
+
   const dispatch = useDispatch();
+
   const { register, handleSubmit } = useForm();
   const [eventName, setEventName] = useState('');
   const [buisnessEmail, setBuisnessEmail] = useState('');
@@ -28,7 +30,6 @@ function UserAddEventForm() {
   const [eventType, setEventType] = useState('');
   const organizerName = 'ASD';
   const [locationName, setLocationName] = useState('');
-  const { locationNames } = useSelector((state) => state.location);
   const [locationNameinput, setLocationNameInput] = useState('');
   const [imageId, setImageId] = useState('');
   const [startDateError, setStartDateError] = useState(false);
@@ -37,6 +38,8 @@ function UserAddEventForm() {
   const [endDateErrorMsg, setEndDateErrorMsg] = useState('');
   const date = moment(new Date().setDate(new Date().getDate() + 1)).format('yyyy-MM-DDTHH:mm');
   const [startDate, setStartDate] = useState('');
+
+  const { locationNames } = useSelector((state) => state.location);
   const { eventTypes } = useSelector((state) => state.eventTypes);
 
   const errors = startDateError || endDateError;

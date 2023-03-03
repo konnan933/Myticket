@@ -178,6 +178,8 @@ class EventsController extends Controller
             ->when($place != '*', function ($eventCategory) use ($place) {
                 $eventCategory->where('location',  $place);
             })
+            ->where('status', 1)
+            ->orderBy('startDate', 'ASC')
             ->get();
 
         return $eventCategory;

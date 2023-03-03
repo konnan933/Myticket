@@ -37,6 +37,7 @@ function AddEventForm() {
   const [endDateErrorMsg, setEndDateErrorMsg] = useState('');
   const date = moment(new Date().setDate(new Date().getDate() + 1)).format('yyyy-MM-DDTHH:mm');
   const [startDate, setStartDate] = useState('');
+
   const { userNames } = useSelector((state) => state.admin);
   const { eventTypes } = useSelector((state) => state.eventTypes);
 
