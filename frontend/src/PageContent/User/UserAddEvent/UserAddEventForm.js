@@ -12,26 +12,27 @@ import { useForm } from 'react-hook-form';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 import moment from 'moment/moment';
 import { useDispatch, useSelector } from 'react-redux';
-import { addEvent } from 'redux/thunks/Admin';
 import { useEffect, useState } from 'react';
 import Addimage from 'PageContent/utils/AddImage';
 import UserAddLocation from './UserAddEventForm/UserAddLocation';
 import Loader from 'PageContent/utils/Loader';
 import { getEventTypes } from 'redux/thunks/EventTypes';
 import { getLocationNames } from 'redux/thunks/Location';
+import { addEvent } from 'redux/thunks/Admin';
 
 function UserAddEventForm() {
-  const { locationNames } = useSelector((state) => state.location);
-  const { addedLocation } = useSelector((state) => state.location);
+  const { locationNames, addedLocation } = useSelector((state) => state.location);
+  const { loggedUser } = useSelector((state) => state.auth);
+  const { addEventResponse } = useSelector((state) => state.admin);
   const { t } = useTranslation('adminEvent');
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
   const [eventName, setEventName] = useState('');
-  const [buisnessEmail, setBuisnessEmail] = useState('');
-  const [buisnessPhoneNum, setBuisnessPhoneNum] = useState('');
+  const [buisnessEmail, setBuisnessEmail] = useState(loggedUser.email);
+  const [buisnessPhoneNum, setBuisnessPhoneNum] = useState(loggedUser.phoneNumber);
   const [eventDescription, setEventDescription] = useState('');
   const [eventType, setEventType] = useState('');
-  const organizerName = 'ASD';
+  const organizerName = loggedUser.userName;
   const [locationName, setLocationName] = useState('');
   const [locationNameinput, setLocationNameInput] = useState('');
   const [imageId, setImageId] = useState('');
@@ -43,6 +44,7 @@ function UserAddEventForm() {
   const [startDate, setStartDate] = useState('');
   const { eventTypes } = useSelector((state) => state.eventTypes);
 
+  console.log(addEventResponse);
   useEffect(() => {
     dispatch(getEventTypes());
     dispatch(getLocationNames());
@@ -111,7 +113,7 @@ function UserAddEventForm() {
           onSubmit={handleSubmit((data) => {
             data.startDate = moment(data.startDate).format('YYYY-MM-DD hh:mm:ss');
             data.endDate = moment(data.endDate).format('YYYY-MM-DD hh:mm:ss');
-            data.user = organizerName.id;
+            data.user = loggedUser.id;
             data.location = locationName.id;
             data.image = imageId;
             dispatch(addEvent(data));

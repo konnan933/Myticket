@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchLoggedIn } from 'redux/thunks/Auth';
 import Loader from 'PageContent/utils/Loader';
+import { ToastContainer } from 'react-toastify';
 function App() {
   const dispatch = useDispatch();
 
@@ -21,6 +22,18 @@ function App() {
   return (
     <div className="App">
       <Navbar />
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <Routes>
         {allRootConfig.map((root, index) => {
           return <Route key={index} path={root.pagePath} element={root.element} />;

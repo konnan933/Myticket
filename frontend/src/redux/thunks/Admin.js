@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import admin from 'API/Admin';
+import { toast } from 'react-toastify';
 import api from '../../axios/axois';
 
 export const getUsers = createAsyncThunk('admin/getUsers', async (_, { rejectWithValue }) => {
@@ -133,6 +134,7 @@ export const deleteEvent = createAsyncThunk(
 export const addEvent = createAsyncThunk('auth/addEvent', async (data, { rejectWithValue }) => {
   try {
     const response = await api.post(admin.event, data);
+    toast.success('MY SUCCESS');
     return response.data;
   } catch (err) {
     if (!err.response) {
