@@ -17,3 +17,19 @@ export const getUserEvents = createAsyncThunk(
     }
   }
 );
+
+export const getUserEventsWithDetails = createAsyncThunk(
+  'user/getUserEventsWithDetails',
+  async (id, { rejectWithValue }) => {
+    try {
+      const response = await api.get(`${user.userEventsWithDetails}/${id}`);
+      return response.data;
+    } catch (err) {
+      if (!err.response) {
+        throw err;
+      }
+      const { data, status } = err.response;
+      return rejectWithValue({ data, status });
+    }
+  }
+);
