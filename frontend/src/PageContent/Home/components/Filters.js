@@ -11,11 +11,14 @@ import moment from 'moment';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getFilteredEvent } from 'redux/thunks/Event';
 
 function Filters() {
   const { t } = useTranslation('home');
   const { register, handleSubmit } = useForm();
+
+  const dispatch = useDispatch();
 
   const [eventType, setEventType] = useState('');
   const [date, setDate] = useState('');
@@ -40,7 +43,17 @@ function Filters() {
 
   return (
     <div className="w-full">
-      <form onSubmit={handleSubmit(() => {})} className="flex gap-10 ">
+      <form
+        onSubmit={handleSubmit((data) => {
+          dispatch(
+            getFilteredEvent({
+              date: data.date === '' ? '*' : data.date,
+              eventType: data.eventType === '' ? '*' : data.eventType,
+              location: locationName.id === '' ? '*' : locationName.id
+            })
+          );
+        })}
+        className="flex gap-10 ">
         <TextField
           type="date"
           {...register('date')}

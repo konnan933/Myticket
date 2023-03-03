@@ -1,5 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getEvents, getSingleEvent, getSingleEventsDetailed } from 'redux/thunks/Event';
+import {
+  getEvents,
+  getFilteredEvent,
+  getSingleEvent,
+  getSingleEventsDetailed
+} from 'redux/thunks/Event';
 
 const EVENT_INIT_STATE = {
   deleteEventLoading: false,
@@ -8,7 +13,9 @@ const EVENT_INIT_STATE = {
   singleEvent: {},
   singleEventLoading: false,
   singleDetailedEvent: {},
-  singleDetailedEventLoading: false
+  singleDetailedEventLoading: false,
+  filteredEvent: [],
+  filteredEventLoading: false
 };
 const eventSlice = createSlice({
   name: 'event',
@@ -45,6 +52,17 @@ const eventSlice = createSlice({
     });
     builder.addCase(getSingleEventsDetailed.rejected, (state) => {
       state.singleDetailedEventLoading = false;
+    });
+
+    builder.addCase(getFilteredEvent.pending, (state) => {
+      state.filteredEventLoading = true;
+    });
+    builder.addCase(getFilteredEvent.fulfilled, (state, action) => {
+      state.filteredEventLoading = false;
+      state.filteredEvent = action.payload;
+    });
+    builder.addCase(getFilteredEvent.rejected, (state) => {
+      state.filteredEventLoading = false;
     });
   }
 });

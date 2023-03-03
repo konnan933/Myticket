@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
+import { getFilteredEvent } from 'redux/thunks/Event';
 import { getEventTypes } from 'redux/thunks/EventTypes';
 import { getLocationNames } from 'redux/thunks/Location';
 import Filters from './components/Filters';
@@ -11,6 +12,13 @@ function HomeContent() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(
+      getFilteredEvent({
+        date: '*',
+        eventType: '*',
+        location: '*'
+      })
+    );
     dispatch(getEventTypes());
     dispatch(getLocationNames());
   }, []);
