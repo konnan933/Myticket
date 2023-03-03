@@ -5,7 +5,8 @@ const locale = {
   REGISTER: 'Register',
   ADMINUSER: 'Manage users',
   ADMINEVENT: 'Manage events',
-  ROOT_DATA: 'Root data tabels'
+  ROOT_DATA: 'Root data tabels',
+  ADDEVENT: 'Add event'
 };
 
 export default locale;

@@ -6,7 +6,7 @@ import ModalStyle from './BigModalStyle';
 import CloseIcon from '@mui/icons-material/Close';
 import { addPicture } from 'redux/thunks/Picture';
 
-function Addimage({ setImageId }) {
+function Addimage({ setImageId, imageId }) {
   const dispatch = useDispatch();
   const [path, setPath] = useState(null);
   const [open, setOpen] = useState(false);
@@ -18,9 +18,16 @@ function Addimage({ setImageId }) {
   const displayImage = path && !open && isSent;
   const displayRemoveButton = path && !open && isSent;
   const displayAddButton = !open && !isSent;
+  const imageRequired = path === null;
 
   return (
     <div>
+      {imageRequired && (
+        <div className="flex justify-center text-red-600">
+          <p>{t('IMAGE_REQUIRED')}</p>
+        </div>
+      )}
+
       <div className="flex justify-center">
         {displayAddButton && (
           <Button onClick={handleOpen} color="primary" component="label">
@@ -32,6 +39,7 @@ function Addimage({ setImageId }) {
             onClick={() => {
               setPath(null);
               setIsSent(false);
+              setImageId('');
             }}>
             {t('REMOVE_IMAGE')}
           </Button>
@@ -68,6 +76,7 @@ function Addimage({ setImageId }) {
                       dispatch(addPicture(path)).then((respone) => {
                         setIsSent(true);
                         setImageId(respone.payload);
+                        setOpen(false);
                       });
                     }}>
                     {t('SEND_IMAGE')}

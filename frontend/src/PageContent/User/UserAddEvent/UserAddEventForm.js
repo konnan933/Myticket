@@ -23,7 +23,7 @@ import { addEvent } from 'redux/thunks/Event';
 function UserAddEventForm() {
   const { locationNames, addedLocation } = useSelector((state) => state.location);
   const { loggedUser } = useSelector((state) => state.auth);
-  const { t } = useTranslation('adminEvent');
+  const { t } = useTranslation('userAddEvent');
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
   const [eventName, setEventName] = useState('');
@@ -42,7 +42,7 @@ function UserAddEventForm() {
   const date = moment(new Date().setDate(new Date().getDate() + 1)).format('yyyy-MM-DDTHH:mm');
   const [startDate, setStartDate] = useState('');
   const { eventTypes } = useSelector((state) => state.eventTypes);
-  
+
   useEffect(() => {
     dispatch(getEventTypes());
     dispatch(getLocationNames());
@@ -51,7 +51,7 @@ function UserAddEventForm() {
     }
   }, [addedLocation]);
 
-  const errors = startDateError || endDateError;
+  const errors = startDateError || endDateError || imageId === '';
 
   const eventNameChangeHandler = (event) => {
     setEventName(event.target.value);
@@ -135,6 +135,7 @@ function UserAddEventForm() {
             </div>
             <div className="grid grid-cols-2 gap-16">
               <TextField
+                helperText={t('ORGANIZER_HELPER')}
                 defaultValue={organizerName}
                 disabled
                 label={t('ORGANIZER')}
@@ -223,6 +224,7 @@ function UserAddEventForm() {
 
               <TextField
                 {...register('endDate')}
+                required
                 InputLabelProps={{ shrink: true }}
                 onChange={endDateChangeHandler}
                 error={endDateError}

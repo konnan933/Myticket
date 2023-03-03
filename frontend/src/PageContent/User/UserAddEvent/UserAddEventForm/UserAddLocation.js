@@ -9,7 +9,7 @@ function UserAddLocation() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const { t } = useTranslation('rootData');
+  const { t } = useTranslation('userAddEvent');
 
   return (
     <div>
