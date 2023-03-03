@@ -1,24 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {
-  getEvents,
-  getSingleEvent,
-  getSingleEventsDetailed,
-  getUserEvents,
-  getUserNames,
-  getUsers
-} from 'redux/thunks/Admin';
+import { getUserNames, getUsers } from 'redux/thunks/Admin';
 
 const ADMIN_INIT_STATE = {
   users: [],
   usersLoading: false,
   deleteUserLoading: false,
   deleteEventLoading: false,
-  eventsLoading: false,
-  events: [],
-  singleEvent: {},
-  singleEventLoading: false,
-  singleDetailedEvent: {},
-  singleDetailedEventLoading: false,
   userNames: [],
   userEvents: [],
   userNamesLoading: false,
@@ -39,26 +26,6 @@ const adminSlice = createSlice({
     builder.addCase(getUsers.rejected, (state) => {
       state.usersLoading = false;
     });
-    builder.addCase(getEvents.pending, (state) => {
-      state.eventsLoading = true;
-    });
-    builder.addCase(getEvents.fulfilled, (state, action) => {
-      state.eventsLoading = false;
-      state.events = action.payload;
-    });
-    builder.addCase(getEvents.rejected, (state) => {
-      state.eventsLoading = false;
-    });
-    builder.addCase(getSingleEvent.pending, (state) => {
-      state.singleEventLoading = true;
-    });
-    builder.addCase(getSingleEvent.fulfilled, (state, action) => {
-      state.singleEventLoading = false;
-      state.singleEvent = action.payload;
-    });
-    builder.addCase(getSingleEvent.rejected, (state) => {
-      state.singleEventLoading = false;
-    });
 
     builder.addCase(getUserNames.pending, (state) => {
       state.userNamesLoading = true;
@@ -69,28 +36,6 @@ const adminSlice = createSlice({
     });
     builder.addCase(getUserNames.rejected, (state) => {
       state.userNamesLoading = false;
-    });
-
-    builder.addCase(getUserEvents.pending, (state) => {
-      state.userEventsLoading = true;
-    });
-    builder.addCase(getUserEvents.fulfilled, (state, action) => {
-      state.userEventsLoading = false;
-      state.userEvents = action.payload;
-    });
-    builder.addCase(getUserEvents.rejected, (state) => {
-      state.userEventsLoading = false;
-    });
-
-    builder.addCase(getSingleEventsDetailed.pending, (state) => {
-      state.singleDetailedEventLoading = true;
-    });
-    builder.addCase(getSingleEventsDetailed.fulfilled, (state, action) => {
-      state.singleDetailedEventLoading = false;
-      state.singleDetailedEvent = action.payload[0];
-    });
-    builder.addCase(getSingleEventsDetailed.rejected, (state) => {
-      state.singleDetailedEventLoading = false;
     });
   }
 });

@@ -1,5 +1,4 @@
 import { Box, IconButton, Modal, Typography } from '@mui/material';
-import admin from 'API/Admin';
 import pictureModalStyle from 'PageContent/utils/PictureModalStyle';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -7,13 +6,14 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import ChangeEventPicture from './ChangeEventPicture';
 import CloseIcon from '@mui/icons-material/Close';
+import event from '../../../../../API/Event';
 
 function EditEventPictures() {
   const { t } = useTranslation('adminEvent');
   const { id } = useParams();
   const [open, setOpen] = useState(false);
 
-  const { singleDetailedEvent } = useSelector((state) => state.admin);
+  const { singleDetailedEvent } = useSelector((state) => state.event);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -30,7 +30,7 @@ function EditEventPictures() {
       </div>
       <div className="flex  justify-center">
         <img
-          src={`${admin.eventPicture}${id}`}
+          src={`${event.eventPicture}${id}`}
           className="w-3/5 cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 duration-300"
           onClick={handleClickOpen}
         />
@@ -49,7 +49,7 @@ function EditEventPictures() {
           <div className="flex justify-center pb-10 pt-5 ">
             <Typography>{`${singleDetailedEvent.title} ${t('EVENT_PICTURE')}`}</Typography>
           </div>
-          <img src={`${admin.eventPicture}${id}`} className="w-full " />
+          <img src={`${event.eventPicture}${id}`} className="w-full " />
         </Box>
       </Modal>
     </div>

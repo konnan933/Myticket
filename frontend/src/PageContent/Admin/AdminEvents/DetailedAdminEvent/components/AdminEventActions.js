@@ -1,22 +1,18 @@
 import { Button } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import { putEvent } from 'redux/thunks/Admin';
+import { putEvent } from 'redux/thunks/Event';
 
 function AdminEventActions() {
   const { t } = useTranslation('adminEvent');
 
-  const { singleEvent } = useSelector((state) => state.admin);
+  const { singleEvent } = useSelector((state) => state.event);
 
   const dispatch = useDispatch();
 
   const handleAccept = (isAccepted) => {
     const localEvent = { ...singleEvent };
-
     localEvent.status = isAccepted;
-
-    console.log(localEvent);
-
     dispatch(putEvent(localEvent));
   };
 

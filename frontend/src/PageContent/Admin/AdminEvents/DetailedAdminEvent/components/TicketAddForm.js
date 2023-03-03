@@ -11,7 +11,7 @@ import moment from 'moment';
 
 function TicketAddForm() {
   const { t } = useTranslation('adminEvent');
-  const { singleEvent } = useSelector((state) => state.admin);
+  const { singleEvent } = useSelector((state) => state.event);
   const { register, handleSubmit } = useForm();
   const { id } = useParams();
   const [ticketType, setTicketType] = useState('');

@@ -2,9 +2,9 @@ import { Box, Button, IconButton, Modal } from '@mui/material';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
-import { addPicture } from 'redux/thunks/Admin';
 import ModalStyle from './BigModalStyle';
 import CloseIcon from '@mui/icons-material/Close';
+import { addPicture } from 'redux/thunks/Picture';
 
 function Addimage({ setImageId }) {
   const dispatch = useDispatch();

@@ -1,7 +1,6 @@
 import { Box, IconButton, Modal } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserEvents } from 'redux/thunks/Admin';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Loader from 'PageContent/utils/Loader';
@@ -9,11 +8,12 @@ import bigModalStyle from 'PageContent/utils/BigModalStyle';
 import ConfirmUserDelete from './ConfirmUserDelete';
 import UserEventsTable from '../UserEventsTable';
 import CloseIcon from '@mui/icons-material/Close';
+import { getUserEvents } from 'redux/thunks/User';
 
 function DeleteUser({ id }) {
   const { t } = useTranslation('adminEvent');
   const dispatch = useDispatch();
-  const { userEvents, userEventsLoading } = useSelector((state) => state.admin);
+  const { userEvents, userEventsLoading } = useSelector((state) => state.user);
   const [open, setOpen] = useState(false);
   const hasEvent = userEvents[0] != undefined;
   const hasAcceptedEvent = hasEvent && userEvents[0].status === 1;

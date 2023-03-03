@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getEvents } from 'redux/thunks/Admin';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
@@ -14,14 +13,15 @@ import { StyledTableCell, StyledTableRow } from 'PageContent/utils/TableStyles';
 import DeleteEvent from './components/DeleteEvent';
 import { Tooltip } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { getEvents } from 'redux/thunks/Event';
 
 function EventsTable() {
   const dispatch = useDispatch();
-  const { events } = useSelector((state) => state.admin);
+  const { events } = useSelector((state) => state.event);
   useEffect(() => {
     dispatch(getEvents());
   }, []);
-
+  console.log(events);
   const { t } = useTranslation('adminEvent');
   return (
     <div className="flex justify-center w-full">

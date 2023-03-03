@@ -18,12 +18,11 @@ import UserAddLocation from './UserAddEventForm/UserAddLocation';
 import Loader from 'PageContent/utils/Loader';
 import { getEventTypes } from 'redux/thunks/EventTypes';
 import { getLocationNames } from 'redux/thunks/Location';
-import { addEvent } from 'redux/thunks/Admin';
+import { addEvent } from 'redux/thunks/Event';
 
 function UserAddEventForm() {
   const { locationNames, addedLocation } = useSelector((state) => state.location);
   const { loggedUser } = useSelector((state) => state.auth);
-  const { addEventResponse } = useSelector((state) => state.admin);
   const { t } = useTranslation('adminEvent');
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
@@ -43,8 +42,7 @@ function UserAddEventForm() {
   const date = moment(new Date().setDate(new Date().getDate() + 1)).format('yyyy-MM-DDTHH:mm');
   const [startDate, setStartDate] = useState('');
   const { eventTypes } = useSelector((state) => state.eventTypes);
-
-  console.log(addEventResponse);
+  
   useEffect(() => {
     dispatch(getEventTypes());
     dispatch(getLocationNames());

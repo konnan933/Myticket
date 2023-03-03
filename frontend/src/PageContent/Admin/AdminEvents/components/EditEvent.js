@@ -18,9 +18,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import moment from 'moment';
 import Addimage from 'PageContent/utils/AddImage';
-import { putEvent } from 'redux/thunks/Admin';
 import Loader from 'PageContent/utils/Loader';
 import CloseIcon from '@mui/icons-material/Close';
+import { putEvent } from 'redux/thunks/Event';
 
 function EditEvent({ event }) {
   const { t } = useTranslation('adminEvent');

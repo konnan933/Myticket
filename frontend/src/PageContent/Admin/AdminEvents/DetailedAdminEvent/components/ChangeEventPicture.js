@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { changePicture } from 'redux/thunks/Admin';
 import CloseIcon from '@mui/icons-material/Close';
+import { changePicture } from 'redux/thunks/Picture';
 
 function ChangeEventPicture() {
   const dispatch = useDispatch();
