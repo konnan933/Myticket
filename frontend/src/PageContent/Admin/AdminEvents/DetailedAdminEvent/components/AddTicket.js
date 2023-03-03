@@ -8,8 +8,8 @@ import { getCurrency } from 'redux/thunks/Currencies';
 import { useDispatch } from 'react-redux';
 import { getTicketTypes } from 'redux/thunks/TicketTypes';
 import { useParams } from 'react-router-dom';
-import { getSingleEvent } from 'redux/thunks/Admin';
 import CloseIcon from '@mui/icons-material/Close';
+import { getSingleEvent } from 'redux/thunks/Event';
 
 function AddTicket() {
   const [open, setOpen] = useState(false);

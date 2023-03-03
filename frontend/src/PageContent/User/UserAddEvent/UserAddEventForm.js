@@ -12,23 +12,27 @@ import { useForm } from 'react-hook-form';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 import moment from 'moment/moment';
 import { useDispatch, useSelector } from 'react-redux';
-import { addEvent } from 'redux/thunks/Admin';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Addimage from 'PageContent/utils/AddImage';
 import UserAddLocation from './UserAddEventForm/UserAddLocation';
+import Loader from 'PageContent/utils/Loader';
+import { getEventTypes } from 'redux/thunks/EventTypes';
+import { getLocationNames } from 'redux/thunks/Location';
+import { addEvent } from 'redux/thunks/Event';
 
 function UserAddEventForm() {
-  const { t } = useTranslation('adminEvent');
-
+  const { locationNames, addedLocation } = useSelector((state) => state.location);
+  const { loggedUser } = useSelector((state) => state.auth);
+  const { t } = useTranslation('userAddEvent');
   const dispatch = useDispatch();
 
   const { register, handleSubmit } = useForm();
   const [eventName, setEventName] = useState('');
-  const [buisnessEmail, setBuisnessEmail] = useState('');
-  const [buisnessPhoneNum, setBuisnessPhoneNum] = useState('');
+  const [buisnessEmail, setBuisnessEmail] = useState(loggedUser.email);
+  const [buisnessPhoneNum, setBuisnessPhoneNum] = useState(loggedUser.phoneNumber);
   const [eventDescription, setEventDescription] = useState('');
   const [eventType, setEventType] = useState('');
-  const organizerName = 'ASD';
+  const organizerName = loggedUser.userName;
   const [locationName, setLocationName] = useState('');
   const [locationNameinput, setLocationNameInput] = useState('');
   const [imageId, setImageId] = useState('');
@@ -39,10 +43,17 @@ function UserAddEventForm() {
   const date = moment(new Date().setDate(new Date().getDate() + 1)).format('yyyy-MM-DDTHH:mm');
   const [startDate, setStartDate] = useState('');
 
-  const { locationNames } = useSelector((state) => state.location);
   const { eventTypes } = useSelector((state) => state.eventTypes);
 
-  const errors = startDateError || endDateError;
+  useEffect(() => {
+    dispatch(getEventTypes());
+    dispatch(getLocationNames());
+    if (addedLocation.name !== '') {
+      setLocationName(addedLocation);
+    }
+  }, [addedLocation]);
+
+  const errors = startDateError || endDateError || imageId === '';
 
   const eventNameChangeHandler = (event) => {
     setEventName(event.target.value);
@@ -87,15 +98,22 @@ function UserAddEventForm() {
     }
   };
 
+  if (locationNames.lenght === 0 || eventTypes.lenght === 0) {
+    return <Loader />;
+  }
+
   return (
     <div className="flex justify-center flex-col">
+      <div className="flex justify-center">
+        <UserAddLocation />
+      </div>
       <div className="flex justify-center">
         <form
           className="w-2/5"
           onSubmit={handleSubmit((data) => {
             data.startDate = moment(data.startDate).format('YYYY-MM-DD hh:mm:ss');
             data.endDate = moment(data.endDate).format('YYYY-MM-DD hh:mm:ss');
-            data.user = organizerName.id;
+            data.user = loggedUser.id;
             data.location = locationName.id;
             data.image = imageId;
             dispatch(addEvent(data));
@@ -115,12 +133,11 @@ function UserAddEventForm() {
                   className="border-2 w-full mt-5"
                 />
               </div>
-              <div className="flex justify-center p-5">
-                <UserAddLocation />
-              </div>
+              <div className="flex justify-center p-5"></div>
             </div>
             <div className="grid grid-cols-2 gap-16">
               <TextField
+                helperText={t('ORGANIZER_HELPER')}
                 defaultValue={organizerName}
                 disabled
                 label={t('ORGANIZER')}
@@ -138,7 +155,7 @@ function UserAddEventForm() {
                 onInputChange={(event, newInputValue) => {
                   setLocationNameInput(newInputValue);
                 }}
-                id="location-name_picker"
+                id="user-location-name_picker"
                 renderInput={(params) => (
                   <TextField
                     helperText={t('USER_LOCATION_ADD')}
@@ -209,6 +226,7 @@ function UserAddEventForm() {
 
               <TextField
                 {...register('endDate')}
+                required
                 InputLabelProps={{ shrink: true }}
                 onChange={endDateChangeHandler}
                 error={endDateError}

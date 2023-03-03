@@ -1,10 +1,10 @@
 import { Box, Button, IconButton, Modal, Typography } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch } from 'react-redux';
-import { deleteEvent } from 'redux/thunks/Admin';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import modalStyle from 'PageContent/utils/ModalStyle';
+import { deleteEvent } from 'redux/thunks/Event';
 
 function DeleteEvent({ id }) {
   const { t } = useTranslation('adminEvent');

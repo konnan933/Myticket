@@ -6,7 +6,7 @@ import SingleEventDescription from './SingleEventDescription';
 function DetailedData() {
   const { t } = useTranslation('adminEvent');
 
-  const { singleDetailedEvent } = useSelector((state) => state.admin);
+  const { singleDetailedEvent } = useSelector((state) => state.event);
 
   return (
     <div className="w-2/3">

@@ -62,6 +62,7 @@ const locale = {
   DECLINE: 'Elutasítás',
   EDIT_TICKET: 'Jegyek szerkeztése',
   CANNOT_DELETE_USER: 'A kiválaszott felhasználó nem törölhető, mert van elfogadott eseménye',
-  STREET: 'utca'
+  STREET: 'utca',
+  IMAGE_REQUIRED: 'Kép megadása kötelező'
 };
 export default locale;

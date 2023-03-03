@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { setLoggedIn, setLogin, setRememberMe } from 'redux/slices/AuthSlice';
+import { setLoggedIn, setLoggedUser, setLogin, setRememberMe } from 'redux/slices/AuthSlice';
 import auth from '../../API/Auth';
 import api from '../../axios/axois';
 
@@ -11,6 +11,7 @@ export const fetchLogin = createAsyncThunk(
       const response = await api.post(auth.login, data).then((response) => {
         dispatch(setLoggedIn(true));
         dispatch(setRememberMe(rememberMe));
+        dispatch(setLoggedUser(response.data[0]));
         return response;
       });
       return response.data;

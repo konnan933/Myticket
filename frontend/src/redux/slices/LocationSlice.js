@@ -7,12 +7,17 @@ const LOCATIONS_INIT_STATE = {
   addLocation: [],
   addLocationLoading: false,
   locations: [],
-  locationsLoading: false
+  locationsLoading: false,
+  addedLocation: { id: '', name: '' }
 };
 const locationSlice = createSlice({
   name: 'location',
   initialState: LOCATIONS_INIT_STATE,
-  reducers: {},
+  reducers: {
+    setAddedLocation: (state, action) => {
+      state.addedLocation = action.payload;
+    }
+  },
   extraReducers: (builder) => {
     builder.addCase(getLocationNames.pending, (state) => {
       state.locationNamesLoading = true;
@@ -47,5 +52,5 @@ const locationSlice = createSlice({
     });
   }
 });
-
+export const { setAddedLocation } = locationSlice.actions;
 export default locationSlice.reducer;

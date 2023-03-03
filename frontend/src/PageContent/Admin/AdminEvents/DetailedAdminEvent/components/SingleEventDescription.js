@@ -10,7 +10,7 @@ function SingleEventDescription() {
   const { t } = useTranslation('adminEvent');
   const [open, setOpen] = useState(false);
 
-  const { singleDetailedEvent } = useSelector((state) => state.admin);
+  const { singleDetailedEvent } = useSelector((state) => state.event);
 
   const handleClickOpen = () => {
     setOpen(true);

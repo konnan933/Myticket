@@ -1,11 +1,11 @@
 import { Typography } from '@mui/material';
-//import admin from 'API/Admin';
 import Loader from 'PageContent/utils/Loader';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getSingleEvent, getSingleEventsDetailed, getUserNames } from 'redux/thunks/Admin';
+import { getUserNames } from 'redux/thunks/Admin';
+import { getSingleEvent, getSingleEventsDetailed } from 'redux/thunks/Event';
 import { getEventTypes } from 'redux/thunks/EventTypes';
 import { getLocationNames } from 'redux/thunks/Location';
 import { getEventTickets } from 'redux/thunks/Ticket';
@@ -22,7 +22,7 @@ function DetailedAdminEvent() {
 
   const dispatch = useDispatch();
 
-  const { singleDetailedEvent, singleDetailedEventLoading } = useSelector((state) => state.admin);
+  const { singleDetailedEvent, singleDetailedEventLoading } = useSelector((state) => state.event);
   useEffect(() => {
     dispatch(getSingleEventsDetailed(id));
     dispatch(getSingleEvent(id));

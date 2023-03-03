@@ -12,9 +12,9 @@ import { useForm } from 'react-hook-form';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 import moment from 'moment/moment';
 import { useDispatch, useSelector } from 'react-redux';
-import { addEvent } from 'redux/thunks/Admin';
 import Addimage from '../../../utils/AddImage';
 import { useState } from 'react';
+import { addEvent } from 'redux/thunks/Event';
 
 function AddEventForm() {
   const { t } = useTranslation('adminEvent');

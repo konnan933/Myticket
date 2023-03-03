@@ -24,7 +24,7 @@ function EditTicket({ ticket }) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const { t } = useTranslation('adminEvent');
-  const { singleEvent } = useSelector((state) => state.admin);
+  const { singleEvent } = useSelector((state) => state.event);
   const { register, handleSubmit } = useForm();
   const { id } = useParams();
   const [ticketType, setTicketType] = useState(ticket.type);
