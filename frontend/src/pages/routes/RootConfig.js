@@ -16,6 +16,7 @@ import AdminAddEventPage from 'pages/Admin/AdminEvent/AddEventPage';
 import RootDataTablesPage from 'pages/Admin/RootDataTablesPage/RootDataTablesPage';
 import UserAddEventPage from 'pages/User/UserAddEventPage/UserAddEventPage';
 import UserEventsPage from 'pages/User/UserEventsPage/UserEventsPage';
+import UserEditEvent from 'PageContent/User/UserEditEvent/UserDetailedEvent';
 
 i18n.addResourceBundle('en', 'rootes', en);
 i18n.addResourceBundle('hu', 'rootes', hu);
@@ -64,6 +65,10 @@ export const allRootConfig = [
   {
     pagePath: '/userEvents',
     element: <UserEventsPage />
+  },
+  {
+    pagePath: '/userEventsEdit/:id',
+    element: <UserEditEvent />
   }
 ];
 

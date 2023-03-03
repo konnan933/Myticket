@@ -8,9 +8,11 @@ import { useEffect } from 'react';
 import Loader from 'PageContent/utils/Loader';
 import event from '../../API/Event';
 import { Box } from '@mui/system';
-import { CardActionArea } from '@mui/material';
+import { Button, CardActionArea } from '@mui/material';
+import { Link, useNavigate } from 'react-router-dom';
 
 function UserEventsContent() {
+  const navigate = useNavigate();
   const { userEventsWithDetails, userEventsWithDetailsLoading } = useSelector(
     (state) => state.user
   );
@@ -22,7 +24,9 @@ function UserEventsContent() {
     dispatch(getUserEventsWithDetails(loggedUser.id));
   }, []);
 
-  const handleClick = () => {};
+  const handleClick = (event) => {
+    navigate(`/userEventsEdit/${event}`);
+  };
 
   if (userEventsWithDetailsLoading || loggedUser.id === undefined) {
     return <Loader />;
@@ -34,16 +38,19 @@ function UserEventsContent() {
         <Typography gutterBottom variant="h5" component="div">
           {t('YOU_DONT_HAVE_EVENT')}
         </Typography>
+        <Link to="/userAddEvent">
+          <Button>{t('ADD_EVENT')}</Button>
+        </Link>
       </div>
     );
   }
 
   return (
-    <div className="flex justify-center gap-5 grid-cols-3 ">
+    <div className="flex justify-center gap-5">
       {userEventsWithDetails.map((userEvent) => (
         <div key={userEvent.eventId}>
           <CardActionArea>
-            <Card sx={{ display: 'flex' }} onClick={handleClick}>
+            <Card sx={{ display: 'flex' }} onClick={() => handleClick(userEvent.eventId)}>
               <img src={`${event.eventPicture}${userEvent.eventId}`} />
               <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                 <CardContent sx={{ flex: '1 0 auto' }}>

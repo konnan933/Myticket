@@ -85,6 +85,7 @@ function Addimage({ setImageId }) {
                     onClick={() => {
                       setPath(null);
                       setIsSent(false);
+                      setImageId('');
                     }}>
                     {t('CHANGE_PICTURE')}
                   </Button>
