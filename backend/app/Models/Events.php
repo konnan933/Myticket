@@ -10,7 +10,6 @@ class Events extends Model
     use HasFactory;
     public $table = 'events';
     public $timestamps = false;
-    protected $filters = ['location', 'startDate', 'eventType'];
     protected $fillable = [
         'title',
         'user',
