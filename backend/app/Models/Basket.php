@@ -15,6 +15,6 @@ class Basket extends Model
         'conceptTicketId',
         'user',
         'numberOfTickets',
-        'boookedTime',
+        'bookedTime',
     ];
 }

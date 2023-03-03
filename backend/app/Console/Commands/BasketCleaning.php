@@ -21,7 +21,7 @@ class BasketCleaning extends Command
      *
      * @var string
      */
-    protected $description = 'Cleaning of the basket when the boookedTime
+    protected $description = 'Cleaning of the basket when the bookedTime
                              is past 10 minutes of its creation and its 
                              no bougth it will be deleted';
 
@@ -35,7 +35,7 @@ class BasketCleaning extends Command
         $kosarTartalom = Basket::all();
         foreach ($kosarTartalom as $kosarAdat) {
             //TODO feltétel kibővítés
-            if (!(now()->lessThan(Carbon::parse($kosarAdat->boookedTime)->addMinutes(10)))) {
+            if (!(now()->lessThan(Carbon::parse($kosarAdat->bookedTime)->addMinutes(10)))) {
                 $kosarAdat->delete();
             }
         }

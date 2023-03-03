@@ -21,7 +21,7 @@ return new class extends Migration
             $table->foreignId('conceptTicketId')->references('conceptTicketId')->on('conceptTicket');
             $table->foreignId('user')->references('id')->on('users');
             $table->integer('numberOfTickets')->max(50);
-            $table->dateTime('boookedTime');
+            $table->dateTime('bookedTime');
             $table->boolean('payed')->default(false);
         });
 

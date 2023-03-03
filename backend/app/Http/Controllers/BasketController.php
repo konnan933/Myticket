@@ -34,7 +34,7 @@ class BasketController extends Controller
         $basket->conceptTicketId = $request->conceptTicketId;
         $basket->user = $request->user;
         $basket->numberOfTickets = $request->numberOfTickets;
-        $basket->boookedTime = $request->boookedTime;
+        $basket->bookedTime = $request->bookedTime;
         $basket->payed = false;
         $basket->save();
     }
