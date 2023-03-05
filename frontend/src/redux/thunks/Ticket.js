@@ -1,4 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import i18n from 'i18n';
+import i18nReduxToast from 'PageContent/utils/i18nReduxToast';
 import ticket from '../../API/Ticket';
 import api from '../../axios/axois';
 
@@ -41,11 +43,13 @@ export const addTicket = createAsyncThunk(
   async ({ data, eventId }, { dispatch, rejectWithValue }) => {
     try {
       const response = await api.post(ticket.eventTickets, data).then(() => {
+        i18nReduxToast(i18n.language, 'Success');
         dispatch(getEventTickets(eventId));
       });
-      return response.data;
+      return response?.data;
     } catch (err) {
       if (!err.response) {
+        i18nReduxToast(i18n.language, 'Fail');
         throw err;
       }
       const { data, status } = err.response;
@@ -59,11 +63,13 @@ export const putEventTicket = createAsyncThunk(
   async ({ data, ticketId, eventId }, { rejectWithValue, dispatch }) => {
     try {
       const response = await api.put(`${ticket.eventTickets}/${ticketId}`, data).then(() => {
+        i18nReduxToast(i18n.language, 'Success');
         dispatch(getEventTickets(eventId));
       });
-      return response.data;
+      return response?.data;
     } catch (err) {
       if (!err.response) {
+        i18nReduxToast(i18n.language, 'Fail');
         throw err;
       }
       const { data, status } = err.response;

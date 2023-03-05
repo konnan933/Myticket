@@ -1,5 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import user from 'API/User';
+import i18n from 'i18n';
+import i18nReduxToast from 'PageContent/utils/i18nReduxToast';
 import api from '../../axios/axois';
 
 export const getUsers = createAsyncThunk('admin/getUsers', async (_, { rejectWithValue }) => {
@@ -33,17 +35,18 @@ export const deleteUser = createAsyncThunk(
   }
 );
 
-
 export const addUser = createAsyncThunk(
   'auth/addUser',
   async (data, { dispatch, rejectWithValue }) => {
     try {
       const response = await api.post(user.users, data).then(() => {
+        i18nReduxToast(i18n.language, 'Success');
         dispatch(getUsers());
       });
-      return response.data;
+      return response?.data;
     } catch (err) {
       if (!err.response) {
+        i18nReduxToast(i18n.language, 'Fail');
         throw err;
       }
 
@@ -57,11 +60,13 @@ export const updateUser = createAsyncThunk(
   async ({ formData, id }, { dispatch, rejectWithValue }) => {
     try {
       const response = await api.put(`${user.users}/${id}`, formData).then(() => {
+        i18nReduxToast(i18n.language, 'Success');
         dispatch(getUsers());
       });
-      return response.data;
+      return response?.data;
     } catch (err) {
       if (!err.response) {
+        i18nReduxToast(i18n.language, 'Fail');
         throw err;
       }
       const { data, status } = err.response;
@@ -85,5 +90,3 @@ export const getUserNames = createAsyncThunk(
     }
   }
 );
-
-

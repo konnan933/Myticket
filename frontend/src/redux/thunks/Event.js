@@ -1,16 +1,18 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { toast } from 'react-toastify';
 import api from '../../axios/axois';
 import event from 'API/Event';
+import i18nReduxToast from 'PageContent/utils/i18nReduxToast';
+import i18n from 'i18n';
 
 export const addEvent = createAsyncThunk('event/addEvent', async (data, { rejectWithValue }) => {
   try {
     const response = await api.post(event.event, data).then(() => {
-      toast.success('asd');
+      i18nReduxToast(i18n.language, 'Success');
     });
-    return response.data;
+    return response?.data;
   } catch (err) {
     if (!err.response) {
+      i18nReduxToast(i18n.language, 'Fail');
       throw err;
     }
 
@@ -50,11 +52,13 @@ export const getSingleEventsDetailed = createAsyncThunk(
 
 export const putEvent = createAsyncThunk('event/putEvent', async (data, { rejectWithValue }) => {
   try {
-    console.log(data);
-    const response = await api.put(`${event.event}/${data.id}`, data);
-    return response.data;
+    const response = await api.put(`${event.event}/${data.id}`, data).then(() => {
+      i18nReduxToast(i18n.language, 'Success');
+    });
+    return response?.data;
   } catch (err) {
     if (!err.response) {
+      i18nReduxToast(i18n.language, 'Fail');
       throw err;
     }
 

@@ -1,5 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import eventTypes from 'API/EventTypes';
+import i18n from 'i18n';
+import i18nReduxToast from 'PageContent/utils/i18nReduxToast';
 import api from '../../axios/axois';
 
 export const getEventTypes = createAsyncThunk(
@@ -22,11 +24,13 @@ export const addEventType = createAsyncThunk(
   async (data, { dispatch, rejectWithValue }) => {
     try {
       const response = await api.post(eventTypes.eventTypes, data).then(() => {
+        i18nReduxToast(i18n.language, 'Success');
         dispatch(getEventTypes());
       });
-      return response.data;
+      return response?.data;
     } catch (err) {
       if (!err.response) {
+        i18nReduxToast(i18n.language, 'Fail');
         throw err;
       }
       const { data, status } = err.response;
@@ -40,11 +44,13 @@ export const updateEventType = createAsyncThunk(
   async (data, { dispatch, rejectWithValue }) => {
     try {
       const response = await api.put(`${eventTypes.eventTypes}/${data.id}`, data).then(() => {
+        i18nReduxToast(i18n.language, 'Success');
         dispatch(getEventTypes());
       });
-      return response.data;
+      return response?.data;
     } catch (err) {
       if (!err.response) {
+        i18nReduxToast(i18n.language, 'Fail');
         throw err;
       }
       const { data, status } = err.response;

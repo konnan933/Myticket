@@ -1,5 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import location from 'API/Location';
+import i18n from 'i18n';
+import i18nReduxToast from 'PageContent/utils/i18nReduxToast';
 import { setAddedLocation } from 'redux/slices/LocationSlice';
 import api from '../../axios/axois';
 
@@ -8,13 +10,15 @@ export const addLocation = createAsyncThunk(
   async (data, { dispatch, rejectWithValue }) => {
     try {
       const response = await api.post(location.location, data).then((response) => {
+        i18nReduxToast(i18n.language, 'Success');
         dispatch(setAddedLocation({ id: response.data.id, name: response.data.name }));
         dispatch(getLocations());
         dispatch(getLocationNames());
       });
-      return response.data;
+      return response?.data;
     } catch (err) {
       if (!err.response) {
+        i18nReduxToast(i18n.language, 'Fail');
         throw err;
       }
       const { data, status } = err.response;
@@ -59,10 +63,12 @@ export const updateLocation = createAsyncThunk(
   async (data, { dispatch, rejectWithValue }) => {
     try {
       await api.put(`${location.location}/${data.id}`, data).then(() => {
+        i18nReduxToast(i18n.language, 'Success');
         dispatch(getLocations());
       });
     } catch (err) {
       if (!err.response) {
+        i18nReduxToast(i18n.language, 'Fail');
         throw err;
       }
       const { data, status } = err.response;
