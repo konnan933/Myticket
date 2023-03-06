@@ -17,6 +17,7 @@ import RootDataTablesPage from 'pages/Admin/RootDataTablesPage/RootDataTablesPag
 import UserAddEventPage from 'pages/User/UserAddEventPage/UserAddEventPage';
 import UserEventsPage from 'pages/User/UserEventsPage/UserEventsPage';
 import UserEditEvent from 'PageContent/User/UserEditEvent/UserDetailedEvent';
+import BasketPage from 'pages/Basket/BasketPage';
 
 i18n.addResourceBundle('en', 'rootes', en);
 i18n.addResourceBundle('hu', 'rootes', hu);
@@ -69,6 +70,10 @@ export const allRootConfig = [
   {
     pagePath: '/userEventsEdit/:id',
     element: <UserEditEvent />
+  },
+  {
+    pagePath: '/basket',
+    element: <BasketPage />
   }
 ];
 
@@ -96,6 +101,12 @@ export const navbarConfig = [
     pagePath: '/userEvents',
     element: <UserEventsPage />,
     level: level.user
+  },
+  {
+    pageName: 'BASKET',
+    pagePath: '/basket',
+    element: <BasketPage />,
+    level: level.admin
   }
 ];
 

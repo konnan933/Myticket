@@ -7,7 +7,8 @@ const locale = {
   ADMINEVENT: 'Manage events',
   ROOT_DATA: 'Root data tabels',
   ADDEVENT: 'Add event',
-  USEREVENTS : 'Your events'
+  USEREVENTS: 'Your events',
+  BASKET: 'Basket'
 };
 
 export default locale;

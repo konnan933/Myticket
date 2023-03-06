@@ -7,7 +7,8 @@ const locale = {
   ADMINEVENT: 'Események kezelése',
   ROOT_DATA: 'Törzs adat táblák',
   ADDEVENT: 'Esemény hozzáadása',
-  USEREVENTS: 'Eseményeim'
+  USEREVENTS: 'Eseményeim',
+  BASKET: 'Kosár'
 };
 
 export default locale;
