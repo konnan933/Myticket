@@ -90,7 +90,8 @@ Route::get('api/eventdetails', [EventsController::class, 'getEventDetails']);
 Route::get('api/eventdetails/{id}', [EventsController::class, 'getSingleEventDetails']);
 Route::get('api/userevents/{id}', [EventsController::class, 'getUserEvents']);
 Route::get('api/usereventswithdeatils/{id}', [EventsController::class, 'getUserEventsWithDetails']);
-Route::get('api/events/accepted', [EventsController::class, 'acceptedEvents']);
+Route::get('api/event/accepted', [EventsController::class, 'acceptedEvents']);
+Route::get('api/events/promoted', [EventsController::class, 'promotedEvents']);
 
 
 

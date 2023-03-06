@@ -256,17 +256,17 @@ class EventsController extends Controller
     {
         $userEvents = DB::table('events')->select('events.id as eventId', 'events.title', 'events.startDate', 'events.endDate', 'users.userName', 'users.id as organizerId', 'events.status')
             ->join('users', 'users.id', '=', 'events.user')
-            
-            
+
+
             ->where('users.id', '=', $userId)
             ->get();
 
         return $userEvents;
     }
 
-        public static function getUserEventsWithDetails($userId)
+    public static function getUserEventsWithDetails($userId)
     {
-        $userEvents = DB::table('events')->select('events.id as eventId', 'events.title', 'events.startDate', 'events.endDate', 'events.description', 'events.email', 'events.phoneNumber', 'events.comission', 'events.status','locations.id as locationId', 'users.id as organizerId', 'eventCategories.id as ekId', 'locations.name as locationName', 'eventCategories.name as ekName', 'events.image')
+        $userEvents = DB::table('events')->select('events.id as eventId', 'events.title', 'events.startDate', 'events.endDate', 'events.description', 'events.email', 'events.phoneNumber', 'events.comission', 'events.status', 'locations.id as locationId', 'users.id as organizerId', 'eventCategories.id as ekId', 'locations.name as locationName', 'eventCategories.name as ekName', 'events.image')
             ->join('users', 'users.id', '=', 'events.user')
             ->join('locations', 'locations.id', '=', 'events.location')
             ->join('eventCategories', 'eventCategories.id', '=', 'events.eventType')
@@ -283,5 +283,13 @@ class EventsController extends Controller
             ->get();
 
         return $acceptedEvents;
+    }
+    public static function promotedEvents()
+    {
+        $promotedEvents = DB::table('events')->select('*')
+            ->where('promoted', 1)
+            ->get();
+
+        return $promotedEvents;
     }
 }

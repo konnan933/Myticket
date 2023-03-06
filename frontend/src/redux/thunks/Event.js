@@ -115,3 +115,20 @@ export const getFilteredEvent = createAsyncThunk(
     }
   }
 );
+
+export const getPromotedEvents = createAsyncThunk(
+  'event/getPromotedEvents',
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await api.get(`${event.event}s/promoted`);
+      console.log(response.data);
+      return response.data;
+    } catch (err) {
+      if (!err.response) {
+        throw err;
+      }
+      const { data, status } = err.response;
+      return rejectWithValue({ data, status });
+    }
+  }
+);
