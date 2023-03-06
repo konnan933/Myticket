@@ -4,9 +4,11 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import ChangeEventPicture from './ChangeEventPicture';
+import ChangeEventPicture from '../../../../utils/ChangeEventPicture';
 import CloseIcon from '@mui/icons-material/Close';
 import event from '../../../../../API/Event';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 function EditEventPictures() {
   const { t } = useTranslation('adminEvent');
@@ -28,11 +30,13 @@ function EditEventPictures() {
       <div className="flex  justify-center">
         <ChangeEventPicture />
       </div>
-      <div className="flex  justify-center">
-        <img
-          src={`${event.eventPicture}${id}`}
-          className="w-3/5 cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 duration-300"
+      <div className="flex  justify-center p-2.5">
+        <LazyLoadImage
+          className="w-full cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 duration-300"
           onClick={handleClickOpen}
+          alt="Esemeny kep"
+          src={`${event.eventPicture}${id}`}
+          effect="blur"
         />
       </div>
       <Modal
