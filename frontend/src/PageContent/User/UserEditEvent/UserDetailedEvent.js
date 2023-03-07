@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material';
+import { Typography, useMediaQuery } from '@mui/material';
 import BackToButton from 'PageContent/Admin/AdminEvents/DetailedAdminEvent/components/BackToButton';
 import EditEventPictures from 'PageContent/Admin/AdminEvents/DetailedAdminEvent/components/EditEventPicture';
 import SingleEventDescription from 'PageContent/Admin/AdminEvents/DetailedAdminEvent/components/SingleEventDescription';
@@ -14,6 +14,7 @@ import { getEventTickets } from 'redux/thunks/Ticket';
 import UserEditEvent from './components/UserEditEvent';
 
 function UserDetailedEvent() {
+  const width = useMediaQuery('(max-width:768px)');
   const { t } = useTranslation('userEvent');
 
   const { id } = useParams();
@@ -30,74 +31,119 @@ function UserDetailedEvent() {
     document.body.style.overflow = 'hidden';
     return () => (document.body.style.overflow = 'scroll');
   }, []);
+  console.log(width);
 
   if (singleDetailedEventLoading) {
     return <Loader />;
   }
 
   return (
-    <div className="flex justify-center items-center h-screen flex-col">
-      <div className="justify-start">
+    <div>
+      <div className="justify-start p-6">
         <BackToButton />
       </div>
-      <div>
-        <div className="flex flex-row border-2 rounded-sm p-4">
-          <div className="w-full pt-10">
-            <EditEventPictures />
-          </div>
-          <div className="w-full">
-            <div className="flex justify-between">
-              <div className="flex justify-start">
-                <Typography>{t('EDIT_EVENT')}:</Typography>
+      <div className="justify-center items-center">
+        <div>
+          <div className={`flex ${width ? 'flex-col' : 'flex-row'} border-4 rounded-md p-4`}>
+            <div className="pt-10">
+              <EditEventPictures />
+            </div>
+            <div>
+              <div className="flex justify-between">
+                <div className="flex justify-start">
+                  <Typography variant="h5" component="h5">
+                    {t('EDIT_EVENT')}:
+                  </Typography>
+                </div>
+                <div className="flex justify-end">
+                  <UserEditEvent event={singleDetailedEvent} />
+                </div>
               </div>
-              <div className="flex justify-end">
-                <UserEditEvent event={singleDetailedEvent} />
+              <div className="flex ">
+                <Typography variant="h5" component="h5">
+                  {t('EVENTNAME')}
+                </Typography>
+                <Typography
+                  variant="h5"
+                  component="h5">{`: ${singleDetailedEvent.title}`}</Typography>
               </div>
-            </div>
-            <div className="flex ">
-              <Typography>{t('EVENTNAME')}</Typography>
-              <Typography>{`: ${singleDetailedEvent.title}`}</Typography>
-            </div>
-            <div className="flex ">
-              <Typography>{t('ORGANIZER')}</Typography>
-              <Typography>{`: ${singleDetailedEvent.userName}`}</Typography>
-            </div>
-            <div className="flex ">
-              <Typography>{t('BUISNESS_EMAIL')}</Typography>
-              <Typography>{`: ${singleDetailedEvent.email}`}</Typography>
-            </div>
-            <div className="flex ">
-              <Typography>{t('BUISNESS_PHON_NUM')}</Typography>
-              <Typography>{`: ${singleDetailedEvent.phoneNumber}`}</Typography>
-            </div>
-            <div className="flex ">
-              <Typography>{t('EVENT_TYPE')}</Typography>
-              <Typography>{`: ${singleDetailedEvent.name}`}</Typography>
-            </div>
-            <div className="flex ">
-              <Typography>{t('LOCATION')}</Typography>
-              <Typography>{`: ${singleDetailedEvent.postcode} ${singleDetailedEvent.district} ${
-                singleDetailedEvent.street
-              } ${t('STREET')} ${singleDetailedEvent.houseNumber}`}</Typography>
-            </div>
-            <div className="flex ">
-              <Typography>{t('START_DATE')}</Typography>
-              <Typography>{`: ${singleDetailedEvent.startDate}`}</Typography>
-            </div>
-            <div className="flex ">
-              <Typography>{t('END_DATE')}</Typography>
-              <Typography>{`: ${singleDetailedEvent.endDate}`}</Typography>
-            </div>
-            <div className="flex ">
-              <Typography>{t('COMISSION')}</Typography>
-              <Typography>{`: ${singleDetailedEvent.comission}%`}</Typography>
-            </div>
-            <div className="flex ">
-              <SingleEventDescription />
-            </div>
-            <div className="flex ">
-              <Typography>{t(`STATUS`)}</Typography>
-              <Typography>{`: ${t(`STATUS_${singleDetailedEvent.status}`)}`}</Typography>
+              <div className="flex ">
+                <Typography variant="h5" component="h5">
+                  {t('ORGANIZER')}
+                </Typography>
+                <Typography
+                  variant="h5"
+                  component="h5">{`: ${singleDetailedEvent.userName}`}</Typography>
+              </div>
+              <div className="flex ">
+                <Typography variant="h5" component="h5">
+                  {t('BUISNESS_EMAIL')}
+                </Typography>
+                <Typography
+                  variant="h5"
+                  component="h5">{`: ${singleDetailedEvent.email}`}</Typography>
+              </div>
+              <div className="flex ">
+                <Typography variant="h5" component="h5">
+                  {t('BUISNESS_PHONE_NUM')}
+                </Typography>
+                <Typography
+                  variant="h5"
+                  component="h5">{`: ${singleDetailedEvent.phoneNumber}`}</Typography>
+              </div>
+              <div className="flex ">
+                <Typography variant="h5" component="h5">
+                  {t('EVENT_TYPE')}
+                </Typography>
+                <Typography
+                  variant="h5"
+                  component="h5">{`: ${singleDetailedEvent.name}`}</Typography>
+              </div>
+              <div className="flex ">
+                <Typography variant="h5" component="h5">
+                  {t('LOCATION')}
+                </Typography>
+                <Typography variant="h5" component="h5">{`: ${singleDetailedEvent.postcode} ${
+                  singleDetailedEvent.district
+                } ${singleDetailedEvent.street} ${t('STREET')} ${
+                  singleDetailedEvent.houseNumber
+                }`}</Typography>
+              </div>
+              <div className="flex ">
+                <Typography variant="h5" component="h5">
+                  {t('START_DATE')}
+                </Typography>
+                <Typography
+                  variant="h5"
+                  component="h5">{`: ${singleDetailedEvent.startDate}`}</Typography>
+              </div>
+              <div className="flex ">
+                <Typography variant="h5" component="h5">
+                  {t('END_DATE')}
+                </Typography>
+                <Typography
+                  variant="h5"
+                  component="h5">{`: ${singleDetailedEvent.endDate}`}</Typography>
+              </div>
+              <div className="flex ">
+                <Typography variant="h5" component="h5">
+                  {t('COMISSION')}
+                </Typography>
+                <Typography
+                  variant="h5"
+                  component="h5">{`: ${singleDetailedEvent.comission}%`}</Typography>
+              </div>
+              <div className="flex ">
+                <Typography variant="h5" component="h5">
+                  {t(`STATUS`)}
+                </Typography>
+                <Typography variant="h5" component="h5">{`: ${t(
+                  `STATUS_${singleDetailedEvent.status}`
+                )}`}</Typography>
+              </div>
+              <div className="flex ">
+                <SingleEventDescription />
+              </div>
             </div>
           </div>
         </div>

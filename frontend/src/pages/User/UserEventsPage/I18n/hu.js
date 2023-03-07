@@ -11,7 +11,19 @@ const locale = {
   STATUS_1: 'Elfogadott',
   STATUS_2: 'Lejárt',
   STATUS_3: 'Elutasított',
-  YOU_DONT_HAVE_EVENT: 'Még nem adtál meg eseményt'
+  YOU_DONT_HAVE_EVENT: 'Még nem adtál meg eseményt',
+  EDIT_EVENT: 'Esemény szerkeztése',
+  EVENTNAME: 'Esemény neve',
+  ORGANIZER: 'Szervező',
+  BUISNESS_EMAIL: 'Biznisz email',
+  BUISNESS_PHONE_NUM: 'Biznisz telefonszám',
+  EVENT_TYPE: 'Esemény típusa',
+  LOCATION: 'Helyszín',
+  START_DATE: 'Esemény helyszíne',
+  END_DATE: 'Esemény vége',
+  COMISSION: 'Jutalék',
+  STATUS: 'Státusz',
+  STREET: 'Utca'
 };
 
 export default locale;
