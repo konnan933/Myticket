@@ -74,6 +74,10 @@ export const allRootConfig = [
   {
     pagePath: '/basket',
     element: <BasketPage />
+  },
+  {
+    pagePath: '/event/:id',
+    element: <BasketPage />
   }
 ];
 
