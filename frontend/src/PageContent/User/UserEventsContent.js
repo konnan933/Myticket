@@ -8,13 +8,14 @@ import { useEffect, useState } from 'react';
 import Loader from 'PageContent/utils/Loader';
 import event from '../../API/Event';
 import { Box } from '@mui/system';
-import { Button, CardActionArea } from '@mui/material';
+import { Button, CardActionArea, useMediaQuery } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
 function UserEventsContent() {
   const navigate = useNavigate();
+  const width = useMediaQuery('(max-width:1000px)');
   const { userEventsWithDetails, userEventsWithDetailsLoading } = useSelector(
     (state) => state.user
   );
@@ -62,14 +63,17 @@ function UserEventsContent() {
         {userEventsWithDetails.map((userEvent) => (
           <div className="p-7" key={userEvent.eventId}>
             <CardActionArea>
-              <Card sx={{ display: 'flex' }} onClick={() => handleClick(userEvent.eventId)}>
+              <Card
+                sx={{ display: 'flex', flexDirection: width ? 'column' : 'row' }}
+                onClick={() => handleClick(userEvent.eventId)}>
                 <LazyLoadImage
                   alt="Esemeny kep"
                   src={`${event.eventPicture}${userEvent.eventId}`}
                   effect="blur"
                   scrollPosition={scrollPosition}
+                  width={width ? '100%' : '65%'}
                 />
-                <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                <Box className="pt-9">
                   <CardContent sx={{ flex: '1 0 auto' }}>
                     <Typography gutterBottom variant="h5" component="div">
                       {`${t('EVENT_TITLE')}: ${userEvent.title}`}

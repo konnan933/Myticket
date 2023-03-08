@@ -31,7 +31,6 @@ function UserDetailedEvent() {
     document.body.style.overflow = 'hidden';
     return () => (document.body.style.overflow = 'scroll');
   }, []);
-  console.log(width);
 
   if (singleDetailedEventLoading) {
     return <Loader />;
