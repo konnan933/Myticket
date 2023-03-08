@@ -3,39 +3,42 @@ import { Button, TextField } from '@mui/material';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { fetchRegister } from 'redux/thunks/Auth';
 import Loader from 'PageContent/utils/Loader';
+import { Navigate } from 'react-router-dom';
+import regexTests from 'PageContent/utils/Regex';
 
 function RegisterContent() {
   const { t } = useTranslation('register');
 
   const { register, handleSubmit } = useForm();
-  const navigate = useNavigate();
 
   const dispatch = useDispatch();
-  const { regLoading, reg } = useSelector((state) => state.auth);
+  const { regLoading, loggedIn } = useSelector((state) => state.auth);
 
-  const [email, setEmail] = useState('af@gmail.com');
-  const [password, setPassword] = useState('Aa123456');
-  const [confirmPassword, setConfirmPassword] = useState('Aa123456');
-  const [felNev, setFelNev] = useState('Jancsi');
-  const [phonNum, setPhonNum] = useState('06301111111');
+  const registerObj = {
+    email: 'af@gmail.com',
+    password: 'Aa123456',
+    password_confirmation: 'Aa123456',
+    userName: 'Jancsi',
+    phoneNumber: '06301111111'
+  };
 
-  const emailChangeHandler = (event) => {
-    setEmail(event.target.value);
-  };
-  const passwordChangeHandler = (event) => {
-    setPassword(event.target.value);
-  };
-  const ConfirmPasswordChangeHandler = (event) => {
-    setConfirmPassword(event.target.value);
-  };
-  const felNevChangeHandler = (event) => {
-    setFelNev(event.target.value);
-  };
-  const phonNumChangeHandler = (event) => {
-    setPhonNum(event.target.value);
+  const [registerData, setRegisterData] = useState(registerObj);
+  const [passwordErr, setPasswordErr] = useState(false);
+
+  if (loggedIn) {
+    return <Navigate to="/" />;
+  }
+
+  const registerChangeHandler = (event) => {
+    const {
+      target: { name, value }
+    } = event;
+    if (name === 'password') {
+      setPasswordErr(!regexTests.password.test(value));
+    }
+    setRegisterData({ ...registerData, [name]: value });
   };
 
   if (regLoading) {
@@ -47,55 +50,69 @@ function RegisterContent() {
         dispatch(fetchRegister(data));
       })}>
       <fieldset className="flex justify-center">
-        <div className="grid gap-8 p-20 w-1/2">
+        <div className="grid gap-8 w-1/2">
           <TextField
             {...register('userName')}
             required
+            name="userName"
             type="text"
-            value={felNev}
-            onChange={felNevChangeHandler}
-            label={t('PHONE_NUMBER')}
+            value={registerData.userName}
+            onChange={registerChangeHandler}
+            label={t('USER_NAME')}
             className="border-2"
           />
           <TextField
             {...register('email')}
             required
+            name="email"
             type="text"
-            value={email}
-            onChange={emailChangeHandler}
+            value={registerData.email}
+            onChange={registerChangeHandler}
             label={t('EMAIL')}
             className="border-2"
           />
           <TextField
             {...register('password')}
             required
+            name="password"
             type="password"
-            value={password}
-            onChange={passwordChangeHandler}
+            value={registerData.password}
+            error={passwordErr}
+            helperText={passwordErr && t('PASSWORD_STRENGHT')}
+            onChange={registerChangeHandler}
             label={t('PASSWORD')}
             className="border-2"
           />
           <TextField
             {...register('password_confirmation')}
             required
+            name="password_confirmation"
             type="password"
-            value={confirmPassword}
-            onChange={ConfirmPasswordChangeHandler}
+            error={registerData.password !== registerData.password_confirmation}
+            helperText={
+              registerData.password !== registerData.password_confirmation &&
+              t('PASSWORD_MISSMATCH')
+            }
+            value={registerData.password_confirmation}
+            onChange={registerChangeHandler}
             label={t('CONFIRM_PASSWORD')}
             className="border-2"
           />
           <TextField
             {...register('phoneNumber')}
+            inputProps={{ maxLength: 11, minLength: 11 }}
             required
             type="text"
-            value={phonNum}
-            onChange={phonNumChangeHandler}
+            name="phoneNumber"
+            value={registerData.phoneNumber}
+            onChange={registerChangeHandler}
             label={t('TEL_NUM')}
             className="border-2"
           />
           <Button
             variant="contained"
             color="info"
+            disabled={passwordErr || registerData.password !== registerData.password_confirmation}
             className=" w-full mt-16"
             aria-label="Sign in"
             type="submit"

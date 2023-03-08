@@ -1,4 +1,4 @@
-import { Button, MenuItem, Select, TextField } from '@mui/material';
+import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
@@ -12,37 +12,27 @@ function EditUserForm({ user }) {
 
   const dispatch = useDispatch();
 
-  const [email, setEmail] = useState(user.email);
-  const [faults, setFaults] = useState(user.faults);
-  const [confirmed, setConfirmed] = useState(user.confirmed);
-  const [felNev, setFelNev] = useState(user.userName);
-  const [phonNum, setPhonNum] = useState(user.phoneNumber);
-  const [level, setLevel] = useState(user.level);
+  const editUserObj = {
+    email: user.email,
+    faults: user.faults,
+    confirmed: user.confirmed,
+    userName: user.userName,
+    phoneNumber: user.phoneNumber,
+    level: user.level
+  };
 
-  const emailChangeHandler = (event) => {
-    setEmail(event.target.value);
+  const [editUserData, setEditUserData] = useState(editUserObj);
+
+  const editUserChangeHandler = (event) => {
+    const {
+      target: { name, value }
+    } = event;
+    setEditUserData({ ...editUserData, [name]: value });
   };
-  const faultsChangeHandler = (event) => {
-    setFaults(event.target.value);
-  };
-  const ConfirmedChangeHandler = (event) => {
-    setConfirmed(event.target.value);
-  };
-  const felNevChangeHandler = (event) => {
-    setFelNev(event.target.value);
-  };
-  const phonNumChangeHandler = (event) => {
-    setPhonNum(event.target.value);
-  };
-  const levelChangeHandler = (event) => {
-    setLevel(event.target.value);
-  };
+
   return (
     <form
       onSubmit={handleSubmit((data) => {
-        data.confirmed = false;
-        data.faults = 0;
-        data.level;
         dispatch(updateUser({ formData: data, id: user.id }));
       })}>
       <fieldset>
@@ -50,56 +40,71 @@ function EditUserForm({ user }) {
           <TextField
             {...register('userName')}
             required
+            name="userName"
             type="text"
-            value={felNev}
-            onChange={felNevChangeHandler}
+            value={editUserData.userName}
+            onChange={editUserChangeHandler}
             label={t('USER_NAME')}
             className="border-2"
           />
           <TextField
             {...register('email')}
             required
+            name="email"
             type="text"
-            value={email}
-            onChange={emailChangeHandler}
+            value={editUserData.email}
+            onChange={editUserChangeHandler}
             label={t('EMAIL')}
             className="border-2"
           />
           <TextField
             {...register('faults')}
             required
-            type="text"
-            value={faults}
-            onChange={faultsChangeHandler}
+            name="faults"
+            inputProps={{ max: 5 }}
+            type="number"
+            value={editUserData.faults}
+            onChange={editUserChangeHandler}
             label={t('FAULTS')}
             className="border-2"
           />
-          <TextField
-            {...register('confirmed')}
-            required
-            type="text"
-            value={confirmed}
-            onChange={ConfirmedChangeHandler}
-            label={t('CONFIRMED')}
-            className="border-2"
-          />
+          <FormControl>
+            <InputLabel shrink>{t('CONFIRMED')}</InputLabel>
+            <Select
+              {...register('confirmed')}
+              value={editUserData.confirmed}
+              name="confirmed"
+              notched
+              label={t('CONFIRMED')}
+              onChange={editUserChangeHandler}
+              inputProps={{ 'aria-label': 'Without label' }}>
+              <MenuItem value={1}>{t('ACCEPTED')}</MenuItem>
+              <MenuItem value={0}>{t('DECLINED')}</MenuItem>
+            </Select>
+          </FormControl>
           <TextField
             {...register('phoneNumber')}
             required
+            name="phoneNumber"
             type="text"
-            value={phonNum}
-            onChange={phonNumChangeHandler}
+            value={editUserData.phoneNumber}
+            onChange={editUserChangeHandler}
             label={t('PHONENUMBER')}
             className="border-2"
           />
-          <Select
-            {...register('level')}
-            value={level}
-            onChange={levelChangeHandler}
-            inputProps={{ 'aria-label': 'Without label' }}>
-            <MenuItem value={1}>{t('Admin')}</MenuItem>
-            <MenuItem value={2}>{t('USER')}</MenuItem>
-          </Select>
+          <FormControl>
+            <InputLabel shrink>{t('LEVEL')}</InputLabel>
+            <Select
+              {...register('level')}
+              value={editUserData.level}
+              name="level"
+              label={t('LEVEL')}
+              onChange={editUserChangeHandler}
+              inputProps={{ 'aria-label': 'Without label' }}>
+              <MenuItem value={1}>{t('LEVEL_1')}</MenuItem>
+              <MenuItem value={2}>{t('LEVEL_2')}</MenuItem>
+            </Select>
+          </FormControl>
           <Button
             variant="contained"
             color="info"

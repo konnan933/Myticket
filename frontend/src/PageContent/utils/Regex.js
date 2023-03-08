@@ -4,7 +4,8 @@ const regexTests = {
   pwnumber: /[0-9\b]/,
   upperCase: /[A-Z]/,
   lowerCase: /[a-z]/,
-  specialCharacter: /[`~!@#$%^&*()+=|;:'",.<>/?\\-]/
+  specialCharacter: /[`~!@#$%^&*()+=|;:'",.<>/?\\-]/,
+  password: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
 };
 
 export default regexTests;

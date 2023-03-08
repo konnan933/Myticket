@@ -21,7 +21,13 @@ const locale = {
   CONFIRM_PASSWORD: 'Confirm password',
   NAME: 'User name',
   LEVEL_2: 'User',
-  LEVEL_1: 'Admin'
+  LEVEL_1: 'Admin',
+  ACCEPTED: 'Accepted',
+  DECLINE: 'Decline',
+  PASSWORD_STRENGHT:
+    'The passowrd must have a length of 8 characters, one lowercase, uppercase, number and special charater',
+  PASSWORD_MISSMATCH: "The password's does not match",
+  PHONENUMBER: 'Phone number'
 };
 
 export default locale;

@@ -20,7 +20,13 @@ const locale = {
   PASSWORD: 'Jelszó',
   LEVEL_1: 'Admin',
   LEVEL_2: 'Felhasználó',
-  MANAGE_USER: 'Felhasználó szerkeztése'
+  ACCEPTED: 'Elfogadott',
+  DECLINED: 'Elutasított',
+  MANAGE_USER: 'Felhasználó szerkeztése',
+  PASSWORD_STRENGHT:
+    'A jelszónak minimum 8 karakter hosszúnak kell lennie, egy kisbetű, nagybetű, szám és speciális karakter kell tartalmaznia',
+  PASSWORD_MISSMATCH: 'Nem egyeznek a jelszavak',
+  PHONENUMBER: 'Telefonszám'
 };
 
 export default locale;

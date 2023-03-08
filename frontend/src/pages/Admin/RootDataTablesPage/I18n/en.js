@@ -11,6 +11,7 @@ const locale = {
   ROOM: 'Room',
   CONFIRM_DELETE_LOCATION: 'Do you want to delete this location?',
   MANAGE_LOCATION: 'Modify location',
+  ADD_LOCATION: 'Add location',
   // * eventTypes
   CONFIRM_DELETE_ET: 'Do you want to delete this event type?',
   EDIT_ET: 'Modify event type',

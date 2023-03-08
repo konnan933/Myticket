@@ -11,34 +11,41 @@ function LoginContent() {
   const { register, handleSubmit } = useForm();
   const { t } = useTranslation('login');
 
+  const loginObj = {
+    email: 'student1@gmail.com',
+    password: 'Aa123456',
+    rememberMe: false
+  };
+  const [loginData, setLoginData] = useState(loginObj);
+
   const dispatch = useDispatch();
-  const { loginLoading, login } = useSelector((state) => state.auth);
+  const { loginLoading, loggedIn } = useSelector((state) => state.auth);
 
-  const [email, setEmail] = useState('student1@gmail.com');
-  const [password, setPassword] = useState('Aa123456');
-  const [rememberMe, setRememberMe] = useState(false);
-
-  const emailChangeHandler = (event) => {
-    setEmail(event.target.value);
-  };
-  const passwordChangeHandler = (event) => {
-    setPassword(event.target.value);
-  };
-  const rememberMeChangeHandler = () => {
-    setRememberMe(!rememberMe);
+  const loginChangeHandler = (event) => {
+    const {
+      target: { name, value, checked }
+    } = event;
+    switch (name) {
+      case 'rememberMe':
+        setLoginData({ ...loginData, [name]: checked });
+        break;
+      default:
+        setLoginData({ ...loginData, [name]: value });
+        break;
+    }
   };
   // ! student1@gmail.com;
   // ! Aa123456;
   if (loginLoading) {
     return <Loader />;
   }
-  if (login[0].email !== undefined) {
+  if (loggedIn) {
     return <Navigate to="/" />;
   }
   return (
     <form
       onSubmit={handleSubmit((data) => {
-        dispatch(fetchLogin({ data, rememberMe }));
+        dispatch(fetchLogin({ data, rememberMe: loginData.rememberMe }));
       })}>
       <fieldset className="flex justify-center">
         <div className="grid gap-8 p-20 w-1/2">
@@ -46,17 +53,19 @@ function LoginContent() {
             {...register('email')}
             required
             type="text"
-            value={email}
-            onChange={emailChangeHandler}
+            value={loginData.email}
+            name="email"
+            onChange={loginChangeHandler}
             label={t('EMAIL')}
             className="border-2"
           />
           <TextField
             {...register('password')}
             required
+            name="password"
             type="password"
-            value={password}
-            onChange={passwordChangeHandler}
+            value={loginData.password}
+            onChange={loginChangeHandler}
             label={t('PASSWORD')}
             className="border-2"
           />
@@ -71,7 +80,7 @@ function LoginContent() {
           </Button>
           <FormGroup>
             <FormControlLabel
-              control={<Checkbox onChange={rememberMeChangeHandler} />}
+              control={<Checkbox name="rememberMe" onChange={loginChangeHandler} />}
               label={t('REMEMBER_ME')}
             />
           </FormGroup>
