@@ -4,7 +4,8 @@ const locale = {
   LOCATION: 'Helyszín',
   CATEGORY: 'Kategória',
   EVENT_TYPE: 'Esemény tipus',
-  SEARCH: 'Keresés'
+  SEARCH: 'Keresés',
+  SHOW_EVENT: 'Esemény megtekintése'
 };
 
 export default locale;

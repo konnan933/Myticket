@@ -18,6 +18,7 @@ import UserAddEventPage from 'pages/User/UserAddEventPage/UserAddEventPage';
 import UserEventsPage from 'pages/User/UserEventsPage/UserEventsPage';
 import UserEditEvent from 'PageContent/User/UserEditEvent/UserDetailedEvent';
 import BasketPage from 'pages/Basket/BasketPage';
+import EventPage from 'pages/EventPage/EventPage';
 
 i18n.addResourceBundle('en', 'rootes', en);
 i18n.addResourceBundle('hu', 'rootes', hu);
@@ -77,7 +78,7 @@ export const allRootConfig = [
   },
   {
     pagePath: '/event/:id',
-    element: <BasketPage />
+    element: <EventPage />
   }
 ];
 

@@ -9,9 +9,12 @@ import 'swiper/css/navigation';
 import { Autoplay, Pagination, Navigation } from 'swiper';
 import event from 'API/Event';
 import { useSelector } from 'react-redux';
-import { Button, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
+import EventButton from './EventButton';
+import { useTranslation } from 'react-i18next';
 
 function SlideShow() {
+  const { t } = useTranslation('home');
   const { promotedEvents, promotedEventsLoading } = useSelector((state) => state.event);
 
   return (
@@ -29,7 +32,7 @@ function SlideShow() {
         }}
         navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
-        className="w-full h-full text-center text-lg text-white">
+        className="w-full h-420 text-center text-lg text-white">
         {promotedEvents.map((oneEvent) => {
           return (
             <SwiperSlide key={oneEvent.id}>
@@ -37,13 +40,14 @@ function SlideShow() {
                 style={{
                   backgroundImage: 'url(' + event.eventPicture + oneEvent.id + ')',
                   width: '100%',
-                  height: '400px',
+                  height: '380px',
                   backgroundSize: 'cover',
                   backgroundPosition: 'center center',
                   backgroundRepeat: 'no-repeat'
-                }}>
+                }}
+                className="flex flex-col justify-between">
                 <Typography variant="h3">{oneEvent.title}</Typography>
-                <Button>yes</Button>
+                <EventButton id={oneEvent.id} />
               </div>
             </SwiperSlide>
           );
