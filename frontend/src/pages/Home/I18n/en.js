@@ -4,7 +4,8 @@ const locale = {
   LOCATION: 'Location',
   CATEGORY: 'Category',
   EVENT_TYPE: 'Event type',
-  SEARCH: 'Search'
+  SEARCH: 'Search',
+  SHOW_EVENT: 'Show event'
 };
 
 export default locale;

@@ -42,7 +42,7 @@ function Filters() {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full flex justify-center">
       <form
         onSubmit={handleSubmit((data) => {
           dispatch(
@@ -53,7 +53,7 @@ function Filters() {
             })
           );
         })}
-        className="flex gap-10 ">
+        className="w-4/5 flex gap-10 max-md:flex-col justify-center  ">
         <TextField
           type="date"
           {...register('date')}
@@ -65,11 +65,9 @@ function Filters() {
           }}
           onChange={dateChangeHandler}
           label={t('DATE')}
-          className="w-1/4 border-2 px-2 pt-2">
-          datum
-        </TextField>
+          className="w-1/4 max-md:w-full border-2 px-2 pt-2"></TextField>
         <Autocomplete
-          className="w-1/3"
+          className="w-1/3 max-md:w-full"
           options={locationNames}
           getOptionLabel={(option) => (option.name ? option.name : '')}
           value={locationName}
@@ -85,7 +83,7 @@ function Filters() {
             <TextField value={locationName} {...params} label={t('LOCATION')} />
           )}
         />
-        <FormControl className="w-1/3">
+        <FormControl className="w-1/3 max-md:w-full">
           <InputLabel shrink={true} id="demo-simple-select-label">
             {t('EVENT_TYPE')}
           </InputLabel>
@@ -93,7 +91,6 @@ function Filters() {
             {...register('eventType')}
             value={eventType}
             notched={true}
-            required
             label={t('EVENT_TYPE')}
             onChange={eventTypeChangeHandler}
             inputProps={{ 'aria-label': 'Without label' }}>
@@ -107,7 +104,7 @@ function Filters() {
         <Button
           variant="contained"
           color="info"
-          className=" w-48"
+          className="max-md:w-full"
           aria-label="Event add"
           type="submit"
           size="lagre">
