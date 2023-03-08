@@ -49,8 +49,8 @@ function EventsTable() {
               <StyledTableRow key={event.eventId}>
                 <StyledTableCell align="left">
                   <div className="flex">
-                    <DeleteEvent id={event.eventId} />
                     <EditEvent event={event} />
+                    <DeleteEvent id={event.eventId} />
                   </div>
                 </StyledTableCell>
                 <StyledTableCell align="left">

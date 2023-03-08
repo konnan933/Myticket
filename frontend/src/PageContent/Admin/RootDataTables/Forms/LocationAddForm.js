@@ -14,36 +14,25 @@ function LocationAddForm() {
 
   const dispatch = useDispatch();
 
-  const [name, setName] = useState('');
-  const [postCode, setPostCode] = useState('');
-  const [district, setDistrict] = useState('');
-  const [street, setStreet] = useState('');
-  const [houseNumber, setHouseNumber] = useState('');
-  const [floor, setFloor] = useState('');
-  const [room, setRoom] = useState('');
-
-  const nameChangeHandler = (event) => {
-    setName(event.target.value);
+  const locationObj = {
+    name: '',
+    postCode: '',
+    district: '',
+    street: '',
+    houseNumber: '',
+    floor: '',
+    room: ''
   };
 
-  const postCodeChangeHandler = (event) => {
-    setPostCode(event.target.value);
+  const [locationData, setLocationData] = useState(locationObj);
+
+  const locationChangeHandler = (event) => {
+    const {
+      target: { name, value }
+    } = event;
+    setLocationData({ ...locationData, [name]: value });
   };
-  const districtChangeHandler = (event) => {
-    setDistrict(event.target.value);
-  };
-  const streetChangeHandler = (event) => {
-    setStreet(event.target.value);
-  };
-  const houseNumberChangeHandler = (event) => {
-    setHouseNumber(event.target.value);
-  };
-  const floorChangeHandler = (event) => {
-    setFloor(event.target.value);
-  };
-  const roomChangeHandler = (event) => {
-    setRoom(event.target.value);
-  };
+
   return (
     <form
       onSubmit={handleSubmit((data) => {
@@ -54,19 +43,21 @@ function LocationAddForm() {
           <TextField
             {...register('name')}
             required
+            name="name"
             type="text"
-            value={name}
-            onChange={nameChangeHandler}
+            value={locationData.name}
+            onChange={locationChangeHandler}
             label={t('NAME')}
             className="border-2"
           />
           <TextField
             {...register('postcode')}
             required
-            autoComplete="on"
+            inputProps={{ max: 9985, min: 1011 }}
+            name="postCode"
             type="number"
-            value={postCode}
-            onChange={postCodeChangeHandler}
+            value={locationData.postCode}
+            onChange={locationChangeHandler}
             label={t('POST_CODE')}
             className="border-2"
           />
@@ -76,10 +67,11 @@ function LocationAddForm() {
             </InputLabel>
             <Select
               {...register('district')}
-              value={district}
+              value={locationData.district}
+              name="district"
               notched={true}
               label={t('DISTRICT')}
-              onChange={districtChangeHandler}>
+              onChange={locationChangeHandler}>
               {Object.values(districts).map((disctrict) => (
                 <MenuItem key={disctrict} value={disctrict}>
                   {`${disctrict} ${t('DISTRICT')}`}
@@ -87,44 +79,43 @@ function LocationAddForm() {
               ))}
             </Select>
           </FormControl>
-          <div className="flex flex-row">
-            <TextField
-              {...register('street')}
-              required
-              autoComplete="on"
-              type="text"
-              value={street}
-              onChange={streetChangeHandler}
-              label={t('STREET')}
-              className="border-2"
-            />
-            <p className="p-4">{t('STREET')}</p>
-          </div>
+          <TextField
+            {...register('street')}
+            required
+            name="street"
+            type="text"
+            value={locationData.street}
+            onChange={locationChangeHandler}
+            label={t('STREET')}
+            className="border-2"
+          />
           <TextField
             {...register('houseNumber')}
             required
-            autoComplete="on"
+            name="houseNumber"
             type="number"
-            value={houseNumber}
-            onChange={houseNumberChangeHandler}
+            value={locationData.houseNumber}
+            onChange={locationChangeHandler}
             label={t('HOUSE_NUMBER')}
             className="border-2"
           />
           <TextField
             {...register('floor')}
+            inputProps={{ maxLength: 3 }}
+            name="floor"
             type="text"
-            autoComplete="on"
-            value={floor}
-            onChange={floorChangeHandler}
+            value={locationData.floor}
+            onChange={locationChangeHandler}
             label={t('FLOOR')}
             className="border-2"
           />
           <TextField
             {...register('room')}
+            inputProps={{ maxLength: 20 }}
+            name="room"
             type="text"
-            autoComplete="on"
-            value={room}
-            onChange={roomChangeHandler}
+            value={locationData.room}
+            onChange={locationChangeHandler}
             label={t('ROOM')}
             className="border-2"
           />
@@ -132,7 +123,7 @@ function LocationAddForm() {
             variant="contained"
             color="info"
             className=" w-full mt-16"
-            aria-label="Location Add"
+            aria-label="Sign in"
             type="submit"
             size="large">
             {t('SEND')}

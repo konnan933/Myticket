@@ -11,6 +11,7 @@ const locale = {
   ROOM: 'Terem',
   CONFIRM_DELETE_LOCATION: 'Biztosan törölni szeretné a helyszínt?',
   MANAGE_LOCATION: 'Helyszin szerkeztése',
+  ADD_LOCATION: 'Helyszin felvétele',
   // * eventTypes
   CONFIRM_DELETE_ET: 'Biztosan törölni szeretné a esemény tipust?',
   EDIT_ET: 'Esemény type szerkesztése',

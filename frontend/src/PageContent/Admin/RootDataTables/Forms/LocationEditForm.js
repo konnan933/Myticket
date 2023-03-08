@@ -14,36 +14,25 @@ function LocationEditForm({ location }) {
 
   const dispatch = useDispatch();
 
-  const [name, setName] = useState(location.name);
-  const [postCode, setPostCode] = useState(location.postcode);
-  const [district, setDistrict] = useState(location.district);
-  const [street, setStreet] = useState(location.street);
-  const [houseNumber, setHouseNumber] = useState(location.houseNumber);
-  const [floor, setFloor] = useState(location.floor);
-  const [room, setRoom] = useState(location.room);
-
-  const nameChangeHandler = (event) => {
-    setName(event.target.value);
+  const locationObj = {
+    name: location.name,
+    postCode: location.postcode,
+    district: location.district,
+    street: location.street,
+    houseNumber: location.houseNumber,
+    floor: location.floor,
+    room: location.room
   };
 
-  const postCodeChangeHandler = (event) => {
-    setPostCode(event.target.value);
+  const [locationData, setLocationData] = useState(locationObj);
+
+  const locationChangeHandler = (event) => {
+    const {
+      target: { name, value }
+    } = event;
+    setLocationData({ ...locationData, [name]: value });
   };
-  const districtChangeHandler = (event) => {
-    setDistrict(event.target.value);
-  };
-  const streetChangeHandler = (event) => {
-    setStreet(event.target.value);
-  };
-  const houseNumberChangeHandler = (event) => {
-    setHouseNumber(event.target.value);
-  };
-  const floorChangeHandler = (event) => {
-    setFloor(event.target.value);
-  };
-  const roomChangeHandler = (event) => {
-    setRoom(event.target.value);
-  };
+
   return (
     <form
       onSubmit={handleSubmit((data) => {
@@ -55,18 +44,21 @@ function LocationEditForm({ location }) {
           <TextField
             {...register('name')}
             required
+            name="name"
             type="text"
-            value={name}
-            onChange={nameChangeHandler}
+            value={locationData.name}
+            onChange={locationChangeHandler}
             label={t('NAME')}
             className="border-2"
           />
           <TextField
             {...register('postcode')}
             required
+            inputProps={{ max: 9985, min: 1011 }}
+            name="postCode"
             type="number"
-            value={postCode}
-            onChange={postCodeChangeHandler}
+            value={locationData.postCode}
+            onChange={locationChangeHandler}
             label={t('POST_CODE')}
             className="border-2"
           />
@@ -76,10 +68,11 @@ function LocationEditForm({ location }) {
             </InputLabel>
             <Select
               {...register('district')}
-              value={district}
+              value={locationData.district}
+              name="district"
               notched={true}
               label={t('DISTRICT')}
-              onChange={districtChangeHandler}>
+              onChange={locationChangeHandler}>
               {Object.values(districts).map((disctrict) => (
                 <MenuItem key={disctrict} value={disctrict}>
                   {`${disctrict} ${t('DISTRICT')}`}
@@ -90,34 +83,40 @@ function LocationEditForm({ location }) {
           <TextField
             {...register('street')}
             required
+            name="street"
             type="text"
-            value={street}
-            onChange={streetChangeHandler}
+            value={locationData.street}
+            onChange={locationChangeHandler}
             label={t('STREET')}
             className="border-2"
           />
           <TextField
             {...register('houseNumber')}
             required
+            name="houseNumber"
             type="number"
-            value={houseNumber}
-            onChange={houseNumberChangeHandler}
+            value={locationData.houseNumber}
+            onChange={locationChangeHandler}
             label={t('HOUSE_NUMBER')}
             className="border-2"
           />
           <TextField
             {...register('floor')}
+            inputProps={{ maxLength: 3 }}
+            name="floor"
             type="text"
-            value={floor}
-            onChange={floorChangeHandler}
+            value={locationData.floor}
+            onChange={locationChangeHandler}
             label={t('FLOOR')}
             className="border-2"
           />
           <TextField
             {...register('room')}
+            inputProps={{ maxLength: 20 }}
+            name="room"
             type="text"
-            value={room}
-            onChange={roomChangeHandler}
+            value={locationData.room}
+            onChange={locationChangeHandler}
             label={t('ROOM')}
             className="border-2"
           />

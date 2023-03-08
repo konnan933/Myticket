@@ -19,27 +19,33 @@ import { addEvent } from 'redux/thunks/Event';
 function AddEventForm() {
   const { t } = useTranslation('adminEvent');
   const dispatch = useDispatch();
+
+  const { locationNames } = useSelector((state) => state.location);
+  const { userNames } = useSelector((state) => state.admin);
+  const { eventTypes } = useSelector((state) => state.eventTypes);
+
   const { register, handleSubmit } = useForm();
+
   const [eventName, setEventName] = useState('');
   const [buisnessEmail, setBuisnessEmail] = useState('');
   const [buisnessPhoneNum, setBuisnessPhoneNum] = useState('');
   const [eventDescription, setEventDescription] = useState('');
   const [eventType, setEventType] = useState('');
+  //Auto compelte useStates
   const [organizerName, setOrganizername] = useState('');
   const [organizerNameinput, setOrganizerInput] = useState('');
   const [locationName, setLocationName] = useState('');
-  const { locationNames } = useSelector((state) => state.location);
   const [locationNameinput, setLocationNameInput] = useState('');
+
   const [imageId, setImageId] = useState('');
+
   const [startDateError, setStartDateError] = useState(false);
   const [endDateError, setEndDateError] = useState(false);
   const [startDateErrorMsg, setStartDateErrorMsg] = useState('');
   const [endDateErrorMsg, setEndDateErrorMsg] = useState('');
-  const date = moment(new Date().setDate(new Date().getDate() + 1)).format('yyyy-MM-DDTHH:mm');
   const [startDate, setStartDate] = useState('');
 
-  const { userNames } = useSelector((state) => state.admin);
-  const { eventTypes } = useSelector((state) => state.eventTypes);
+  const date = moment(new Date().setDate(new Date().getDate() + 1)).format('yyyy-MM-DDTHH:mm');
 
   const errors = startDateError || endDateError;
 
