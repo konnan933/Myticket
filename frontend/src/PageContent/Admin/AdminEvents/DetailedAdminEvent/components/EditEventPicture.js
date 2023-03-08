@@ -27,7 +27,7 @@ function EditEventPictures() {
 
   return (
     <div className="flex flex-col w-4/5">
-      <div className="flex  justify-center">
+      <div className="flex justify-center">
         <ChangeEventPicture />
       </div>
       <div className="flex  justify-center p-2.5">
@@ -37,6 +37,7 @@ function EditEventPictures() {
           alt="Esemeny kep"
           src={`${event.eventPicture}${id}`}
           effect="blur"
+          width="100%"
         />
       </div>
       <Modal
@@ -53,7 +54,9 @@ function EditEventPictures() {
           <div className="flex justify-center pb-10 pt-5 ">
             <Typography>{`${singleDetailedEvent.title} ${t('EVENT_PICTURE')}`}</Typography>
           </div>
-          <img src={`${event.eventPicture}${id}`} className="w-full " />
+          <div className="flex justify-center">
+            <img src={`${event.eventPicture}${id}`} className="w-2/4" />
+          </div>
         </Box>
       </Modal>
     </div>

@@ -1,4 +1,4 @@
-import { Typography, useMediaQuery } from '@mui/material';
+import { Typography } from '@mui/material';
 import BackToButton from 'PageContent/Admin/AdminEvents/DetailedAdminEvent/components/BackToButton';
 import EditEventPictures from 'PageContent/Admin/AdminEvents/DetailedAdminEvent/components/EditEventPicture';
 import SingleEventDescription from 'PageContent/Admin/AdminEvents/DetailedAdminEvent/components/SingleEventDescription';
@@ -12,9 +12,9 @@ import { getEventTypes } from 'redux/thunks/EventTypes';
 import { getLocationNames } from 'redux/thunks/Location';
 import { getEventTickets } from 'redux/thunks/Ticket';
 import UserEditEvent from './components/UserEditEvent';
+import UserEventTickets from './components/UserEventTickets';
 
 function UserDetailedEvent() {
-  const width = useMediaQuery('(max-width:768px)');
   const { t } = useTranslation('userEvent');
 
   const { id } = useParams();
@@ -38,15 +38,15 @@ function UserDetailedEvent() {
 
   return (
     <div>
-      <div className="justify-start p-6">
+      <div className="justify-start">
         <BackToButton />
       </div>
-      <div className="justify-center items-center">
-        <div>
-          <div className={`flex ${width ? 'flex-col' : 'flex-row'} border-4 rounded-md p-4`}>
-            <div className="pt-10">
-              <EditEventPictures />
-            </div>
+      <div className="flex justify-center">
+        <div className="flex flex-col p-6">
+          <div className="flex justify-center w-full">
+            <EditEventPictures />
+          </div>
+          <div>
             <div>
               <div className="flex justify-between">
                 <div className="flex justify-start">
@@ -58,92 +58,45 @@ function UserDetailedEvent() {
                   <UserEditEvent event={singleDetailedEvent} />
                 </div>
               </div>
-              <div className="flex ">
-                <Typography variant="h5" component="h5">
-                  {t('EVENTNAME')}
+              <div>
+                <Typography gutterBottom variant="h5" component="div">
+                  {`${t('EVENT_TITLE')}: ${singleDetailedEvent.title}`}
                 </Typography>
-                <Typography
-                  variant="h5"
-                  component="h5">{`: ${singleDetailedEvent.title}`}</Typography>
-              </div>
-              <div className="flex ">
-                <Typography variant="h5" component="h5">
-                  {t('ORGANIZER')}
+                <Typography gutterBottom variant="h5" component="div">
+                  {`${t('ORGANIZER')}: ${singleDetailedEvent.userName}`}
                 </Typography>
-                <Typography
-                  variant="h5"
-                  component="h5">{`: ${singleDetailedEvent.userName}`}</Typography>
-              </div>
-              <div className="flex ">
-                <Typography variant="h5" component="h5">
-                  {t('BUISNESS_EMAIL')}
+                <Typography gutterBottom variant="h5" component="div">
+                  {`${t('BUISNESS_EMAIL')}: ${singleDetailedEvent.email}`}
                 </Typography>
-                <Typography
-                  variant="h5"
-                  component="h5">{`: ${singleDetailedEvent.email}`}</Typography>
-              </div>
-              <div className="flex ">
-                <Typography variant="h5" component="h5">
-                  {t('BUISNESS_PHONE_NUM')}
+                <Typography gutterBottom variant="h5" component="div">
+                  {`${t('BUISNESS_PHONE_NUM')}: ${singleDetailedEvent.phoneNumber}`}
                 </Typography>
-                <Typography
-                  variant="h5"
-                  component="h5">{`: ${singleDetailedEvent.phoneNumber}`}</Typography>
-              </div>
-              <div className="flex ">
-                <Typography variant="h5" component="h5">
-                  {t('EVENT_TYPE')}
+                <Typography gutterBottom variant="h5" component="div">
+                  {`${t('EVENT_TYPE')}: ${singleDetailedEvent.name}`}
                 </Typography>
-                <Typography
-                  variant="h5"
-                  component="h5">{`: ${singleDetailedEvent.name}`}</Typography>
-              </div>
-              <div className="flex ">
-                <Typography variant="h5" component="h5">
-                  {t('LOCATION')}
+                <Typography gutterBottom variant="h5" component="div">
+                  {`${t('LOCATION')}: ${singleDetailedEvent.postcode} ${
+                    singleDetailedEvent.district
+                  } ${singleDetailedEvent.street} ${t('STREET')} ${
+                    singleDetailedEvent.houseNumber
+                  }`}
                 </Typography>
-                <Typography variant="h5" component="h5">{`: ${singleDetailedEvent.postcode} ${
-                  singleDetailedEvent.district
-                } ${singleDetailedEvent.street} ${t('STREET')} ${
-                  singleDetailedEvent.houseNumber
-                }`}</Typography>
-              </div>
-              <div className="flex ">
-                <Typography variant="h5" component="h5">
-                  {t('START_DATE')}
+                <Typography gutterBottom variant="h5" component="div">
+                  {`${t('START_DATE')}: ${singleDetailedEvent.startDate}`}
                 </Typography>
-                <Typography
-                  variant="h5"
-                  component="h5">{`: ${singleDetailedEvent.startDate}`}</Typography>
-              </div>
-              <div className="flex ">
-                <Typography variant="h5" component="h5">
-                  {t('END_DATE')}
+                <Typography gutterBottom variant="h5" component="div">
+                  {`${t('END_DATE')}: ${singleDetailedEvent.endDate}`}
                 </Typography>
-                <Typography
-                  variant="h5"
-                  component="h5">{`: ${singleDetailedEvent.endDate}`}</Typography>
-              </div>
-              <div className="flex ">
-                <Typography variant="h5" component="h5">
-                  {t('COMISSION')}
+                <Typography gutterBottom variant="h5" component="div">
+                  {`${t('COMISSION')}: ${singleDetailedEvent.comission}%`}
                 </Typography>
-                <Typography
-                  variant="h5"
-                  component="h5">{`: ${singleDetailedEvent.comission}%`}</Typography>
-              </div>
-              <div className="flex ">
-                <Typography variant="h5" component="h5">
-                  {t(`STATUS`)}
+                <Typography gutterBottom variant="h5" component="div">
+                  {`${t(`STATUS_${singleDetailedEvent.status}`)}`}
                 </Typography>
-                <Typography variant="h5" component="h5">{`: ${t(
-                  `STATUS_${singleDetailedEvent.status}`
-                )}`}</Typography>
               </div>
-              <div className="flex ">
-                <SingleEventDescription />
-              </div>
+              <SingleEventDescription />
             </div>
+            <UserEventTickets />
           </div>
         </div>
       </div>
