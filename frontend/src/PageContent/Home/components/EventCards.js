@@ -55,7 +55,7 @@ function EventCards() {
                     {oneEvent.ekName}
                   </Typography>
                 </div>
-                <Typography color="text.primary">{`${t('LOCATION')}${
+                <Typography color="text.primary">{`${t('LOCATION')}: ${
                   oneEvent.locationName
                 }`}</Typography>
                 <Typography color="text.primary">{`${t('STARTS')}: ${

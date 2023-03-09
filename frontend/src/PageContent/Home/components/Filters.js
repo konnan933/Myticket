@@ -49,7 +49,8 @@ function Filters() {
             getFilteredEvent({
               date: data.date === '' ? '*' : data.date,
               eventType: data.eventType === '' ? '*' : data.eventType,
-              location: locationName.id === '' ? '*' : locationName.id
+              location:
+                locationName.id === '' || locationName.id === undefined ? '*' : locationName.id
             })
           );
         })}
