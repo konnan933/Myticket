@@ -105,6 +105,7 @@ export const getFilteredEvent = createAsyncThunk(
   async ({ date, eventType, location }, { rejectWithValue }) => {
     try {
       const response = await api.get(`${event.eventFilter}${date}/${location}/${eventType}`);
+      console.log(response.data);
       return response.data;
     } catch (err) {
       if (!err.response) {
@@ -121,7 +122,6 @@ export const getPromotedEvents = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await api.get(`${event.event}s/promoted`);
-      console.log(response.data);
       return response.data;
     } catch (err) {
       if (!err.response) {

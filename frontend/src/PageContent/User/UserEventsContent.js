@@ -14,16 +14,20 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
 function UserEventsContent() {
+  const { t } = useTranslation('userEvent');
   const navigate = useNavigate();
   const width = useMediaQuery('(max-width:1000px)');
+
   const { userEventsWithDetails, userEventsWithDetailsLoading } = useSelector(
     (state) => state.user
   );
-  const hasntEvent = userEventsWithDetails[0] === undefined;
   const { loggedUser } = useSelector((state) => state.auth);
-  const [scrollPosition, setScrollPosition] = useState(0);
+
   const dispatch = useDispatch();
-  const { t } = useTranslation('userEvent');
+
+  const hasntEvent = userEventsWithDetails[0] === undefined;
+  const [scrollPosition, setScrollPosition] = useState(0);
+
   useEffect(() => {
     dispatch(getUserEventsWithDetails(loggedUser.id));
     window.addEventListener('scroll', handleScroll, { passive: true });

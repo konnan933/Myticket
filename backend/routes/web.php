@@ -81,9 +81,6 @@ Route::put('api/event/{id}', [EventsController::class, 'update']);
 Route::delete('api/event/{id}', [EventsController::class, 'destroy']);
 Route::get('api/userevents/{user}', [EventsController::class, 'getUserEvents']);
 Route::get('api/event/profit/{event}', [EventsController::class, 'getEventRevenue']);
-Route::get('api/event/place/{event}', [EventsController::class, 'getEventByPlace']);
-Route::get('api/event/date/{event}', [EventsController::class, 'getEventByDate']);
-Route::get('api/event/category/{event}', [EventsController::class, 'getEventByCategory']);
 // ! ha nem akarunk paraméter akkor *-ot kell rakni
 Route::get('api/event/filter/{date}/{location}/{category}', [EventsController::class, 'eventFilter']);
 Route::get('api/eventdetails', [EventsController::class, 'getEventDetails']);

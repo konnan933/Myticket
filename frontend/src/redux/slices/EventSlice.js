@@ -39,8 +39,8 @@ const eventSlice = createSlice({
       state.singleEventLoading = true;
     });
     builder.addCase(getSingleEvent.fulfilled, (state, action) => {
-      state.singleEventLoading = false;
       state.singleEvent = action.payload;
+      state.singleEventLoading = false;
     });
     builder.addCase(getSingleEvent.rejected, (state) => {
       state.singleEventLoading = false;
@@ -50,8 +50,8 @@ const eventSlice = createSlice({
       state.singleDetailedEventLoading = true;
     });
     builder.addCase(getSingleEventsDetailed.fulfilled, (state, action) => {
-      state.singleDetailedEventLoading = false;
       state.singleDetailedEvent = action.payload[0];
+      state.singleDetailedEventLoading = false;
     });
     builder.addCase(getSingleEventsDetailed.rejected, (state) => {
       state.singleDetailedEventLoading = false;
@@ -61,8 +61,8 @@ const eventSlice = createSlice({
       state.filteredEventLoading = true;
     });
     builder.addCase(getFilteredEvent.fulfilled, (state, action) => {
-      state.filteredEventLoading = false;
       state.filteredEvent = action.payload;
+      state.filteredEventLoading = false;
     });
     builder.addCase(getFilteredEvent.rejected, (state) => {
       state.filteredEventLoading = false;

@@ -129,36 +129,13 @@ class EventsController extends Controller
         $newImage->save();
         return $newImage->id;
     }
-    public function getEventByPlace($place)
-    {
-        $eventPlace = DB::table('events')->select('*')
-            ->where('location', '=', $place)
-            ->get();
 
-        return $eventPlace;
-    }
-
-    public function getEventByDate($date)
-    {
-        $eventDate = DB::table('events')->select('*')
-            ->where('startDate', '=', $date)
-            ->get();
-
-        return $eventDate;
-    }
-
-    public function getEventByCategory($category)
-    {
-        $eventCategory = DB::table('events')->select('*')
-            ->where('eventType', '=', $category)
-            ->get();
-
-        return $eventCategory;
-    }
     public function eventFilter($date, $place, $category)
     {
 
-        $eventCategory = DB::table('events')->select('*')
+        $eventCategory = DB::table('events')->select('events.id as eventId', 'events.title', 'events.startDate', 'events.endDate', 'events.description', 'events.email', 'events.phoneNumber', 'events.comission', 'events.status', 'locations.postcode', 'locations.district', 'locations.street', 'locations.houseNumber', 'locations.floor', 'locations.room', 'locations.id as locationId', 'eventCategories.id as ekId', 'locations.name as locationName', 'eventCategories.name as ekName', 'events.image')
+            ->join('locations', 'locations.id', '=', 'events.location')
+            ->join('eventCategories', 'eventCategories.id', '=', 'events.eventType')
             ->when($category != '*', function ($eventCategory) use ($category) {
                 $eventCategory->where('eventType',  $category);
             })
