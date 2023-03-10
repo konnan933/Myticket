@@ -15,8 +15,8 @@ const ticketSlice = createSlice({
       state.eventTicketsLoading = true;
     });
     builder.addCase(getEventTickets.fulfilled, (state, action) => {
-      state.eventTicketsLoading = false;
       state.eventTickets = action.payload;
+      state.eventTicketsLoading = false;
     });
     builder.addCase(getEventTickets.rejected, (state) => {
       state.eventTicketsLoading = false;

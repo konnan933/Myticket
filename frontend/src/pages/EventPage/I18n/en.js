@@ -1,9 +1,9 @@
 const locale = {
-  LOGIN: 'Login',
-  EMAIL: 'E-mail',
-  PASSWORD: 'Password',
-  LOGIN_SEND: 'Login',
-  REMEMBER_ME: 'Remember me'
+  TICKETS: 'Tickets',
+  REMAINING_TICKET: 'Remaining ticket',
+  NUMBER_OF_TICKETS: 'pc',
+  PRICE: 'Price',
+  TICKET_STARTS: 'Starts selling'
 };
 
 export default locale;

@@ -32,7 +32,7 @@ function EventCards() {
   };
 
   return (
-    <div className="w-full grid grid-cols-2 max-md:grid-cols-1 gap-10s place-items-center">
+    <div className="w-full grid grid-cols-2 max-md:grid-cols-1 gap-10 place-items-center">
       {filteredEvent.map((oneEvent) => {
         return (
           <Card
@@ -61,9 +61,7 @@ function EventCards() {
                 <Typography color="text.primary">{`${t('STARTS')}: ${
                   oneEvent.startDate
                 }`}</Typography>
-                <Typography color="text.primary">{`${t('STARTS')}: ${
-                  oneEvent.endDate
-                }`}</Typography>
+                <Typography color="text.primary">{`${t('ENDS')}: ${oneEvent.endDate}`}</Typography>
               </CardContent>
               <div className="absolute top-0 right-0 bottom-0 left-0 h-full  w-full overflow-hidden opacity-0 bg-fixed transition duration-300 ease-in-out bg-slate-300 hover:bg-opacity-40 hover:opacity-100 flex justify-center items-center">
                 <Typography variant="h5" className="text-white">
