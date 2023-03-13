@@ -19,11 +19,15 @@ const locale = {
   BUISNESS_PHONE_NUM: 'Biznisz telefonszám',
   EVENT_TYPE: 'Esemény típusa',
   LOCATION: 'Helyszín',
-  START_DATE: 'Esemény helyszíne',
+  START_DATE: 'Esemény kezdete',
   END_DATE: 'Esemény vége',
   COMISSION: 'Jutalék',
   STATUS: 'Státusz',
-  STREET: 'Utca'
+  STREET: 'Utca',
+  PORTION: 'Darab',
+  ALL_TICKET: 'Összes jegy',
+  BOOKED_TCIKET: 'Foglalt jegy',
+  FREE_TICKET: 'Szabad jegy'
 };
 
 export default locale;

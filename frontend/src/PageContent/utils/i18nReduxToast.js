@@ -2,8 +2,6 @@ import i18n from 'i18n';
 import { toast } from 'react-toastify';
 
 function i18nReduxToast(language, msgType) {
-  console.log(i18n.language);
-  console.log(msgType);
   if (msgType === 'Success') {
     if (language === 'hu') {
       return toast.success(i18n.t('hu', 'Sikeres feltöltés'));

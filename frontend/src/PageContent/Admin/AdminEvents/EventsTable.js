@@ -21,7 +21,6 @@ function EventsTable() {
   useEffect(() => {
     dispatch(getEvents());
   }, []);
-  console.log(events);
   const { t } = useTranslation('adminEvent');
   return (
     <div className="flex justify-center w-full">

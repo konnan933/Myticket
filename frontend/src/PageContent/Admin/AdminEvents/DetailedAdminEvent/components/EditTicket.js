@@ -9,7 +9,7 @@ import {
   TextField
 } from '@mui/material';
 import { Box } from '@mui/system';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CreateIcon from '@mui/icons-material/Create';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,6 +18,9 @@ import moment from 'moment';
 import { useParams } from 'react-router-dom';
 import { putEventTicket } from 'redux/thunks/Ticket';
 import CloseIcon from '@mui/icons-material/Close';
+import Loader from 'PageContent/utils/Loader';
+import { getCurrency } from 'redux/thunks/Currencies';
+import { getTicketTypes } from 'redux/thunks/TicketTypes';
 
 function EditTicket({ ticket }) {
   const [open, setOpen] = useState(false);
@@ -37,11 +40,16 @@ function EditTicket({ ticket }) {
   const date = moment(new Date()).format('yyyy-MM-DDTHH:mm');
   const [allAmount, setAllAmount] = useState(ticket.freeTicket);
   const [price, setPrice] = useState(ticket.price);
-  const { ticketTypes } = useSelector((state) => state.ticketTypes);
-  const { currencies } = useSelector((state) => state.currencies);
+  const { ticketTypes, TicketTypesLoading } = useSelector((state) => state.ticketTypes);
+  const { currencies, currenciesLoading } = useSelector((state) => state.currencies);
   const dispatch = useDispatch();
-
+  const loading = TicketTypesLoading || currenciesLoading;
   const errors = allAmountError || startDateError;
+
+  useEffect(() => {
+    dispatch(getTicketTypes());
+    dispatch(getCurrency());
+  }, []);
 
   const allAmountChangeHandler = (event) => {
     setAllAmount(event.target.value);
@@ -97,115 +105,119 @@ function EditTicket({ ticket }) {
               p: 4,
               borderRadius: 7
             }}>
-            <div className="flex justify-center flex-col">
-              <div className="flex justify-end">
-                <IconButton color="error" onClick={handleClose}>
-                  <CloseIcon fontSize="medium" />
-                </IconButton>
-              </div>
-              <div className="flex justify-end w-3/4">
-                <h2>{t('EDIT_TICKET')}</h2>
-              </div>
-              <div className="flex justify-center">
-                <form
-                  onSubmit={handleSubmit((data) => {
-                    data.eventId = id;
-                    data.conceptTicketId = ticket.conceptTicketId;
-                    dispatch(
-                      putEventTicket({ data, ticketId: ticket.conceptTicketId, eventId: id })
-                    );
-                  })}>
-                  <fieldset>
-                    <div className="grid gap-8 p-5">
-                      <FormControl>
-                        <InputLabel shrink={true} id="demo-simple-select-label">
-                          {t('EDIT_TICKET_TYPE')}
-                        </InputLabel>
-                        <Select
-                          {...register('type')}
-                          value={ticketType}
-                          notched={true}
+            {loading ? (
+              <Loader />
+            ) : (
+              <div className="flex justify-center flex-col">
+                <div className="flex justify-end">
+                  <IconButton color="error" onClick={handleClose}>
+                    <CloseIcon fontSize="medium" />
+                  </IconButton>
+                </div>
+                <div className="flex justify-end w-3/4">
+                  <h2>{t('EDIT_TICKET')}</h2>
+                </div>
+                <div className="flex justify-center">
+                  <form
+                    onSubmit={handleSubmit((data) => {
+                      data.eventId = id;
+                      data.conceptTicketId = ticket.conceptTicketId;
+                      dispatch(
+                        putEventTicket({ data, ticketId: ticket.conceptTicketId, eventId: id })
+                      );
+                    })}>
+                    <fieldset>
+                      <div className="grid gap-8 p-5">
+                        <FormControl>
+                          <InputLabel shrink={true} id="demo-simple-select-label">
+                            {t('EDIT_TICKET_TYPE')}
+                          </InputLabel>
+                          <Select
+                            {...register('type')}
+                            value={ticketType}
+                            notched={true}
+                            required
+                            label={t('TICKET_TYPE')}
+                            onChange={ticketTypeChangeHandler}
+                            inputProps={{ 'aria-label': 'Without label' }}>
+                            {ticketTypes.map((ticketTypes) => (
+                              <MenuItem key={ticketTypes.id} value={ticketTypes.id}>
+                                {ticketTypes.name}
+                              </MenuItem>
+                            ))}
+                          </Select>
+                        </FormControl>
+
+                        <TextField
+                          {...register('allTicket')}
                           required
-                          label={t('TICKET_TYPE')}
-                          onChange={ticketTypeChangeHandler}
-                          inputProps={{ 'aria-label': 'Without label' }}>
-                          {ticketTypes.map((ticketTypes) => (
-                            <MenuItem key={ticketTypes.id} value={ticketTypes.id}>
-                              {ticketTypes.name}
-                            </MenuItem>
-                          ))}
-                        </Select>
-                      </FormControl>
+                          type="number"
+                          error={allAmountError}
+                          helperText={allAmountErrorMsg}
+                          value={allAmount}
+                          onChange={allAmountChangeHandler}
+                          label={t('ALL_TICKET_AMOUNT')}
+                          className="border-2"
+                        />
 
-                      <TextField
-                        {...register('allTicket')}
-                        required
-                        type="number"
-                        error={allAmountError}
-                        helperText={allAmountErrorMsg}
-                        value={allAmount}
-                        onChange={allAmountChangeHandler}
-                        label={t('ALL_TICKET_AMOUNT')}
-                        className="border-2"
-                      />
+                        <FormControl>
+                          <InputLabel shrink={true} id="demo-simple-select-label">
+                            {t('CURRENCY')}
+                          </InputLabel>
+                          <Select
+                            {...register('name')}
+                            value={currency}
+                            notched={true}
+                            required
+                            label={t('CURRENCY')}
+                            onChange={currencyChangeHandler}
+                            inputProps={{ 'aria-label': 'Without label' }}>
+                            {currencies.map((currencies) => (
+                              <MenuItem key={currencies.name} value={currencies.name}>
+                                {currencies.name}
+                              </MenuItem>
+                            ))}
+                          </Select>
+                        </FormControl>
 
-                      <FormControl>
-                        <InputLabel shrink={true} id="demo-simple-select-label">
-                          {t('CURRENCY')}
-                        </InputLabel>
-                        <Select
-                          {...register('name')}
-                          value={currency}
-                          notched={true}
+                        <TextField
+                          {...register('price')}
                           required
-                          label={t('CURRENCY')}
-                          onChange={currencyChangeHandler}
-                          inputProps={{ 'aria-label': 'Without label' }}>
-                          {currencies.map((currencies) => (
-                            <MenuItem key={currencies.name} value={currencies.name}>
-                              {currencies.name}
-                            </MenuItem>
-                          ))}
-                        </Select>
-                      </FormControl>
+                          type="number"
+                          value={price}
+                          onChange={priceChangeHandler}
+                          label={t('PRICE')}
+                          className="border-2"
+                        />
 
-                      <TextField
-                        {...register('price')}
-                        required
-                        type="number"
-                        value={price}
-                        onChange={priceChangeHandler}
-                        label={t('PRICE')}
-                        className="border-2"
-                      />
+                        <TextField
+                          {...register('startDate')}
+                          error={startDateError}
+                          defaultValue={startDate}
+                          onSelect={startDateChangeHandler}
+                          InputLabelProps={{ shrink: true }}
+                          helperText={startDateErrorMsg}
+                          label={t('SALE_START')}
+                          type="datetime-local"
+                          className="border-2 px-2 pt-2"
+                        />
 
-                      <TextField
-                        {...register('startDate')}
-                        error={startDateError}
-                        defaultValue={startDate}
-                        onSelect={startDateChangeHandler}
-                        InputLabelProps={{ shrink: true }}
-                        helperText={startDateErrorMsg}
-                        label={t('SALE_START')}
-                        type="datetime-local"
-                        className="border-2 px-2 pt-2"
-                      />
-
-                      <Button
-                        variant="contained"
-                        disabled={errors}
-                        color="info"
-                        className=" w-full mt-16"
-                        aria-label="Edit ticket"
-                        type="submit"
-                        size="large">
-                        {t('SEND')}
-                      </Button>
-                    </div>
-                  </fieldset>
-                </form>
+                        <Button
+                          variant="contained"
+                          disabled={errors}
+                          color="info"
+                          className=" w-full mt-16"
+                          aria-label="Edit ticket"
+                          type="submit"
+                          size="large">
+                          {t('SEND')}
+                        </Button>
+                      </div>
+                    </fieldset>
+                  </form>
+                </div>
               </div>
-            </div>
+            )}
           </Box>
         </Modal>
       </div>

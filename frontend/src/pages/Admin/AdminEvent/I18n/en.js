@@ -4,6 +4,7 @@ const locale = {
   SEND: 'Send',
   DELETE: 'Delete',
   CONFIRM_DELETE_EVENT: 'Do you want to delete this event ?',
+  CONFIRM_DELETE_TICKET: 'Do you want to delete these tickets ?',
   YES: 'Yes',
   NO: 'No',
   EVENT_D_PAGE: "event's page",
