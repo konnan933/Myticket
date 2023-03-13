@@ -7,6 +7,7 @@ use App\Models\Tickets;
 use App\Models\Basket;
 use App\Models\Reciept;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class KosarObserver
@@ -20,6 +21,22 @@ class KosarObserver
      * @param  \App\Models\Basket  $basket
      * @return void
      */
+
+    public function creating(Basket $basket)
+    {
+        $kosar = Basket::where('eventId', $basket->eventId)
+            ->where('conceptTicketId', $basket->conceptTicketId)
+            ->where('user', $basket->user)
+            ->get();
+        if (!$kosar->isEmpty()) {
+            $localBasket = Basket::find($kosar[0]->id);
+            $localBasket->numberOfTickets = $localBasket->numberOfTickets + $basket->numberOfTickets;
+            $localBasket->save();
+            return false;
+        }
+        return $basket;
+    }
+
     public function created(Basket $basket)
     {
         $eszmeiJegy = ConceptTicket::find($basket->conceptTicketId);

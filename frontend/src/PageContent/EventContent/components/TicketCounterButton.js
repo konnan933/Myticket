@@ -33,10 +33,9 @@ function TicketCounterButton({ conceptTicketId }) {
     const localBasketItem = {
       eventId: Number(id),
       conceptTicketId,
-      userId: loggedUser.id,
+      user: loggedUser.id,
       numberOfTickets: counter
     };
-    console.log(localBasketItem);
     dispatch(postBasket(localBasketItem));
   };
   return (

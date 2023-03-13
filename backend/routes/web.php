@@ -122,6 +122,7 @@ Route::get('api/ticketchange/{id}', [ConceptTicketChangesController::class, 'sho
 Route::post('api/basket', [BasketController::class, 'store']);
 Route::get('api/basket', [BasketController::class, 'index']);
 Route::get('api/basket/{id}', [BasketController::class, 'show']);
+Route::get('api/basket/user/{id}', [BasketController::class, 'userBasket']);
 Route::put('api/basket/{id}', [BasketController::class, 'update']);
 Route::delete('api/basket', [BasketController::class, 'destroyAll']);
 Route::delete('api/basket/{id}', [BasketController::class, 'destroy']);
