@@ -50,7 +50,7 @@ export default function Navbar() {
               </Toolbar>
             </div>
           )}
-          <div className="flex flex-row justify-evenly">
+          <div className="flex flex-row justify-evenly items-center">
             {!matches &&
               navbarConfig.map((root, index) => {
                 if (root.pageName === 'ADMIN' && root.level.includes(login[0].level)) {
