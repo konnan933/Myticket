@@ -4,6 +4,7 @@ const locale = {
   SEND: 'küldés',
   DELETE: 'Törlés',
   CONFIRM_DELETE_EVENT: 'Biztosan törölni szeretné az eseményt ?',
+  CONFIRM_DELETE_TICKET: 'Biztosan törölni szeretné a jegyeket ?',
   YES: 'Igen',
   NO: 'Nem',
   EVENT_D_PAGE: 'esemény oldala',

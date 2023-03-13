@@ -228,7 +228,7 @@ function UserEditEvent({ event }) {
                           {...register('phoneNumber')}
                           required
                           autoComplete="on"
-                          type="text"
+                          type="tel"
                           value={buisnessPhoneNum}
                           onChange={buisnessPhoneNumChangeHandler}
                           label={t('BUISNESS_PHONE_NUMBER')}

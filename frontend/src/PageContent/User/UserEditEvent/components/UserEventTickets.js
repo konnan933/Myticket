@@ -21,7 +21,7 @@ function UserEventTickets() {
 
   return (
     <div>
-      <div className={`gird ${width ? 'grid-cols-1' : 'grid-cols-2'}`}>
+      <div className={`grid ${width ? 'grid-cols-1' : 'grid-cols-2'}`}>
         {eventTickets.map((ticket) => (
           <div className="p-7" key={ticket.conceptTicketId}>
             <Card>
@@ -31,17 +31,17 @@ function UserEventTickets() {
                     {ticket.name}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    {`${ticket.allTicket} ${t('PORTION')}`}
+                    {`${t('ALL_TICKET')}: ${ticket.allTicket} ${t('PORTION')}`}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    {`${ticket.bookedTicket} ${t('PORTION')}`}
+                    {`${t('BOOKED_TCIKET')}: ${ticket.bookedTicket} ${t('PORTION')}`}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    {`${ticket.freeTicket} ${t('PORTION')}`}
+                    {`${t('FREE_TICKET')}: ${ticket.freeTicket} ${t('PORTION')}`}
                   </Typography>
                 </CardContent>
                 <CardActions>
-                  <div className="flex justify-evenly">
+                  <div className="flex justify-between w-full">
                     <DeleteTicket ticketId={ticket.conceptTicketId} />
                     <EditTicket ticket={ticket} />
                   </div>

@@ -11,6 +11,7 @@ import { getSingleEvent, getSingleEventsDetailed } from 'redux/thunks/Event';
 import { getEventTypes } from 'redux/thunks/EventTypes';
 import { getLocationNames } from 'redux/thunks/Location';
 import { getEventTickets } from 'redux/thunks/Ticket';
+import EditEventOneData from './components/EditEventOneData';
 import UserEditEvent from './components/UserEditEvent';
 import UserEventTickets from './components/UserEventTickets';
 
@@ -38,7 +39,7 @@ function UserDetailedEvent() {
 
   return (
     <div>
-      <div className="justify-start">
+      <div className="justify-start p-3">
         <BackToButton />
       </div>
       <div className="flex justify-center">
@@ -59,18 +60,27 @@ function UserDetailedEvent() {
                 </div>
               </div>
               <div>
-                <Typography gutterBottom variant="h5" component="div">
-                  {`${t('EVENT_TITLE')}: ${singleDetailedEvent.title}`}
-                </Typography>
+                <EditEventOneData
+                  value={singleDetailedEvent.title}
+                  label={t('EVENT_TITLE')}
+                  field="title"
+                  type="text"
+                />
                 <Typography gutterBottom variant="h5" component="div">
                   {`${t('ORGANIZER')}: ${singleDetailedEvent.userName}`}
                 </Typography>
-                <Typography gutterBottom variant="h5" component="div">
-                  {`${t('BUISNESS_EMAIL')}: ${singleDetailedEvent.email}`}
-                </Typography>
-                <Typography gutterBottom variant="h5" component="div">
-                  {`${t('BUISNESS_PHONE_NUM')}: ${singleDetailedEvent.phoneNumber}`}
-                </Typography>
+                <EditEventOneData
+                  value={singleDetailedEvent.email}
+                  label={t('BUISNESS_EMAIL')}
+                  field="email"
+                  type="email"
+                />
+                <EditEventOneData
+                  value={singleDetailedEvent.phoneNumber}
+                  label={t('BUISNESS_PHONE_NUM')}
+                  field="phoneNumber"
+                  type="tel"
+                />
                 <Typography gutterBottom variant="h5" component="div">
                   {`${t('EVENT_TYPE')}: ${singleDetailedEvent.name}`}
                 </Typography>

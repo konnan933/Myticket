@@ -36,7 +36,7 @@ function DeleteTicket({ ticketId }) {
         aria-describedby="modal-modal-description">
         <Box sx={modalStyle}>
           <div className="flex justify-center pb-10 pt-5">
-            <Typography>{t('CONFIRM_DELETE_EVENT')}</Typography>
+            <Typography>{t('CONFIRM_DELETE_TICKET')}</Typography>
           </div>
           <div className="flex justify-evenly">
             <Button variant="outlined" onClick={handleClose}>
