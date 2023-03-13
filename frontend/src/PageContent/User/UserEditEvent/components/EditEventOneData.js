@@ -33,23 +33,22 @@ function EditEventOneData({ value, label, field, type }) {
   return (
     <div>
       {isEdit ? (
-        <div className="flex flex-row w-full">
-          <form onSubmit={handleOnSubmit}>
-            <TextField
-              {...register(field)}
-              type={type}
-              label={label}
-              value={localValue}
-              onChange={onLocalValueChange}
-            />
-            <div className="flex justify-between w-11">
-              <IconButton onClick={() => setIsEdit(false)}>
-                <CloseIcon />
-              </IconButton>
-              <Button onClick={handleOnSubmit}>{t('SAVE')}</Button>
-            </div>
-          </form>
-        </div>
+        <form className="flex flex-row w-full p-4" onSubmit={handleOnSubmit}>
+          <TextField
+            {...register(field)}
+            type={type}
+            label={label}
+            value={localValue}
+            onChange={onLocalValueChange}
+            className="w-3/4"
+          />
+          <div className="flex justify-between w-11">
+            <IconButton onClick={() => setIsEdit(false)}>
+              <CloseIcon />
+            </IconButton>
+            <Button onClick={handleOnSubmit}>{t('SAVE')}</Button>
+          </div>
+        </form>
       ) : (
         <div>
           <Typography

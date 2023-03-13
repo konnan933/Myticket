@@ -20,8 +20,8 @@ function AddEventForm() {
   const { t } = useTranslation('adminEvent');
   const dispatch = useDispatch();
 
-  const { locationNames } = useSelector((state) => state.location);
-  const { userNames } = useSelector((state) => state.admin);
+  const { locationNames, locationNamesLoading } = useSelector((state) => state.location);
+  const { userNames, userNamesLoading } = useSelector((state) => state.admin);
   const { eventTypes } = useSelector((state) => state.eventTypes);
 
   const { register, handleSubmit } = useForm();
@@ -123,6 +123,7 @@ function AddEventForm() {
             </div>
             <div className="grid grid-cols-2 gap-16">
               <Autocomplete
+                loading={userNamesLoading}
                 options={userNames}
                 getOptionLabel={(option) => (option.userName ? option.userName : '')}
                 value={organizerName}
@@ -140,6 +141,7 @@ function AddEventForm() {
               />
               <Autocomplete
                 className="w-full"
+                loading={locationNamesLoading}
                 options={locationNames}
                 getOptionLabel={(option) => (option.name ? option.name : '')}
                 value={locationName}

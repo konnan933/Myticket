@@ -11,18 +11,25 @@ import { getSingleEvent, getSingleEventsDetailed } from 'redux/thunks/Event';
 import { getEventTypes } from 'redux/thunks/EventTypes';
 import { getLocationNames } from 'redux/thunks/Location';
 import { getEventTickets } from 'redux/thunks/Ticket';
+import EditEventLocation from './components/EditEventLocation';
 import EditEventOneData from './components/EditEventOneData';
+import EditEventType from './components/EditEventType';
 import UserEditEvent from './components/UserEditEvent';
 import UserEventTickets from './components/UserEventTickets';
 
 function UserDetailedEvent() {
   const { t } = useTranslation('userEvent');
-
   const { id } = useParams();
-
   const dispatch = useDispatch();
-
   const { singleDetailedEvent, singleDetailedEventLoading } = useSelector((state) => state.event);
+  const eventTypeValues = { ekId: singleDetailedEvent.ekId, typeName: singleDetailedEvent.name };
+  const eventLocationValues = {
+    locationId: singleDetailedEvent.locationId,
+    locationName: singleDetailedEvent.locationName,
+    postcode: singleDetailedEvent.postcode,
+    street: singleDetailedEvent.street,
+    houseNumber: singleDetailedEvent.houseNumber
+  };
   useEffect(() => {
     dispatch(getSingleEventsDetailed(id));
     dispatch(getSingleEvent(id));
@@ -81,16 +88,8 @@ function UserDetailedEvent() {
                   field="phoneNumber"
                   type="tel"
                 />
-                <Typography gutterBottom variant="h5" component="div">
-                  {`${t('EVENT_TYPE')}: ${singleDetailedEvent.name}`}
-                </Typography>
-                <Typography gutterBottom variant="h5" component="div">
-                  {`${t('LOCATION')}: ${singleDetailedEvent.postcode} ${
-                    singleDetailedEvent.district
-                  } ${singleDetailedEvent.street} ${t('STREET')} ${
-                    singleDetailedEvent.houseNumber
-                  }`}
-                </Typography>
+                <EditEventType type={eventTypeValues} />
+                <EditEventLocation location={eventLocationValues} />
                 <Typography gutterBottom variant="h5" component="div">
                   {`${t('START_DATE')}: ${singleDetailedEvent.startDate}`}
                 </Typography>

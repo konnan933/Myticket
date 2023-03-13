@@ -219,7 +219,7 @@ class EventsController extends Controller
     public function getSingleEventDetails($eventId)
     {
 
-        $eventDetails = DB::table('events')->select('events.id as eventId', 'events.title', 'events.startDate', 'events.endDate', 'events.description', 'events.email', 'events.phoneNumber', 'events.comission', 'events.status', 'eventCategories.name', 'locations.postcode', 'locations.district', 'locations.street', 'locations.houseNumber', 'locations.floor', 'locations.room', 'users.userName', 'locations.id as locationId', 'users.id as organizerId', 'eventCategories.id as ekId')
+        $eventDetails = DB::table('events')->select('events.id as eventId', 'events.title', 'events.startDate', 'events.endDate', 'events.description', 'events.email', 'events.phoneNumber', 'events.comission', 'events.status', 'eventCategories.name', 'locations.postcode', 'locations.district', 'locations.street', 'locations.houseNumber', 'locations.floor', 'locations.room', 'users.userName', 'locations.id as locationId','locations.name as locationName', 'users.id as organizerId', 'eventCategories.id as ekId')
             ->join('locations', 'locations.id', '=', 'events.location')
             ->join('eventCategories', 'eventCategories.id', '=', 'events.eventType')
             ->join('users', 'users.id', '=', 'events.user')
