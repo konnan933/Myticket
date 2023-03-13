@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Basket;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BasketController extends Controller
 {
@@ -13,10 +14,10 @@ class BasketController extends Controller
         return $kosarak;
     }
 
-    public static function show($eventId, $conceptTicketId, $user)
+    public static function show($id)
     {
-        $kosarak = Basket::where('eventId', $eventId)->where('conceptTicketId', $conceptTicketId)->where('user', $user)->get();
-        return $kosarak[0];
+        $kosarak = Basket::find($id);
+        return $kosarak;
     }
 
     public function destroy($eventId, $conceptTicketId, $user)
@@ -45,5 +46,11 @@ class BasketController extends Controller
         $basket->numberOfTickets = $request->numberOfTickets;
         $basket->payed = $request->payed;
         $basket->save();
+    }
+
+    public function userBasket($id)
+    {
+        $basket =  Basket::where('user', $id)->get();
+        return $basket;
     }
 }

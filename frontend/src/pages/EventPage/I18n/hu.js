@@ -1,5 +1,5 @@
 const locale = {
-  TICKETS: 'tegyei',
+  TICKETS: 'jegyei',
   REMAINING_TICKET: 'Elérhető jegyek',
   NUMBER_OF_TICKETS: 'db',
   PRICE: 'Ára',

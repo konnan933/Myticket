@@ -19,10 +19,10 @@ function TicketCounterButton({ conceptTicketId }) {
 
   const createSelectItems = () => {
     const localArray = [];
-    for (let index = 0; index < 20; index++) {
+    for (let index = 0; index <= 20; index++) {
       localArray.push(
-        <MenuItem key={index + 1} value={index + 1}>
-          {index + 1}
+        <MenuItem key={index} value={index}>
+          {index}
         </MenuItem>
       );
     }
@@ -33,19 +33,26 @@ function TicketCounterButton({ conceptTicketId }) {
     const localBasketItem = {
       eventId: Number(id),
       conceptTicketId,
-      userId: loggedUser.id,
+      user: loggedUser.id,
       numberOfTickets: counter
     };
-    console.log(localBasketItem);
     dispatch(postBasket(localBasketItem));
   };
   return (
     <div className="flex w-full justify-between">
-      <Button onClick={handlePutInbasket} disabled={counter === 0}>
+      <Button
+        onClick={handlePutInbasket}
+        disabled={counter === 0}
+        variant="contained"
+        color="info"
+        className=" w-48"
+        aria-label="Event add"
+        type="submit"
+        size="lagre">
         {t('INTO_BASKET')}
       </Button>
       <div className="flex justify-end w-full">
-        <FormControl className="w-1/3">
+        <FormControl className="w-48/100">
           <InputLabel shrink={true}>{t('NUMBER_OF_TICKETS')}</InputLabel>
           <Select
             value={counter}

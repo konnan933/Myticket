@@ -15,7 +15,7 @@ import { useTranslation } from 'react-i18next';
 
 function SlideShow() {
   const { t } = useTranslation('home');
-  const { promotedEvents, promotedEventsLoading } = useSelector((state) => state.event);
+  const { promotedEvents } = useSelector((state) => state.event);
 
   return (
     <>

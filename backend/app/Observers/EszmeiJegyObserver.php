@@ -11,43 +11,43 @@ class EszmeiJegyObserver
     /**
      * Handle the ConceptTicket "created" event.
      *
-     * @param  \App\Models\ConceptTicket  $eszmeiJegy
+     * @param  \App\Models\ConceptTicket  $conceptTicket
      * @return void
      */
-    public function creating(ConceptTicket $eszmeiJegy)
+    public function creating(ConceptTicket $conceptTicket)
     {
-        if ($eszmeiJegy->startDate < now()) {
+        if ($conceptTicket->startDate < now()) {
             return false;
         }
     }
-    public function created(ConceptTicket $eszmeiJegy)
+    public function created(ConceptTicket $conceptTicket)
     {
     }
 
-    public function updating(ConceptTicket $eszmeiJegy)
+    public function updating(ConceptTicket $conceptTicket)
     {
-        if ($eszmeiJegy->startDate < now()) {
+        if ($conceptTicket->startDate < now()) {
             return false;
         }
-        $eszmei_jegy_valt =  new conceptTicketChanges();
-        $eszmei_jegy_valt->eventId =  $eszmeiJegy->eventId;
-        $eszmei_jegy_valt->conceptTicketId =  $eszmeiJegy->conceptTicketId;
-        $eszmei_jegy_valt->type = $eszmeiJegy->getOriginal('type');
-        $eszmei_jegy_valt->allTicket = $eszmeiJegy->getOriginal('allTicket');
-        $eszmei_jegy_valt->name = $eszmeiJegy->getOriginal('name');
-        $eszmei_jegy_valt->price = $eszmeiJegy->getOriginal('price');
-        $eszmei_jegy_valt->startDate = $eszmeiJegy->getOriginal('startDate');
-        $eszmei_jegy_valt->untilDate = now();
-        $eszmei_jegy_valt->save();
+        $conceptTicketChange =  new conceptTicketChanges();
+        $conceptTicketChange->eventId =  $conceptTicket->eventId;
+        $conceptTicketChange->conceptTicketId =  $conceptTicket->conceptTicketId;
+        $conceptTicketChange->type = $conceptTicket->getOriginal('type');
+        $conceptTicketChange->allTicket = $conceptTicket->getOriginal('allTicket');
+        $conceptTicketChange->currencies = $conceptTicket->getOriginal('currencies');
+        $conceptTicketChange->price = $conceptTicket->getOriginal('price');
+        $conceptTicketChange->startDate = $conceptTicket->getOriginal('startDate');
+        $conceptTicketChange->untilDate = now();
+        $conceptTicketChange->save();
     }
 
     /**
      * Handle the ConceptTicket "updated" event.
      *
-     * @param  \App\Models\ConceptTicket  $eszmeiJegy
+     * @param  \App\Models\ConceptTicket  $conceptTicket
      * @return void
      */
-    public function updated(ConceptTicket $eszmeiJegy)
+    public function updated(ConceptTicket $conceptTicket)
     {
         //
     }
@@ -55,20 +55,20 @@ class EszmeiJegyObserver
     /**
      * Handle the ConceptTicket "deleted" event.
      *
-     * @param  \App\Models\ConceptTicket  $eszmeiJegy
+     * @param  \App\Models\ConceptTicket  $conceptTicket
      * @return void
      */
 
-    public function deleting(ConceptTicket $eszmeiJegy)
+    public function deleting(ConceptTicket $conceptTicket)
     {
-        $hasSale = ConceptTicketController::getTicketHaveSales($eszmeiJegy->conceptTicketId);
+        $hasSale = ConceptTicketController::getTicketHaveSales($conceptTicket->conceptTicketId);
 
         if ($hasSale) {
             return false;
         }
     }
 
-    public function deleted(ConceptTicket $eszmeiJegy)
+    public function deleted(ConceptTicket $conceptTicket)
     {
         //
     }
@@ -76,10 +76,10 @@ class EszmeiJegyObserver
     /**
      * Handle the ConceptTicket "restored" event.
      *
-     * @param  \App\Models\ConceptTicket  $eszmeiJegy
+     * @param  \App\Models\ConceptTicket  $conceptTicket
      * @return void
      */
-    public function restored(ConceptTicket $eszmeiJegy)
+    public function restored(ConceptTicket $conceptTicket)
     {
         //
     }
@@ -87,10 +87,10 @@ class EszmeiJegyObserver
     /**
      * Handle the ConceptTicket "force deleted" event.
      *
-     * @param  \App\Models\ConceptTicket  $eszmeiJegy
+     * @param  \App\Models\ConceptTicket  $conceptTicket
      * @return void
      */
-    public function forceDeleted(ConceptTicket $eszmeiJegy)
+    public function forceDeleted(ConceptTicket $conceptTicket)
     {
         //
     }
