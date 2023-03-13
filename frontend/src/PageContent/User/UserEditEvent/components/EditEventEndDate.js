@@ -11,6 +11,9 @@ import CloseIcon from '@mui/icons-material/Close';
 function EditEventEndDate({ endDate, startDate }) {
   const { t } = useTranslation('userEvent');
   const { singleEvent } = useSelector((state) => state.event);
+  const cantEdit =
+    singleEvent.startDate <=
+    moment(new Date().setDate(new Date().getDate() - 7)).format('YYYY-MM-DD HH:mm:ss');
   const { register } = useForm();
   const [localEndDate, setLocalEndDate] = useState(endDate);
   const id = useParams();
@@ -38,8 +41,18 @@ function EditEventEndDate({ endDate, startDate }) {
     }
   };
 
+  if (cantEdit) {
+    return (
+      <div className="p-4">
+        <Typography gutterBottom variant="h5" component="div">
+          {`${t('END_DATE')}: ${endDate}`}
+        </Typography>
+      </div>
+    );
+  }
+
   return (
-    <div>
+    <div className="p-4">
       {isEdit ? (
         <form className="flex flex-row w-full p-4">
           <TextField

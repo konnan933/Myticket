@@ -24,6 +24,7 @@ function UserDetailedEvent() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const { singleDetailedEvent, singleDetailedEventLoading } = useSelector((state) => state.event);
+
   const eventTypeValues = { ekId: singleDetailedEvent.ekId, typeName: singleDetailedEvent.name };
   const eventLocationValues = {
     locationId: singleDetailedEvent.locationId,
@@ -57,57 +58,56 @@ function UserDetailedEvent() {
             <EditEventPictures />
           </div>
           <div>
-            <div>
-              <div className="flex justify-between">
-                <div className="flex justify-start">
-                  <Typography variant="h5" component="h5">
-                    {t('EDIT_EVENT')}:
-                  </Typography>
-                </div>
-                <div className="flex justify-end">
-                  <UserEditEvent event={singleDetailedEvent} />
-                </div>
-              </div>
-              <div>
-                <EditEventOneData
-                  value={singleDetailedEvent.title}
-                  label={t('EVENT_TITLE')}
-                  field="title"
-                  type="text"
-                />
-                <Typography gutterBottom variant="h5" component="div">
-                  {`${t('ORGANIZER')}: ${singleDetailedEvent.userName}`}
-                </Typography>
-                <EditEventOneData
-                  value={singleDetailedEvent.email}
-                  label={t('BUISNESS_EMAIL')}
-                  field="email"
-                  type="email"
-                />
-                <EditEventOneData
-                  value={singleDetailedEvent.phoneNumber}
-                  label={t('BUISNESS_PHONE_NUM')}
-                  field="phoneNumber"
-                  type="tel"
-                />
-                <EditEventType type={eventTypeValues} />
-                <EditEventLocation location={eventLocationValues} />
-                <EditEventStartDate date={singleDetailedEvent.startDate} />
-                <EditEventEndDate
-                  endDate={singleDetailedEvent.endDate}
-                  startDate={singleDetailedEvent.startDate}
-                />
-                <Typography gutterBottom variant="h5" component="div">
-                  {`${t('COMISSION')}: ${singleDetailedEvent.comission}%`}
-                </Typography>
-                <Typography gutterBottom variant="h5" component="div">
-                  {`${t(`STATUS_${singleDetailedEvent.status}`)}`}
+            <div className="flex justify-between p-4">
+              <div className="flex justify-start">
+                <Typography variant="h5" component="h5">
+                  {t('EDIT_EVENT')}:
                 </Typography>
               </div>
-              <SingleEventDescription />
+              <div className="flex justify-end">
+                <UserEditEvent event={singleDetailedEvent} />
+              </div>
             </div>
-            <UserEventTickets />
+            <div className="grid grid-cols-2">
+              <Typography className="p-4" gutterBottom variant="h5" component="div">
+                {`${t('ORGANIZER')}: ${singleDetailedEvent.userName}`}
+              </Typography>
+
+              <EditEventOneData
+                value={singleDetailedEvent.title}
+                label={t('EVENT_TITLE')}
+                field="title"
+                type="text"
+              />
+
+              <EditEventOneData
+                value={singleDetailedEvent.email}
+                label={t('BUISNESS_EMAIL')}
+                field="email"
+                type="email"
+              />
+              <EditEventOneData
+                value={singleDetailedEvent.phoneNumber}
+                label={t('BUISNESS_PHONE_NUM')}
+                field="phoneNumber"
+                type="tel"
+              />
+              <EditEventType type={eventTypeValues} />
+              <EditEventLocation location={eventLocationValues} />
+              <EditEventStartDate date={singleDetailedEvent.startDate} />
+              <EditEventEndDate
+                endDate={singleDetailedEvent.endDate}
+                startDate={singleDetailedEvent.startDate}
+              />
+              <div className="p-4">
+                <SingleEventDescription />
+              </div>
+              <Typography className="p-4" gutterBottom variant="h5" component="div">
+                {`${t(`STATUS_${singleDetailedEvent.status}`)}`}
+              </Typography>
+            </div>
           </div>
+          <UserEventTickets />
         </div>
       </div>
     </div>

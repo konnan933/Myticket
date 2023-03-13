@@ -39,7 +39,7 @@ function EditEventType({ type }) {
     setLocalType(event.target.value);
   };
   return (
-    <div>
+    <div className="p-4">
       {isEdit ? (
         <form className="flex flex-row w-full p-4">
           <FormControl style={{ minWidth: '40%' }}>

@@ -63,7 +63,7 @@ function UserEventsContent() {
 
   return (
     <div className="flex justify-center">
-      <div className="flex-col w-2/4">
+      <div className="flex-col m-w-2/4">
         {userEventsWithDetails.map((userEvent) => (
           <div className="p-7" key={userEvent.eventId}>
             <CardActionArea>
@@ -71,11 +71,12 @@ function UserEventsContent() {
                 sx={{ display: 'flex', flexDirection: width ? 'column' : 'row' }}
                 onClick={() => handleClick(userEvent.eventId)}>
                 <LazyLoadImage
+                  className="object-fill"
                   alt="Esemeny kep"
                   src={`${event.eventPicture}${userEvent.eventId}`}
                   effect="blur"
                   scrollPosition={scrollPosition}
-                  width={width ? '100%' : '65%'}
+                  width="400"
                 />
                 <Box className="pt-9">
                   <CardContent sx={{ flex: '1 0 auto' }}>

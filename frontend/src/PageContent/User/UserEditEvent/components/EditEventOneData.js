@@ -31,7 +31,7 @@ function EditEventOneData({ value, label, field, type }) {
   };
 
   return (
-    <div>
+    <div className="p-4">
       {isEdit ? (
         <form className="flex flex-row w-full p-4" onSubmit={handleOnSubmit}>
           <TextField

@@ -106,7 +106,12 @@ function UserEditEvent({ event }) {
         </IconButton>
       </div>
       <div>
-        <Modal open={open} onClose={handleClose} aria-labelledby="modal" aria-describedby="modal">
+        <Modal
+          sx={{ overflowY: 'hidden' }}
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal"
+          aria-describedby="modal">
           <Box
             sx={{
               position: 'absolute',
@@ -116,7 +121,7 @@ function UserEditEvent({ event }) {
               transform: 'translate(-50%, -50%)',
               width: '80%',
               maxHeight: '90%',
-              overflow: 'hidden',
+              overflowY: 'auto',
               bgcolor: 'white',
               boxShadow: 24,
               borderRadius: 7
@@ -124,7 +129,7 @@ function UserEditEvent({ event }) {
             {datasLoading ? (
               <Loader />
             ) : (
-              <div className="flex justify-center flex-col overflow-y-scroll">
+              <div className="flex justify-center flex-col">
                 <div className="flex justify-end">
                   <IconButton color="error" onClick={handleClose}>
                     <CloseIcon fontSize="medium" />

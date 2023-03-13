@@ -12,6 +12,9 @@ function EditEventStartDate({ date }) {
   const { t } = useTranslation('userEvent');
   const today = moment(new Date().setDate(new Date().getDate() + 1)).format('yyyy-MM-DDTHH:mm');
   const { singleEvent } = useSelector((state) => state.event);
+  const cantEdit =
+    singleEvent.startDate <=
+    moment(new Date().setDate(new Date().getDate() - 7)).format('YYYY-MM-DD HH:mm:ss');
   const { register } = useForm();
   const [startDate, setStartDate] = useState(date);
   const id = useParams();
@@ -27,9 +30,6 @@ function EditEventStartDate({ date }) {
       window.location.reload(true);
     });
   };
-  console.log('====================================');
-  console.log(startDate);
-  console.log('====================================');
 
   const startDateChangeHandler = (event) => {
     if (event.target.value <= today) {
@@ -41,8 +41,18 @@ function EditEventStartDate({ date }) {
     }
   };
 
+  if (cantEdit) {
+    return (
+      <div className="p-4">
+        <Typography gutterBottom variant="h5" component="div">
+          {`${t('START_DATE')}: ${date}`}
+        </Typography>
+      </div>
+    );
+  }
+
   return (
-    <div>
+    <div className="p-4">
       {isEdit ? (
         <form className="flex flex-row w-full p-4">
           <TextField
