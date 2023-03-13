@@ -9,6 +9,7 @@ import CurrencySlice from './slices/CurrencySlice';
 import EventSlice from './slices/EventSlice';
 import UserSlice from './slices/UserSlice';
 import PictureSlice from './slices/PictureSlice';
+import BasketSlice from './slices/BasketSlice';
 
 export default configureStore({
   reducer: {
@@ -21,6 +22,7 @@ export default configureStore({
     currencies: CurrencySlice,
     event: EventSlice,
     user: UserSlice,
-    picture: PictureSlice
+    picture: PictureSlice,
+    basket: BasketSlice
   }
 });
