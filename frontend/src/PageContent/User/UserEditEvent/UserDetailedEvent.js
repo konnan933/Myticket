@@ -11,8 +11,10 @@ import { getSingleEvent, getSingleEventsDetailed } from 'redux/thunks/Event';
 import { getEventTypes } from 'redux/thunks/EventTypes';
 import { getLocationNames } from 'redux/thunks/Location';
 import { getEventTickets } from 'redux/thunks/Ticket';
+import EditEventEndDate from './components/EditEventEndDate';
 import EditEventLocation from './components/EditEventLocation';
 import EditEventOneData from './components/EditEventOneData';
+import EditEventStartDate from './components/EditEventStartDate';
 import EditEventType from './components/EditEventType';
 import UserEditEvent from './components/UserEditEvent';
 import UserEventTickets from './components/UserEventTickets';
@@ -90,12 +92,11 @@ function UserDetailedEvent() {
                 />
                 <EditEventType type={eventTypeValues} />
                 <EditEventLocation location={eventLocationValues} />
-                <Typography gutterBottom variant="h5" component="div">
-                  {`${t('START_DATE')}: ${singleDetailedEvent.startDate}`}
-                </Typography>
-                <Typography gutterBottom variant="h5" component="div">
-                  {`${t('END_DATE')}: ${singleDetailedEvent.endDate}`}
-                </Typography>
+                <EditEventStartDate date={singleDetailedEvent.startDate} />
+                <EditEventEndDate
+                  endDate={singleDetailedEvent.endDate}
+                  startDate={singleDetailedEvent.startDate}
+                />
                 <Typography gutterBottom variant="h5" component="div">
                   {`${t('COMISSION')}: ${singleDetailedEvent.comission}%`}
                 </Typography>

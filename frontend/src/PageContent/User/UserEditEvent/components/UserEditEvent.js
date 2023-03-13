@@ -138,8 +138,8 @@ function UserEditEvent({ event }) {
                     className="w-4/5"
                     onSubmit={handleSubmit((data) => {
                       data.id = event.eventId;
-                      data.startDate = moment(data.startDate).format('YYYY-MM-DD hh:mm:ss');
-                      data.endDate = moment(data.endDate).format('YYYY-MM-DD hh:mm:ss');
+                      data.startDate = moment(data.startDate).format('YYYY-MM-DD HH:mm:ss');
+                      data.endDate = moment(data.endDate).format('YYYY-MM-DD HH:mm:ss');
                       data.user =
                         organizerName.id === undefined ? event.organizerId : organizerName.id;
                       data.location =
