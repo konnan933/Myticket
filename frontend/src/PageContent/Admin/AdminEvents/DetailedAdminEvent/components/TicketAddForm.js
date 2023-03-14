@@ -72,7 +72,9 @@ function TicketAddForm() {
     <form
       onSubmit={handleSubmit((data) => {
         data.eventId = id;
-        dispatch(addTicket({ data, eventId: id }));
+        console.log(data);
+        data.startDate = moment(startDate).format('YYYY-MM-DD HH:mm:ss');
+        dispatch(addTicket({ data: data, eventId: id }));
       })}>
       <fieldset>
         <div className="grid gap-8 p-4">
@@ -113,7 +115,7 @@ function TicketAddForm() {
               {t('CURRENCY')}
             </InputLabel>
             <Select
-              {...register('name')}
+              {...register('currencies')}
               value={currency}
               notched={true}
               required
