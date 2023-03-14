@@ -7,13 +7,17 @@ import { fetchLoggedIn } from 'redux/thunks/Auth';
 import Loader from 'PageContent/utils/Loader';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { setRememberMe } from 'redux/slices/AuthSlice';
 function App() {
   const dispatch = useDispatch();
 
   const { loginLoading } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    dispatch(fetchLoggedIn());
+    if (localStorage.getItem('rememberMe') === 'true') {
+      dispatch(fetchLoggedIn());
+      dispatch(setRememberMe(true));
+    }
   }, []);
 
   if (loginLoading) {

@@ -3,7 +3,6 @@ import { fetchLogin, fetchLogout, fetchRegister } from '../thunks/Auth';
 
 const AUTH_INIT_STATE = {
   login: [{ level: 0 }],
-  rememberMe: false,
   loginLoading: false,
   loggedIn: false,
   reg: [],
@@ -22,7 +21,7 @@ const authSlice = createSlice({
       state.login = [{ level: 0 }];
     },
     setRememberMe: (state, action) => {
-      state.rememberMe = action.payload;
+      localStorage.setItem('rememberMe', action.payload);
     },
     setLoggedUser: (state, action) => {
       state.loggedUser = action.payload;
