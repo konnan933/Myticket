@@ -32,6 +32,7 @@ export const fetchLogout = createAsyncThunk(
     try {
       await api.post(auth.logout).then(() => {
         dispatch(setLogin());
+        dispatch(setRememberMe(false));
         dispatch(setLoggedIn(false));
       });
     } catch (err) {
@@ -69,7 +70,7 @@ export const fetchLoggedIn = createAsyncThunk(
     try {
       await api.get(auth.loggedIn).then((response) => {
         if (response.data !== '') {
-          dispatch(fetchLogin(response.data));
+          dispatch(fetchLogin({ data: response.data, rememberMe: true }));
         }
       });
     } catch (err) {

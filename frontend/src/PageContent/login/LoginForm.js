@@ -12,7 +12,7 @@ function LoginForm() {
   const loginObj = {
     email: 'student1@gmail.com',
     password: 'Aa123456',
-    rememberMe: false
+    rememberMe: true
   };
   const [loginData, setLoginData] = useState(loginObj);
 
@@ -70,7 +70,13 @@ function LoginForm() {
           </Button>
           <FormGroup>
             <FormControlLabel
-              control={<Checkbox name="rememberMe" onChange={loginChangeHandler} />}
+              control={
+                <Checkbox
+                  name="rememberMe"
+                  checked={loginData.rememberMe}
+                  onChange={loginChangeHandler}
+                />
+              }
               label={t('REMEMBER_ME')}
             />
           </FormGroup>
