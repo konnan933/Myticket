@@ -84,12 +84,6 @@ export const allRootConfig = [
 
 export const navbarConfig = [
   {
-    pageName: 'HOME',
-    pagePath: '/',
-    element: <HomePage />,
-    level: level.user
-  },
-  {
     pageName: 'ADMIN',
     pagePath: '/admin',
     element: <AdminMenuList />,
@@ -106,12 +100,6 @@ export const navbarConfig = [
     pagePath: '/userEvents',
     element: <UserEventsPage />,
     level: level.user
-  },
-  {
-    pageName: 'BASKET',
-    pagePath: '/basket',
-    element: <BasketPage />,
-    level: level.admin
   }
 ];
 
