@@ -1,4 +1,4 @@
-import { Button, IconButton, TextField, Typography } from '@mui/material';
+import { Button, IconButton, TextField, Typography, useMediaQuery } from '@mui/material';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom';
 import { getSingleEvent } from 'redux/thunks/Event';
 
 function EditEventOneData({ value, label, field, type }) {
+  const width = useMediaQuery('(max-width:768px)');
   const { singleEvent } = useSelector((state) => state.event);
   const [localValue, setLocalValue] = useState(value);
   const id = useParams();
@@ -43,7 +44,7 @@ function EditEventOneData({ value, label, field, type }) {
             className="w-3/4"
           />
           <div className="flex justify-between w-11">
-            <IconButton onClick={() => setIsEdit(false)}>
+            <IconButton color="error" onClick={() => setIsEdit(false)}>
               <CloseIcon />
             </IconButton>
             <Button onClick={handleOnSubmit}>{t('SAVE')}</Button>
@@ -59,6 +60,13 @@ function EditEventOneData({ value, label, field, type }) {
             component="div">
             {`${label}: ${value}`}
           </Typography>
+          {width && (
+            <div>
+              <Typography variant="inherit" component="div">
+                {t('CLICK_EDIT')}
+              </Typography>
+            </div>
+          )}
         </div>
       )}
     </div>

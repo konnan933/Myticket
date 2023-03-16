@@ -23,7 +23,23 @@ const locale = {
   END_DATE: 'Event end date',
   COMISSION: 'Comission',
   STATUS: 'Status',
-  STREET: 'Street'
+  STREET: 'Street',
+  SAVE: 'Save',
+  FREE_TICKET: 'Free ticket',
+  CLICK_EDIT: 'Tap to edit',
+  CLICK_TO_OPEN: 'Tap to open',
+  DESCRIPTION: 'Description',
+  ADD_TICKETS: 'Add tickets',
+  EDIT_TICKET: 'Edit tickets',
+  EDIT_TICKET_TYPE: 'Ticket type',
+  ALL_TICKET_AMOUNT: 'All ticket',
+  SALE_START: 'Sale start',
+  SEND: 'Save',
+  SALE_DATE_LOWER: 'The sale start date cannot be higher than the event start date',
+  TICKETS: 'tickets',
+  EVENT_NAME: 'Event name',
+  ORGANIZER_HELPER: 'Only you can be the organizer',
+  UPDATE_EVENT: 'Update event'
 };
 
 export default locale;

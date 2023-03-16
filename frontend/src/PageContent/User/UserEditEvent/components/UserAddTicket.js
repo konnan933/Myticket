@@ -19,7 +19,7 @@ function UserAddTicket() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const { id } = useParams();
-  const { t } = useTranslation('rootData');
+  const { t } = useTranslation('userEvent');
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -33,7 +33,7 @@ function UserAddTicket() {
   }
 
   return (
-    <div>
+    <div className="p-4">
       <div className="flex flex-row">
         <Typography variant="h3">{`${singleEvent.title} ${t('TICKETS')}`}</Typography>
         <IconButton onClick={handleOpen}>

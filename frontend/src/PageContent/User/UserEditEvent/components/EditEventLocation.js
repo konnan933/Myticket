@@ -1,4 +1,11 @@
-import { Autocomplete, Button, IconButton, TextField, Typography } from '@mui/material';
+import {
+  Autocomplete,
+  Button,
+  IconButton,
+  TextField,
+  Typography,
+  useMediaQuery
+} from '@mui/material';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,7 +16,7 @@ import moment from 'moment';
 
 function EditEventLocation({ location }) {
   const { locationNames, locationNamesLoading } = useSelector((state) => state.location);
-
+  const width = useMediaQuery('(max-width:768px)');
   const { t } = useTranslation('userEvent');
   const [locationName, setLocationName] = useState(location.locationName);
   const [locationNameinput, setLocationNameInput] = useState('');
@@ -63,7 +70,7 @@ function EditEventLocation({ location }) {
             )}
           />
           <div className="flex justify-between">
-            <IconButton onClick={() => setIsEdit(false)}>
+            <IconButton color="error" onClick={() => setIsEdit(false)}>
               <CloseIcon />
             </IconButton>
             <Button onClick={handleOnSubmit}>{t('SAVE')}</Button>
@@ -81,6 +88,13 @@ function EditEventLocation({ location }) {
               location.district === undefined ? '' : location.district
             } ${location.street} ${t('STREET')} ${location.houseNumber})`}
           </Typography>
+          {width && (
+            <div>
+              <Typography variant="inherit" component="div">
+                {t('CLICK_EDIT')}
+              </Typography>
+            </div>
+          )}
         </div>
       )}
     </div>

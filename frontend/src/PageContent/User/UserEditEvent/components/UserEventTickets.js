@@ -8,8 +8,8 @@ import { Box } from '@mui/system';
 import { CardActions, useMediaQuery } from '@mui/material';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import DeleteTicket from 'PageContent/Admin/AdminEvents/DetailedAdminEvent/components/DeleteTicket';
-import EditTicket from 'PageContent/Admin/AdminEvents/DetailedAdminEvent/components/EditTicket';
 import UserAddTicket from './UserAddTicket';
+import UserEditTicket from './UserEditTicket';
 
 function UserEventTickets() {
   const width = useMediaQuery('(max-width:768px)');
@@ -47,7 +47,7 @@ function UserEventTickets() {
                 <CardActions>
                   <div className="flex justify-between w-full">
                     <DeleteTicket ticketId={ticket.conceptTicketId} />
-                    <EditTicket ticket={ticket} />
+                    <UserEditTicket ticket={ticket} />
                   </div>
                 </CardActions>
               </Box>

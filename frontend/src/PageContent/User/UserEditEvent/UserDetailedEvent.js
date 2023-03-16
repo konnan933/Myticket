@@ -1,7 +1,6 @@
 import { Typography, useMediaQuery } from '@mui/material';
 import BackToButton from 'PageContent/Admin/AdminEvents/DetailedAdminEvent/components/BackToButton';
 import EditEventPictures from 'PageContent/Admin/AdminEvents/DetailedAdminEvent/components/EditEventPicture';
-import SingleEventDescription from 'PageContent/Admin/AdminEvents/DetailedAdminEvent/components/SingleEventDescription';
 import Loader from 'PageContent/utils/Loader';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -11,6 +10,7 @@ import { getSingleEvent, getSingleEventsDetailed } from 'redux/thunks/Event';
 import { getEventTypes } from 'redux/thunks/EventTypes';
 import { getLocationNames } from 'redux/thunks/Location';
 import { getEventTickets } from 'redux/thunks/Ticket';
+import EditEventDescription from './components/EditEventDescription';
 import EditEventEndDate from './components/EditEventEndDate';
 import EditEventLocation from './components/EditEventLocation';
 import EditEventOneData from './components/EditEventOneData';
@@ -103,7 +103,7 @@ function UserDetailedEvent() {
                 startDate={singleDetailedEvent.startDate}
               />
               <div className="p-4">
-                <SingleEventDescription />
+                <EditEventDescription />
               </div>
               <Typography className="p-4" gutterBottom variant="h5" component="div">
                 {`${t(`STATUS_${singleDetailedEvent.status}`)}`}

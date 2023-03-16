@@ -27,7 +27,22 @@ const locale = {
   PORTION: 'Darab',
   ALL_TICKET: 'Összes jegy',
   BOOKED_TCIKET: 'Foglalt jegy',
-  FREE_TICKET: 'Szabad jegy'
+  FREE_TICKET: 'Szabad jegy',
+  SAVE: 'Mentés',
+  CLICK_EDIT: 'Koppintson a szerkeztéshez',
+  CLICK_TO_OPEN: 'Koppintson a megnyitáshoz',
+  DESCRIPTION: 'Leírás',
+  ADD_TICKETS: 'Jegyek hozzáadása',
+  EDIT_TICKET: 'Jegyek szerkeztése',
+  EDIT_TICKET_TYPE: 'Jegy típusa',
+  ALL_TICKET_AMOUNT: 'Összes jegy',
+  SALE_START: 'Értékesítés kezdete',
+  SEND: 'Mentés',
+  SALE_DATE_LOWER: 'Az értékesítés dátuma nem lehet nagyobb mint az esemény kezdete',
+  TICKETS: 'jegyek',
+  EVENT_NAME: 'Esemény neve',
+  ORGANIZER_HELPER: 'A szervező csak Te lehetsz',
+  UPDATE_EVENT: 'Esemény frissítése'
 };
 
 export default locale;

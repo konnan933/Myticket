@@ -5,7 +5,8 @@ import {
   InputLabel,
   MenuItem,
   Select,
-  Typography
+  Typography,
+  useMediaQuery
 } from '@mui/material';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -16,6 +17,7 @@ import { getSingleEvent, putEvent } from 'redux/thunks/Event';
 import CloseIcon from '@mui/icons-material/Close';
 
 function EditEventType({ type }) {
+  const width = useMediaQuery('(max-width:768px)');
   const { eventTypes } = useSelector((state) => state.eventTypes);
   const { t } = useTranslation('userEvent');
   const { register } = useForm();
@@ -61,7 +63,7 @@ function EditEventType({ type }) {
             </Select>
           </FormControl>
           <div className="flex justify-between">
-            <IconButton onClick={() => setIsEdit(false)}>
+            <IconButton color="error" onClick={() => setIsEdit(false)}>
               <CloseIcon />
             </IconButton>
             <Button onClick={handleOnSubmit}>{t('SAVE')}</Button>
@@ -77,6 +79,13 @@ function EditEventType({ type }) {
             component="div">
             {`${t('EVENT_TYPE')}: ${type.typeName}`}
           </Typography>
+          {width && (
+            <div>
+              <Typography variant="inherit" component="div">
+                {t('CLICK_EDIT')}
+              </Typography>
+            </div>
+          )}
         </div>
       )}
     </div>

@@ -8,7 +8,8 @@ import {
   Modal,
   Select,
   TextareaAutosize,
-  TextField
+  TextField,
+  useMediaQuery
 } from '@mui/material';
 import { Box } from '@mui/system';
 import { useState } from 'react';
@@ -24,7 +25,7 @@ import { putEvent } from 'redux/thunks/Event';
 
 function UserEditEvent({ event }) {
   const { t } = useTranslation('userEvent');
-
+  const width = useMediaQuery('(max-width:786px)');
   const { register, handleSubmit } = useForm();
 
   const [open, setOpen] = useState(false);
@@ -135,12 +136,12 @@ function UserEditEvent({ event }) {
                     <CloseIcon fontSize="medium" />
                   </IconButton>
                 </div>
-                <div className="flex justify-center ">
+                <div className="flex justify-center pb-6">
                   <h2>{t('EDIT_EVENT')}</h2>
                 </div>
                 <div className="flex justify-center">
                   <form
-                    className="w-4/5"
+                    className={`${width ? 'w-4/5' : 'w-2/5'}`}
                     onSubmit={handleSubmit((data) => {
                       data.id = event.eventId;
                       data.startDate = moment(data.startDate).format('YYYY-MM-DD HH:mm:ss');
@@ -165,7 +166,7 @@ function UserEditEvent({ event }) {
                           className="border-2 w-full mt-5"
                         />
                       </div>
-                      <div className="grid grid-cols-2 gap-10">
+                      <div className={`grid ${width ? 'grid-cols-1' : 'grid-cols-2'} gap-16`}>
                         <TextField
                           helperText={t('ORGANIZER_HELPER')}
                           defaultValue={organizerName}

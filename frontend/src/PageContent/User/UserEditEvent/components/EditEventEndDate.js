@@ -1,4 +1,4 @@
-import { Button, IconButton, TextField, Typography } from '@mui/material';
+import { Button, IconButton, TextField, Typography, useMediaQuery } from '@mui/material';
 import moment from 'moment';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -10,6 +10,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 function EditEventEndDate({ endDate, startDate }) {
   const { t } = useTranslation('userEvent');
+  const width = useMediaQuery('(max-width:768px)');
   const { singleEvent } = useSelector((state) => state.event);
   const cantEdit =
     singleEvent.startDate <=
@@ -67,7 +68,7 @@ function EditEventEndDate({ endDate, startDate }) {
             className="border-2 px-2 pt-2"
           />
           <div className="flex justify-between">
-            <IconButton onClick={() => setIsEdit(false)}>
+            <IconButton color="error" onClick={() => setIsEdit(false)}>
               <CloseIcon />
             </IconButton>
             <Button onClick={handleOnSubmit}>{t('SAVE')}</Button>
@@ -83,6 +84,13 @@ function EditEventEndDate({ endDate, startDate }) {
             component="div">
             {`${t('END_DATE')}: ${endDate}`}
           </Typography>
+          {width && (
+            <div>
+              <Typography variant="inherit" component="div">
+                {t('CLICK_EDIT')}
+              </Typography>
+            </div>
+          )}
         </div>
       )}
     </div>
