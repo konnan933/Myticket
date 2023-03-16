@@ -32,7 +32,7 @@ class ConceptTicketController extends Controller
         $conceptTicket->allTicket = $request->allTicket;
         $conceptTicket->bookedTicket = 0;
         $conceptTicket->freeTicket = $request->allTicket;
-        $conceptTicket->name = $request->name;
+        $conceptTicket->currencies = $request->currencies;
         $conceptTicket->price = $request->price;
         $conceptTicket->startDate = $request->startDate;
         $conceptTicket->save();
@@ -48,7 +48,7 @@ class ConceptTicketController extends Controller
         $conceptTicket->allTicket = $request->allTicket;
         $conceptTicket->bookedTicket = $conceptTicket->bookedTicket;
         $conceptTicket->freeTicket = $request->allTicket - $request->bookedTicket;
-        $conceptTicket->name = $request->name;
+        $conceptTicket->currencies = $request->currencies;
         $conceptTicket->price = $request->price;
         $conceptTicket->startDate = $request->startDate;
         $conceptTicket->save();
@@ -57,7 +57,7 @@ class ConceptTicketController extends Controller
     public static function getAllEventTickets($event)
     {
 
-        $allEventTickets = DB::table('conceptTicket')->select('conceptTicket.*', 'ticketTypes.name')
+        $allEventTickets = DB::table('conceptTicket')->select('conceptTicket.*', 'ticketTypes.currencies')
             ->join('ticketTypes', 'ticketTypes.id', '=', 'conceptTicket.type')
             ->where('eventId', '=', $event)
             ->get();

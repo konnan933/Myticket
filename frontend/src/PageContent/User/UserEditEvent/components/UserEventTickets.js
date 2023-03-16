@@ -9,6 +9,7 @@ import { CardActions, useMediaQuery } from '@mui/material';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import DeleteTicket from 'PageContent/Admin/AdminEvents/DetailedAdminEvent/components/DeleteTicket';
 import EditTicket from 'PageContent/Admin/AdminEvents/DetailedAdminEvent/components/EditTicket';
+import UserAddTicket from './UserAddTicket';
 
 function UserEventTickets() {
   const width = useMediaQuery('(max-width:768px)');
@@ -21,6 +22,9 @@ function UserEventTickets() {
 
   return (
     <div>
+      <div>
+        <UserAddTicket />;
+      </div>
       <div className={`grid ${width ? 'grid-cols-1' : 'grid-cols-2'}`}>
         {eventTickets.map((ticket) => (
           <div className="p-7" key={ticket.conceptTicketId}>
