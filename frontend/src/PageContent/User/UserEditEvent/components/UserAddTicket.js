@@ -15,7 +15,7 @@ import AddIcon from '@mui/icons-material/Add';
 function UserAddTicket() {
   const [open, setOpen] = useState(false);
   const { singleEvent } = useSelector((state) => state.event);
-  const { eventTickets, eventTicketsLoading } = useSelector((state) => state.ticket);
+  const { eventTicketsLoading } = useSelector((state) => state.ticket);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const { id } = useParams();

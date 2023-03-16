@@ -51,7 +51,7 @@ function UserEventsContent() {
   if (hasntEvent) {
     return (
       <div className="flex justify-center">
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h6" component="div">
           {t('YOU_DONT_HAVE_EVENT')}
         </Typography>
         <Link to="/userAddEvent">
@@ -63,7 +63,7 @@ function UserEventsContent() {
 
   return (
     <div className="flex justify-center">
-      <div className="flex-col m-w-2/4">
+      <div className="flex-col w-4/5">
         {userEventsWithDetails.map((userEvent) => (
           <div className="p-7" key={userEvent.eventId}>
             <CardActionArea>
@@ -80,28 +80,28 @@ function UserEventsContent() {
                 />
                 <Box className="pt-9">
                   <CardContent sx={{ flex: '1 0 auto' }}>
-                    <Typography gutterBottom variant="h5" component="div">
+                    <Typography gutterBottom variant="h6" component="div">
                       {`${t('EVENT_TITLE')}: ${userEvent.title}`}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography variant="h6" color="text.secondary">
                       {`${t('EVENT_LOCATIONNAME')}: ${userEvent.locationName}`}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography variant="h6" color="text.secondary">
                       {`${t('EVENT_CATEGORY')}: ${userEvent.ekName}`}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography variant="h6" color="text.secondary">
                       {`${t('EVENT_BUISNESS_PHONENUMBER')}: ${userEvent.phoneNumber}`}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography variant="h6" color="text.secondary">
                       {`${t('EVENT_BUISNESS_EMAIL')}: ${userEvent.email}`}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography variant="h6" color="text.secondary">
                       {`${t('EVENT_START_DATE')}: ${userEvent.startDate}`}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography variant="h6" color="text.secondary">
                       {`${t('EVENT_END_DATE')}: ${userEvent.endDate}`}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography variant="h6" color="text.secondary">
                       {`${t('EVENT_STATUS')}: ${t(`STATUS_${userEvent.status}`)}`}
                     </Typography>
                   </CardContent>

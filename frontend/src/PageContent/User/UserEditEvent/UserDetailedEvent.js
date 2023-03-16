@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material';
+import { Typography, useMediaQuery } from '@mui/material';
 import BackToButton from 'PageContent/Admin/AdminEvents/DetailedAdminEvent/components/BackToButton';
 import EditEventPictures from 'PageContent/Admin/AdminEvents/DetailedAdminEvent/components/EditEventPicture';
 import SingleEventDescription from 'PageContent/Admin/AdminEvents/DetailedAdminEvent/components/SingleEventDescription';
@@ -24,7 +24,7 @@ function UserDetailedEvent() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const { singleDetailedEvent, singleDetailedEventLoading } = useSelector((state) => state.event);
-
+  const width = useMediaQuery('(max-width:768px)');
   const eventTypeValues = { ekId: singleDetailedEvent.ekId, typeName: singleDetailedEvent.name };
   const eventLocationValues = {
     locationId: singleDetailedEvent.locationId,
@@ -71,7 +71,7 @@ function UserDetailedEvent() {
                 <UserEditEvent event={singleDetailedEvent} />
               </div>
             </div>
-            <div className="grid grid-cols-2">
+            <div className={`grid ${width ? 'grid-cols-1' : 'grid-cols-2'}`}>
               <Typography className="p-4" gutterBottom variant="h5" component="div">
                 {`${t('ORGANIZER')}: ${singleDetailedEvent.userName}`}
               </Typography>

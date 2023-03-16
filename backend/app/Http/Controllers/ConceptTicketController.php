@@ -57,7 +57,7 @@ class ConceptTicketController extends Controller
     public static function getAllEventTickets($event)
     {
 
-        $allEventTickets = DB::table('conceptTicket')->select('conceptTicket.*', 'ticketTypes.currencies')
+        $allEventTickets = DB::table('conceptTicket')->select('conceptTicket.*', 'ticketTypes.name')
             ->join('ticketTypes', 'ticketTypes.id', '=', 'conceptTicket.type')
             ->where('eventId', '=', $event)
             ->get();

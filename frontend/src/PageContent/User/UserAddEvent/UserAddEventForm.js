@@ -5,7 +5,8 @@ import {
   InputLabel,
   MenuItem,
   Select,
-  TextField
+  TextField,
+  useMediaQuery
 } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
@@ -42,6 +43,7 @@ function UserAddEventForm() {
   const [endDateErrorMsg, setEndDateErrorMsg] = useState('');
   const date = moment(new Date().setDate(new Date().getDate() + 1)).format('yyyy-MM-DDTHH:mm');
   const [startDate, setStartDate] = useState('');
+  const width = useMediaQuery('(max-width:786px)');
 
   const { eventTypes } = useSelector((state) => state.eventTypes);
 
@@ -109,7 +111,7 @@ function UserAddEventForm() {
       </div>
       <div className="flex justify-center">
         <form
-          className="w-2/5"
+          className={`${width ? 'w-4/5' : 'w-2/5'}`}
           onSubmit={handleSubmit((data) => {
             data.startDate = moment(data.startDate).format('YYYY-MM-DD hh:mm:ss');
             data.endDate = moment(data.endDate).format('YYYY-MM-DD hh:mm:ss');
@@ -119,23 +121,20 @@ function UserAddEventForm() {
             dispatch(addEvent(data));
           })}>
           <fieldset>
-            <div className="flex flex-col">
-              <div className="flex">
-                <TextField
-                  {...register('title')}
-                  required
-                  helperText={t('EVENT_NAME_HELPER')}
-                  autoComplete="on"
-                  type="text"
-                  value={eventName}
-                  onChange={eventNameChangeHandler}
-                  label={t('EVENT_NAME')}
-                  className="border-2 w-full mt-5"
-                />
-              </div>
-              <div className="flex justify-center p-5"></div>
+            <div className="flex pb-6">
+              <TextField
+                {...register('title')}
+                required
+                helperText={t('EVENT_NAME_HELPER')}
+                autoComplete="on"
+                type="text"
+                value={eventName}
+                onChange={eventNameChangeHandler}
+                label={t('EVENT_NAME')}
+                className="border-2 w-full mt-5"
+              />
             </div>
-            <div className="grid grid-cols-2 gap-16">
+            <div className={`grid ${width ? 'grid-cols-1' : 'grid-cols-2'} gap-16`}>
               <TextField
                 helperText={t('ORGANIZER_HELPER')}
                 defaultValue={organizerName}
@@ -176,7 +175,7 @@ function UserAddEventForm() {
                 value={buisnessEmail}
                 onChange={buisnessEmailChangeHandler}
                 label={t('BUISNESS_EMAIL')}
-                className="border-2"
+                className="border-2 "
               />
 
               <FormControl>
