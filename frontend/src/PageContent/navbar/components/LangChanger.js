@@ -1,4 +1,5 @@
 import { MenuItem, Select } from '@mui/material';
+import { HU, US } from 'country-flag-icons/react/3x2';
 import { changeLanguage } from 'i18next';
 import { useState } from 'react';
 
@@ -12,13 +13,23 @@ function LangChanger() {
 
   return (
     <Select
-      sx={{ borderWidth: 1, borderColor: 'white', color: 'white' }}
+      sx={{ color: 'white' }}
       value={lang}
+      variant="standard"
       onChange={handleChange}
-      displayEmpty
       inputProps={{ 'aria-label': 'Without label' }}>
-      <MenuItem value={'hu'}>HU</MenuItem>
-      <MenuItem value={'en'}>EN</MenuItem>
+      <MenuItem value={'hu'}>
+        <div className="flex justify-between">
+          <HU title="Hungary" className="w-5 mr-3" />
+          HU
+        </div>
+      </MenuItem>
+      <MenuItem value={'en'}>
+        <div className=" flex justify-between">
+          <US title="USA" className="w-5 mr-3" />
+          EN
+        </div>
+      </MenuItem>
     </Select>
   );
 }
