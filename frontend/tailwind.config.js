@@ -9,12 +9,15 @@ module.exports = {
         '48/100': '48%'
       },
       height: {
+        '1/10': '10%',
         420: '420px'
       },
       borderColor: {
         'bc-yellow-theme': '#FBC95C',
         'bc-gray-theme': '#262626'
       }
+
+      //e58e0c darker yellow
     }
   },
   plugins: ['tailwind-scrollbar']
