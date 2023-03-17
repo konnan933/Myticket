@@ -31,11 +31,15 @@ function UserEditTicket({ ticket }) {
   const { register, handleSubmit } = useForm();
   const { id } = useParams();
   const [ticketType, setTicketType] = useState(ticket.type);
-  const [startDateErrorMsg, setStartDateErrorMsg] = useState('');
-  const [allAmountErrorMsg, setAllAmountErrorMsg] = useState('');
+  const startDate = moment(singleEvent.startDate).format('yyyy-MM-DDTHH:mm');
+  const [startDateErrorMsg, setStartDateErrorMsg] = useState(
+    `${t('SALE_DATE_HELPER')} (${moment(singleEvent.startDate).format('YYYY-MM-DD hh:mm:ss')})`
+  );
+  const [allAmountErrorMsg, setAllAmountErrorMsg] = useState(
+    `${t('TICKET_AMOUNT_HELPER')}: ${ticket.bookedTicket}`
+  );
   const [startDateError, setStartDateError] = useState(false);
   const [allAmountError, setAllamountError] = useState(false);
-  const startDate = moment(singleEvent.startDate).format('yyyy-MM-DDTHH:mm');
   const date = moment(new Date()).format('yyyy-MM-DDTHH:mm');
   const [allAmount, setAllAmount] = useState(ticket.freeTicket);
   const { ticketTypes, TicketTypesLoading } = useSelector((state) => state.ticketTypes);
@@ -52,10 +56,10 @@ function UserEditTicket({ ticket }) {
     setAllAmount(event.target.value);
     if (event.target.value <= ticket.bookedTicket) {
       setAllamountError(true);
-      setAllAmountErrorMsg(t('TICKET_AMOUNT_LOWER') + ` (${ticket.bookedTicket})`);
+      setAllAmountErrorMsg(t('TICKET_AMOUNT_LOWER') + `(${ticket.bookedTicket})`);
     } else {
       setAllamountError(false);
-      setAllAmountErrorMsg('');
+      setAllAmountErrorMsg(t('TICKET_AMOUNT_HELPER') + `(${ticket.bookedTicket})`);
     }
   };
   const ticketTypeChangeHandler = (event) => {
@@ -65,13 +69,17 @@ function UserEditTicket({ ticket }) {
   const startDateChangeHandler = (event) => {
     if (event.target.value > startDate) {
       setStartDateError(true);
-      setStartDateErrorMsg(t('SALE_DATE_LOWER'));
+      setStartDateErrorMsg(
+        t('SALE_DATE_LOWER') + ` (${moment(singleEvent.startDate).format('YYYY-MM-DD hh:mm:ss')})`
+      );
     } else if (event.target.value <= date) {
       setStartDateError(true);
       setStartDateErrorMsg(t('SALE_DATE_LOWER_TODAY'));
     } else {
       setStartDateError(false);
-      setStartDateErrorMsg('');
+      setStartDateErrorMsg(
+        t('SALE_DATE_HELPER') + ` (${moment(singleEvent.startDate).format('YYYY-MM-DD hh:mm:ss')})`
+      );
     }
   };
   return (

@@ -42,7 +42,12 @@ const locale = {
   TICKETS: 'jegyek',
   EVENT_NAME: 'Esemény neve',
   ORGANIZER_HELPER: 'A szervező csak Te lehetsz',
-  UPDATE_EVENT: 'Esemény frissítése'
+  UPDATE_EVENT: 'Esemény frissítése',
+  PRICE: 'Ár',
+  CURRENCY: 'Pénznem',
+  TICKET_AMOUNT_HELPER: 'Foglalt jegyek',
+  SALE_DATE_HELPER: 'Az esemény kezdete',
+  TICKET_AMOUNT_LOWER: 'Az összes jegy nem lehet kevesebb mint a foglalt jegyek'
 };
 
 export default locale;

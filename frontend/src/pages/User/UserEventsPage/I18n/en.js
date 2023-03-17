@@ -39,7 +39,10 @@ const locale = {
   TICKETS: 'tickets',
   EVENT_NAME: 'Event name',
   ORGANIZER_HELPER: 'Only you can be the organizer',
-  UPDATE_EVENT: 'Update event'
+  UPDATE_EVENT: 'Update event',
+  PRICE: 'price',
+  CURRENCY: 'currency',
+  TICKET_AMOUNT_HELPER: 'Booked tickets'
 };
 
 export default locale;

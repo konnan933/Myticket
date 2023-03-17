@@ -63,47 +63,49 @@ function UserEventsContent() {
 
   return (
     <div className="flex justify-center">
-      <div className="flex-col w-4/5">
+      <div className="flex-col">
         {userEventsWithDetails.map((userEvent) => (
           <div className="p-7" key={userEvent.eventId}>
             <CardActionArea>
               <Card
                 sx={{ display: 'flex', flexDirection: width ? 'column' : 'row' }}
                 onClick={() => handleClick(userEvent.eventId)}>
-                <LazyLoadImage
-                  className="object-fill"
-                  alt="Esemeny kep"
-                  src={`${event.eventPicture}${userEvent.eventId}`}
-                  effect="blur"
-                  scrollPosition={scrollPosition}
-                  width="400"
-                />
-                <Box className="pt-9">
-                  <CardContent sx={{ flex: '1 0 auto' }}>
-                    <Typography gutterBottom variant="h6" component="div">
-                      {`${t('EVENT_TITLE')}: ${userEvent.title}`}
-                    </Typography>
-                    <Typography variant="h6" color="text.secondary">
-                      {`${t('EVENT_LOCATIONNAME')}: ${userEvent.locationName}`}
-                    </Typography>
-                    <Typography variant="h6" color="text.secondary">
-                      {`${t('EVENT_CATEGORY')}: ${userEvent.ekName}`}
-                    </Typography>
-                    <Typography variant="h6" color="text.secondary">
-                      {`${t('EVENT_BUISNESS_PHONENUMBER')}: ${userEvent.phoneNumber}`}
-                    </Typography>
-                    <Typography variant="h6" color="text.secondary">
-                      {`${t('EVENT_BUISNESS_EMAIL')}: ${userEvent.email}`}
-                    </Typography>
-                    <Typography variant="h6" color="text.secondary">
-                      {`${t('EVENT_START_DATE')}: ${userEvent.startDate}`}
-                    </Typography>
-                    <Typography variant="h6" color="text.secondary">
-                      {`${t('EVENT_END_DATE')}: ${userEvent.endDate}`}
-                    </Typography>
-                    <Typography variant="h6" color="text.secondary">
-                      {`${t('EVENT_STATUS')}: ${t(`STATUS_${userEvent.status}`)}`}
-                    </Typography>
+                <div className={`${width ? 'w-full' : 'w-3/4'}`}>
+                  <LazyLoadImage
+                    alt="Esemeny kep"
+                    src={`${event.eventPicture}${userEvent.eventId}`}
+                    effect="blur"
+                    scrollPosition={scrollPosition}
+                  />
+                </div>
+                <Box>
+                  <CardContent>
+                    <div className="w-full">
+                      <Typography gutterBottom variant="h4" component="div">
+                        {`${t('EVENT_TITLE')}: ${userEvent.title}`}
+                      </Typography>
+                      <Typography gutterBottom variant="h5" color="text.secondary">
+                        {`${t('EVENT_LOCATIONNAME')}: ${userEvent.locationName}`}
+                      </Typography>
+                      <Typography gutterBottom variant="h5" color="text.secondary">
+                        {`${t('EVENT_CATEGORY')}: ${userEvent.ekName}`}
+                      </Typography>
+                      <Typography gutterBottom variant="h5" color="text.secondary">
+                        {`${t('EVENT_BUISNESS_PHONENUMBER')}: ${userEvent.phoneNumber}`}
+                      </Typography>
+                      <Typography gutterBottom variant="h5" color="text.secondary">
+                        {`${t('EVENT_BUISNESS_EMAIL')}: ${userEvent.email}`}
+                      </Typography>
+                      <Typography gutterBottom variant="h5" color="text.secondary">
+                        {`${t('EVENT_START_DATE')}: ${userEvent.startDate}`}
+                      </Typography>
+                      <Typography gutterBottom variant="h5" color="text.secondary">
+                        {`${t('EVENT_END_DATE')}: ${userEvent.endDate}`}
+                      </Typography>
+                      <Typography gutterBottom variant="h5" color="text.secondary">
+                        {`${t('EVENT_STATUS')}: ${t(`STATUS_${userEvent.status}`)}`}
+                      </Typography>
+                    </div>
                   </CardContent>
                 </Box>
               </Card>

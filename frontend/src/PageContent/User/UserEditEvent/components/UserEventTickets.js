@@ -43,6 +43,15 @@ function UserEventTickets() {
                   <Typography variant="body2" color="text.secondary">
                     {`${t('FREE_TICKET')}: ${ticket.freeTicket} ${t('PORTION')}`}
                   </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {`${t('CURRENCY')}: ${ticket.currencies}`}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {`${t('PRICE')}: ${ticket.price}`}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {`${t('SALE_START')}: ${ticket.startDate}`}
+                  </Typography>
                 </CardContent>
                 <CardActions>
                   <div className="flex justify-between w-full">

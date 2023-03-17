@@ -72,8 +72,7 @@ function TicketAddForm() {
     <form
       onSubmit={handleSubmit((data) => {
         data.eventId = id;
-        console.log(data);
-        data.startDate = moment(startDate).format('YYYY-MM-DD HH:mm:ss');
+        data.startDate = moment(data.startDate).format('YYYY-MM-DD HH:mm:ss');
         dispatch(addTicket({ data: data, eventId: id }));
       })}>
       <fieldset>
