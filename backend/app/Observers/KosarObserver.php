@@ -52,6 +52,7 @@ class KosarObserver
             for ($i = 0; $i < $basket->numberOfTickets; $i++) {
                 KosarObserver::jegyekLetrehozas($basket, $szamlaId);
             }
+            Basket::destroy($basket->id);
         }
     }
     public function jegyekLetrehozas($basket, $szamlaId)
