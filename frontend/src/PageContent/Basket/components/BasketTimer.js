@@ -19,12 +19,14 @@ function BasketTimer({ date }) {
       <div className="text-red-600">
         <Countdown
           date={expiredDate}
-          onComplete={() => dispatch(deleteBasket(loggedUser.id))}
+          onComplete={() => {
+            dispatch(deleteBasket(loggedUser.id)), window.location.reload(true);
+          }}
           zeroPadTime={2}
           renderer={(props) => (
             <Typography
               variant="h5"
-              component="div">{`${props.minutes}:${props.seconds}`}</Typography>
+              component="div">{`${props.minutes}p : ${props.seconds}mp`}</Typography>
           )}
         />
       </div>

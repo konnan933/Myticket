@@ -78,3 +78,18 @@ export const pay = createAsyncThunk('basket/pay', async (id, { rejectWithValue }
     return rejectWithValue({ data, status });
   }
 });
+
+export const putBasket = createAsyncThunk(
+  'basket/putBasket',
+  async ({ data, id }, { rejectWithValue }) => {
+    try {
+      api.put(`${basket.basket}/${id}`, data);
+    } catch (err) {
+      if (!err.response) {
+        throw err;
+      }
+      const { data, status } = err.response;
+      return rejectWithValue({ data, status });
+    }
+  }
+);

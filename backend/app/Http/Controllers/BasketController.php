@@ -62,14 +62,18 @@ class BasketController extends Controller
 
         public function userBasketWithDetails($userId)
     {
-                $basket = DB::table('events')->select('basket.*','events.title', 'events.image', 'events.startDate', 'events.endDate')
+                $basket = DB::table('events')->select('basket.*','ticketTypes.name as ticketType','events.id as eventId', 'events.startDate', 'locations.name as locationName', 'events.title', 'conceptticket.currencies')
+                ->selectRaw('conceptticket.price * basket.numberOfTickets as price')
             ->join('basket', 'basket.eventId', '=', 'events.id')
+            ->join('locations', 'locations.id', '=', 'events.location')
+            ->join('ticketTypes', 'ticketTypes.id', '=', 'basket.conceptTicketId')
+            ->join('conceptticket', 'conceptticket.conceptTicketId', '=', 'basket.conceptTicketId')
             ->where('basket.user', '=', $userId)
             ->get();
         return $basket;
     }
 
-            public function payTickets($userId)
+    public function payTickets($userId)
     {
         $baskets =  Basket::where('user', $userId)->get();
         foreach ($baskets as &$basket) {

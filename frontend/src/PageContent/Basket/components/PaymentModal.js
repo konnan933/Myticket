@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import CloseIcon from '@mui/icons-material/Close';
 import {} from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { getBasketWithDetalis, pay } from 'redux/thunks/Basket';
+import { pay } from 'redux/thunks/Basket';
 
 function PaymentModal() {
   const { loggedUser } = useSelector((state) => state.auth);
@@ -18,8 +18,8 @@ function PaymentModal() {
   };
 
   const handleClose = () => {
-    dispatch(getBasketWithDetalis(loggedUser.id));
     setOpen(false);
+    window.location.reload(true);
   };
 
   return (
