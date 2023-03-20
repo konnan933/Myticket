@@ -1,4 +1,4 @@
-import { Button, Drawer, IconButton } from '@mui/material';
+import { Drawer, IconButton, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { Link } from 'react-router-dom';
 import { navbarConfig } from 'pages/routes/RootConfig';
@@ -10,6 +10,7 @@ import LoginButton from './components/LoginButton';
 import RegisterButton from './components/RegisterButton';
 import LogoutButton from './components/LogoutButton';
 import AdminMenuList from './components/AdminMenuList';
+import BasketButton from './components/BasketButton';
 
 function Sidebar({ drawer, setDrawer }) {
   const { t } = useTranslation('rootes');
@@ -22,10 +23,10 @@ function Sidebar({ drawer, setDrawer }) {
       open={Boolean(drawer)}
       onClose={() => setDrawer(false)}
       PaperProps={{
-        sx: { width: '40%', backgroundColor: '#262626' }
+        sx: { width: '50%', backgroundColor: '#262626' }
       }}>
-      <Box>
-        <div className="flex flex-col gap-4">
+      <Box className="h-screen">
+        <div className="h-4/5 flex flex-col justify-start items-center gap-8">
           <IconButton
             size="large"
             aria-label="menu"
@@ -35,6 +36,14 @@ function Sidebar({ drawer, setDrawer }) {
             }}>
             <CloseIcon />
           </IconButton>
+          <div className="w-full flex justify-evenly items-center">
+            <Link to={'/'}>
+              <Typography className="text-white link-underline link-underline-black">
+                {t('HOME')}
+              </Typography>
+            </Link>
+          </div>
+          {loggedIn && <BasketButton />}
           <LangChanger />
           {navbarConfig.map((root, index) => {
             if (root.pageName === 'ADMIN' && root.level.includes(login[0].level)) {
@@ -43,16 +52,16 @@ function Sidebar({ drawer, setDrawer }) {
             if (root.level.includes(login[0].level))
               return (
                 <Link to={root.pagePath} key={index}>
-                  <Button
-                    variant="outlined"
-                    sx={{ color: 'white', borderColor: 'white', width: '100%' }}>
+                  <Typography className="text-white link-underline link-underline-black">
                     {t(root.pageName)}
-                  </Button>
+                  </Typography>
                 </Link>
               );
           })}
           {!loggedIn && <LoginButton />}
           {!loggedIn && <RegisterButton />}
+        </div>
+        <div className="h-1/5 flex flex-col justify-center items-center  ">
           {loggedIn && <LogoutButton />}
         </div>
       </Box>

@@ -31,7 +31,7 @@ function EditTicket({ ticket }) {
   const { register, handleSubmit } = useForm();
   const { id } = useParams();
   const [ticketType, setTicketType] = useState(ticket.type);
-  const [currency, setCurrency] = useState(ticket.name);
+  const [currency, setCurrency] = useState(ticket.currencies);
   const [startDateErrorMsg, setStartDateErrorMsg] = useState('');
   const [allAmountErrorMsg, setAllAmountErrorMsg] = useState('');
   const [startDateError, setStartDateError] = useState(false);
@@ -165,7 +165,7 @@ function EditTicket({ ticket }) {
                             {t('CURRENCY')}
                           </InputLabel>
                           <Select
-                            {...register('name')}
+                            {...register('currencies')}
                             value={currency}
                             notched={true}
                             required

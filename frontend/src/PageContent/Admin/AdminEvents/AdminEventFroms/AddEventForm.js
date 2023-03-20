@@ -196,7 +196,7 @@ function AddEventForm() {
                 type="text"
                 value={buisnessPhoneNum}
                 onChange={buisnessPhoneNumChangeHandler}
-                label={t('BUISNESS_PHONE_NUMBER')}
+                label={t('BUISNESS_PHON_NUM')}
                 className="border-2"
               />
 

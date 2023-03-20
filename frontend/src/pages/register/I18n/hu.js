@@ -7,7 +7,8 @@ const locale = {
   TEL_NUM: 'Telefonszám',
   PASSWORD_STRENGHT:
     'A jelszónak minimum 8 karakter hosszúnak kell lennie, egy kisbetű, nagybetű, szám és speciális karakter kell tartalmaznia',
-  PASSWORD_MISSMATCH: 'Nem egyeznek a jelszavak'
+  PASSWORD_MISSMATCH: 'Nem egyeznek a jelszavak',
+  WELCOME: 'Köszöntünk a Myticketen'
 };
 
 export default locale;

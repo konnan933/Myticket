@@ -1,5 +1,5 @@
 const locale = {
-  MAIN: 'Main page',
+  HOME: 'Main page',
   LOGIN: 'Login',
   LOGOUT: 'Logout',
   REGISTER: 'Register',
