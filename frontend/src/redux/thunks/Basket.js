@@ -18,10 +18,57 @@ export const postBasket = createAsyncThunk(
     }
   }
 );
-// ! nincs megirva a vegpont szóval nem működik
+
 export const getBasket = createAsyncThunk('basket/getBasket', async (id, { rejectWithValue }) => {
   try {
     const response = await api.get(`${basket.basket}/user/${id}`);
+    return response.data;
+  } catch (err) {
+    if (!err.response) {
+      throw err;
+    }
+    const { data, status } = err.response;
+    return rejectWithValue({ data, status });
+  }
+});
+
+export const deleteBasket = createAsyncThunk(
+  'basket/deleteBasket',
+  async (id, { dispatch, rejectWithValue }) => {
+    try {
+      const response = await api
+        .delete(`${basket.basket}/user/${id}`)
+        .then(() => dispatch(getBasket(id)));
+      return response.data;
+    } catch (err) {
+      if (!err.response) {
+        throw err;
+      }
+      const { data, status } = err.response;
+      return rejectWithValue({ data, status });
+    }
+  }
+);
+
+export const getBasketWithDetalis = createAsyncThunk(
+  'basket/getBasketWithDetails',
+  async (id, { rejectWithValue }) => {
+    try {
+      const response = await api.get(`${basket.basketWithDetails}/${id}`);
+      return response.data;
+    } catch (err) {
+      if (!err.response) {
+        throw err;
+      }
+      const { data, status } = err.response;
+      return rejectWithValue({ data, status });
+    }
+  }
+);
+
+export const pay = createAsyncThunk('basket/pay', async (id, { rejectWithValue }) => {
+  try {
+    const response = await api.put(`${basket.pay}/${id}`);
     return response.data;
   } catch (err) {
     if (!err.response) {

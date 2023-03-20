@@ -53,4 +53,28 @@ class BasketController extends Controller
         $basket =  Basket::where('user', $id)->get();
         return $basket;
     }
+    
+        public function deleteUserBasket($id)
+    {
+        $basket =  Basket::where('user', $id)->delete();
+        return $basket;
+    }
+
+        public function userBasketWithDetails($userId)
+    {
+                $basket = DB::table('events')->select('basket.*','events.title', 'events.image', 'events.startDate', 'events.endDate')
+            ->join('basket', 'basket.eventId', '=', 'events.id')
+            ->where('basket.user', '=', $userId)
+            ->get();
+        return $basket;
+    }
+
+            public function payTickets($userId)
+    {
+        $baskets =  Basket::where('user', $userId)->get();
+        foreach ($baskets as &$basket) {
+          $basket->payed=1;
+          $basket->save();
+    }
+    }
 }

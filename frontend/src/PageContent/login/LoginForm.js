@@ -10,8 +10,8 @@ function LoginForm() {
   const { t } = useTranslation('login');
 
   const loginObj = {
-    email: 'student1@gmail.com',
-    password: 'Aa123456',
+    email: 'odornorbert.on@gmail.com',
+    password: 'Aa123456@',
     rememberMe: true
   };
   const [loginData, setLoginData] = useState(loginObj);
@@ -40,6 +40,7 @@ function LoginForm() {
       <fieldset className=" flex justify-center items-center">
         <div className="grid gap-8 w-4/6">
           <TextField
+            autoComplete="on"
             {...register('email')}
             required
             type="text"

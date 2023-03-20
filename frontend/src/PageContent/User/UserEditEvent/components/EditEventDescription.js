@@ -85,7 +85,7 @@ function EditEventDescription() {
           </div>
           <div className="flex justify-center">
             {isEdit ? (
-              <form className="flex flex-row h-full p-4" onSubmit={handleOnSubmit}>
+              <form className="flex flex-row h-full w-4/5 p-4" onSubmit={handleOnSubmit}>
                 <TextareaAutosize
                   {...register('description')}
                   type="text"

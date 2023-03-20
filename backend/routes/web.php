@@ -123,7 +123,10 @@ Route::post('api/basket', [BasketController::class, 'store']);
 Route::get('api/basket', [BasketController::class, 'index']);
 Route::get('api/basket/{id}', [BasketController::class, 'show']);
 Route::get('api/basket/user/{id}', [BasketController::class, 'userBasket']);
+Route::delete('api/basket/user/{id}', [BasketController::class, 'deleteUserBasket']);
+Route::get('api/basketwithdetails/{id}', [BasketController::class, 'userBasketWithDetails']);
 Route::put('api/basket/{id}', [BasketController::class, 'update']);
+Route::put('api/pay/{id}', [BasketController::class, 'payTickets']);
 Route::delete('api/basket', [BasketController::class, 'destroyAll']);
 Route::delete('api/basket/{id}', [BasketController::class, 'destroy']);
 

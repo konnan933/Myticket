@@ -70,14 +70,13 @@ function UserEventsContent() {
               <Card
                 sx={{ display: 'flex', flexDirection: width ? 'column' : 'row' }}
                 onClick={() => handleClick(userEvent.eventId)}>
-                <div className={`${width ? 'w-full' : 'w-3/4'}`}>
-                  <LazyLoadImage
-                    alt="Esemeny kep"
-                    src={`${event.eventPicture}${userEvent.eventId}`}
-                    effect="blur"
-                    scrollPosition={scrollPosition}
-                  />
-                </div>
+                <LazyLoadImage
+                  alt="Esemeny kep"
+                  src={`${event.eventPicture}${userEvent.eventId}`}
+                  effect="blur"
+                  scrollPosition={scrollPosition}
+                  width={`${width ? '100%' : '75%'}`}
+                />
                 <Box>
                   <CardContent>
                     <div className="w-full">
