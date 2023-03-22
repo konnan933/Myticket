@@ -11,10 +11,8 @@ import event from 'API/Event';
 import { useSelector } from 'react-redux';
 import { Typography } from '@mui/material';
 import EventButton from './EventButton';
-import { useTranslation } from 'react-i18next';
 
 function SlideShow() {
-  const { t } = useTranslation('home');
   const { promotedEvents } = useSelector((state) => state.event);
 
   return (

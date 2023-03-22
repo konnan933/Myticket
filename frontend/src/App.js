@@ -27,7 +27,6 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-
       <Routes>
         {allRootConfig.map((root, index) => {
           return <Route key={index} path={root.pagePath} element={root.element} />;

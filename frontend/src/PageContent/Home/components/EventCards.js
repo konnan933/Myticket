@@ -4,14 +4,13 @@ import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import event from 'API/Event';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 function EventCards() {
   const { t } = useTranslation('home');
-  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
