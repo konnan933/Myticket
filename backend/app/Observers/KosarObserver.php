@@ -7,8 +7,6 @@ use App\Models\Tickets;
 use App\Models\Basket;
 use App\Models\Reciept;
 use App\Models\User;
-use Faker\Provider\Base;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class KosarObserver
@@ -49,11 +47,11 @@ class KosarObserver
     public function updated(Basket $basket)
     {
         if ($basket->payed == 1) {
-            Basket::where('id', $basket->id)->delete();
             $szamlaId = KosarObserver::szamlaLetrehozas($basket);
             for ($i = 0; $i < $basket->numberOfTickets; $i++) {
                 KosarObserver::jegyekLetrehozas($basket, $szamlaId);
             }
+            Basket::where('id', $basket->id)->delete();
         }
     }
     public function jegyekLetrehozas($basket, $szamlaId)

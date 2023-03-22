@@ -30,7 +30,7 @@ function EditEventPictures() {
       <div className="flex justify-center">
         <ChangeEventPicture />
       </div>
-      <div className="flex  justify-center p-2.5">
+      <div className="flex justify-center p-2.5">
         <LazyLoadImage
           className="w-full cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 duration-300"
           onClick={handleClickOpen}
