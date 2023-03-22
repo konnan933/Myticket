@@ -32,6 +32,22 @@ export const getBasket = createAsyncThunk('basket/getBasket', async (id, { rejec
   }
 });
 
+export const getBasketCounter = createAsyncThunk(
+  'basket/getBasketCounter',
+  async (id, { rejectWithValue }) => {
+    try {
+      const response = await api.get(`${basket.ticketCount}${id}`);
+      return response.data;
+    } catch (err) {
+      if (!err.response) {
+        throw err;
+      }
+      const { data, status } = err.response;
+      return rejectWithValue({ data, status });
+    }
+  }
+);
+
 export const deleteBasket = createAsyncThunk(
   'basket/deleteBasket',
   async (id, { dispatch, rejectWithValue }) => {

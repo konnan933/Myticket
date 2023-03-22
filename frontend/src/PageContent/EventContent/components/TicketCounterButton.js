@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { basketCounter } from 'redux/slices/BasketSlice';
 import { postBasket } from 'redux/thunks/Basket';
 
 function TicketCounterButton({ conceptTicketId }) {
@@ -36,6 +37,7 @@ function TicketCounterButton({ conceptTicketId }) {
       user: loggedUser.id,
       numberOfTickets: counter
     };
+    dispatch(basketCounter(counter));
     dispatch(postBasket(localBasketItem));
   };
   return (
