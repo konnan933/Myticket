@@ -53,17 +53,17 @@ class BasketController extends Controller
         $basket =  Basket::where('user', $id)->get();
         return $basket;
     }
-    
-        public function deleteUserBasket($id)
+
+    public function deleteUserBasket($id)
     {
         $basket =  Basket::where('user', $id)->delete();
         return $basket;
     }
 
-        public function userBasketWithDetails($userId)
+    public function userBasketWithDetails($userId)
     {
-                $basket = DB::table('events')->select('basket.*','ticketTypes.name as ticketType','events.id as eventId', 'events.startDate', 'locations.name as locationName', 'events.title', 'conceptticket.currencies')
-                ->selectRaw('conceptticket.price * basket.numberOfTickets as price')
+        $basket = DB::table('events')->select('basket.*', 'ticketTypes.name as ticketType', 'events.id as eventId', 'events.startDate', 'locations.name as locationName', 'events.title', 'conceptticket.currencies')
+            ->selectRaw('conceptticket.price * basket.numberOfTickets as price')
             ->join('basket', 'basket.eventId', '=', 'events.id')
             ->join('locations', 'locations.id', '=', 'events.location')
             ->join('ticketTypes', 'ticketTypes.id', '=', 'basket.conceptTicketId')
@@ -77,8 +77,19 @@ class BasketController extends Controller
     {
         $baskets =  Basket::where('user', $userId)->get();
         foreach ($baskets as &$basket) {
-          $basket->payed=1;
-          $basket->save();
+            $basket->payed = 1;
+            $basket->save();
+        }
     }
+    public function hasManyBasketTickets($userId)
+    {
+        $baskets =  Basket::where('user', $userId)->get();
+        $ticketCount = 0;
+        if (!$baskets->isEmpty()) {
+            foreach ($baskets as &$basket) {
+                $ticketCount += $basket->numberOfTickets;
+            }
+        }
+        return $ticketCount;
     }
 }

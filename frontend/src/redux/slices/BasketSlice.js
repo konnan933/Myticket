@@ -1,16 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getBasket, getBasketWithDetalis } from 'redux/thunks/Basket';
+import { getBasket, getBasketCounter, getBasketWithDetalis } from 'redux/thunks/Basket';
 
 const BASKET_INIT_STATE = {
   basket: [],
   basketLoading: false,
   basketWithDetails: [],
-  basketWithDetailsLoading: false
+  basketWithDetailsLoading: false,
+  basketCount: 0
 };
 const basketSlice = createSlice({
   name: 'basket',
   initialState: BASKET_INIT_STATE,
-  reducers: {},
+  reducers: {
+    basketCounter: (state, action) => {
+      state.basketCount += action.payload;
+    }
+  },
   extraReducers: (builder) => {
     builder.addCase(getBasket.pending, (state) => {
       state.basketLoading = true;
@@ -32,7 +37,12 @@ const basketSlice = createSlice({
     builder.addCase(getBasketWithDetalis.rejected, (state) => {
       state.basketWithDetailsLoading = false;
     });
+    builder.addCase(getBasketCounter.fulfilled, (state, action) => {
+      state.basketCount = action.payload;
+    });
   }
 });
+
+export const { basketCounter } = basketSlice.actions;
 
 export default basketSlice.reducer;

@@ -127,6 +127,7 @@ Route::delete('api/basket/user/{id}', [BasketController::class, 'deleteUserBaske
 Route::get('api/basketwithdetails/{id}', [BasketController::class, 'userBasketWithDetails']);
 Route::put('api/basket/{id}', [BasketController::class, 'update']);
 Route::put('api/pay/{id}', [BasketController::class, 'payTickets']);
+Route::get('api/ticketcount/{id}', [BasketController::class, 'hasManyBasketTickets']);
 Route::delete('api/basket', [BasketController::class, 'destroyAll']);
 Route::delete('api/basket/{id}', [BasketController::class, 'destroy']);
 
