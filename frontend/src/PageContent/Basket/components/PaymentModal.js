@@ -12,8 +12,11 @@ function PaymentModal() {
   const { t } = useTranslation('basket');
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
-  const handlePay = () => {
+  const handleOpen = () => {
     setOpen(true);
+  };
+
+  const handlePay = () => {
     dispatch(pay(loggedUser.id));
   };
 
@@ -24,7 +27,7 @@ function PaymentModal() {
 
   return (
     <div>
-      <Button onClick={handlePay}>{t('PAY')}</Button>
+      <Button onClick={handleOpen}>{t('PAY')}</Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -42,6 +45,10 @@ function PaymentModal() {
               <br></br>
               {t('CHECK_EMAIL')}
             </Typography>
+            <div className="flex justify-between w-2/3">
+              <Button onClick={handlePay}>{t('YES')}</Button>
+              <Button onClick={handleOpen}>{t('NO')}</Button>
+            </div>
           </div>
         </Box>
       </Modal>

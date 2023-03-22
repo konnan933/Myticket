@@ -2,14 +2,10 @@ import { Typography } from '@mui/material';
 import moment from 'moment';
 import Countdown from 'react-countdown';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
-import { deleteBasket } from 'redux/thunks/Basket';
 
-function BasketTimer({ date }) {
-  const expiredDate = moment(date).add(30, 'minutes').toISOString();
+function BasketTimer({ date, setExpired }) {
+  const expiredDate = moment(date).add(1, 'minutes').toISOString();
   const { t } = useTranslation('basket');
-  const { loggedUser } = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
   return (
     <div className="flex flex-row">
       <Typography variant="h5" component="div">
@@ -20,9 +16,8 @@ function BasketTimer({ date }) {
         <Countdown
           date={expiredDate}
           onComplete={() => {
-            dispatch(deleteBasket(loggedUser.id)), window.location.reload(true);
+            setExpired(true);
           }}
-          zeroPadTime={2}
           renderer={(props) => (
             <Typography
               variant="h5"

@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { putBasket } from 'redux/thunks/Basket';
 
 function TicketCounter({ basket }) {
-  console.log(basket);
   const dispatch = useDispatch();
   const { loggedUser } = useSelector((state) => state.auth);
   const { t } = useTranslation('basket');
@@ -44,7 +43,7 @@ function TicketCounter({ basket }) {
           onChange={(event) => {
             setCounter(event.target.value);
           }}
-          onSelect={handlePutInbasket()}
+          onSelect={handlePutInbasket}
           MenuProps={{ PaperProps: { sx: { maxHeight: 200 } } }}>
           {createSelectItems()}
         </Select>

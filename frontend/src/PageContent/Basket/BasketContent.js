@@ -1,6 +1,6 @@
 import moment from 'moment';
 import Loader from 'PageContent/utils/Loader';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteBasket, getBasketWithDetalis } from 'redux/thunks/Basket';
 import BasketItems from './components/BasketItems';
@@ -12,19 +12,24 @@ function BasketContent() {
   const dispatch = useDispatch();
   const { loggedUser } = useSelector((state) => state.auth);
   const { basketWithDetails, basketWithDetailsLoading } = useSelector((state) => state.basket);
-  const lastBookedDate = Object.values(basketWithDetails).at(-1);
+  const lastBookedBasket = Object.values(basketWithDetails).at(-1);
+  const expiredDate = moment(lastBookedBasket).add(1, 'minutes').toISOString() < new Date();
   const isEmptyBasket = Object.keys(basketWithDetails).length === 0;
-  const expiredDate = moment(lastBookedDate).add(30, 'minutes').toISOString();
-  if (expiredDate <= new Date()) {
-    dispatch(deleteBasket(loggedUser.id));
-    return <Loader />;
-  }
+  const [expired, setExpired] = useState(false);
 
   useEffect(() => {
     dispatch(getBasketWithDetalis(loggedUser.id));
-  }, []);
+    if (expired) {
+      dispatch(deleteBasket(loggedUser.id));
+      setExpired(false);
+    }
+  }, [expired]);
 
-  if (basketWithDetailsLoading && lastBookedDate?.bookedTime === undefined && !isEmptyBasket) {
+  if (expiredDate) {
+    dispatch(deleteBasket(loggedUser.id));
+  }
+
+  if (basketWithDetailsLoading && !isEmptyBasket) {
     return <Loader />;
   }
 
@@ -36,7 +41,7 @@ function BasketContent() {
     return (
       <div>
         <div className="flex justify-center">
-          <BasketTimer date={lastBookedDate?.bookedTime} />
+          <BasketTimer setExpired={setExpired} date={lastBookedBasket?.bookedTime} />
         </div>
         <BasketItems />
         <PaymentModal />
