@@ -33,3 +33,16 @@ export const getUserEventsWithDetails = createAsyncThunk(
     }
   }
 );
+
+export const updateUser = createAsyncThunk('user/updateUser', async (data, { rejectWithValue }) => {
+  try {
+    const response = await api.put(`${user.users}/${data.id}`, data);
+    return response.data;
+  } catch (err) {
+    if (!err.response) {
+      throw err;
+    }
+    const { data, status } = err.response;
+    return rejectWithValue({ data, status });
+  }
+});
