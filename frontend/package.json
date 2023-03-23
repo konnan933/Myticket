@@ -17,6 +17,7 @@
     "country-flag-icons": "^1.5.5",
     "gsap": "^3.11.5",
     "i18next": "^22.4.9",
+    "js-cookie": "^3.0.1",
     "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-countdown": "^2.3.5",
