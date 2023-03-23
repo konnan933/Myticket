@@ -2,7 +2,7 @@ import moment from 'moment';
 import Loader from 'PageContent/utils/Loader';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteBasket, getBasketWithDetalis } from 'redux/thunks/Basket';
+import { deleteBasket, getBasketCounter, getBasketWithDetalis } from 'redux/thunks/Basket';
 import BasketItems from './components/BasketItems';
 import BasketTimer from './components/BasketTimer';
 import EmptyBasket from './components/EmptyBasket';
@@ -13,16 +13,17 @@ function BasketContent() {
   const { loggedUser } = useSelector((state) => state.auth);
   const { basketWithDetails, basketWithDetailsLoading } = useSelector((state) => state.basket);
   const lastBookedBasket = Object.values(basketWithDetails).at(-1);
-  const expiredDate = moment(lastBookedBasket).add(1, 'minutes').toISOString() < new Date();
+  const expiredDate = moment(lastBookedBasket).add(30, 'minutes').toISOString() < new Date();
   const isEmptyBasket = Object.keys(basketWithDetails).length === 0;
   const [expired, setExpired] = useState(false);
 
   useEffect(() => {
-    dispatch(getBasketWithDetalis(loggedUser.id));
     if (expired) {
       dispatch(deleteBasket(loggedUser.id));
+      dispatch(getBasketCounter(loggedUser.id));
       setExpired(false);
     }
+    dispatch(getBasketWithDetalis(loggedUser.id));
   }, [expired]);
 
   if (expiredDate) {

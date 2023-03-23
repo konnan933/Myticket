@@ -20,23 +20,26 @@ function BasketItems() {
                   alt="Esemeny kep"
                   src={`${event.eventPicture}${basket.eventId}`}
                   effect="blur"
-                  width={'60%'}
+                  width={'200'}
                 />
               </div>
               <div>
-                <Typography className="p-2" color="text.primary" variant="h6">{`${t(
-                  'EVENT_NAME'
-                )} ${basket.title}`}</Typography>
+                <Typography
+                  className="p-2"
+                  color="text.primary"
+                  variant="h6">{`${basket.title}`}</Typography>
                 <Typography className="p-2" color="text.primary" variant="h7">{`${t(
                   'EVENT_START_DATE'
                 )} ${basket.startDate}`}</Typography>
                 <TicketCounter basket={basket} />
-                <Typography className="p-2" color="text.primary" variant="h7">{`${t('CURRENCY')} ${
-                  basket.currencies
-                }`}</Typography>
-                <Typography className="p-2" color="text.primary" variant="h7">{`${t(
-                  'TICKET_TYPE'
-                )} ${basket.ticketType}`}</Typography>
+                <Typography
+                  className="p-2"
+                  color="text.primary"
+                  variant="h7">{`${basket.currencies}`}</Typography>
+                <Typography
+                  className="p-2"
+                  color="text.primary"
+                  variant="h7">{`${basket.ticketType}`}</Typography>
               </div>
             </div>
           </CardContent>
