@@ -9,7 +9,7 @@ import { getLocationNames } from 'redux/thunks/Location';
 import EventCards from './components/EventCards';
 import Filters from './components/Filters';
 import SlideShow from './components/SlideShow';
-import Waves from './components/Waves';
+import Glass from './components/Glass';
 
 function HomeContent() {
   const { t } = useTranslation('home');
@@ -39,7 +39,7 @@ function HomeContent() {
     <div className="flex justify-center">
       <div className="w-4/5">
         <SlideShow />
-        <Waves />
+        <Glass />
         <Filters />
         <Typography variant="h2" align="center">
           {t('ALL_EVENTS')}

@@ -8,7 +8,9 @@ const locale = {
   SHOW_EVENT: 'Show event',
   ALL_EVENTS: 'Events',
   STARTS: 'Starts',
-  ENDS: 'Ends'
+  ENDS: 'Ends',
+  AD_EVENT_TEXT: 'Have an idea for an event?',
+  AD_EVENT_BUTTON: 'Create one'
 };
 
 export default locale;

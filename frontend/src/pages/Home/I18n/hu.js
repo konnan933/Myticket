@@ -8,7 +8,9 @@ const locale = {
   SHOW_EVENT: 'Esemény megtekintése',
   ALL_EVENTS: 'Események',
   STARTS: 'Kezdődik',
-  ENDS: 'Vége'
+  ENDS: 'Vége',
+  AD_EVENT_TEXT: 'Ötlete van egy esményre?',
+  AD_EVENT_BUTTON: 'Hozzon létre egyet!'
 };
 
 export default locale;
