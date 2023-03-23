@@ -8,7 +8,8 @@ const AUTH_INIT_STATE = {
   reg: [],
   regLoading: false,
   logoutLoading: false,
-  loggedUser: {}
+  loggedUser: {},
+  userId: ''
 };
 const authSlice = createSlice({
   name: 'auth',
@@ -16,6 +17,9 @@ const authSlice = createSlice({
   reducers: {
     setLoggedIn: (state, action) => {
       state.loggedIn = action.payload;
+    },
+    setUserId: (state, action) => {
+      state.userId = action.payload;
     },
     setLogin: (state) => {
       state.login = [{ level: 0 }];
@@ -60,6 +64,6 @@ const authSlice = createSlice({
   }
 });
 
-export const { setLoggedIn, setLogin, setRememberMe, setLoggedUser } = authSlice.actions;
+export const { setLoggedIn, setLogin, setRememberMe, setLoggedUser, setUserId } = authSlice.actions;
 
 export default authSlice.reducer;

@@ -2,24 +2,24 @@ import EditIcon from '@mui/icons-material/Edit';
 import { useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Button, IconButton, TextField, Typography } from '@mui/material';
-import { updateUser } from 'redux/thunks/Admin';
+import { updateUserProfile } from 'redux/thunks/User';
 
-function EditUserName({ loggedUser }) {
+function EditUserName() {
+  const { loggedUser } = useSelector((state) => state.auth);
   const [isEdit, setIsEdit] = useState(false);
-  const [name, setName] = useState(loggedUser.name);
+  const [userName, setUserName] = useState(loggedUser.userName);
   const dispatch = useDispatch();
   const { t } = useTranslation('profile');
   const { register } = useForm();
   const handleOnSubmit = () => {
     const localUser = { ...loggedUser };
-    localUser[name] = name;
-
-    dispatch(updateUser(localUser)).then(() => {
-      window.location.reload(true);
-    });
+    localUser.userName = userName;
+    dispatch(updateUserProfile({ id: loggedUser.id, formData: localUser })).then(() =>
+      setIsEdit(false)
+    );
   };
 
   const handleUserNameChange = () => {
@@ -27,7 +27,7 @@ function EditUserName({ loggedUser }) {
   };
 
   const onNameChangeHandler = (event) => {
-    setName(event.target.value);
+    setUserName(event.target.value);
   };
 
   return (
@@ -39,7 +39,7 @@ function EditUserName({ loggedUser }) {
               {...register('userName')}
               type="text"
               label={t('USER_NAME')}
-              value={name}
+              value={userName}
               onChange={onNameChangeHandler}
               className="w-3/4"
             />
@@ -53,7 +53,7 @@ function EditUserName({ loggedUser }) {
         ) : (
           <div className="flex flex-row">
             <Typography color="text.primary" variant="h5" gutterBottom>
-              {`${'USER_NAME'} ${loggedUser.name}`}
+              {`${'USER_NAME'} ${userName}`}
             </Typography>
             <IconButton onClick={handleUserNameChange}>
               <EditIcon />

@@ -23,6 +23,7 @@ class User extends Authenticatable
         'userName',
         'level',
         'phoneNumber',
+        'confirmed'
     ];
     public $timestamps = false;
 

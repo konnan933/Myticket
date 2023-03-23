@@ -26,9 +26,12 @@ class UserObserver
      * @param  \App\Models\User  $user
      * @return void
      */
-    public function updated(User $user)
+
+        public function updating(User $user)
     {
-        //
+         if($user->isDirty('email_verified_at')){
+            $user->confirmed = 1;
+        }
     }
 
     /**
@@ -52,6 +55,7 @@ class UserObserver
     {
         //
     }
+
 
     public function deleting(User $user)
     {

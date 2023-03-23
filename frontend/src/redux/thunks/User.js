@@ -34,15 +34,50 @@ export const getUserEventsWithDetails = createAsyncThunk(
   }
 );
 
-export const updateUser = createAsyncThunk('user/updateUser', async (data, { rejectWithValue }) => {
-  try {
-    const response = await api.put(`${user.users}/${data.id}`, data);
-    return response.data;
-  } catch (err) {
-    if (!err.response) {
-      throw err;
+export const updateUserProfile = createAsyncThunk(
+  'user/updateUser',
+  async ({ formData, id }, { rejectWithValue }) => {
+    try {
+      const response = await api.put(`${user.users}/${id}`, formData);
+      return response?.data;
+    } catch (err) {
+      if (!err.response) {
+        throw err;
+      }
+      const { data, status } = err.response;
+      return rejectWithValue({ data, status });
     }
-    const { data, status } = err.response;
-    return rejectWithValue({ data, status });
   }
-});
+);
+
+export const verifyEmail = createAsyncThunk(
+  'user/verifyEmail',
+  async ({ id, hash }, { rejectWithValue }) => {
+    try {
+      const response = await api.get(`${user.email}/${id}/${hash}`);
+      return response?.data;
+    } catch (err) {
+      if (!err.response) {
+        throw err;
+      }
+      const { data, status } = err.response;
+      return rejectWithValue({ data, status });
+    }
+  }
+);
+
+export const verifyEmailNotification = createAsyncThunk(
+  'user/verifyEmailNotification',
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await api.post(`${user.emailNotification}`);
+      return response?.data;
+    } catch (err) {
+      if (!err.response) {
+        throw err;
+      }
+      const { data, status } = err.response;
+      return rejectWithValue({ data, status });
+    }
+  }
+);
