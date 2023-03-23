@@ -6,7 +6,9 @@ const locale = {
   PAY: 'Fizetés',
   PAYMENT_SUCCESS: 'Sikeres fizetés',
   CHECK_EMAIL: 'A jegyeidet emailben kaptad meg',
-  CONFIRM_DELETE_BASKET: 'Ki akarja törölni a kosárbÓl?'
+  CONFIRM_DELETE_BASKET: 'Ki akarja törölni a kosárbÓl?',
+  EVENT_START_DATE: 'Kezdés',
+  NUMBER_OF_TICKETS: 'Darab'
 };
 
 export default locale;
