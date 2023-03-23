@@ -13,11 +13,11 @@ function BasketItems() {
   return (
     <div>
       {basketWithDetails.map((basket) => (
-        <div style={{ width: 600 }} className="p-4" key={basket.id}>
-          <Card style={{ minWidth: 300 }} className="border-bc-yellow-theme border-2">
+        <div style={{ width: '45%' }} key={basket.id}>
+          <Card className="w-full border-bc-yellow-theme border-2">
             <CardContent>
-              <div className="flex flex-row justify-evenly items-center">
-                <div style={{ minWidth: 160 }} className="flex justify-center items-center">
+              <div className="flex flex-row max-md:flex-col  items-center">
+                <div style={{ minWidth: 160 }} className="flex justify-center items-center mr-2">
                   <LazyLoadImage
                     alt="Esemeny kep"
                     src={`${event.eventPicture}${basket.eventId}`}
@@ -25,19 +25,21 @@ function BasketItems() {
                     width={'160'}
                   />
                 </div>
-                <div className="w-1/3">
-                  <Typography color="text.primary">{`${basket.title}`}</Typography>
-                  <Typography color="text.primary">{`${t('EVENT_START_DATE')} ${
-                    basket.startDate
-                  }`}</Typography>
-                  <div className="flex flex-row">
-                    <Typography color="text.primary">{`${basket.price} ${basket.currencies}`}</Typography>
-                    <Typography color="text.primary">{`${basket.ticketType}`}</Typography>
+                <div className="w-full flex justify-evenly  items-center">
+                  <div className="w-3/5">
+                    <Typography color="text.primary">{`${basket.title}`}</Typography>
+                    <Typography color="text.primary">{`${t('EVENT_START_DATE')} ${
+                      basket.startDate
+                    }`}</Typography>
+                    <div className="w-4/5 flex flex-row justify-between">
+                      <Typography color="text.primary">{`${basket.price} ${basket.currencies}`}</Typography>
+                      <Typography color="text.primary">{`${basket.ticketType}`}</Typography>
+                    </div>
                   </div>
-                </div>
-                <div className="flex-row">
-                  <DeleteBasketButton basket={basket} />
-                  <TicketCounter basket={basket} />
+                  <div className="flex w-1/5">
+                    <TicketCounter basket={basket} />
+                    <DeleteBasketButton basket={basket} />
+                  </div>
                 </div>
               </div>
             </CardContent>

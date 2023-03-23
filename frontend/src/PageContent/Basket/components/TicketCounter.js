@@ -33,7 +33,7 @@ function TicketCounter({ basket }) {
   };
   return (
     <div className="p-2">
-      <FormControl className="w-1/2">
+      <FormControl className="w-full">
         <InputLabel shrink={true}>{t('NUMBER_OF_TICKETS')}</InputLabel>
         <Select
           value={counter}

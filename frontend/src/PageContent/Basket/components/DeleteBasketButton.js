@@ -24,9 +24,9 @@ function DeleteBasketButton({ basket }) {
     dispatch(deleteBasket(basket));
   };
   return (
-    <div>
+    <div className="flex justify-center items-center">
       <IconButton onClick={handleClickOpen} color="error" component="label">
-        <DeleteIcon fontSize="small" />
+        <DeleteIcon fontSize="large" />
       </IconButton>
       <Modal
         open={open}
