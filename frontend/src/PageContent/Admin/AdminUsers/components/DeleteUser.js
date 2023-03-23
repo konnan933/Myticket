@@ -11,7 +11,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { getUserEvents } from 'redux/thunks/User';
 
 function DeleteUser({ id }) {
-  const { t } = useTranslation('adminEvent');
+  const { t } = useTranslation('adminUser');
   const dispatch = useDispatch();
   const { userEvents, userEventsLoading } = useSelector((state) => state.user);
   const [open, setOpen] = useState(false);

@@ -2,7 +2,7 @@ import moment from 'moment';
 import Loader from 'PageContent/utils/Loader';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteBasket, getBasketCounter, getBasketWithDetalis } from 'redux/thunks/Basket';
+import { deleteUserBasket, getBasketWithDetalis } from 'redux/thunks/Basket';
 import BasketItems from './components/BasketItems';
 import BasketTimer from './components/BasketTimer';
 import EmptyBasket from './components/EmptyBasket';
@@ -19,15 +19,14 @@ function BasketContent() {
 
   useEffect(() => {
     if (expired) {
-      dispatch(deleteBasket(loggedUser.id));
-      dispatch(getBasketCounter(loggedUser.id));
+      dispatch(deleteUserBasket(loggedUser.id));
       setExpired(false);
     }
     dispatch(getBasketWithDetalis(loggedUser.id));
   }, [expired]);
 
   if (expiredDate) {
-    dispatch(deleteBasket(loggedUser.id));
+    dispatch(deleteUserBasket(loggedUser.id));
   }
 
   if (basketWithDetailsLoading && !isEmptyBasket) {

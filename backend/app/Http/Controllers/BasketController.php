@@ -20,9 +20,9 @@ class BasketController extends Controller
         return $kosarak;
     }
 
-    public function destroy($eventId, $conceptTicketId, $user)
+    public function destroy($basketId)
     {
-        BasketController::show($eventId, $conceptTicketId, $user)->delete();
+        Basket::destroy($basketId);
     }
     public function destroyAll()
     {
