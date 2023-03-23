@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import modalStyle from 'PageContent/utils/ModalStyle';
 import { deleteBasket } from 'redux/thunks/Basket';
 
-function DeleteBasketButton({ id }) {
+function DeleteBasketButton({ basket }) {
   const { t } = useTranslation('basket');
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
@@ -21,7 +21,7 @@ function DeleteBasketButton({ id }) {
 
   const onDelete = () => {
     handleClose();
-    dispatch(deleteBasket(id));
+    dispatch(deleteBasket(basket));
   };
   return (
     <div>

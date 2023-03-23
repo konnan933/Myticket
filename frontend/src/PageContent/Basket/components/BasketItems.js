@@ -40,7 +40,7 @@ function BasketItems() {
                 )} ${basket.ticketType}`}</Typography>
               </div>
               <div className="flex justify-center items-center">
-                <DeleteBasketButton />
+                <DeleteBasketButton basket={basket} />
               </div>
             </div>
           </CardContent>
