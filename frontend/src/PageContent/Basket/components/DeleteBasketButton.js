@@ -26,7 +26,7 @@ function DeleteBasketButton({ basket }) {
   return (
     <div>
       <IconButton onClick={handleClickOpen} color="error" component="label">
-        <DeleteIcon fontSize="large" />
+        <DeleteIcon fontSize="small" />
       </IconButton>
       <Modal
         open={open}

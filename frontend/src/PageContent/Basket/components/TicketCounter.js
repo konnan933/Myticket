@@ -32,8 +32,8 @@ function TicketCounter({ basket }) {
     dispatch(putBasket({ id: basket.id, data: localBasketItem }));
   };
   return (
-    <div className="p-2 pt-4">
-      <FormControl className="w-3/4">
+    <div className="p-2">
+      <FormControl className="w-1/2">
         <InputLabel shrink={true}>{t('NUMBER_OF_TICKETS')}</InputLabel>
         <Select
           value={counter}

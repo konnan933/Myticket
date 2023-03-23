@@ -13,16 +13,16 @@ function BasketContent() {
   const { loggedUser } = useSelector((state) => state.auth);
   const { basketWithDetails, basketWithDetailsLoading } = useSelector((state) => state.basket);
   const lastBookedBasket = Object.values(basketWithDetails).at(-1);
-  const expiredDate = moment(lastBookedBasket).add(1, 'minutes').toISOString() < new Date();
+  const expiredDate = moment(lastBookedBasket).add(30, 'minutes').toISOString() < new Date();
   const isEmptyBasket = Object.keys(basketWithDetails).length === 0;
   const [expired, setExpired] = useState(false);
 
   useEffect(() => {
-    dispatch(getBasketWithDetalis(loggedUser.id));
     if (expired) {
       dispatch(deleteUserBasket(loggedUser.id));
       setExpired(false);
     }
+    dispatch(getBasketWithDetalis(loggedUser.id));
   }, [expired]);
 
   if (expiredDate) {

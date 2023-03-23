@@ -13,38 +13,36 @@ function BasketItems() {
   return (
     <div>
       {basketWithDetails.map((basket) => (
-        <Card key={basket.id} className="my-7 border-bc-yellow-theme border-2">
-          <CardContent>
-            <div className="flex flex-row justify-between">
-              <div>
-                <LazyLoadImage
-                  alt="Esemeny kep"
-                  src={`${event.eventPicture}${basket.eventId}`}
-                  effect="blur"
-                  width={'60%'}
-                />
+        <div style={{ width: 600 }} className="p-4" key={basket.id}>
+          <Card style={{ minWidth: 300 }} className="border-bc-yellow-theme border-2">
+            <CardContent>
+              <div className="flex flex-row justify-evenly items-center">
+                <div style={{ minWidth: 160 }} className="flex justify-center items-center">
+                  <LazyLoadImage
+                    alt="Esemeny kep"
+                    src={`${event.eventPicture}${basket.eventId}`}
+                    effect="blur"
+                    width={'160'}
+                  />
+                </div>
+                <div className="w-1/3">
+                  <Typography color="text.primary">{`${basket.title}`}</Typography>
+                  <Typography color="text.primary">{`${t('EVENT_START_DATE')} ${
+                    basket.startDate
+                  }`}</Typography>
+                  <div className="flex flex-row">
+                    <Typography color="text.primary">{`${basket.price} ${basket.currencies}`}</Typography>
+                    <Typography color="text.primary">{`${basket.ticketType}`}</Typography>
+                  </div>
+                </div>
+                <div className="flex-row">
+                  <DeleteBasketButton basket={basket} />
+                  <TicketCounter basket={basket} />
+                </div>
               </div>
-              <div>
-                <Typography className="p-2" color="text.primary" variant="h6">{`${t(
-                  'EVENT_NAME'
-                )} ${basket.title}`}</Typography>
-                <Typography className="p-2" color="text.primary" variant="h7">{`${t(
-                  'EVENT_START_DATE'
-                )} ${basket.startDate}`}</Typography>
-                <TicketCounter basket={basket} />
-                <Typography className="p-2" color="text.primary" variant="h7">{`${t('CURRENCY')} ${
-                  basket.currencies
-                }`}</Typography>
-                <Typography className="p-2" color="text.primary" variant="h7">{`${t(
-                  'TICKET_TYPE'
-                )} ${basket.ticketType}`}</Typography>
-              </div>
-              <div className="flex justify-center items-center">
-                <DeleteBasketButton basket={basket} />
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+        </div>
       ))}
     </div>
   );
