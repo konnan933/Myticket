@@ -17,7 +17,9 @@ function UserEventsTable({ userEvents, hasAcceptedEvent }) {
       )}
 
       <div className="flex justify-center pb-10 pt-5">
-        <TableContainer style={{ margin: 10, width: '70%' }} component={Paper}>
+        <TableContainer
+          style={{ margin: 10, width: '70%' }}
+          component={Paper}>
           <Table aria-label="customized table">
             <TableHead>
               <TableRow>

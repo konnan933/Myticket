@@ -108,7 +108,12 @@ function EditEvent({ event }) {
         </IconButton>
       </div>
       <div>
-        <Modal open={open} onClose={handleClose} aria-labelledby="modal" aria-describedby="modal">
+        <Modal
+          open={open}
+          sx={{ overflowY: 'hidden' }}
+          onClose={handleClose}
+          aria-labelledby="modal"
+          aria-describedby="modal">
           <Box
             sx={{
               position: 'absolute',
@@ -117,6 +122,7 @@ function EditEvent({ event }) {
               display: 'block',
               transform: 'translate(-50%, -50%)',
               width: '80%',
+              overflowY: 'auto',
               maxHeight: '90%',
               overflow: 'hidden',
               bgcolor: 'white',

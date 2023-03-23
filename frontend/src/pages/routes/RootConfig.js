@@ -19,6 +19,7 @@ import UserEventsPage from 'pages/User/UserEventsPage/UserEventsPage';
 import UserEditEvent from 'PageContent/User/UserEditEvent/UserDetailedEvent';
 import BasketPage from 'pages/Basket/BasketPage';
 import EventPage from 'pages/EventPage/EventPage';
+import ProfilePage from 'pages/Profile/ProfilePage';
 
 i18n.addResourceBundle('en', 'rootes', en);
 i18n.addResourceBundle('hu', 'rootes', hu);
@@ -79,6 +80,10 @@ export const allRootConfig = [
   {
     pagePath: '/event/:id',
     element: <EventPage />
+  },
+  {
+    pagePath: '/profile',
+    element: <ProfilePage />
   }
 ];
 
@@ -99,6 +104,12 @@ export const navbarConfig = [
     pageName: 'USEREVENTS',
     pagePath: '/userEvents',
     element: <UserEventsPage />,
+    level: level.user
+  },
+  {
+    pageName: 'PROFILE',
+    pagePath: '/profile',
+    element: <ProfilePage />,
     level: level.user
   }
 ];

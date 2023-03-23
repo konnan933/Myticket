@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Loader from 'PageContent/utils/Loader';
-import bigModalStyle from 'PageContent/utils/BigModalStyle';
 import ConfirmUserDelete from './ConfirmUserDelete';
 import UserEventsTable from '../UserEventsTable';
 import CloseIcon from '@mui/icons-material/Close';
@@ -34,10 +33,24 @@ function DeleteUser({ id }) {
       </IconButton>
       <Modal
         open={open}
+        sx={{ overflowY: 'hidden' }}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
-        <Box sx={bigModalStyle}>
+        <Box
+          sx={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            display: 'block',
+            transform: 'translate(-50%, -50%)',
+            width: '80%',
+            overflowY: 'auto',
+            maxHeight: '80%',
+            bgcolor: 'white',
+            boxShadow: 24,
+            borderRadius: 7
+          }}>
           {userEventsLoading ? (
             <Loader />
           ) : (

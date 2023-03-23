@@ -8,7 +8,8 @@ const locale = {
   ROOT_DATA: 'Törzs adat táblák',
   ADDEVENT: 'Esemény hozzáadása',
   USEREVENTS: 'Eseményeim',
-  BASKET: 'Kosár'
+  BASKET: 'Kosár',
+  PROFILE: 'Profil'
 };
 
 export default locale;
