@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import TicketCounter from './TicketCounter';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import DeleteBasketButton from './DeleteBasketButton';
 
 function BasketItems() {
   const { t } = useTranslation('basket');
@@ -37,6 +38,9 @@ function BasketItems() {
                 <Typography className="p-2" color="text.primary" variant="h7">{`${t(
                   'TICKET_TYPE'
                 )} ${basket.ticketType}`}</Typography>
+              </div>
+              <div className="flex justify-center items-center">
+                <DeleteBasketButton />
               </div>
             </div>
           </CardContent>

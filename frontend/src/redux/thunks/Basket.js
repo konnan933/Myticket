@@ -48,13 +48,31 @@ export const getBasketCounter = createAsyncThunk(
   }
 );
 
-export const deleteBasket = createAsyncThunk(
-  'basket/deleteBasket',
+export const deleteUserBasket = createAsyncThunk(
+  'basket/deleteUserBasket',
   async (id, { dispatch, rejectWithValue }) => {
     try {
       const response = await api
         .delete(`${basket.basket}/user/${id}`)
         .then(() => dispatch(getBasket(id)));
+      return response.data;
+    } catch (err) {
+      if (!err.response) {
+        throw err;
+      }
+      const { data, status } = err.response;
+      return rejectWithValue({ data, status });
+    }
+  }
+);
+
+export const deleteBasket = createAsyncThunk(
+  'basket/deleteBasket',
+  async ({ id, userId }, { dispatch, rejectWithValue }) => {
+    try {
+      const response = await api
+        .delete(`${basket.basket}/${id}`)
+        .then(() => dispatch(getBasket(userId)));
       return response.data;
     } catch (err) {
       if (!err.response) {
