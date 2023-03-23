@@ -8,7 +8,8 @@ const locale = {
   ROOT_DATA: 'Root data tabels',
   ADDEVENT: 'Add event',
   USEREVENTS: 'Your events',
-  BASKET: 'Basket'
+  BASKET: 'Basket',
+  PROFILE : 'Profile'
 };
 
 export default locale;
