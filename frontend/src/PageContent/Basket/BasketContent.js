@@ -25,8 +25,6 @@ function BasketContent() {
     dispatch(getBasketWithDetalis(loggedUser.id));
   }, [expired]);
 
-  console.log(basketWithDetails);
-
   if (expiredDate) {
     dispatch(deleteUserBasket(loggedUser.id));
   }

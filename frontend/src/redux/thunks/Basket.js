@@ -117,9 +117,12 @@ export const pay = createAsyncThunk('basket/pay', async (id, { rejectWithValue }
 
 export const putBasket = createAsyncThunk(
   'basket/putBasket',
-  async ({ data, id }, { rejectWithValue }) => {
+  async ({ data, id }, { dispatch, rejectWithValue }) => {
     try {
-      api.put(`${basket.basket}/${id}`, data);
+      console.log(data);
+      api.put(`${basket.basket}/${id}`, data).then(() => {
+        dispatch(getBasketCounter(data.user));
+      });
     } catch (err) {
       if (!err.response) {
         throw err;

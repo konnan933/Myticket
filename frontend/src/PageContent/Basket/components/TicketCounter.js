@@ -21,13 +21,13 @@ function TicketCounter({ basket }) {
     }
     return localArray;
   };
-  const handlePutInbasket = () => {
+  const handlePutInbasket = (amount) => {
     const localBasketItem = {
       payed: 0,
       eventId: basket.eventId,
       conceptTicketId: basket.conceptTicketId,
       user: loggedUser.id,
-      numberOfTickets: counter
+      numberOfTickets: amount
     };
     dispatch(putBasket({ id: basket.id, data: localBasketItem }));
   };
@@ -42,8 +42,8 @@ function TicketCounter({ basket }) {
           defaultValue={counter}
           onChange={(event) => {
             setCounter(event.target.value);
+            handlePutInbasket(event.target.value);
           }}
-          onSelect={handlePutInbasket}
           MenuProps={{ PaperProps: { sx: { maxHeight: 200 } } }}>
           {createSelectItems()}
         </Select>
