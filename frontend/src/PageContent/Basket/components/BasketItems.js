@@ -13,9 +13,9 @@ function BasketItems() {
   return (
     <div className="w-10/12 max-md:w-4/5 max-h-[400px]  overflow-y-scroll  border-2 p-2 rounded-lg max-md:justify-center border-bc-yellow-theme ">
       {basketWithDetails.map((basket) => (
-        <div style={{ width: '95%' }} key={basket.id}>
-          <div className="flex flex-row max-md:flex-col   items-center">
-            <div className="flex justify-center items-center mr-2">
+        <div key={basket.id}>
+          <div className="flex flex-row max-md:flex-col items-center">
+            <div className="flex justify-center items-center">
               <LazyLoadImage
                 alt="Esemeny kep"
                 src={`${event.eventPicture}${basket.eventId}`}
@@ -40,7 +40,7 @@ function BasketItems() {
               </div>
             </div>
           </div>
-          <div className="w-full border border-black m-4" />
+          <div className="w-full border border-black my-4" />
         </div>
       ))}
     </div>

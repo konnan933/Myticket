@@ -53,9 +53,10 @@ export const deleteUserBasket = createAsyncThunk(
   'basket/deleteUserBasket',
   async (id, { dispatch, rejectWithValue }) => {
     try {
-      const response = await api
-        .delete(`${basket.basket}/user/${id}`)
-        .then(() => dispatch(getBasketWithDetalis(id)));
+      const response = await api.delete(`${basket.basket}/user/${id}`).then(() => {
+        dispatch(getBasketWithDetalis(id));
+        dispatch(getBasketCounter(id));
+      });
       return response.data;
     } catch (err) {
       if (!err.response) {
