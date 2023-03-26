@@ -25,6 +25,8 @@ function BasketContent() {
     dispatch(getBasketWithDetalis(loggedUser.id));
   }, [expired]);
 
+  console.log(basketWithDetails);
+
   if (expiredDate) {
     dispatch(deleteUserBasket(loggedUser.id));
   }
@@ -43,7 +45,9 @@ function BasketContent() {
         <div className="flex justify-center">
           <BasketTimer setExpired={setExpired} date={lastBookedBasket?.bookedTime} />
         </div>
-        <BasketItems />
+        <div className="flex justify-center">
+          <BasketItems />
+        </div>
         <PaymentModal />
       </div>
     );

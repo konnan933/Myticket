@@ -8,19 +8,15 @@ import Loader from 'PageContent/utils/Loader';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { setRememberMe } from 'redux/slices/AuthSlice';
-import { getBasketCounter } from 'redux/thunks/Basket';
 function App() {
   const dispatch = useDispatch();
 
-  const { loginLoading, loggedUser } = useSelector((state) => state.auth);
+  const { loginLoading } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (localStorage.getItem('rememberMe') === 'true') {
       dispatch(fetchLoggedIn());
       dispatch(setRememberMe(true));
-      if (loggedUser.id !== undefined) {
-        dispatch(getBasketCounter(loggedUser.id));
-      }
     }
   }, []);
 
