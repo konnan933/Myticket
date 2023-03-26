@@ -9,7 +9,10 @@ const locale = {
   ADDEVENT: 'Add event',
   USEREVENTS: 'Your events',
   BASKET: 'Basket',
-  PROFILE : 'Profile'
+  PROFILE: 'Profile',
+  CONFIRM_LOGOUT: 'Are you sure, you want to logout?',
+  YES: 'Yes',
+  NO: 'No'
 };
 
 export default locale;

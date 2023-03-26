@@ -9,7 +9,10 @@ const locale = {
   ADDEVENT: 'Esemény hozzáadása',
   USEREVENTS: 'Eseményeim',
   BASKET: 'Kosár',
-  PROFILE: 'Profil'
+  PROFILE: 'Profil',
+  CONFIRM_LOGOUT: 'Biztos ki akar lépni a fiókból?',
+  YES: 'Igen',
+  NO: 'Nem'
 };
 
 export default locale;
