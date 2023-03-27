@@ -1,29 +1,23 @@
 import { useTranslation } from 'react-i18next';
 import IconButton from '@mui/material/IconButton';
 import { useState } from 'react';
-import { Box, Button, Modal } from '@mui/material';
+import { Box, Button, Modal, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import modalStyle from 'PageContent/utils/ModalStyle';
 import { useDispatch, useSelector } from 'react-redux';
-import Cookies from 'js-cookie';
 import { userResetPassword } from 'redux/thunks/User';
 
 function ResetPassword() {
   const { t } = useTranslation('profile');
   const dispatch = useDispatch();
   const { loggedUser } = useSelector((state) => state.auth);
+  console.log(loggedUser);
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
-  const handlePasswordChange = () => {
-    const passwordData = {
-      email: loggedUser.email,
-      token: Cookies.get('XSRF-TOKEN')
-    };
-    console.log(passwordData);
-    dispatch(userResetPassword(passwordData));
+  const handleOpen = () => {
+    setOpen(true);
+    dispatch(userResetPassword({ email: loggedUser.email }));
   };
+  const handleClose = () => setOpen(false);
 
   return (
     <div>
@@ -42,12 +36,9 @@ function ResetPassword() {
                 <CloseIcon fontSize="medium" />
               </IconButton>
             </div>
-            <div className="flex justify-center">
-              <h2>{t('NEW_EMAIL')}</h2>
-            </div>
-            <div className="flex justify-center">
-              <Button onClick={handlePasswordChange}>{t('SAVE')}</Button>
-            </div>
+            <Typography variant="h5" align="center">
+              {t('RESET_PASSWORD_EMAIL')}
+            </Typography>
           </div>
         </Box>
       </Modal>

@@ -92,7 +92,7 @@ export const allRootConfig = [
     element: <EmailVerificationPage />
   },
   {
-    pagePath: '/resetpassword',
+    pagePath: '/resetpassword/:rndCode',
     element: <ResetPasswordPage />
   }
 ];

@@ -86,9 +86,9 @@ export const verifyEmail = createAsyncThunk(
 
 export const userResetPassword = createAsyncThunk(
   'user/userResetPassword',
-  async (data, { rejectWithValue }) => {
+  async (email, { rejectWithValue }) => {
     try {
-      const response = await api.post(`${user.password}`);
+      const response = await api.post(`${user.resetPassword}`, email);
       return response?.data;
     } catch (err) {
       if (!err.response) {

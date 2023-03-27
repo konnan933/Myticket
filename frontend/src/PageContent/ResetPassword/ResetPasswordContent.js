@@ -1,7 +1,8 @@
+import { useParams } from "react-router-dom";
+
 function ResetPasswordContent() {
-  return <div>
-    
-  </div>;
+  const { rndCode } = useParams();
+  return <div></div>;
 }
 
 export default ResetPasswordContent;
