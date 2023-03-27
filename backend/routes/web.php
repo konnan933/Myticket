@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CurrenciesController;
 use App\Http\Controllers\EmailController;
@@ -154,6 +155,10 @@ Route::get('/qrcode/{user}/{jegyId}', [PDFController::class, 'createPDF']);
 //Kép
 Route::post('api/upload/images', [ImageController::class, 'store']);
 
+//Authentication
+Route::post('api/emailverification/{userId}', [AuthController::class, 'verifyEmailSender']);
+Route::post('api/verifyemail/{rndString}', [AuthController::class, 'verifyEmail']);
+Route::post('api/resetpassword', [AuthController::class, 'store']);
 
 
 Route::get('api/getusertickets/{eventId}/{conceptTicketId}/{user}', [TicketsController::class, 'getUserTickets']);

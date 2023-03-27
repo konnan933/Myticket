@@ -27,11 +27,8 @@ class UserObserver
      * @return void
      */
 
-        public function updating(User $user)
+    public function updating(User $user)
     {
-         if($user->isDirty('email_verified_at')){
-            $user->confirmed = 1;
-        }
     }
 
     /**

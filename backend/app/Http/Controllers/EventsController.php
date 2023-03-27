@@ -166,35 +166,33 @@ class EventsController extends Controller
         $helyszin_cim = LocationsController::eventLocationBuilder($event->location);
 
 
-        foreach ($userTicket as $user) {            
+        foreach ($userTicket as $user) {
             $user = User::find($user->email);
             $userName = $user->userName;
             $email = $user->email;
-            if($user->languge === 'hu'){
-            $subject = "A(z)" . $eventName . " eseményen változás történt.";
-            Mail::send(
-                'email.huEventChange',
-                ['userName' => $userName, 'event$event_neve' => $eventName, 'startDate' => $startDate, 'endDate' => $endDate, 'helyszin_neve' => $helyszin_neve, 'helyszin_cim' => $helyszin_cim],
-                function ($mail) use ($email, $userName, $subject) {
-                    $mail->from("myticketszakdoga@gmail.com", "MyTicket");
-                    $mail->to($email, $userName);
-                    $mail->subject($subject);
-                }
-            );
-            }else{
-                 $subject = "The" . $eventName . " event details got changed.";
-            Mail::send(
-                'email.enEventChanged',
-                ['userName' => $userName, 'event$event_neve' => $eventName, 'startDate' => $startDate, 'endDate' => $endDate, 'helyszin_neve' => $helyszin_neve, 'helyszin_cim' => $helyszin_cim],
-                function ($mail) use ($email, $userName, $subject) {
-                    $mail->from("myticketszakdoga@gmail.com", "MyTicket");
-                    $mail->to($email, $userName);
-                    $mail->subject($subject);
-                }
-            );
+            if ($user->languge === 'hu') {
+                $subject = "A(z)" . $eventName . " eseményen változás történt.";
+                Mail::send(
+                    'email.huEventChange',
+                    ['userName' => $userName, 'event$event_neve' => $eventName, 'startDate' => $startDate, 'endDate' => $endDate, 'helyszin_neve' => $helyszin_neve, 'helyszin_cim' => $helyszin_cim],
+                    function ($mail) use ($email, $userName, $subject) {
+                        $mail->from("myticketszakdoga@gmail.com", "MyTicket");
+                        $mail->to($email, $userName);
+                        $mail->subject($subject);
+                    }
+                );
+            } else {
+                $subject = "The" . $eventName . " event details got changed.";
+                Mail::send(
+                    'email.enEventChanged',
+                    ['userName' => $userName, 'event$event_neve' => $eventName, 'startDate' => $startDate, 'endDate' => $endDate, 'helyszin_neve' => $helyszin_neve, 'helyszin_cim' => $helyszin_cim],
+                    function ($mail) use ($email, $userName, $subject) {
+                        $mail->from("myticketszakdoga@gmail.com", "MyTicket");
+                        $mail->to($email, $userName);
+                        $mail->subject($subject);
+                    }
+                );
             }
-
-            
         }
     }
     public static function sendEmailEventDelete($event)
@@ -236,7 +234,7 @@ class EventsController extends Controller
     public function getSingleEventDetails($eventId)
     {
 
-        $eventDetails = DB::table('events')->select('events.id as eventId', 'events.title', 'events.startDate', 'events.endDate', 'events.description', 'events.email', 'events.phoneNumber', 'events.comission', 'events.status', 'eventCategories.name', 'locations.postcode', 'locations.district', 'locations.street', 'locations.houseNumber', 'locations.floor', 'locations.room', 'users.userName', 'locations.id as locationId','locations.name as locationName', 'users.id as organizerId', 'eventCategories.id as ekId')
+        $eventDetails = DB::table('events')->select('events.id as eventId', 'events.title', 'events.startDate', 'events.endDate', 'events.description', 'events.email', 'events.phoneNumber', 'events.comission', 'events.status', 'eventCategories.name', 'locations.postcode', 'locations.district', 'locations.street', 'locations.houseNumber', 'locations.floor', 'locations.room', 'users.userName', 'locations.id as locationId', 'locations.name as locationName', 'users.id as organizerId', 'eventCategories.id as ekId')
             ->join('locations', 'locations.id', '=', 'events.location')
             ->join('eventCategories', 'eventCategories.id', '=', 'events.eventType')
             ->join('users', 'users.id', '=', 'events.user')
