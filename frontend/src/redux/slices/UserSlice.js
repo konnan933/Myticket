@@ -5,7 +5,8 @@ const USER_INIT_STATE = {
   userEvents: [],
   userEventsWithDetails: [],
   userEventsLoading: false,
-  userEventsWithDetailsLoading: false
+  userEventsWithDetailsLoading: false,
+  emailVerified: {}
 };
 const userSlice = createSlice({
   name: 'user',
@@ -34,4 +35,5 @@ const userSlice = createSlice({
     });
   }
 });
+
 export default userSlice.reducer;

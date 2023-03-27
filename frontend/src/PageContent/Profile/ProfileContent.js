@@ -6,23 +6,29 @@ import EditUserName from './components/EditUserName';
 import EditUserEmail from './components/EditUserEmail';
 import EditUserPhoneNum from './components/EditUserPhoneNum';
 import ResetPassword from './components/ResetPassword';
+import NotConfrimedUser from './components/NotConfirmedUser';
 
 function ProfileContent() {
   return (
-    <div className="flex justify-center">
-      <div className="w-1/2 p-4">
-        <Card>
-          <Box>
-            <CardContent>
-              <EditUserName />
-              <EditUserEmail />
-              <EditUserPhoneNum />
-            </CardContent>
-            <CardActions>
-              <ResetPassword />
-            </CardActions>
-          </Box>
-        </Card>
+    <div>
+      <div className="flex justify-center">
+        <div style={{ width: '95%' }}>
+          <NotConfrimedUser />
+          <div className="flex justify-center p-4">
+            <Card>
+              <Box>
+                <CardContent>
+                  <EditUserName />
+                  <EditUserEmail />
+                  <EditUserPhoneNum />
+                </CardContent>
+                <CardActions>
+                  <ResetPassword />
+                </CardActions>
+              </Box>
+            </Card>
+          </div>
+        </div>
       </div>
     </div>
   );

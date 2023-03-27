@@ -32,7 +32,7 @@ function EditUserPhoneNum() {
 
   return (
     <div className="flex flex-row">
-      <div className="p-4">
+      <div className="p-2">
         {isEdit ? (
           <form className="flex flex-row w-full p-4" onSubmit={handleOnSubmit}>
             <TextField
@@ -53,7 +53,7 @@ function EditUserPhoneNum() {
         ) : (
           <div className="flex flex-row">
             <Typography color="text.primary" variant="h5" gutterBottom>
-              {`${'USER_NAME'} ${userPhoneNum}`}
+              {`${t('USER_PHONE_NUM')}: ${userPhoneNum}`}
             </Typography>
             <IconButton onClick={handleUserNameChange}>
               <EditIcon />

@@ -32,7 +32,7 @@ function EditUserName() {
 
   return (
     <div className="flex flex-row">
-      <div className="p-4">
+      <div className="p-2">
         {isEdit ? (
           <form className="flex flex-row w-full p-4" onSubmit={handleOnSubmit}>
             <TextField
@@ -53,7 +53,7 @@ function EditUserName() {
         ) : (
           <div className="flex flex-row">
             <Typography color="text.primary" variant="h5" gutterBottom>
-              {`${'USER_NAME'} ${userName}`}
+              {`${t('USER_NAME')}: ${userName}`}
             </Typography>
             <IconButton onClick={handleUserNameChange}>
               <EditIcon />

@@ -9,12 +9,16 @@ const AUTH_INIT_STATE = {
   regLoading: false,
   logoutLoading: false,
   loggedUser: {},
-  userId: ''
+  userId: '',
+  emailVerified: {}
 };
 const authSlice = createSlice({
   name: 'auth',
   initialState: AUTH_INIT_STATE,
   reducers: {
+    setEmailVerified: (state, action) => {
+      state.emailVerified = action.payload;
+    },
     setLoggedIn: (state, action) => {
       state.loggedIn = action.payload;
     },
@@ -64,6 +68,7 @@ const authSlice = createSlice({
   }
 });
 
-export const { setLoggedIn, setLogin, setRememberMe, setLoggedUser, setUserId } = authSlice.actions;
+export const { setEmailVerified, setLoggedIn, setLogin, setRememberMe, setLoggedUser, setUserId } =
+  authSlice.actions;
 
 export default authSlice.reducer;
