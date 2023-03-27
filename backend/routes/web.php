@@ -158,7 +158,8 @@ Route::post('api/upload/images', [ImageController::class, 'store']);
 //Authentication
 Route::post('api/emailverification/{userId}', [AuthController::class, 'verifyEmailSender']);
 Route::post('api/verifyemail/{rndString}', [AuthController::class, 'verifyEmail']);
-Route::post('api/resetpassword', [AuthController::class, 'store']);
+Route::post('api/resetpassword', [AuthController::class, 'resetPasswordEmailSender']);
+Route::post('api/passwordreset/{rndString}', [AuthController::class, 'newPassword']);
 
 
 Route::get('api/getusertickets/{eventId}/{conceptTicketId}/{user}', [TicketsController::class, 'getUserTickets']);
