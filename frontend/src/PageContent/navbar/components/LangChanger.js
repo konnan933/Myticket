@@ -2,13 +2,21 @@ import { MenuItem, Select } from '@mui/material';
 import { HU, US } from 'country-flag-icons/react/3x2';
 import { changeLanguage } from 'i18next';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateUserProfile } from 'redux/thunks/User';
 
 function LangChanger() {
   const [lang, setLang] = useState('hu');
+  const dispatch = useDispatch();
+  const { loggedUser } = useSelector((state) => state.auth);
 
   const handleChange = (event) => {
+    const localUser = { ...loggedUser };
+    localUser.language = event.target.value;
+    dispatch(updateUserProfile(localUser));
     changeLanguage(event.target.value);
     setLang(event.target.value);
+    console.log(localUser);
   };
 
   return (

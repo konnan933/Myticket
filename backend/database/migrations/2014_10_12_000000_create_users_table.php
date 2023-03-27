@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('phoneNumber')->unique();
             $table->tinyInteger('faults')->default(0);
             $table->boolean('confirmed')->default(0);
+            $table->string('language')->default('hu');
         });
 
         User::create(['email' => 'student1@gmail.com', 'password' => Hash::make('Aa123456'), 'userName' => 'Marcsi', 'phoneNumber' => '06701274832', 'level' => 1, 'confirmed' => 1]);

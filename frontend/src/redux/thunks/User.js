@@ -36,7 +36,7 @@ export const getUserEventsWithDetails = createAsyncThunk(
 
 export const updateUserProfile = createAsyncThunk(
   'user/updateUser',
-  async ({ formData }, { rejectWithValue }) => {
+  async ( formData , { rejectWithValue }) => {
     try {
       const response = await api.put(`${user.users}/${formData.id}`, formData);
       return response?.data;

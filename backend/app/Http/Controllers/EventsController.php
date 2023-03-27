@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Events;
 use App\Models\Locations;
 use App\Models\Image;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -158,26 +159,42 @@ class EventsController extends Controller
             ->where('eventId', '=', $event->id)
             ->get();
 
-        $event_neve = $event->title;
+        $eventName = $event->title;
         $startDate = $event->startDate;
         $endDate = $event->endDate;
         $helyszin_neve = Locations::find($event->location)->name;
         $helyszin_cim = LocationsController::eventLocationBuilder($event->location);
 
 
-        $subject = "A(z)" . $event_neve . " eseményen változás történt.";
-        foreach ($userTicket as $user) {
+        foreach ($userTicket as $user) {            
+            $user = User::find($user->email);
             $userName = $user->userName;
             $email = $user->email;
+            if($user->languge === 'hu'){
+            $subject = "A(z)" . $eventName . " eseményen változás történt.";
             Mail::send(
-                'email.event$eventValt',
-                ['userName' => $userName, 'event$event_neve' => $event_neve, 'startDate' => $startDate, 'endDate' => $endDate, 'helyszin_neve' => $helyszin_neve, 'helyszin_cim' => $helyszin_cim],
+                'email.huEventChange',
+                ['userName' => $userName, 'event$event_neve' => $eventName, 'startDate' => $startDate, 'endDate' => $endDate, 'helyszin_neve' => $helyszin_neve, 'helyszin_cim' => $helyszin_cim],
                 function ($mail) use ($email, $userName, $subject) {
                     $mail->from("myticketszakdoga@gmail.com", "MyTicket");
                     $mail->to($email, $userName);
                     $mail->subject($subject);
                 }
             );
+            }else{
+                 $subject = "The" . $eventName . " event details got changed.";
+            Mail::send(
+                'email.enEventChanged',
+                ['userName' => $userName, 'event$event_neve' => $eventName, 'startDate' => $startDate, 'endDate' => $endDate, 'helyszin_neve' => $helyszin_neve, 'helyszin_cim' => $helyszin_cim],
+                function ($mail) use ($email, $userName, $subject) {
+                    $mail->from("myticketszakdoga@gmail.com", "MyTicket");
+                    $mail->to($email, $userName);
+                    $mail->subject($subject);
+                }
+            );
+            }
+
+            
         }
     }
     public static function sendEmailEventDelete($event)

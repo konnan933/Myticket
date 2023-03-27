@@ -4,17 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Events;
 use App\Models\ConceptTicket;
-use App\Models\Tickets;
 use App\Models\TicketTypes;
 use App\Models\Image;
 use App\Models\Reciept;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class EmailController extends Controller
 {
@@ -22,19 +18,35 @@ class EmailController extends Controller
     {
 
         $buyerName = $reciept->buyerName;
-        $email = User::find($reciept->user)->email;
+        $user = User::find($reciept->user);
+        $userEmail = $user->email;
 
-        $subject = "Számla a vásárlásról.";
-
-        Mail::send(
-            'email.szamla',
+        if($user->language === 'hu'){
+            $subject = "Számla a vásárlásról.";
+            Mail::send(
+            'email.huReceipt',
             ['buyerName' => $buyerName],
-            function ($mail) use ($email, $buyerName, $subject) {
+            function ($mail) use ($userEmail, $buyerName, $subject) {
                 $mail->from("myticketszakdoga@gmail.com", "MyTicket");
-                $mail->to($email, $buyerName);
+                $mail->to($userEmail, $buyerName);
                 $mail->subject($subject);
             }
         );
+        }else{
+            $subject = "Receipt form the purchase.";
+            Mail::send(
+            'email.enReceipt',
+            ['buyerName' => $buyerName],
+            function ($mail) use ($userEmail, $buyerName, $subject) {
+                $mail->from("myticketszakdoga@gmail.com", "MyTicket");
+                $mail->to($userEmail, $buyerName);
+                $mail->subject($subject);
+            }
+        );
+        }
+
+
+
     }
 
     public static function sendPDF($tickets, $qrCodes)
@@ -52,17 +64,16 @@ class EmailController extends Controller
         $jegy_ar = ConceptTicket::find($tickets->conceptTicketId)->price;
         $penznem_tipus = ConceptTicket::find($tickets->conceptTicketId)->name;
 
-        $subject = 'Jegy azonosítód';
+        if($user->language=== 'hu'){
+            $subject = 'Jegy azonosítód';
 
         $pdfs = array();
         foreach ($qrCodes as $qrcode) {
             $tempQrCode = $qrcode->qrCode;
-            array_push($pdfs, PDF::loadView('pdf', compact('tempQrCode', 'userName', 'esemeny', 'ticketTypes', 'eventPicture', 'helyszin_cim', 'jegy_ar'))->output());
+            array_push($pdfs, PDF::loadView('huPdf', compact('tempQrCode', 'userName', 'esemeny', 'ticketTypes', 'eventPicture', 'helyszin_cim', 'jegy_ar'))->output());
         }
-
-
         Mail::send(
-            'email.ticket',
+            'email.huTicket',
             ['userName' => $userName],
             function ($mail) use ($email, $subject, $pdfs, $esemeny_nev) {
                 $mail->to($email, $email)
@@ -72,5 +83,26 @@ class EmailController extends Controller
                 }
             }
         );
+        }else{
+        $subject = 'Your ticket identifier';
+        $pdfs = array();
+        foreach ($qrCodes as $qrcode) {
+            $tempQrCode = $qrcode->qrCode;
+            array_push($pdfs, PDF::loadView('enPdf', compact('tempQrCode', 'userName', 'esemeny', 'ticketTypes', 'eventPicture', 'helyszin_cim', 'jegy_ar'))->output());
+        }
+        Mail::send(
+            'email.enTicket',
+            ['userName' => $userName],
+            function ($mail) use ($email, $subject, $pdfs, $esemeny_nev) {
+                $mail->to($email, $email)
+                    ->subject($subject);
+                for ($i = 0; $i < count($pdfs); $i++) {
+                    $mail->attachData($pdfs[$i], $esemeny_nev . ".pdf");
+                }
+            }
+        );
+        }
+
+        
     }
 }

@@ -62,6 +62,7 @@ class UserController extends Controller
         $user->phoneNumber = $request->phoneNumber;
         $user->faults = $request->faults;
         $user->confirmed = $request->confirmed;
+        $user->language = $request->language;
         $user->save();
     }
 
