@@ -21,7 +21,6 @@
         background: #e0e2e8;
         position: relative;
         width: 100%;
-        height: 100vh;
     }
 
     .container .ticket {
@@ -42,7 +41,6 @@
 
 
     .ticket .bottom {
-        height: 355px;
         background: #fff;
         border-bottom-right-radius: 25px;
         border-bottom-left-radius: 25px;

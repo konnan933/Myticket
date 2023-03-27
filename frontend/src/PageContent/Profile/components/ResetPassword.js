@@ -1,12 +1,12 @@
 import { useTranslation } from 'react-i18next';
 import IconButton from '@mui/material/IconButton';
 import { useState } from 'react';
-import { Box, Button, Modal, TextField } from '@mui/material';
+import { Box, Button, Modal } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import modalStyle from 'PageContent/utils/ModalStyle';
 import { useDispatch, useSelector } from 'react-redux';
-import { useForm } from 'react-hook-form';
 import Cookies from 'js-cookie';
+import { userResetPassword } from 'redux/thunks/User';
 
 function ResetPassword() {
   const { t } = useTranslation('profile');
@@ -15,17 +15,16 @@ function ResetPassword() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const { register, handleSubmit } = useForm();
-  const [password, setPassword] = useState('');
-  const [passwordConfirm, setPasswordConfirm] = useState('');
 
-  const onPasswordChangeHandler = (event) => {
-    setPassword(event.target.value);
+  const handlePasswordChange = () => {
+    const passwordData = {
+      email: loggedUser.email,
+      token: Cookies.get('XSRF-TOKEN')
+    };
+    console.log(passwordData);
+    dispatch(userResetPassword(passwordData));
   };
 
-  const onPasswordConfirmChangeHandler = (event) => {
-    setPasswordConfirm(event.target.value);
-  };
   return (
     <div>
       <Button onClick={handleOpen} size="small">
@@ -47,35 +46,7 @@ function ResetPassword() {
               <h2>{t('NEW_EMAIL')}</h2>
             </div>
             <div className="flex justify-center">
-              <form
-                onSubmit={handleSubmit(() => {
-                  const passwordData = {
-                    email: loggedUser.email,
-                    password: password,
-                    confirm: passwordConfirm,
-                    token: Cookies.get('XSRF-TOKEN')
-                  };
-                  console.log(passwordData);
-                  dispatch(ResetPassword(passwordData));
-                })}>
-                <TextField
-                  {...register('password')}
-                  type="password"
-                  label={t('PASSWORD')}
-                  value={password}
-                  onChange={onPasswordChangeHandler}
-                  className="w-3/4"
-                />
-                <TextField
-                  {...register('confirmed')}
-                  type="password"
-                  label={t('CONFIRM_PASSWORD')}
-                  value={passwordConfirm}
-                  onChange={onPasswordConfirmChangeHandler}
-                  className="w-3/4"
-                />
-                <Button type="submit">{t('SAVE')}</Button>
-              </form>
+              <Button onClick={handlePasswordChange}>{t('SAVE')}</Button>
             </div>
           </div>
         </Box>
