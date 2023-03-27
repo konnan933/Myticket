@@ -10,7 +10,10 @@ const locale = {
   EVENT_START_DATE: 'Kezdés',
   NUMBER_OF_TICKETS: 'Darab',
   SECOND: 'mp',
-  MINUTE: 'p'
+  MINUTE: 'p',
+  CONFIRM_PAY: 'Kérjük erősítse meg fizetését',
+  YES: 'Igen',
+  NO: 'Nem'
 };
 
 export default locale;

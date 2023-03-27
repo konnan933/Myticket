@@ -8,7 +8,10 @@ const locale = {
   EVENT_START_DATE: 'Start',
   NUMBER_OF_TICKETS: 'Amount',
   SECOND: 's',
-  MINUTE: 'm'
+  MINUTE: 'm',
+  CONFIRM_PAY: 'Please confrim yout payment',
+  YES: 'Yes',
+  NO: 'No'
 };
 
 export default locale;
