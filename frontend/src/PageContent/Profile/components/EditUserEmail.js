@@ -7,11 +7,11 @@ import CloseIcon from '@mui/icons-material/Close';
 import modalStyle from 'PageContent/utils/ModalStyle';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateUserProfile, verifyEmailNotification } from 'redux/thunks/User';
+import { updateUserProfile, verifyEmail } from 'redux/thunks/User';
 import { useForm } from 'react-hook-form';
 
 function EditUserEmail() {
-  const { loggedUser, emailVerified } = useSelector((state) => state.auth);
+  const { loggedUser } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const [userEmailErrorMsg, setUserEmailErrorMsg] = useState('');
@@ -51,7 +51,7 @@ function EditUserEmail() {
     const localUser = { ...loggedUser };
     localUser.email = userEmail;
     localUser.verified = 0;
-    dispatch(verifyEmailNotification());
+    dispatch(verifyEmail(loggedUser.id));
     dispatch(updateUserProfile(localUser));
     setVerifiedEmailSent(true);
   };

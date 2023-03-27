@@ -3,9 +3,8 @@ const user = {
   userNames: 'api/usernames',
   userEvents: 'api/userevents',
   userEventsWithDetails: 'api/usereventswithdeatils',
-  email: '/verify-email',
-  emailNotification: '/email/verification-notification',
-  password: '/reset-password'
+  confrimEmail: 'api/emailverification',
+  emailConfirmed: 'api/verifyemail'
 };
 
 export default user;

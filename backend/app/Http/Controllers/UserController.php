@@ -28,7 +28,10 @@ class UserController extends Controller
         User::find($id)->delete();
     }
     public function store(Request $request)
-    {
+    { 
+        if (User::where('phonenumber', '=', $request->phonenumber)->exists()) {
+            return response()->json(["message" => 'PhoneNumber taken']);
+        }else{
         $user = new User();
         $user->email = $request->email;
         $validator = Validator::make($request->all(), [
@@ -50,6 +53,7 @@ class UserController extends Controller
         $user->phoneNumber = $request->phoneNumber;
         $user->faults = 0;
         $user->save();
+    }
     }
 
 

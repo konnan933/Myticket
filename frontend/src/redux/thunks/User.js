@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import user from 'API/User';
 import api from '../../axios/axois';
+import { fetchLoggedIn } from './Auth';
 
 export const getUserEvents = createAsyncThunk(
   'user/getUserEvents',
@@ -52,9 +53,11 @@ export const updateUserProfile = createAsyncThunk(
 
 export const verifyEmail = createAsyncThunk(
   'user/verifyEmail',
-  async ({ id, hash }, { rejectWithValue }) => {
+  async (rndString, { dispatch, rejectWithValue }) => {
     try {
-      const response = await api.get(`${user.email}/${id}/${hash}`);
+      const response = await api.post(`${user.confrimEmail}/${rndString}`).then(() => {
+        dispatch(fetchLoggedIn());
+      });
       return response?.data;
     } catch (err) {
       if (!err.response) {
@@ -66,11 +69,11 @@ export const verifyEmail = createAsyncThunk(
   }
 );
 
-export const verifyEmailNotification = createAsyncThunk(
-  'user/verifyEmailNotification',
-  async (_, { rejectWithValue }) => {
+export const emailVerifiedViaEmail = createAsyncThunk(
+  'user/emailVefified',
+  async (hash, { rejectWithValue }) => {
     try {
-      const response = await api.post(`${user.emailNotification}`);
+      const response = await api.post(`${user.confrimEmail}/${hash}`);
       return response?.data;
     } catch (err) {
       if (!err.response) {

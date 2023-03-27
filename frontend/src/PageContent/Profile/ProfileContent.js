@@ -21,6 +21,9 @@ function ProfileContent() {
                   <EditUserName />
                   <EditUserEmail />
                   <EditUserPhoneNum />
+                  <div>
+                    
+                  </div>
                 </CardContent>
                 <CardActions>
                   <ResetPassword />

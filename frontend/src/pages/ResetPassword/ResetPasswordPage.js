@@ -7,8 +7,8 @@ import hu from './I18n/hu';
 i18n.addResourceBundle('en', 'password', en);
 i18n.addResourceBundle('hu', 'password', hu);
 
-function ProfilePage() {
+function ResetPasswordPage() {
   return <ResetPasswordContent />;
 }
 
-export default ProfilePage;
+export default ResetPasswordPage;

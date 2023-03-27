@@ -1,5 +1,7 @@
 function ResetPasswordContent() {
-  return <div>asd</div>;
+  return <div>
+    
+  </div>;
 }
 
 export default ResetPasswordContent;

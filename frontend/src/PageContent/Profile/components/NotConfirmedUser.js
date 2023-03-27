@@ -3,7 +3,7 @@ import modalStyle from 'PageContent/utils/ModalStyle';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import { verifyEmailNotification } from 'redux/thunks/User';
+import { verifyEmail } from 'redux/thunks/User';
 import CloseIcon from '@mui/icons-material/Close';
 
 function NotConfrimedUser() {
@@ -14,7 +14,7 @@ function NotConfrimedUser() {
     setOpen(false);
   };
   const handleOpen = () => {
-    dispatch(verifyEmailNotification());
+    dispatch(verifyEmail(loggedUser.id));
     setOpen(true);
   };
   console.log('git');
