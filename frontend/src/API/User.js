@@ -3,7 +3,7 @@ const user = {
   userNames: 'api/usernames',
   userEvents: 'api/userevents',
   userEventsWithDetails: 'api/usereventswithdeatils',
-  confrimEmail: 'api/emailverification',
+  confirmEmail: 'api/emailverification',
   emailConfirmed: 'api/verifyemail'
 };
 
