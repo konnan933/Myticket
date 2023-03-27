@@ -20,6 +20,7 @@ import UserEditEvent from 'PageContent/User/UserEditEvent/UserDetailedEvent';
 import BasketPage from 'pages/Basket/BasketPage';
 import EventPage from 'pages/EventPage/EventPage';
 import ProfilePage from 'pages/Profile/ProfilePage';
+import EmailVerificationPage from 'pages/EmailVerification/EmailVerificationPage';
 
 i18n.addResourceBundle('en', 'rootes', en);
 i18n.addResourceBundle('hu', 'rootes', hu);
@@ -84,6 +85,10 @@ export const allRootConfig = [
   {
     pagePath: '/profile',
     element: <ProfilePage />
+  },
+  {
+    pagePath: '/verifiemail',
+    element: <EmailVerificationPage />
   }
 ];
 
