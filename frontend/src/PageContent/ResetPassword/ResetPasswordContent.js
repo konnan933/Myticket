@@ -1,12 +1,11 @@
 import { Button, TextField } from '@mui/material';
 import Loader from 'PageContent/utils/Loader';
 import regexTests from 'PageContent/utils/Regex';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { fetchRegister } from 'redux/thunks/Auth';
 import { resettedPassword } from 'redux/thunks/User';
 
 function ResetPasswordContent() {
@@ -14,16 +13,9 @@ function ResetPasswordContent() {
   const { rndCodePassword } = useParams();
   const dispatch = useDispatch();
   const { resettedPasswordResponse, resettedPasswordLoading } = useSelector((state) => state.user);
-  const { loggedIn } = useSelector((state) => state.auth);
-  console.log(resettedPasswordResponse);
-
-  useEffect(() => {
-    if (loggedIn) {
-      dispatch(resettedPassword(rndCodePassword));
-    }
-  }, [loggedIn]);
-
   const { register, handleSubmit } = useForm();
+
+  console.log(rndCodePassword);
 
   const registerObj = {
     password: '',
@@ -51,7 +43,8 @@ function ResetPasswordContent() {
     <div>
       <form
         onSubmit={handleSubmit((data) => {
-          dispatch(fetchRegister(data));
+          console.log(rndCodePassword);
+          dispatch(resettedPassword({ rndCodePassword: rndCodePassword, formData: data }));
         })}
         className="w-full">
         <fieldset className="flex justify-center">
@@ -83,15 +76,16 @@ function ResetPasswordContent() {
               label={t('PASSWORD_CONFIRM')}
               className="border-2"
             />
+
             <Button
               variant="contained"
               color="info"
               disabled={passwordErr || registerData.password !== registerData.password_confirmation}
               className=" w-full mt-16"
-              aria-label="Reset password"
+              aria-label="Sign in"
               type="submit"
               size="large">
-              {t('RESET_PASSWORD')}
+              {t('LOGIN_SEND')}
             </Button>
           </div>
         </fieldset>
