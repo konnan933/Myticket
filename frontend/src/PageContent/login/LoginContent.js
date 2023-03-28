@@ -1,14 +1,17 @@
-import { Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import Loader from 'PageContent/utils/Loader';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import LoginForm from './LoginForm';
 
 function LoginContent() {
   const { t } = useTranslation('login');
   const { loginLoading, loggedIn } = useSelector((state) => state.auth);
-
+  const navigate = useNavigate();
+  const handleForgotPassword = () => {
+    navigate('/forgotPassword');
+  };
   if (loginLoading) {
     return <Loader />;
   }
@@ -25,6 +28,9 @@ function LoginContent() {
           </Typography>
         </div>
         <LoginForm />
+        <Button onClick={handleForgotPassword} size="small">
+          {t('ForgotPassword')}
+        </Button>
       </div>
     </div>
   );

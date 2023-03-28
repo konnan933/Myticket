@@ -22,6 +22,7 @@ import EventPage from 'pages/EventPage/EventPage';
 import ProfilePage from 'pages/Profile/ProfilePage';
 import EmailVerificationPage from 'pages/EmailVerification/EmailVerificationPage';
 import ResetPasswordPage from 'pages/ResetPassword/ResetPasswordPage';
+import ForgotPasswordPage from 'pages/ForgotPassword/ForgotPasswordPage';
 
 i18n.addResourceBundle('en', 'rootes', en);
 i18n.addResourceBundle('hu', 'rootes', hu);
@@ -94,6 +95,10 @@ export const allRootConfig = [
   {
     pagePath: '/passwordReset/:rndCodePassword',
     element: <ResetPasswordPage />
+  },
+  {
+    pagePath: '/forgotPassword',
+    element: <ForgotPasswordPage />
   }
 ];
 

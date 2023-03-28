@@ -12,7 +12,7 @@ function ResetPasswordContent() {
   const { t } = useTranslation('password');
   const { rndCodePassword } = useParams();
   const dispatch = useDispatch();
-  const { resettedPasswordResponse, resettedPasswordLoading } = useSelector((state) => state.user);
+  const { resettedPasswordLoading } = useSelector((state) => state.user);
   const { register, handleSubmit } = useForm();
 
   const registerObj = {
@@ -42,59 +42,54 @@ function ResetPasswordContent() {
       <Typography className="p-5" variant="h5" align="center">
         {t('RESET_PASSWORD')}
       </Typography>
-      <div className="flex justify-center">
-        <form
-          onSubmit={handleSubmit((data) => {
-            console.log(rndCodePassword);
-            dispatch(resettedPassword({ rndCodePassword: rndCodePassword, formData: data }));
-          })}
-          className="flex justify-center">
-          <fieldset className="flex justify-center">
-            <div className="grid gap-8">
-              <TextField
-                {...register('password')}
-                required
-                name="password"
-                type="password"
-                value={registerData.password}
-                error={passwordErr}
-                helperText={passwordErr && t('PASSWORD_STRENGHT')}
-                onChange={registerChangeHandler}
-                label={t('PASSWORD')}
-                className="border-2"
-              />
-              <TextField
-                {...register('password_confirmation')}
-                required
-                name="password_confirmation"
-                type="password"
-                error={registerData.password !== registerData.password_confirmation}
-                helperText={
-                  registerData.password !== registerData.password_confirmation &&
-                  t('PASSWORD_MISSMATCH')
-                }
-                value={registerData.password_confirmation}
-                onChange={registerChangeHandler}
-                label={t('PASSWORD_CONFIRM')}
-                className="border-2"
-              />
+      <form
+        onSubmit={handleSubmit((data) => {
+          dispatch(resettedPassword({ rndString: rndCodePassword, formData: data }));
+        })}
+        className="flex justify-center w-full">
+        <fieldset className="w-1/3 max-md:w-3/4">
+          <div className="grid gap-8">
+            <TextField
+              {...register('password')}
+              required
+              name="password"
+              type="password"
+              value={registerData.password}
+              error={passwordErr}
+              helperText={passwordErr && t('PASSWORD_STRENGHT')}
+              onChange={registerChangeHandler}
+              label={t('PASSWORD')}
+              className="border-2"
+            />
+            <TextField
+              {...register('password_confirmation')}
+              required
+              name="password_confirmation"
+              type="password"
+              error={registerData.password !== registerData.password_confirmation}
+              helperText={
+                registerData.password !== registerData.password_confirmation &&
+                t('PASSWORD_MISSMATCH')
+              }
+              value={registerData.password_confirmation}
+              onChange={registerChangeHandler}
+              label={t('PASSWORD_CONFIRM')}
+              className="border-2"
+            />
 
-              <Button
-                variant="contained"
-                color="info"
-                disabled={
-                  passwordErr || registerData.password !== registerData.password_confirmation
-                }
-                className=" w-full mt-16"
-                aria-label="Sign in"
-                type="submit"
-                size="large">
-                {t('RESET_PASSWORD')}
-              </Button>
-            </div>
-          </fieldset>
-        </form>
-      </div>
+            <Button
+              variant="contained"
+              color="info"
+              disabled={passwordErr || registerData.password !== registerData.password_confirmation}
+              className=" w-full mt-16"
+              aria-label="Sign in"
+              type="submit"
+              size="large">
+              {t('RESET_PASSWORD')}
+            </Button>
+          </div>
+        </fieldset>
+      </form>
     </div>
   );
 }
