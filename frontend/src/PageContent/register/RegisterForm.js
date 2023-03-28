@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Button, TextField } from '@mui/material';
+import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,6 +7,7 @@ import { fetchRegister } from 'redux/thunks/Auth';
 import Loader from 'PageContent/utils/Loader';
 import { Navigate } from 'react-router-dom';
 import regexTests from 'PageContent/utils/Regex';
+import { HU, US } from 'country-flag-icons/react/3x2';
 
 function RegisterForm() {
   const { t } = useTranslation('register');
@@ -21,7 +22,8 @@ function RegisterForm() {
     password: 'Aa123456',
     password_confirmation: 'Aa123456',
     userName: 'Jancsi',
-    phoneNumber: '06301111111'
+    phoneNumber: '06301111111',
+    language: 'hu'
   };
 
   const [registerData, setRegisterData] = useState(registerObj);
@@ -111,6 +113,33 @@ function RegisterForm() {
             label={t('TEL_NUM')}
             className="border-2"
           />
+
+          <FormControl>
+            <InputLabel shrink={true} id="demo-simple-select-label">
+              {t('PREF_LANG')}
+            </InputLabel>
+            <Select
+              {...register('language')}
+              notched={true}
+              label={t('PREF_LANG')}
+              value={registerData.language}
+              onChange={registerChangeHandler}
+              inputProps={{ 'aria-label': 'Without label' }}>
+              <MenuItem value={'hu'}>
+                <div className="flex justify-between">
+                  <HU title="Hungary" className="w-5 mr-3" />
+                  HU
+                </div>
+              </MenuItem>
+              <MenuItem value={'en'}>
+                <div className=" flex justify-between">
+                  <US title="USA" className="w-5 mr-3" />
+                  EN
+                </div>
+              </MenuItem>
+            </Select>
+          </FormControl>
+
           <Button
             variant="contained"
             color="info"
