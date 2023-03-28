@@ -121,6 +121,7 @@ export const putBasket = createAsyncThunk(
   async ({ data, id }, { dispatch, rejectWithValue }) => {
     try {
       api.put(`${basket.basket}/${id}`, data).then(() => {
+        dispatch(getBasketWithDetalis(data.user));
         dispatch(getBasketCounter(data.user));
       });
     } catch (err) {

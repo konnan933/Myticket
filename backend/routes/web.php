@@ -132,6 +132,7 @@ Route::put('api/pay/{id}', [BasketController::class, 'payTickets']);
 Route::get('api/ticketcount/{id}', [BasketController::class, 'hasManyBasketTickets']);
 Route::delete('api/basket', [BasketController::class, 'destroyAll']);
 Route::delete('api/basket/{id}', [BasketController::class, 'destroy']);
+Route::get('api/basket/payment/{id}', [BasketController::class, 'hasToPayAmount']);
 
 //Számla vegpontok
 Route::get('api/bill', [RecieptController::class, 'index']);

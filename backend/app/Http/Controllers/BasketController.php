@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Basket;
+use App\Models\ConceptTicket;
+use App\Models\Currencies;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -76,7 +78,7 @@ class BasketController extends Controller
     public function payTickets($userId)
     {
         $baskets =  Basket::where('user', $userId)->get();
-        foreach ($baskets as &$basket) {
+        foreach ($baskets as $basket) {
             $basket->payed = 1;
             $basket->save();
         }
@@ -86,10 +88,27 @@ class BasketController extends Controller
         $baskets =  Basket::where('user', $userId)->get();
         $ticketCount = 0;
         if (!$baskets->isEmpty()) {
-            foreach ($baskets as &$basket) {
+            foreach ($baskets as $basket) {
                 $ticketCount += $basket->numberOfTickets;
             }
         }
         return $ticketCount;
+    }
+
+    public function hasToPayAmount(Request $request, $userId)
+    {
+        $baskets =  Basket::where('user', $userId)->get();
+        $payAmount = 0;
+
+        if (!$baskets->isEmpty()) {
+            foreach ($baskets as $basket) {
+                $localeConceptTicket = ConceptTicket::find($basket->conceptTicketId);
+                $localeCurrencies = Currencies::where('name', $request->currencies)->where('changeTo',   $localeConceptTicket->currencies)->get();
+                //return $localeCurrencies;
+
+                $payAmount += $localeConceptTicket->price  * $localeCurrencies[0]->exchangeRate * $basket->numberOfTickets;
+            }
+        }
+        return $payAmount;
     }
 }
