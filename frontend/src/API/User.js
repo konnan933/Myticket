@@ -6,7 +6,9 @@ const user = {
   confirmEmail: 'api/emailverification',
   emailConfirmed: 'api/verifyemail',
   resetPassword: 'api/resetpassword',
-  resettedPassword: 'api/passwordreset'
+  resettedPassword: 'api/passwordreset',
+  loggedUser: 'api/loggedIn',
+  checkEmail: 'api/users/emailcheck'
 };
 
 export default user;

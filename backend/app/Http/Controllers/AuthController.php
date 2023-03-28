@@ -24,10 +24,21 @@ class AuthController extends Controller
             $verificationPassword = new VerificationsEmail();
             $verificationPassword->user = $userId;
         }
-
         $verificationPassword->emailString = $rndString;
         $verificationPassword->save();
 
+        if($user->language === 'hu'){
+        $subject = "Email cím megerősítése";
+        Mail::send(
+            'email.huEmailVerification',
+            ['link' => $link],
+            function ($mail) use ($user, $subject) {
+                $mail->from("myticketszakdoga@gmail.com", "MyTicket");
+                $mail->to($user->email, $user->name);
+                $mail->subject($subject);
+            }
+        );
+        }else{
         $subject = "Email verification";
         Mail::send(
             'email.enEmailVerification',
@@ -38,6 +49,7 @@ class AuthController extends Controller
                 $mail->subject($subject);
             }
         );
+        }
     }
 
     public function verifyEmail($emailString)
@@ -65,8 +77,9 @@ class AuthController extends Controller
         $rndString = Str::random(20);
         $link =  env('FRONTEND_URL') . '/passwordReset/' . $rndString;
         $email = $request->email;
-        $emailExists = User::where('email', $email)->get();
-        if ($emailExists->isEmpty()) {
+        $emailExsits = User::where('email', $email)->get();
+        $user = User::where('email','like',$email) -> first();
+        if ($emailExsits->isEmpty()) {
             return response()->json([
                 'data' => false
             ]);
@@ -80,7 +93,19 @@ class AuthController extends Controller
         $verificationPassword->newPaswordCode = $rndString;
         $verificationPassword->save();
 
-        $subject = "Reset password";
+        if($user->language === 'hu'){
+            $subject = "Jelszó megváltoztatása";
+        Mail::send(
+            'email.huPasswordReset',
+            ['link' => $link],
+            function ($mail) use ($email, $subject) {
+                $mail->from("myticketszakdoga@gmail.com", "MyTicket");
+                $mail->to($email);
+                $mail->subject($subject);
+            }
+        );
+        }else{
+            $subject = "Reset password";
         Mail::send(
             'email.enPaswordReset',
             ['link' => $link],
@@ -90,6 +115,7 @@ class AuthController extends Controller
                 $mail->subject($subject);
             }
         );
+        }
     }
 
     public function newPassword(Request $request, $rndString)

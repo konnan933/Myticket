@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import user from 'API/User';
 import api from '../../axios/axois';
+import { getLoggedInUser } from './Auth';
 
 export const getUserEvents = createAsyncThunk(
   'user/getUserEvents',
@@ -52,10 +53,10 @@ export const updateUserProfile = createAsyncThunk(
 
 export const emailVerifiedViaEmail = createAsyncThunk(
   'user/verifyEmail',
-  async (rndString, { rejectWithValue }) => {
+  async (rndString, { dispatch, rejectWithValue }) => {
     try {
       const response = await api.post(`${user.emailConfirmed}/${rndString}`).then(() => {
-        window.location.reload(true);
+        dispatch(getLoggedInUser());
       });
       return response?.data;
     } catch (err) {
@@ -105,6 +106,22 @@ export const resettedPassword = createAsyncThunk(
   async ({ rndString, formData }, { rejectWithValue }) => {
     try {
       const response = await api.post(`${user.resettedPassword}/${rndString}`, formData);
+      return response?.data;
+    } catch (err) {
+      if (!err.response) {
+        throw err;
+      }
+      const { data, status } = err.response;
+      return rejectWithValue({ data, status });
+    }
+  }
+);
+
+export const checkUserEmail = createAsyncThunk(
+  'user/checkUserEmail',
+  async (email, { rejectWithValue }) => {
+    try {
+      const response = await api.post(`${user.checkEmail}`, email);
       return response?.data;
     } catch (err) {
       if (!err.response) {

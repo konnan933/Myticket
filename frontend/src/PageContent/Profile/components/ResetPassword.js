@@ -11,7 +11,6 @@ function ResetPassword() {
   const { t } = useTranslation('profile');
   const dispatch = useDispatch();
   const { loggedUser } = useSelector((state) => state.auth);
-  console.log(loggedUser);
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(true);

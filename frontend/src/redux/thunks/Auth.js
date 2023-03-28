@@ -1,4 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import user from 'API/User';
+import i18n from 'i18n';
+import { toast } from 'react-toastify';
 import { setLoggedIn, setLoggedUser, setLogin, setRememberMe } from 'redux/slices/AuthSlice';
 import auth from '../../API/Auth';
 import api from '../../axios/axois';
@@ -53,7 +56,15 @@ export const fetchRegister = createAsyncThunk(
       await api.get('/sanctum/csrf-cookie');
       await api.post(auth.register, data).then((response) => {
         dispatch(fetchLogin({ email: data.email, password: data.password }));
-        dispatch(verifyEmail(response.data[0].id));
+        dispatch(verifyEmail(response.data.id)).then(() => {
+          if (i18n.language === 'hu') {
+            return toast.success(
+              i18n.t('hu', 'Az megerősítő emailt a megadott email címre kiküldtük!')
+            );
+          } else {
+            return toast.success(i18n.t('en', 'Verification email sent for your email address'));
+          }
+        });
       });
     } catch (err) {
       if (!err.response) {
@@ -80,6 +91,23 @@ export const fetchLoggedIn = createAsyncThunk(
         throw err;
       }
 
+      const { data, status } = err.response;
+      return rejectWithValue({ data, status });
+    }
+  }
+);
+
+export const getLoggedInUser = createAsyncThunk(
+  'auth/getLoggedInUser',
+  async (_, { dispatch, rejectWithValue }) => {
+    try {
+      await api.get(user.loggedUser).then((response) => {
+        dispatch(setLoggedUser(response.data));
+      });
+    } catch (err) {
+      if (!err.response) {
+        throw err;
+      }
       const { data, status } = err.response;
       return rejectWithValue({ data, status });
     }
