@@ -11,6 +11,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         Commands\BasketCleaning::class,
         Commands\EventExpired::class,
+        Commands\GetExchangeRate::class,
     ];
     /**
      * Define the application's command schedule.
@@ -23,7 +24,8 @@ class Kernel extends ConsoleKernel
         //terminálban php artisan schedule:work hogy elinduljon a megadott időzitéssel
         $schedule->command('basket:everyTenMinutes')
             ->everyTenMinutes();
-        $schedule->command('event:eventExpired')->everyMinute();
+        $schedule->command('event:eventExpired')->everyTenMinutes();
+        $schedule->command('currencies:getExchangeRate')->everyMinute();
     }
 
     /**
