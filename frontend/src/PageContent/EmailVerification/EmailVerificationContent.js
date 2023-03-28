@@ -18,7 +18,7 @@ function EmailVerificationContent() {
     if (loggedIn) {
       dispatch(emailVerifiedViaEmail(rndCodeEmail));
     }
-  }, [loggedIn]);
+  }, []);
 
   if (emailVerifyLoading) {
     return <Loader />;

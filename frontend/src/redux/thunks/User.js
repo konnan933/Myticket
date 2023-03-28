@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import user from 'API/User';
 import api from '../../axios/axois';
+import { getLoggedInUser } from './Auth';
 
 export const getUserEvents = createAsyncThunk(
   'user/getUserEvents',
@@ -52,10 +53,10 @@ export const updateUserProfile = createAsyncThunk(
 
 export const emailVerifiedViaEmail = createAsyncThunk(
   'user/verifyEmail',
-  async (rndString, { rejectWithValue }) => {
+  async (rndString, { dispatch, rejectWithValue }) => {
     try {
       const response = await api.post(`${user.emailConfirmed}/${rndString}`).then(() => {
-        window.location.reload(true);
+        dispatch(getLoggedInUser());
       });
       return response?.data;
     } catch (err) {

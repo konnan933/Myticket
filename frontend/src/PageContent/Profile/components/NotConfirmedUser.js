@@ -17,7 +17,7 @@ function NotConfrimedUser() {
     setOpen(true);
     dispatch(verifyEmail(loggedUser.id));
   };
-  console.log('git');
+
   const [open, setOpen] = useState(false);
   if (loggedUser.confirmed === 0) {
     return (

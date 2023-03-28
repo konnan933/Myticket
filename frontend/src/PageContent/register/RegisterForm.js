@@ -18,11 +18,11 @@ function RegisterForm() {
   const { regLoading, loggedIn } = useSelector((state) => state.auth);
 
   const registerObj = {
-    email: 'af@gmail.com',
-    password: 'Aa123456',
-    password_confirmation: 'Aa123456',
-    userName: 'Jancsi',
-    phoneNumber: '06301111111',
+    email: '',
+    password: '',
+    password_confirmation: '',
+    userName: '',
+    phoneNumber: '',
     language: 'hu'
   };
 
