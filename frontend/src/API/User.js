@@ -5,7 +5,8 @@ const user = {
   userEventsWithDetails: 'api/usereventswithdeatils',
   confirmEmail: 'api/emailverification',
   emailConfirmed: 'api/verifyemail',
-  resetPassword: 'api/resetpassword'
+  resetPassword: 'api/resetpassword',
+  resettedPassword: 'api/passwordreset/'
 };
 
 export default user;

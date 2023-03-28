@@ -1,10 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import {
-  setLoggedIn,
-  setLoggedUser,
-  setLogin,
-  setRememberMe,
-} from 'redux/slices/AuthSlice';
+import { setLoggedIn, setLoggedUser, setLogin, setRememberMe } from 'redux/slices/AuthSlice';
 import auth from '../../API/Auth';
 import api from '../../axios/axois';
 import { verifyEmail } from './User';
@@ -18,7 +13,6 @@ export const fetchLogin = createAsyncThunk(
         dispatch(setLoggedIn(true));
         dispatch(setRememberMe(rememberMe));
         dispatch(setLoggedUser(response.data[0]));
-        dispatch(verifyEmail(response.data[0].id));
         return response;
       });
       return response.data;
@@ -57,8 +51,9 @@ export const fetchRegister = createAsyncThunk(
   async (data, { dispatch, rejectWithValue }) => {
     try {
       await api.get('/sanctum/csrf-cookie');
-      await api.post(auth.register, data).then(() => {
+      await api.post(auth.register, data).then((response) => {
         dispatch(fetchLogin({ email: data.email, password: data.password }));
+        dispatch(verifyEmail(response.data[0].id));
       });
     } catch (err) {
       if (!err.response) {

@@ -8,17 +8,15 @@ import { emailVerifiedViaEmail } from 'redux/thunks/User';
 
 function EmailVerificationContent() {
   const { t } = useTranslation('profile');
-  const { rndCode } = useParams();
+  const { rndCodeEmail } = useParams();
   const dispatch = useDispatch();
   const { emailVerify, emailVerifyLoading } = useSelector((state) => state.user);
   const { loggedIn } = useSelector((state) => state.auth);
   console.log(emailVerify);
 
-  console.log(rndCode);
-
   useEffect(() => {
     if (loggedIn) {
-      dispatch(emailVerifiedViaEmail(rndCode));
+      dispatch(emailVerifiedViaEmail(rndCodeEmail));
     }
   }, [loggedIn]);
 

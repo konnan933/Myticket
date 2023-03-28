@@ -88,11 +88,11 @@ export const allRootConfig = [
     element: <ProfilePage />
   },
   {
-    pagePath: '/emailVerification/:rndCode',
+    pagePath: '/emailVerification/:rndCodeEmail',
     element: <EmailVerificationPage />
   },
   {
-    pagePath: '/resetpassword/:rndCode',
+    pagePath: '/passwordReset/:rndCodePassword',
     element: <ResetPasswordPage />
   }
 ];

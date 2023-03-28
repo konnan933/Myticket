@@ -14,8 +14,8 @@ function NotConfrimedUser() {
     setOpen(false);
   };
   const handleOpen = () => {
-    dispatch(verifyEmail(loggedUser.id));
     setOpen(true);
+    dispatch(verifyEmail(loggedUser.id));
   };
   console.log('git');
   const [open, setOpen] = useState(false);

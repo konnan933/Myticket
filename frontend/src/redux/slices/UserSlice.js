@@ -3,7 +3,7 @@ import {
   emailVerifiedViaEmail,
   getUserEvents,
   getUserEventsWithDetails,
-  userResetPassword
+  resettedPassword
 } from 'redux/thunks/User';
 
 const USER_INIT_STATE = {
@@ -13,8 +13,8 @@ const USER_INIT_STATE = {
   userEventsWithDetailsLoading: false,
   emailVerify: {},
   emailVerifyLoading: false,
-  resetPassword: {},
-  resetPasswordLoading: false
+  resettedPasswordResponse: {},
+  resettedPasswordLoading: false
 };
 const userSlice = createSlice({
   name: 'user',
@@ -51,15 +51,15 @@ const userSlice = createSlice({
     builder.addCase(emailVerifiedViaEmail.rejected, (state) => {
       state.emailVerifyLoading = false;
     });
-    builder.addCase(userResetPassword.pending, (state) => {
-      state.resetPasswordLoading = true;
+    builder.addCase(resettedPassword.pending, (state) => {
+      state.resettedPasswordLoading = true;
     });
-    builder.addCase(userResetPassword.fulfilled, (state, action) => {
-      state.resetPasswordLoading = false;
-      state.resetPassword = action.payload;
+    builder.addCase(resettedPassword.fulfilled, (state, action) => {
+      state.resettedPasswordLoading = false;
+      state.resettedPasswordResponse = action.payload;
     });
-    builder.addCase(userResetPassword.rejected, (state) => {
-      state.resetPasswordLoading = false;
+    builder.addCase(resettedPassword.rejected, (state) => {
+      state.resettedPasswordLoading = false;
     });
   }
 });
