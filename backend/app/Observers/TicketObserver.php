@@ -9,7 +9,7 @@ use App\Models\Tickets;
 use App\Models\Basket;
 use Illuminate\Support\Facades\Hash;
 
-class JegyekObserver
+class TicketObserver
 {
     /**
      * Handle the Tickets "created" event.
