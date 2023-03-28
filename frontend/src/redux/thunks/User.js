@@ -102,9 +102,9 @@ export const userResetPassword = createAsyncThunk(
 
 export const resettedPassword = createAsyncThunk(
   'user/resettedPassword',
-  async (rndString, { rejectWithValue }) => {
+  async ({ rndString, formData }, { rejectWithValue }) => {
     try {
-      const response = await api.post(`${user.resettedPassword}/${rndString}`);
+      const response = await api.post(`${user.resettedPassword}/${rndString}`, formData);
       return response?.data;
     } catch (err) {
       if (!err.response) {

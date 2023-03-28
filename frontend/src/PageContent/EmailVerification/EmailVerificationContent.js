@@ -1,19 +1,19 @@
-import { Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import Loader from 'PageContent/utils/Loader';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { emailVerifiedViaEmail } from 'redux/thunks/User';
 
 function EmailVerificationContent() {
-  const { t } = useTranslation('profile');
+  const { t } = useTranslation('email');
   const { rndCodeEmail } = useParams();
   const dispatch = useDispatch();
   const { emailVerify, emailVerifyLoading } = useSelector((state) => state.user);
   const { loggedIn } = useSelector((state) => state.auth);
   console.log(emailVerify);
-
+  const navigate = useNavigate();
   useEffect(() => {
     if (loggedIn) {
       dispatch(emailVerifiedViaEmail(rndCodeEmail));
@@ -29,6 +29,7 @@ function EmailVerificationContent() {
       <Typography variant="h5" align="center">
         {t('SUCCES_VERIFY')}
       </Typography>
+      <Button onClick={() => navigate('/')}>{t('SEARCH_EVENTS')}</Button>
     </div>
   );
 }
