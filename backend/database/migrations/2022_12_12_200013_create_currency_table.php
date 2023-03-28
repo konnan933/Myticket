@@ -17,13 +17,15 @@ return new class extends Migration
     {
         Schema::create('currencies', function (Blueprint $table) {
             $table->char('name', 3);
-            $table->primary('name');
+            $table->char('changeTo', 3);
+            $table->integer('exchangeRate');
+            $table->primary(['name', 'changeTo']);
         });
 
-        Currencies::create(['name' => 'HUF']);
-        Currencies::create(['name' => 'USD']);
-        Currencies::create(['name' => 'CHF']);
-        Currencies::create(['name' => 'EUR']);
+        Currencies::create(['name' => 'HUF', 'changeTo' => 'USD', 'exchangeRate' => 350]);
+        Currencies::create(['name' => 'HUF', 'changeTo' => 'EUR', 'exchangeRate' => 350]);
+        Currencies::create(['name' => 'USD', 'changeTo' => 'HUF', 'exchangeRate' => 350]);
+        Currencies::create(['name' => 'EUR', 'changeTo' => 'HUF', 'exchangeRate' => 350]);
     }
 
     /**

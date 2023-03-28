@@ -20,17 +20,6 @@ class ConceptTicketObserver
         if ($conceptTicket->startDate < now()) {
             return false;
         }
-        $conceptTickets =  ConceptTicket::where('eventId', $conceptTicket->eventId)->get();
-
-        if (!$conceptTickets->isEmpty()) {
-            foreach ($conceptTickets as $ticket) {
-                if ($ticket->currencies != $conceptTicket->currencies) {
-                    return false;/* response()->json([
-                        'data'  => 'The currencies in one event can be only the same.'
-                    ], 404); */
-                }
-            }
-        }
     }
     public function created(ConceptTicket $conceptTicket)
     {
