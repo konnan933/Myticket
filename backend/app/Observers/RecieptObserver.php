@@ -5,7 +5,7 @@ namespace App\Observers;
 use App\Http\Controllers\EmailController;
 use App\Models\Reciept;
 
-class SzamlafejObserver
+class RecieptObserver
 {
     /**
      * Handle the Reciept "created" event.

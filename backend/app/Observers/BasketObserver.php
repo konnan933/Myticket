@@ -9,7 +9,7 @@ use App\Models\Reciept;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
-class KosarObserver
+class BasketObserver
 {
 
 
@@ -47,9 +47,9 @@ class KosarObserver
     public function updated(Basket $basket)
     {
         if ($basket->payed == 1) {
-            $szamlaId = KosarObserver::szamlaLetrehozas($basket);
+            $szamlaId = BasketObserver::szamlaLetrehozas($basket);
             for ($i = 0; $i < $basket->numberOfTickets; $i++) {
-                KosarObserver::jegyekLetrehozas($basket, $szamlaId);
+                BasketObserver::jegyekLetrehozas($basket, $szamlaId);
             }
             Basket::where('id', $basket->id)->delete();
         }
@@ -67,7 +67,7 @@ class KosarObserver
     }
     public function szamlaLetrehozas($basket)
     {
-        $withVatPrice = KosarObserver::afasArKiszamolo($basket->numberOfTickets, ConceptTicket::find($basket->conceptTicketId)->price);
+        $withVatPrice = BasketObserver::afasArKiszamolo($basket->numberOfTickets, ConceptTicket::find($basket->conceptTicketId)->price);
         $reciept = new Reciept();
         $reciept->senderName = "MyTicket";
         $reciept->buyerName = User::find($basket->user)->userName;

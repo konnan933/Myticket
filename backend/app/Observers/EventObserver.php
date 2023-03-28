@@ -9,7 +9,7 @@ use App\Models\EventsChanges;
 use App\Models\ConceptTicket;
 use Illuminate\Http\Response;
 
-class EsemenyekObserver
+class EventObserver
 {
     /**
      * Handle the events "created" event.
