@@ -116,3 +116,19 @@ export const resettedPassword = createAsyncThunk(
     }
   }
 );
+
+export const checkUserEmail = createAsyncThunk(
+  'user/checkUserEmail',
+  async (email, { rejectWithValue }) => {
+    try {
+      const response = await api.post(`${user.checkEmail}`, email);
+      return response?.data;
+    } catch (err) {
+      if (!err.response) {
+        throw err;
+      }
+      const { data, status } = err.response;
+      return rejectWithValue({ data, status });
+    }
+  }
+);

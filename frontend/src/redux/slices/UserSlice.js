@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
+  checkUserEmail,
   emailVerifiedViaEmail,
   getUserEvents,
   getUserEventsWithDetails,
@@ -14,7 +15,8 @@ const USER_INIT_STATE = {
   emailVerify: {},
   emailVerifyLoading: false,
   resettedPasswordResponse: {},
-  resettedPasswordLoading: false
+  resettedPasswordLoading: false,
+  emailTaken: { taken: true }
 };
 const userSlice = createSlice({
   name: 'user',
@@ -60,6 +62,10 @@ const userSlice = createSlice({
     });
     builder.addCase(resettedPassword.rejected, (state) => {
       state.resettedPasswordLoading = false;
+    });
+    builder.addCase(checkUserEmail.fulfilled, (state, action) => {
+      state.resettedPasswordLoading = false;
+      state.emailTaken = action.payload;
     });
   }
 });

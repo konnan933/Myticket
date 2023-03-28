@@ -77,8 +77,9 @@ class AuthController extends Controller
         $rndString = Str::random(20);
         $link =  env('FRONTEND_URL') . '/passwordReset/' . $rndString;
         $email = $request->email;
-        $userEmail = User::where('email', $email)->get();
-        if ($userEmail->isEmpty()) {
+        $emailExsits = User::where('email', $email)->get();
+        $user = User::where('email','like',$email) -> first();
+        if ($emailExsits->isEmpty()) {
             return response()->json([
                 'data' => false
             ]);
@@ -92,10 +93,10 @@ class AuthController extends Controller
         $verificationPassword->newPaswordCode = $rndString;
         $verificationPassword->save();
 
-        if($userEmail->language=== 'hu'){
+        if($user->language === 'hu'){
             $subject = "Jelszó megváltoztatása";
         Mail::send(
-            'email.huPaswordReset',
+            'email.huPasswordReset',
             ['link' => $link],
             function ($mail) use ($email, $subject) {
                 $mail->from("myticketszakdoga@gmail.com", "MyTicket");

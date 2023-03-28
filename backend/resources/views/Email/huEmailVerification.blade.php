@@ -144,7 +144,7 @@
                                             <tr>
                                                 <td align="center" bgcolor="#FBC95C" style="border-radius: 6px;">
                                                     <a href={{$link}} target="_blank"
-                                                        style="display: inline-block; padding: 16px 36px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; color: #ffffff; text-decoration: none; border-radius: 6px;">Confirm</a>
+                                                        style="display: inline-block; padding: 16px 36px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; color: #ffffff; text-decoration: none; border-radius: 6px;">Megerősítés</a>
                                                 </td>
                                             </tr>
                                         </table>

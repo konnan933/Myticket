@@ -16,7 +16,6 @@ function LangChanger() {
     dispatch(updateUserProfile(localUser));
     changeLanguage(event.target.value);
     setLang(event.target.value);
-    console.log(localUser);
   };
 
   return (

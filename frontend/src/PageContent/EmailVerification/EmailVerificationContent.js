@@ -29,7 +29,9 @@ function EmailVerificationContent() {
       <Typography variant="h5" align="center">
         {t('SUCCES_VERIFY')}
       </Typography>
-      <Button onClick={() => navigate('/')}>{t('SEARCH_EVENTS')}</Button>
+      <div className="flex justify-center">
+        <Button onClick={() => navigate('/')}>{t('SEARCH_EVENTS')}</Button>
+      </div>
     </div>
   );
 }

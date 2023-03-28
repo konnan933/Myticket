@@ -105,4 +105,16 @@ class UserController extends Controller
     {
         return Auth::User();
     }
+
+    public function CheckUserEmail(Request $request){
+        $emailTaken = DB::table('users')->select('email')
+        ->where('email' ,'=', $request->email)
+        ->count() > 0;
+        if($emailTaken){
+            return response()->json(["taken" => true]);
+        }else{
+            return response()->json(["taken" => false]);
+        }
+    }
+
 }

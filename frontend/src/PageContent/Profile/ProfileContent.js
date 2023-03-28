@@ -7,8 +7,15 @@ import EditUserEmail from './components/EditUserEmail';
 import EditUserPhoneNum from './components/EditUserPhoneNum';
 import ResetPassword from './components/ResetPassword';
 import NotConfrimedUser from './components/NotConfirmedUser';
+import { useSelector } from 'react-redux';
+import Loader from 'PageContent/utils/Loader';
 
 function ProfileContent() {
+  const { loggedUser } = useSelector((state) => state.auth);
+  if (loggedUser.id === undefined) {
+    return <Loader />;
+  }
+
   return (
     <div>
       <div className="flex justify-center">
@@ -21,9 +28,7 @@ function ProfileContent() {
                   <EditUserName />
                   <EditUserEmail />
                   <EditUserPhoneNum />
-                  <div>
-                    
-                  </div>
+                  <div></div>
                 </CardContent>
                 <CardActions>
                   <ResetPassword />

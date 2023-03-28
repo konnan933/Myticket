@@ -44,6 +44,7 @@ Route::middleware(['user'])->group(function () {
 Route::get('api/users', [UserController::class, 'index']);
 Route::get('api/usernames', [UserController::class, 'getUserNames']);
 Route::post('api/users', [UserController::class, 'store']);
+Route::post('api/users/emailcheck', [UserController::class, 'CheckUserEmail']);
 Route::put('api/users/{id}', [UserController::class, 'update']);
 Route::delete('api/users/{id}', [UserController::class, 'destroy']);
 Route::get('api/loggedIn', [UserController::class, 'loggedInUser']);

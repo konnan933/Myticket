@@ -15,8 +15,6 @@ function ResetPasswordContent() {
   const { resettedPasswordResponse, resettedPasswordLoading } = useSelector((state) => state.user);
   const { register, handleSubmit } = useForm();
 
-  console.log(rndCodePassword);
-
   const registerObj = {
     password: '',
     password_confirmation: ''

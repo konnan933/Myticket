@@ -8,7 +8,9 @@ const locale = {
   RESET_PASSWORD: 'Új jelszó',
   EMAIL_NOT_CONFIRMED: 'Az email címe nincs megerősítve, kérjük mi hamarabb erősítse meg!',
   SEND_AGAIN: 'Megerősítő email újraküldése',
-  EMAIL_SENT: 'Megerősítő email sikeresen kiküldve'
+  EMAIL_SENT: 'Megerősítő email sikeresen kiküldve',
+  RESET_PASSWORD_EMAIL: 'Az új jelszóhoz szükséges email sikeresen ki lett küldve',
+  EMAIL_TAKEN: 'A megadott email cím már foglalt'
 };
 
 export default locale;
