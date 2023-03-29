@@ -28,7 +28,7 @@ function EventTickets() {
                   ticket.startDate
                 }`}</Typography>
                 <div className="border-b-2 border-bc-gray-theme w-full my-4" />
-                <TicketCounterButton conceptTicketId={ticket.conceptTicketId} />
+                <TicketCounterButton ticket={ticket} />
               </CardContent>
             </CardActionArea>
           </Card>

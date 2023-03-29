@@ -18,7 +18,12 @@ const locale = {
   END_DATE_LOWER: 'The event end date cannot be lower than the event start date',
   START_DATE_LOWER: 'The event start date cannot be lower then tomorrow',
   SEND_EVENT: 'Send event',
-  ORGANIZER_HELPER: 'Only you can be the organizer'
+  ORGANIZER_HELPER: 'Only you can be the ',
+  EVENT_TYPE_1: 'Party',
+  EVENT_TYPE_2: 'Festival',
+  EVENT_TYPE_3: 'Concert',
+  EVENT_TYPE_4: 'Show',
+  EVENT_TYPE_5: 'Other'
 };
 
 export default locale;

@@ -243,7 +243,7 @@ function EditEvent({ event }) {
                             inputProps={{ 'aria-label': 'Without label' }}>
                             {eventTypes.map((eventType) => (
                               <MenuItem key={eventType.id} value={eventType.id}>
-                                {eventType.name}
+                                {t(`EVENT_TYPE_${eventType.id}`)}
                               </MenuItem>
                             ))}
                           </Select>
