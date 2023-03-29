@@ -44,9 +44,10 @@ function DeleteUser({ id }) {
             left: '50%',
             display: 'block',
             transform: 'translate(-50%, -50%)',
-            width: '80%',
+            width: hasAcceptedEvent ? '80%' : '40%',
             overflowY: 'auto',
-            maxHeight: '80%',
+            maxHeight: hasAcceptedEvent ? '80%' : '100%',
+            height: hasAcceptedEvent ? '70%' : '20%',
             bgcolor: 'white',
             boxShadow: 24,
             borderRadius: 7
@@ -83,7 +84,7 @@ function DeleteUser({ id }) {
                 </div>
               ) : (
                 <div>
-                  <div className="flex justify-center p-2">
+                  <div className="flex justify-center items-center h-full p-2 pt-10">
                     <p>{t('CONFIRM_DELETE_USER')}</p>
                   </div>
                   <ConfirmUserDelete setOpen={setOpen} id={id} />
