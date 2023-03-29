@@ -69,6 +69,7 @@ const locale = {
   EVENT_TYPE_2: 'Fesztivál',
   EVENT_TYPE_3: 'Koncert',
   EVENT_TYPE_4: 'Előodas',
-  EVENT_TYPE_5: 'Egyéb'
+  EVENT_TYPE_5: 'Egyéb',
+  BUISNESS_PHONE_NUMBER: 'Biznisz telefonszám'
 };
 export default locale;

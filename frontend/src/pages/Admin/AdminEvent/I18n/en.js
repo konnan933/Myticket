@@ -69,7 +69,8 @@ const locale = {
   EVENT_TYPE_2: 'Festival',
   EVENT_TYPE_3: 'Concert',
   EVENT_TYPE_4: 'Show',
-  EVENT_TYPE_5: 'Other'
+  EVENT_TYPE_5: 'Other',
+  BUISNESS_PHONE_NUMBER: 'Buisness phone number'
 };
 
 export default locale;

@@ -10,7 +10,7 @@ import { getTicketTypes } from 'redux/thunks/TicketTypes';
 import { getSingleEvent } from 'redux/thunks/Event';
 import TicketAddForm from 'PageContent/Admin/AdminEvents/DetailedAdminEvent/components/TicketAddForm';
 import Loader from 'PageContent/utils/Loader';
-import AddIcon from '@mui/icons-material/Add';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 function UserAddTicket() {
   const [open, setOpen] = useState(false);
@@ -37,7 +37,7 @@ function UserAddTicket() {
       <div className="flex flex-row">
         <Typography variant="h3">{`${singleEvent.title} ${t('TICKETS')}`}</Typography>
         <IconButton onClick={handleOpen}>
-          <AddIcon fontSize="medium" />
+          <AddCircleOutlineIcon fontSize="medium" />
         </IconButton>
       </div>
 
