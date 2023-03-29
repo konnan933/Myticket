@@ -65,6 +65,11 @@ const locale = {
   CANNOT_DELETE_USER: 'A kiválaszott felhasználó nem törölhető, mert van elfogadott eseménye',
   STREET: 'utca',
   IMAGE_REQUIRED: 'Kép megadása kötelező',
+  EVENT_TYPE_1: 'Buli',
+  EVENT_TYPE_2: 'Fesztivál',
+  EVENT_TYPE_3: 'Koncert',
+  EVENT_TYPE_4: 'Előodas',
+  EVENT_TYPE_5: 'Egyéb',
   BUISNESS_PHONE_NUMBER: 'Biznisz telefonszám'
 };
 export default locale;
