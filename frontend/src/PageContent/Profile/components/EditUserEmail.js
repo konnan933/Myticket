@@ -44,7 +44,6 @@ function EditUserEmail() {
 
   const handleOnSubmit = () => {
     dispatch(checkUserEmail({ email: userEmail })).then((response) => {
-      console.log(response.payload.taken);
       if (response.payload.taken) {
         setUserEmailError(true);
         setUserEmailErrorMsg(t('EMAIL_TAKEN'));

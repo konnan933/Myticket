@@ -122,6 +122,7 @@ function EditTicket({ ticket }) {
                     onSubmit={handleSubmit((data) => {
                       data.eventId = id;
                       data.conceptTicketId = ticket.conceptTicketId;
+                      data.bookedTicket = ticket.bookedTicket;
                       dispatch(
                         putEventTicket({ data, ticketId: ticket.conceptTicketId, eventId: id })
                       );

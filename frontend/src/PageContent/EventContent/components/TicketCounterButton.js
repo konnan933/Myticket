@@ -62,7 +62,6 @@ function TicketCounterButton({ conceptTicketId }) {
             label={t('NUMBER_OF_TICKETS')}
             defaultValue={counter}
             onChange={(event) => {
-              console.log(event.target.value);
               setCounter(event.target.value);
             }}
             MenuProps={{ PaperProps: { sx: { maxHeight: 200 } } }}>

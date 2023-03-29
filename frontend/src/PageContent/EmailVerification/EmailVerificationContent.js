@@ -12,7 +12,6 @@ function EmailVerificationContent() {
   const dispatch = useDispatch();
   const { emailVerify, emailVerifyLoading } = useSelector((state) => state.user);
   const { loggedIn } = useSelector((state) => state.auth);
-  console.log(emailVerify);
   const navigate = useNavigate();
   useEffect(() => {
     if (loggedIn) {

@@ -46,7 +46,6 @@ function BasketContent() {
   if (!basketWithDetailsLoading && isEmptyBasket) {
     return <EmptyBasket />;
   }
-  console.log();
   if (!isEmptyBasket) {
     return (
       <div>

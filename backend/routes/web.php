@@ -145,7 +145,7 @@ Route::get('api/usertickets/{user}', [TicketsController::class, 'getUserAllTicke
 Route::get('api/usereventtickets/{user}/{event}', [TicketsController::class, 'getUserEvenTickets']);
 Route::get('api/bticket/all/{event}', [TicketsController::class, 'getEventBuyedTickets']);
 // * qr kod letezik
-Route::get('api/bticket/qrcode/{qrcode}', [TicketsController::class, 'qrCodeExists']);
+Route::get('api/bticket/qrcode/{eventId}/{qrcode}', [TicketsController::class, 'qrCodeExists']);
 
 // ! kell composer require simplesoftwareio/simple-qrcode "~4" 
 // ! kell baconQrcode ot composer.lock-ba átírni 2.0.8 ra
