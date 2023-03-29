@@ -13,7 +13,6 @@ function ForgotPasswordContent() {
 
   function handleEmailSumbit() {
     dispatch(userResetPassword({ email: email }));
-    navigate('/login');
   }
 
   const emailChangeHandler = (event) => {

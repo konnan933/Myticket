@@ -5,21 +5,22 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { setLoggedIn } from 'redux/slices/AuthSlice';
 import { resettedPassword } from 'redux/thunks/User';
 
 function ResetPasswordContent() {
   const { t } = useTranslation('password');
   const { rndCodePassword } = useParams();
   const dispatch = useDispatch();
-  const { resettedPasswordLoading } = useSelector((state) => state.user);
+  const { resettedPasswordResponse, resettedPasswordLoading } = useSelector((state) => state.user);
   const { register, handleSubmit } = useForm();
 
   const registerObj = {
     password: '',
     password_confirmation: ''
   };
-
+  const navigate = useNavigate();
   const [registerData, setRegisterData] = useState(registerObj);
   const [passwordErr, setPasswordErr] = useState(false);
 
@@ -44,7 +45,12 @@ function ResetPasswordContent() {
       </Typography>
       <form
         onSubmit={handleSubmit((data) => {
-          dispatch(resettedPassword({ rndString: rndCodePassword, formData: data }));
+          dispatch(resettedPassword({ rndString: rndCodePassword, formData: data })).then(() => {
+            dispatch(setLoggedIn(false));
+            if (resettedPasswordResponse) {
+              navigate('/login');
+            }
+          });
         })}
         className="flex justify-center w-full">
         <fieldset className="w-1/3 max-md:w-3/4">
