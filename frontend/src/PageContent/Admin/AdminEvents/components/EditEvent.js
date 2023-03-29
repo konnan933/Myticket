@@ -153,6 +153,7 @@ function EditEvent({ event }) {
                       data.location =
                         locationName.id === undefined ? event.locationId : locationName.id;
                       data.image = imageId;
+                      data.status = event.status;
                       dispatch(putEvent(data, event.id));
                     })}>
                     <fieldset>
