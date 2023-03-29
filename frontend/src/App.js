@@ -8,10 +8,11 @@ import Loader from 'PageContent/utils/Loader';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { setRememberMe } from 'redux/slices/AuthSlice';
+import ProtectedLink from 'pages/routes/ProtectedLink';
 function App() {
   const dispatch = useDispatch();
 
-  const { loginLoading } = useSelector((state) => state.auth);
+  const { loginLoading, login } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (localStorage.getItem('rememberMe') === 'true') {
@@ -29,7 +30,17 @@ function App() {
       <Navbar />
       <Routes>
         {allRootConfig.map((root, index) => {
-          return <Route key={index} path={root.pagePath} element={root.element} />;
+          return (
+            <Route
+              key={index}
+              path={root.pagePath}
+              element={
+                <ProtectedLink level={root.level} userLevel={login[0].level}>
+                  {root.element}
+                </ProtectedLink>
+              }
+            />
+          );
         })}
       </Routes>
       <ToastContainer

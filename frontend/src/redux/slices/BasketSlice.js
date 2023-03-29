@@ -1,12 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getBasket, getBasketCounter, getBasketWithDetalis } from 'redux/thunks/Basket';
+import {
+  getBasket,
+  getBasketCounter,
+  getBasketWithDetalis,
+  userPayAmount
+} from 'redux/thunks/Basket';
 
 const BASKET_INIT_STATE = {
   basket: [],
   basketLoading: false,
   basketWithDetails: [],
   basketWithDetailsLoading: false,
-  basketCount: 0
+  basketCount: 0,
+  userPaymentAmount: 0
 };
 const basketSlice = createSlice({
   name: 'basket',
@@ -39,6 +45,9 @@ const basketSlice = createSlice({
     });
     builder.addCase(getBasketCounter.fulfilled, (state, action) => {
       state.basketCount = action.payload;
+    });
+    builder.addCase(userPayAmount.fulfilled, (state, action) => {
+      state.userPaymentAmount = action.payload;
     });
   }
 });

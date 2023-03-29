@@ -22,7 +22,7 @@ function EventTickets() {
                 <Typography variant="h6" color="text.primary">{`${t('PRICE')}: ${
                   ticket.currencies === 'HUF'
                     ? Math.round(ticket.price)
-                    : Math.round(ticket.price * 100) / 100
+                    : parseFloat(ticket.price).toFixed(2)
                 } ${ticket.currencies}`}</Typography>
                 <Typography variant="h6" color="text.primary">{`${t('TICKET_STARTS')}: ${
                   ticket.startDate
