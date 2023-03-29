@@ -6,7 +6,7 @@ import TicketCounter from './TicketCounter';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import DeleteBasketButton from './DeleteBasketButton';
 
-function BasketItems() {
+function BasketItems({ payCurrency }) {
   const { t } = useTranslation('basket');
   const { basketWithDetails } = useSelector((state) => state.basket);
 
@@ -39,7 +39,7 @@ function BasketItems() {
                 </div>
               </div>
               <div className="flex max-md:w-4/5 w-1/5 max-md:justify-evenly">
-                <TicketCounter basket={basket} />
+                <TicketCounter basket={basket} payCurrency={payCurrency} />
                 <DeleteBasketButton basket={basket} />
               </div>
             </div>

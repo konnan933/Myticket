@@ -148,7 +148,7 @@ function RegisterForm() {
             aria-label="Sign in"
             type="submit"
             size="large">
-            {t('LOGIN_SEND')}
+            {t('REGISTER')}
           </Button>
         </div>
       </fieldset>

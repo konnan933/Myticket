@@ -2,9 +2,9 @@ import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import { putBasket } from 'redux/thunks/Basket';
+import { putBasket, userPayAmount } from 'redux/thunks/Basket';
 
-function TicketCounter({ basket }) {
+function TicketCounter({ basket, payCurrency }) {
   const dispatch = useDispatch();
   const { loggedUser } = useSelector((state) => state.auth);
   const { t } = useTranslation('basket');
@@ -29,7 +29,9 @@ function TicketCounter({ basket }) {
       user: loggedUser.id,
       numberOfTickets: amount
     };
-    dispatch(putBasket({ id: basket.id, data: localBasketItem }));
+    dispatch(putBasket({ id: basket.id, data: localBasketItem })).then(() => {
+      dispatch(userPayAmount({ userId: loggedUser.id, currencies: payCurrency }));
+    });
   };
   return (
     <div className="p-2">

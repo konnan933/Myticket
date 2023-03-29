@@ -52,7 +52,7 @@ function BasketContent() {
           <BasketTimer setExpired={setExpired} date={lastBookedBasket?.bookedTime} />
         </div>
         <div className="flex justify-center">
-          <BasketItems />
+          <BasketItems payCurrency={payCurrency} />
         </div>
         <div className="flex justify-evenly w-full max-md:flex-col max-md:items-center mt-4">
           <PaymentModal />
