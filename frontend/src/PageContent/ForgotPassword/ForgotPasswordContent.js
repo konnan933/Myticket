@@ -2,14 +2,12 @@ import { Button, TextField, Typography } from '@mui/material';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { userResetPassword } from 'redux/thunks/User';
 
 function ForgotPasswordContent() {
   const { t } = useTranslation('forgot');
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
-  const navigate = useNavigate();
 
   function handleEmailSumbit() {
     dispatch(userResetPassword({ email: email }));
