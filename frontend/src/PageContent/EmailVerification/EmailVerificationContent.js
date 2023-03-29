@@ -10,7 +10,7 @@ function EmailVerificationContent() {
   const { t } = useTranslation('email');
   const { rndCodeEmail } = useParams();
   const dispatch = useDispatch();
-  const { emailVerify, emailVerifyLoading } = useSelector((state) => state.user);
+  const { emailVerifyLoading } = useSelector((state) => state.user);
   const { loggedIn } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   useEffect(() => {
