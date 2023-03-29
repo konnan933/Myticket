@@ -34,7 +34,7 @@ function BasketItems({ payCurrency }) {
                   <Typography color="text.primary">{`${
                     basket.currencies === 'HUF'
                       ? Math.round(basket.price, 0)
-                      : Math.round(basket.price, 2)
+                      : parseFloat(basket.price).toFixed(2)
                   } ${basket.currencies}`}</Typography>
                 </div>
               </div>

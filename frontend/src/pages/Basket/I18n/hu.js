@@ -13,7 +13,9 @@ const locale = {
   MINUTE: 'p',
   CONFIRM_PAY: 'Kérjük erősítse meg fizetését',
   YES: 'Igen',
-  NO: 'Nem'
+  NO: 'Nem',
+  PAYMENT_CURRENCY: 'Fizetési pénznem',
+  AMOUNT: 'összesen'
 };
 
 export default locale;
