@@ -47,7 +47,8 @@ const locale = {
   CURRENCY: 'Pénznem',
   TICKET_AMOUNT_HELPER: 'Foglalt jegyek',
   SALE_DATE_HELPER: 'Az esemény kezdete',
-  TICKET_AMOUNT_LOWER: 'Az összes jegy nem lehet kevesebb mint a foglalt jegyek'
+  TICKET_AMOUNT_LOWER: 'Az összes jegy nem lehet kevesebb mint a foglalt jegyek',
+  ADD_EVENT: 'Esemény hozzáadása'
 };
 
 export default locale;

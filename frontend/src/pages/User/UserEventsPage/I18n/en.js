@@ -42,7 +42,8 @@ const locale = {
   UPDATE_EVENT: 'Update event',
   PRICE: 'price',
   CURRENCY: 'currency',
-  TICKET_AMOUNT_HELPER: 'Booked tickets'
+  TICKET_AMOUNT_HELPER: 'Booked tickets',
+  ADD_EVENT: 'Add event'
 };
 
 export default locale;

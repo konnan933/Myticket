@@ -42,7 +42,6 @@ function UserAddEventForm() {
   const [startDateErrorMsg, setStartDateErrorMsg] = useState('');
   const [endDateErrorMsg, setEndDateErrorMsg] = useState('');
   const date = moment(new Date().setDate(new Date().getDate() + 1)).format('yyyy-MM-DDTHH:mm');
-  const [startDate, setStartDate] = useState('');
   const width = useMediaQuery('(max-width:786px)');
 
   const { eventTypes } = useSelector((state) => state.eventTypes);
@@ -88,10 +87,7 @@ function UserAddEventForm() {
   };
 
   const endDateChangeHandler = (event) => {
-    if (event.target.value <= startDate) {
-      setEndDateError(true);
-      setEndDateErrorMsg(t('END_DATE_LOWER_START_DATE'));
-    } else if (event.target.value <= date) {
+    if (event.target.value <= date) {
       setEndDateError(true);
       setEndDateErrorMsg(t('END_DATE_LOWER'));
     } else {
@@ -214,7 +210,6 @@ function UserAddEventForm() {
                 {...register('startDate')}
                 error={startDateError}
                 defaultValue={date}
-                onSelect={(event) => setStartDate(event.target.value)}
                 InputLabelProps={{ shrink: true }}
                 onChange={startDateChangeHandler}
                 helperText={startDateErrorMsg}

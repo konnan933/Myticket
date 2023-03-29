@@ -74,7 +74,7 @@ class LocationsController extends Controller
             $room = ' Terem ' . $floor;
         }
 
-        $helyszin_cim = $postcode . ' ' . $distirct . $street . 'utca' . ' ' . $houseNumber . $floor . $room;
+        $helyszin_cim = $postcode . ' ' . $distirct . $street .' '. 'utca' . ' ' . $houseNumber . $floor . $room;
 
         return $helyszin_cim;
     }

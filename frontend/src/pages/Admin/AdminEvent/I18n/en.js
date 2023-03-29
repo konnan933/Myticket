@@ -64,7 +64,8 @@ const locale = {
   EDIT_TICKET: 'Edit tickets',
   CANNOT_DELETE_USER: 'You cannot delete this user, because he/she has accepted event',
   STREET: 'street',
-  IMAGE_REQUIRED: 'Image required'
+  IMAGE_REQUIRED: 'Image required',
+  BUISNESS_PHONE_NUMBER: 'Buisness phone number'
 };
 
 export default locale;

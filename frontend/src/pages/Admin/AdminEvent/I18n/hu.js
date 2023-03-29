@@ -64,6 +64,7 @@ const locale = {
   EDIT_TICKET: 'Jegyek szerkeztése',
   CANNOT_DELETE_USER: 'A kiválaszott felhasználó nem törölhető, mert van elfogadott eseménye',
   STREET: 'utca',
-  IMAGE_REQUIRED: 'Kép megadása kötelező'
+  IMAGE_REQUIRED: 'Kép megadása kötelező',
+  BUISNESS_PHONE_NUMBER: 'Biznisz telefonszám'
 };
 export default locale;
