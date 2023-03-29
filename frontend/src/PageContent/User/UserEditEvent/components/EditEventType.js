@@ -36,7 +36,7 @@ function EditEventType({ type }) {
       window.location.reload(true);
     });
   };
-
+  console.log(type);
   const eventTypeChangeHandler = (event) => {
     setLocalType(event.target.value);
   };
@@ -57,7 +57,7 @@ function EditEventType({ type }) {
               inputProps={{ 'aria-label': 'Without label' }}>
               {eventTypes.map((eventType) => (
                 <MenuItem key={eventType.id} value={eventType.id}>
-                  {eventType.name}
+                  {t(`EVENT_TYPE_${eventType.id}`)}
                 </MenuItem>
               ))}
             </Select>
@@ -77,7 +77,7 @@ function EditEventType({ type }) {
             gutterBottom
             variant="h5"
             component="div">
-            {`${t('EVENT_TYPE')}: ${type.typeName}`}
+            {`${t('EVENT_TYPE')}:  ${t(`EVENT_TYPE_${type.ekId}`)}`}
           </Typography>
           {width && (
             <div>

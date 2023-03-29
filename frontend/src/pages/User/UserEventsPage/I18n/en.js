@@ -45,7 +45,12 @@ const locale = {
   TICKET_AMOUNT_HELPER: 'Booked tickets',
   ADD_EVENT: 'Add event',
   END_DATE_LOWER_START_DATE: 'The end date cannot be lower than the event start date',
-  START_DATE_LOWER: 'The start date cannot be lower than tomorrow'
+  START_DATE_LOWER: 'The start date cannot be lower than tomorrow',
+  EVENT_TYPE_1: 'Party',
+  EVENT_TYPE_2: 'Festival',
+  EVENT_TYPE_3: 'Concert',
+  EVENT_TYPE_4: 'Show',
+  EVENT_TYPE_5: 'Other'
 };
 
 export default locale;
