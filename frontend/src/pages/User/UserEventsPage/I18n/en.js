@@ -43,7 +43,9 @@ const locale = {
   PRICE: 'price',
   CURRENCY: 'currency',
   TICKET_AMOUNT_HELPER: 'Booked tickets',
-  ADD_EVENT: 'Add event'
+  ADD_EVENT: 'Add event',
+  END_DATE_LOWER_START_DATE: 'The end date cannot be lower than the event start date',
+  START_DATE_LOWER: 'The start date cannot be lower than tomorrow'
 };
 
 export default locale;
