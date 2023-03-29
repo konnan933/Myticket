@@ -31,7 +31,11 @@ function BasketItems() {
                 }`}</Typography>
                 <div className="w-4/5 max-md:w-full flex flex-row justify-between  max-md:flex-col ">
                   <Typography color="text.primary">{`${basket.ticketType}`}</Typography>
-                  <Typography color="text.primary">{`${basket.price} ${basket.currencies}`}</Typography>
+                  <Typography color="text.primary">{`${
+                    basket.currencies === 'HUF'
+                      ? Math.round(basket.price, 0)
+                      : Math.round(basket.price, 2)
+                  } ${basket.currencies}`}</Typography>
                 </div>
               </div>
               <div className="flex max-md:w-4/5 w-1/5 max-md:justify-evenly">

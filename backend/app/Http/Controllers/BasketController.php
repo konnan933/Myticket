@@ -95,7 +95,7 @@ class BasketController extends Controller
         return $ticketCount;
     }
 
-    public function hasToPayAmount(Request $request, $userId)
+    public function hasToPayAmount($userId, $currency)
     {
         $baskets =  Basket::where('user', $userId)->get();
         $payAmount = 0;
@@ -103,8 +103,7 @@ class BasketController extends Controller
         if (!$baskets->isEmpty()) {
             foreach ($baskets as $basket) {
                 $localeConceptTicket = ConceptTicket::find($basket->conceptTicketId);
-                $localeCurrencies = Currencies::where('name', $request->currencies)->where('changeTo',   $localeConceptTicket->currencies)->get();
-                //return $localeCurrencies;
+                $localeCurrencies = Currencies::where('name', $currency)->where('changeTo',   $localeConceptTicket->currencies)->get();
 
                 $payAmount += $localeConceptTicket->price  * $localeCurrencies[0]->exchangeRate * $basket->numberOfTickets;
             }
