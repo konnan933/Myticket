@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 import { basketCounter } from 'redux/slices/BasketSlice';
 import { postBasket } from 'redux/thunks/Basket';
 
-function TicketCounterButton({ conceptTicketId }) {
+function TicketCounterButton({ ticket }) {
   const { t } = useTranslation('eventPage');
 
   const { loggedUser } = useSelector((state) => state.auth);
@@ -20,7 +20,8 @@ function TicketCounterButton({ conceptTicketId }) {
 
   const createSelectItems = () => {
     const localArray = [];
-    for (let index = 0; index <= 20; index++) {
+    const maxNumberOfTicketsPicked = ticket.freeTicket < 20 ? ticket.freeTicket : 20;
+    for (let index = 0; index <= maxNumberOfTicketsPicked; index++) {
       localArray.push(
         <MenuItem key={index} value={index}>
           {index}
@@ -33,7 +34,7 @@ function TicketCounterButton({ conceptTicketId }) {
   const handlePutInbasket = () => {
     const localBasketItem = {
       eventId: Number(id),
-      conceptTicketId,
+      conceptTicketId: ticket.conceptTicketId,
       user: loggedUser.id,
       numberOfTickets: counter
     };
@@ -62,7 +63,6 @@ function TicketCounterButton({ conceptTicketId }) {
             label={t('NUMBER_OF_TICKETS')}
             defaultValue={counter}
             onChange={(event) => {
-              console.log(event.target.value);
               setCounter(event.target.value);
             }}
             MenuProps={{ PaperProps: { sx: { maxHeight: 200 } } }}>

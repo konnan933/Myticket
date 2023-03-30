@@ -3,7 +3,7 @@ const locale = {
   EVENT_LOCATIONNAME: 'Location',
   EVENT_CATEGORY: 'Category',
   EVENT_BUISNESS_EMAIL: 'Buisness email',
-  EVENT_BUISNESS_PHONENUMBER: 'Buisness telefonszám',
+  EVENT_BUISNESS_PHONENUMBER: 'Buisness phone number',
   EVENT_START_DATE: 'Event start date',
   EVENT_END_DATE: 'Event end date',
   EVENT_STATUS: 'Status',
@@ -42,7 +42,15 @@ const locale = {
   UPDATE_EVENT: 'Update event',
   PRICE: 'price',
   CURRENCY: 'currency',
-  TICKET_AMOUNT_HELPER: 'Booked tickets'
+  TICKET_AMOUNT_HELPER: 'Booked tickets',
+  ADD_EVENT: 'Add event',
+  END_DATE_LOWER_START_DATE: 'The end date cannot be lower than the event start date',
+  START_DATE_LOWER: 'The start date cannot be lower than tomorrow',
+  EVENT_TYPE_1: 'Party',
+  EVENT_TYPE_2: 'Festival',
+  EVENT_TYPE_3: 'Concert',
+  EVENT_TYPE_4: 'Show',
+  EVENT_TYPE_5: 'Other'
 };
 
 export default locale;

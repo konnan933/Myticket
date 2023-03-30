@@ -11,7 +11,9 @@ const locale = {
   MINUTE: 'm',
   CONFIRM_PAY: 'Please confrim yout payment',
   YES: 'Yes',
-  NO: 'No'
+  NO: 'No',
+  PAYMENT_CURRENCY: 'Payment currency',
+  AMOUNT: 'amount'
 };
 
 export default locale;

@@ -30,75 +30,93 @@ i18n.addResourceBundle('hu', 'rootes', hu);
 export const allRootConfig = [
   {
     pagePath: '/',
-    element: <HomePage />
+    element: <HomePage />,
+    level: level.guest
   },
   {
     pagePath: '/login',
-    element: <LoginPage />
+    element: <LoginPage />,
+    level: level.guest
   },
   {
     pagePath: '/register',
-    element: <RegisterPage />
+    element: <RegisterPage />,
+    level: level.guest
   },
   {
     pagePath: '/admin',
-    element: <AdminMenuList />
+    element: <AdminMenuList />,
+    level: level.admin
   },
   {
     pagePath: '/adminUsers',
-    element: <AdminUsersPage />
+    element: <AdminUsersPage />,
+    level: level.admin
   },
   {
     pagePath: '/adminEvents',
-    element: <AdminEventPage />
+    element: <AdminEventPage />,
+    level: level.admin
   },
   {
     pagePath: '/adminEvents/:id',
-    element: <DetailedEventPage />
+    element: <DetailedEventPage />,
+    level: level.admin
   },
   {
     pagePath: '/adminAddEvent',
-    element: <AdminAddEventPage />
+    element: <AdminAddEventPage />,
+    level: level.admin
   },
   {
     pagePath: '/rootData',
-    element: <RootDataTablesPage />
+    element: <RootDataTablesPage />,
+    level: level.admin
   },
   {
     pagePath: '/userAddEvent',
-    element: <UserAddEventPage />
+    element: <UserAddEventPage />,
+    level: level.user
   },
   {
     pagePath: '/userEvents',
-    element: <UserEventsPage />
+    element: <UserEventsPage />,
+    level: level.user
   },
   {
     pagePath: '/userEventsEdit/:id',
-    element: <UserEditEvent />
+    element: <UserEditEvent />,
+    level: level.user
   },
   {
     pagePath: '/basket',
-    element: <BasketPage />
+    element: <BasketPage />,
+    level: level.guest
   },
   {
     pagePath: '/event/:id',
-    element: <EventPage />
+    element: <EventPage />,
+    level: level.guest
   },
   {
     pagePath: '/profile',
-    element: <ProfilePage />
+    element: <ProfilePage />,
+    level: level.user
   },
   {
     pagePath: '/emailVerification/:rndCodeEmail',
-    element: <EmailVerificationPage />
+    element: <EmailVerificationPage />,
+    level: level.user
   },
   {
     pagePath: '/passwordReset/:rndCodePassword',
-    element: <ResetPasswordPage />
+    element: <ResetPasswordPage />,
+    level: level.user
   },
   {
     pagePath: '/forgotPassword',
-    element: <ForgotPasswordPage />
+    element: <ForgotPasswordPage />,
+    level: level.guest
   }
 ];
 

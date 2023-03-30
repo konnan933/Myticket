@@ -18,7 +18,12 @@ const locale = {
   END_DATE_LOWER: 'Az esemény vége nem lehet kisebb mint az esemény kezdete',
   START_DATE_LOWER: 'Az esemény kezdete nem lehet kisebb mint holnap',
   SEND_EVENT: 'Esemény küldése',
-  ORGANIZER_HELPER: 'A szervező csak Te lehetsz'
+  ORGANIZER_HELPER: 'A szervező csak Te lehetsz',
+  EVENT_TYPE_1: 'Buli',
+  EVENT_TYPE_2: 'Fesztivál',
+  EVENT_TYPE_3: 'Koncert',
+  EVENT_TYPE_4: 'Előodas',
+  EVENT_TYPE_5: 'Egyéb'
 };
 
 export default locale;

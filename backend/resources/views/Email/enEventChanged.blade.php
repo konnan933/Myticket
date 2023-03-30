@@ -10,18 +10,18 @@
     <div>
         Dear {{ $userName }}!,
         <br>
-        On {{ $esemeny_neve }}, the event details have changed.
+        On {{ $event_name }}, the event details have changed.
         <br>
         New details from the event:
         <ul>
             <li>
                 <p>
-                    Location name: {{ $helyszin_neve }}
+                    Location name: {{ $location_name }}
                 </p>
             </li>
             <li>
                 <p>
-                    Location: {{ $helyszin_cim }}
+                    Location: {{ $location_address }}
                 </p>
             </li>
             <li>

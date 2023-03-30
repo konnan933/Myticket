@@ -22,13 +22,13 @@ function EventTickets() {
                 <Typography variant="h6" color="text.primary">{`${t('PRICE')}: ${
                   ticket.currencies === 'HUF'
                     ? Math.round(ticket.price)
-                    : Math.round(ticket.price * 100) / 100
+                    : parseFloat(ticket.price).toFixed(2)
                 } ${ticket.currencies}`}</Typography>
                 <Typography variant="h6" color="text.primary">{`${t('TICKET_STARTS')}: ${
                   ticket.startDate
                 }`}</Typography>
                 <div className="border-b-2 border-bc-gray-theme w-full my-4" />
-                <TicketCounterButton conceptTicketId={ticket.conceptTicketId} />
+                <TicketCounterButton ticket={ticket} />
               </CardContent>
             </CardActionArea>
           </Card>

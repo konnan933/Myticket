@@ -76,14 +76,14 @@ class TicketsController extends Controller
         return $buyedTickets;
     }
 
-    public function qrCodeExists($qrCode)
+    public function qrCodeExists($eventId, $qrCode)
     {
         $ticket  = DB::table('tickets')->select('*')
-            ->where('qrCode', '=', $qrCode)
+            ->where('eventId', $eventId)
+            ->where('qrCode',  $qrCode)
             ->get();
 
         $localTicket = Tickets::find($ticket[0]->id);
-
 
         if (
             Tickets::where('qrCode', '=', $qrCode)->exists()

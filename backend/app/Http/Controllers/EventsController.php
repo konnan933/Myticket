@@ -59,7 +59,7 @@ class EventsController extends Controller
         $event->email = $request->email;
         $event->phoneNumber = $request->phoneNumber;
         $event->eventType = $request->eventType;
-        $event->comission = $request->comission;
+        $event->comission = 17;
         $event->status = $request->status;
         $event->image = $request->image;
         $event->save();
@@ -154,27 +154,28 @@ class EventsController extends Controller
     }
     public static function sendEmailEventChange($event)
     {
-        $userTicket = DB::table('tickets')->select('users.userName', 'users.email')
+        $userTicket = DB::table('tickets')->select('users.userName', 'users.id', 'users.email')
             ->join('users', 'users.id', '=', 'tickets.user')
             ->where('eventId', '=', $event->id)
+            ->distinct('users.id')
             ->get();
 
         $eventName = $event->title;
         $startDate = $event->startDate;
         $endDate = $event->endDate;
-        $helyszin_neve = Locations::find($event->location)->name;
-        $helyszin_cim = LocationsController::eventLocationBuilder($event->location);
+        $location_name = Locations::find($event->location)->name;
+        $location_address = LocationsController::eventLocationBuilder($event->location);
 
 
         foreach ($userTicket as $user) {
-            $user = User::find($user->email);
+            $user = User::find($user->id);
             $userName = $user->userName;
             $email = $user->email;
             if ($user->languge === 'hu') {
                 $subject = "A(z)" . $eventName . " eseményen változás történt.";
                 Mail::send(
                     'email.huEventChange',
-                    ['userName' => $userName, 'event$event_neve' => $eventName, 'startDate' => $startDate, 'endDate' => $endDate, 'helyszin_neve' => $helyszin_neve, 'helyszin_cim' => $helyszin_cim],
+                    ['userName' => $userName, 'event_name' => $eventName, 'startDate' => $startDate, 'endDate' => $endDate, 'location_name' => $location_name, 'location_address' => $location_address],
                     function ($mail) use ($email, $userName, $subject) {
                         $mail->from("myticketszakdoga@gmail.com", "MyTicket");
                         $mail->to($email, $userName);
@@ -185,7 +186,7 @@ class EventsController extends Controller
                 $subject = "The" . $eventName . " event details got changed.";
                 Mail::send(
                     'email.enEventChanged',
-                    ['userName' => $userName, 'event$event_neve' => $eventName, 'startDate' => $startDate, 'endDate' => $endDate, 'helyszin_neve' => $helyszin_neve, 'helyszin_cim' => $helyszin_cim],
+                    ['userName' => $userName, 'event_name' => $eventName, 'startDate' => $startDate, 'endDate' => $endDate, 'location_name' => $location_name, 'location_address' => $location_address],
                     function ($mail) use ($email, $userName, $subject) {
                         $mail->from("myticketszakdoga@gmail.com", "MyTicket");
                         $mail->to($email, $userName);

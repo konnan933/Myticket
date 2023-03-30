@@ -35,7 +35,6 @@ export const changePicture = createAsyncThunk(
       const response = await api.post(`${picture.changePicture}${id}`, fd).then(() => {
         i18nReduxToast(i18n.language, 'Success');
         dispatch(getSingleEvent(id));
-        window.location.reload(true);
       });
       return response?.data;
     } catch (err) {

@@ -153,6 +153,7 @@ function EditEvent({ event }) {
                       data.location =
                         locationName.id === undefined ? event.locationId : locationName.id;
                       data.image = imageId;
+                      data.status = event.status;
                       dispatch(putEvent(data, event.id));
                     })}>
                     <fieldset>
@@ -242,7 +243,7 @@ function EditEvent({ event }) {
                             inputProps={{ 'aria-label': 'Without label' }}>
                             {eventTypes.map((eventType) => (
                               <MenuItem key={eventType.id} value={eventType.id}>
-                                {eventType.name}
+                                {t(`EVENT_TYPE_${eventType.id}`)}
                               </MenuItem>
                             ))}
                           </Select>

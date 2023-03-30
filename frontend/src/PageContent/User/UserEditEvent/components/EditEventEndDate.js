@@ -55,7 +55,7 @@ function EditEventEndDate({ endDate, startDate }) {
   return (
     <div className="p-4">
       {isEdit ? (
-        <form className="flex flex-row w-full p-4">
+        <form className="flex flex-row p-4">
           <TextField
             {...register('endDate')}
             InputLabelProps={{ shrink: true }}

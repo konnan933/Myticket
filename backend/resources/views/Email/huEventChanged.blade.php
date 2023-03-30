@@ -10,18 +10,18 @@
     <div>
         Szia {{ $userName }}!,
         <br>
-        A vásárolt jegyed eseményén ({{ $esemeny_neve }}) változás történt.
+        A vásárolt jegyed eseményén ({{ $event_name }}) változás történt.
         <br>
         Új adatok az eseményről:
         <ul>
             <li>
                 <p>
-                    Helyszín neve: {{ $helyszin_neve }}
+                    Helyszín neve: {{ $location_name }}
                 </p>
             </li>
             <li>
                 <p>
-                    Helyszín title: {{ $helyszin_cim }}
+                    Helyszín title: {{ $location_address }}
                 </p>
             </li>
             <li>

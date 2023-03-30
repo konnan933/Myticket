@@ -6,10 +6,14 @@ import { Tooltip, Typography, Modal, Box, Button } from '@mui/material';
 import '../underline.css';
 import { useState } from 'react';
 import modalStyle from 'PageContent/utils/ModalStyle';
+import { useNavigate } from 'react-router-dom';
 
 function LogoutButton() {
   const { t } = useTranslation('rootes');
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -22,6 +26,7 @@ function LogoutButton() {
 
   const handleLogout = () => {
     dispatch(fetchLogout());
+    navigate('/');
   };
 
   return (

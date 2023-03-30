@@ -47,7 +47,15 @@ const locale = {
   CURRENCY: 'Pénznem',
   TICKET_AMOUNT_HELPER: 'Foglalt jegyek',
   SALE_DATE_HELPER: 'Az esemény kezdete',
-  TICKET_AMOUNT_LOWER: 'Az összes jegy nem lehet kevesebb mint a foglalt jegyek'
+  TICKET_AMOUNT_LOWER: 'Az összes jegy nem lehet kevesebb mint a foglalt jegyek',
+  ADD_EVENT: 'Esemény hozzáadása',
+  END_DATE_LOWER_START_DATE: 'Az esemény vége nem lehet nagyobb mint az esemény kezdete',
+  START_DATE_LOWER: 'Az esemény vége nem lehet kisebb mint a holnapi nap',
+  EVENT_TYPE_1: 'Buli',
+  EVENT_TYPE_2: 'Fesztivál',
+  EVENT_TYPE_3: 'Koncert',
+  EVENT_TYPE_4: 'Előodas',
+  EVENT_TYPE_5: 'Egyéb'
 };
 
 export default locale;

@@ -50,13 +50,17 @@ function UserEventsContent() {
 
   if (hasntEvent) {
     return (
-      <div className="flex justify-center">
-        <Typography gutterBottom variant="h6" component="div">
-          {t('YOU_DONT_HAVE_EVENT')}
-        </Typography>
-        <Link to="/userAddEvent">
-          <Button>{t('ADD_EVENT')}</Button>
-        </Link>
+      <div>
+        <div className="flex justify-center">
+          <Typography gutterBottom variant="h6" component="div">
+            {t('YOU_DONT_HAVE_EVENT')}
+          </Typography>
+        </div>
+        <div className="flex justify-center">
+          <Link to="/userAddEvent">
+            <Button>{t('ADD_EVENT')}</Button>
+          </Link>
+        </div>
       </div>
     );
   }

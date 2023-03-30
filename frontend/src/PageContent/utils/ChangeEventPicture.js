@@ -64,6 +64,7 @@ function ChangeEventPicture() {
                     dispatch(changePicture({ path, id })).then(() => {
                       setIsSent(true);
                       setOpen(false);
+                      window.location.reload(true);
                     });
                   }}>
                   {t('SEND_IMAGE')}

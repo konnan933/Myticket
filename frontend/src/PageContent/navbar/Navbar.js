@@ -4,12 +4,12 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Typography, useMediaQuery } from '@mui/material';
 import Sidebar from './Sidebar';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { navbarConfig } from 'pages/routes/RootConfig';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import LangChanger from './components/LangChanger';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import AdminMenuList from './components/AdminMenuList';
 import LogoutButton from './components/LogoutButton';
 import LoginButton from './components/LoginButton';
@@ -17,21 +17,14 @@ import Loader from 'PageContent/utils/Loader';
 import RegisterButton from './components/RegisterButton';
 import BasketButton from './components/BasketButton';
 import './underline.css';
-import { getBasketCounter } from 'redux/thunks/Basket';
 
 export default function Navbar() {
   const matches = useMediaQuery('(max-width:768px)');
   const { t } = useTranslation('rootes');
 
-  const dispatch = useDispatch();
-
-  const { login, loggedIn, loggedUser } = useSelector((state) => state.auth);
+  const { login, loggedIn } = useSelector((state) => state.auth);
 
   const [drawer, setDrawer] = useState(false);
-
-  useEffect(() => {
-    dispatch(getBasketCounter(loggedUser.id));
-  }, [loggedUser]);
 
   if (login[0].level === undefined) {
     return <Loader />;

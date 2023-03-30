@@ -41,6 +41,7 @@ class CurrenciesController extends Controller
     {
         $currencies = DB::table('currencies')
             ->select('name')
+            ->distinct()
             ->get();
         return $currencies;
     }

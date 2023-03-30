@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { setLoggedIn, setLoggedUser, setLogin, setRememberMe } from 'redux/slices/AuthSlice';
 import auth from '../../API/Auth';
 import api from '../../axios/axois';
+import { getBasketCounter } from './Basket';
 import { verifyEmail } from './User';
 
 export const fetchLogin = createAsyncThunk(
@@ -84,6 +85,7 @@ export const fetchLoggedIn = createAsyncThunk(
       await api.get(auth.loggedIn).then((response) => {
         if (response.data !== '') {
           dispatch(fetchLogin({ data: response.data, rememberMe: true }));
+          dispatch(getBasketCounter(response.data.id));
         }
       });
     } catch (err) {

@@ -1,6 +1,6 @@
 const locale = {
   BASKET: 'Kosár',
-  EXPIRE_TIME: 'A kosárban lévő jegyek ennyi idő múlva törlődnek a kosárból:',
+  EXPIRE_TIME: 'A kosárban lévő jegyek ennyi idő múlva törlődnek: ',
   DONT_HAVE_BASKET: 'A kosarad jelenleg üres.',
   SEARCH_EVENTS: 'Böngészés az események között',
   PAY: 'Fizetés',
@@ -13,7 +13,9 @@ const locale = {
   MINUTE: 'p',
   CONFIRM_PAY: 'Kérjük erősítse meg fizetését',
   YES: 'Igen',
-  NO: 'Nem'
+  NO: 'Nem',
+  PAYMENT_CURRENCY: 'Fizetési pénznem',
+  AMOUNT: 'összesen'
 };
 
 export default locale;

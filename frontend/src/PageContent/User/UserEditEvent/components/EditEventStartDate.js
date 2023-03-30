@@ -66,7 +66,7 @@ function EditEventStartDate({ date }) {
             helperText={startDateErrorMsg}
             label={t('START_DATE')}
             type="datetime-local"
-            className="border-2 px-2 pt-2"
+            className="border-2 px-2 pt-2 "
           />
           <div className="flex justify-between">
             <IconButton color="error" onClick={() => setIsEdit(false)}>
