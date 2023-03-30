@@ -10,7 +10,7 @@ function LoginForm() {
   const { t } = useTranslation('login');
 
   const loginObj = {
-    email: 'odornorbert.on@gmail.com',
+    email: 'konnan933@gmail.com',
     password: 'Aa123456@',
     rememberMe: true
   };
