@@ -51,7 +51,7 @@ function EventCards() {
                     {oneEvent.title}
                   </Typography>
                   <Typography gutterBottom variant="h5" component="div">
-                    {oneEvent.ekName}
+                    {t(`EVENT_TYPE_${oneEvent.ekId}`)}
                   </Typography>
                 </div>
                 <Typography color="text.primary">{`${t('LOCATION')}: ${
