@@ -32,9 +32,9 @@ return new class extends Migration
         User::create(['email' => 'ivanadminvagyok@gmail.com', 'password' => Hash::make('Aa123456'), 'userName' => 'Ivan', 'phoneNumber' => '06701287321', 'level' => 1, 'confirmed' => 1]);
         User::create(['email' => 'test1234@gmail.com', 'password' => Hash::make('Aa123456'), 'userName' => 'test1234', 'phoneNumber' => '06700867534', 'confirmed' => 1]);
         User::create(['email' => 'samuka@gmail.com', 'password' => Hash::make('Aa123456'), 'userName' => 'Samu', 'phoneNumber' => '06709857543', 'confirmed' => 1]);
-        User::create(['email' => 'odornorbert.on@gmail.com', 'password' => Hash::make('Aa123456@'), 'userName' => 'Norbus', 'phoneNumber' => '06702486730', 'level' => 1]);
-        User::create(['email' => 'konnan933@gmail.com', 'password' => Hash::make('Aa123456@'), 'userName' => 'Ati', 'phoneNumber' => '06308339380', 'level' => 1, 'confirmed' => 0]);
-        User::create(['email' => 'daniallaszlo002@gmail.com', 'password' => Hash::make('Aa123456@'), 'userName' => 'DLD', 'phoneNumber' => '06308339370', 'level' => 1, 'confirmed' => 1]);
+        User::create(['email' => 'norbus@gmail.com', 'password' => Hash::make('Aa123456@'), 'userName' => 'Norbus', 'phoneNumber' => '06214325432', 'level' => 1]);
+        User::create(['email' => 'ati@gmail.com', 'password' => Hash::make('Aa123456@'), 'userName' => 'Ati', 'phoneNumber' => '0643950432', 'level' => 1, 'confirmed' => 0]);
+        User::create(['email' => 'danial@gmail.com', 'password' => Hash::make('Aa123456@'), 'userName' => 'DLD', 'phoneNumber' => '063248750921', 'level' => 1, 'confirmed' => 1]);
     }
 
     /**
