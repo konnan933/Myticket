@@ -38,16 +38,29 @@ return new class extends Migration
         DB::statement("ALTER TABLE conceptTicket ADD CONSTRAINT
         price CHECK (price >= 0)");
 
-        ConceptTicket::create(['eventId' => '1', 'type' => '1', 'allTicket' => '2000', 'bookedTicket' => '100', 'freeTicket' => '1900', 'currencies' => 'EUR',  'price' => '5', 'startDate' => '2024-01-01 15:20:00']);
+        ConceptTicket::create(['eventId' => '1', 'type' => '1', 'allTicket' => '2000', 'bookedTicket' => '100', 'freeTicket' => '1900', 'currencies' => 'EUR',  'price' => '5', 'startDate' => '2024-01-01 15:20:00']);  
         ConceptTicket::create(['eventId' => '1', 'type' => '2', 'allTicket' => '2000', 'bookedTicket' => '200', 'freeTicket' => '1800', 'currencies' => 'EUR', 'price' => '5', 'startDate' => '2024-01-01 15:20:00']);
 
         ConceptTicket::create(['eventId' => '2', 'type' => '2', 'allTicket' => '1000', 'bookedTicket' => '20', 'freeTicket' => '980', 'currencies' => 'HUF', 'price' => '20', 'startDate' => '2025-02-25 20:30:00']);
+        ConceptTicket::create(['eventId' => '2', 'type' => '3', 'allTicket' => '1000', 'bookedTicket' => '20', 'freeTicket' => '980', 'currencies' => 'HUF', 'price' => '20', 'startDate' => '2025-02-25 20:30:00']);
 
         ConceptTicket::create(['eventId' => '3', 'type' => '3', 'allTicket' => '5000', 'bookedTicket' => '500', 'freeTicket' => '4500', 'currencies' => 'EUR', 'price' => '0.1', 'startDate' => '2023-12-01 23:00:00']);
+        ConceptTicket::create(['eventId' => '3', 'type' => '4', 'allTicket' => '5000', 'bookedTicket' => '500', 'freeTicket' => '4500', 'currencies' => 'EUR', 'price' => '0.1', 'startDate' => '2023-12-01 23:00:00']);
 
-        ConceptTicket::create(['eventId' => '4', 'type' => '4', 'allTicket' => '1000', 'bookedTicket' => '20', 'freeTicket' => '980', 'currencies' => 'HUF', 'price' => '20', 'startDate' => '2023-08-12 17:00:00']);
-
+        ConceptTicket::create(['eventId' => '5', 'type' => '1', 'allTicket' => '1000', 'bookedTicket' => '20', 'freeTicket' => '980', 'currencies' => 'HUF', 'price' => '20', 'startDate' => '2024-12-31 15:20:00',]);
         ConceptTicket::create(['eventId' => '5', 'type' => '5', 'allTicket' => '1000', 'bookedTicket' => '20', 'freeTicket' => '980', 'currencies' => 'HUF', 'price' => '20', 'startDate' => '2024-12-31 15:20:00',]);
+        
+        ConceptTicket::create(['eventId' => '6', 'type' => '2', 'allTicket' => '1000', 'bookedTicket' => '20', 'freeTicket' => '980', 'currencies' => 'HUF', 'price' => '20', 'startDate' => '2024-12-31 15:20:00',]);
+        ConceptTicket::create(['eventId' => '6', 'type' => '5', 'allTicket' => '1000', 'bookedTicket' => '20', 'freeTicket' => '980', 'currencies' => 'HUF', 'price' => '20', 'startDate' => '2024-12-31 15:20:00',]);
+        
+        ConceptTicket::create(['eventId' => '7', 'type' => '3', 'allTicket' => '1000', 'bookedTicket' => '20', 'freeTicket' => '980', 'currencies' => 'HUF', 'price' => '20', 'startDate' => '2024-12-31 15:20:00',]);
+        ConceptTicket::create(['eventId' => '7', 'type' => '5', 'allTicket' => '1000', 'bookedTicket' => '20', 'freeTicket' => '980', 'currencies' => 'HUF', 'price' => '20', 'startDate' => '2024-12-31 15:20:00',]);
+        
+        ConceptTicket::create(['eventId' => '8', 'type' => '4', 'allTicket' => '1000', 'bookedTicket' => '20', 'freeTicket' => '980', 'currencies' => 'HUF', 'price' => '20', 'startDate' => '2024-12-31 15:20:00',]);
+        ConceptTicket::create(['eventId' => '8', 'type' => '5', 'allTicket' => '1000', 'bookedTicket' => '20', 'freeTicket' => '980', 'currencies' => 'HUF', 'price' => '20', 'startDate' => '2024-12-31 15:20:00',]);
+        
+        ConceptTicket::create(['eventId' => '9', 'type' => '1', 'allTicket' => '1000', 'bookedTicket' => '20', 'freeTicket' => '980', 'currencies' => 'HUF', 'price' => '20', 'startDate' => '2024-12-31 15:20:00',]);
+        ConceptTicket::create(['eventId' => '9', 'type' => '5', 'allTicket' => '1000', 'bookedTicket' => '20', 'freeTicket' => '980', 'currencies' => 'HUF', 'price' => '20', 'startDate' => '2024-12-31 15:20:00',]);
     }
 
     public function down()

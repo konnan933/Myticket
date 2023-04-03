@@ -79,33 +79,33 @@ function UserEventsContent() {
                   src={`${event.eventPicture}${userEvent.eventId}`}
                   effect="blur"
                   scrollPosition={scrollPosition}
-                  width={`${width ? '100%' : '75%'}`}
+                  width={670}
                 />
                 <Box>
                   <CardContent>
                     <div className="w-full">
-                      <Typography gutterBottom variant="h4" component="div">
+                      <Typography gutterBottom variant="h5" component="div">
                         {`${t('EVENT_TITLE')}: ${userEvent.title}`}
                       </Typography>
-                      <Typography gutterBottom variant="h5" color="text.secondary">
+                      <Typography gutterBottom variant="h6" color="text.secondary">
                         {`${t('EVENT_LOCATIONNAME')}: ${userEvent.locationName}`}
                       </Typography>
-                      <Typography gutterBottom variant="h5" color="text.secondary">
+                      <Typography gutterBottom variant="h6" color="text.secondary">
                         {`${t('EVENT_CATEGORY')}: ${userEvent.ekName}`}
                       </Typography>
-                      <Typography gutterBottom variant="h5" color="text.secondary">
+                      <Typography gutterBottom variant="h6" color="text.secondary">
                         {`${t('EVENT_BUISNESS_PHONENUMBER')}: ${userEvent.phoneNumber}`}
                       </Typography>
-                      <Typography gutterBottom variant="h5" color="text.secondary">
+                      <Typography gutterBottom variant="h6" color="text.secondary">
                         {`${t('EVENT_BUISNESS_EMAIL')}: ${userEvent.email}`}
                       </Typography>
-                      <Typography gutterBottom variant="h5" color="text.secondary">
+                      <Typography gutterBottom variant="h6" color="text.secondary">
                         {`${t('EVENT_START_DATE')}: ${userEvent.startDate}`}
                       </Typography>
-                      <Typography gutterBottom variant="h5" color="text.secondary">
+                      <Typography gutterBottom variant="h6" color="text.secondary">
                         {`${t('EVENT_END_DATE')}: ${userEvent.endDate}`}
                       </Typography>
-                      <Typography gutterBottom variant="h5" color="text.secondary">
+                      <Typography gutterBottom variant="h6" color="text.secondary">
                         {`${t('EVENT_STATUS')}: ${t(`STATUS_${userEvent.status}`)}`}
                       </Typography>
                     </div>
