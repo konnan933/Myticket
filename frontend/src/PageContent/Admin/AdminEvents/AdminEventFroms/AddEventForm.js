@@ -236,7 +236,7 @@ function AddEventForm() {
             />
             <Addimage setImageId={setImageId} />
           </fieldset>
-          <div className="flex justify-center pt-6">
+          <div className="flex justify-center pt-4 p-2">
             <Button
               disabled={errors}
               variant="contained"

@@ -124,7 +124,6 @@ function EditEvent({ event }) {
               width: '80%',
               overflowY: 'auto',
               maxHeight: '90%',
-              overflow: 'hidden',
               bgcolor: 'white',
               boxShadow: 24,
               borderRadius: 7
@@ -132,16 +131,16 @@ function EditEvent({ event }) {
             {datasLoading ? (
               <Loader />
             ) : (
-              <div className="flex justify-center flex-col overflow-y-scroll">
+              <div className="flex justify-center flex-col">
                 <div className="flex justify-end">
                   <IconButton color="error" onClick={handleClose}>
                     <CloseIcon fontSize="medium" />
                   </IconButton>
                 </div>
-                <div className="flex justify-center ">
+                <div className="flex justify-center">
                   <h2>{t('EDIT_EVENT')}</h2>
                 </div>
-                <div className="flex justify-center">
+                <div className="flex justify-center pt-2">
                   <form
                     className="w-4/5"
                     onSubmit={handleSubmit((data) => {
@@ -157,7 +156,7 @@ function EditEvent({ event }) {
                       dispatch(putEvent(data, event.id));
                     })}>
                     <fieldset>
-                      <div className="flex justify-center pb-9">
+                      <div className="flex justify-center max-md:pb-4 pb-9">
                         <TextField
                           {...register('title')}
                           required
@@ -169,7 +168,7 @@ function EditEvent({ event }) {
                           className="border-2 w-full mt-5"
                         />
                       </div>
-                      <div className="grid grid-cols-2 gap-10">
+                      <div className="grid grid-cols-2 gap-10 max-md:grid-cols-1 max-md:gap-5">
                         <Autocomplete
                           options={userNames}
                           getOptionLabel={(option) =>

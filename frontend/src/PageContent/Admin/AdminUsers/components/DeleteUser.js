@@ -8,6 +8,7 @@ import ConfirmUserDelete from './ConfirmUserDelete';
 import UserEventsTable from '../UserEventsTable';
 import CloseIcon from '@mui/icons-material/Close';
 import { getUserEvents } from 'redux/thunks/User';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 function DeleteUser({ id }) {
   const { t } = useTranslation('adminUser');
@@ -15,6 +16,7 @@ function DeleteUser({ id }) {
   const { userEvents, userEventsLoading } = useSelector((state) => state.user);
   const [open, setOpen] = useState(false);
   const hasEvent = userEvents[0] != undefined;
+  const matches = useMediaQuery('(min-width:765px)');
   const hasAcceptedEvent = hasEvent && userEvents[0].status === 1;
 
   const handleClickOpen = () => {
@@ -44,10 +46,10 @@ function DeleteUser({ id }) {
             left: '50%',
             display: 'block',
             transform: 'translate(-50%, -50%)',
-            width: hasAcceptedEvent ? '80%' : '40%',
+            width: '80%',
             overflowY: 'auto',
-            maxHeight: hasAcceptedEvent ? '80%' : '100%',
-            height: hasAcceptedEvent ? '70%' : '20%',
+            maxHeight: hasEvent && !matches ? '80%' : '100%',
+            height: hasEvent && !matches ? '80%' : '20%',
             bgcolor: 'white',
             boxShadow: 24,
             borderRadius: 7
@@ -73,12 +75,23 @@ function DeleteUser({ id }) {
                     </div>
                   ) : (
                     <div>
-                      <UserEventsTable
-                        userEvents={userEvents}
-                        setOpen={setOpen}
-                        hasAcceptedEvent={hasAcceptedEvent}
-                      />
-                      <ConfirmUserDelete setOpen={setOpen} id={id} />
+                      {matches ? (
+                        <div>
+                          <UserEventsTable
+                            userEvents={userEvents}
+                            setOpen={setOpen}
+                            hasAcceptedEvent={hasAcceptedEvent}
+                          />
+                          <ConfirmUserDelete setOpen={setOpen} id={id} />
+                        </div>
+                      ) : (
+                        <div>
+                          <div className="flex justify-center items-center h-full p-2 pt-10">
+                            <p>{t('CONFIRM_DELETE_USER')}</p>
+                          </div>
+                          <ConfirmUserDelete setOpen={setOpen} id={id} />
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>
