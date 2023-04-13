@@ -99,7 +99,7 @@ function AddEventForm() {
       </div>
       <div className="flex justify-center">
         <form
-          className="w-2/5"
+          className="w-2/5 max-md:w-3/4"
           onSubmit={handleSubmit((data) => {
             data.startDate = moment(data.startDate).format('YYYY-MM-DD hh:mm:ss');
             data.endDate = moment(data.endDate).format('YYYY-MM-DD hh:mm:ss');
@@ -109,7 +109,7 @@ function AddEventForm() {
             dispatch(addEvent(data));
           })}>
           <fieldset>
-            <div className="flex justify-center pb-16">
+            <div className="flex justify-center max-md:pb-5 pb-16">
               <TextField
                 {...register('title')}
                 required
@@ -121,8 +121,9 @@ function AddEventForm() {
                 className="border-2 w-full mt-5"
               />
             </div>
-            <div className="grid grid-cols-2 gap-16">
+            <div className="grid grid-cols-2 max-md:grid-cols-1 gap-16 max-md:gap-5">
               <Autocomplete
+                className="w-full"
                 loading={userNamesLoading}
                 options={userNames}
                 getOptionLabel={(option) => (option.userName ? option.userName : '')}
