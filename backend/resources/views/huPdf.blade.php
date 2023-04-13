@@ -20,7 +20,6 @@
     .container {
         background: #e0e2e8;
         position: relative;
-        width: 100%;
         height: 100vh;
     }
 
@@ -38,11 +37,11 @@
         box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.3);
         border-radius: 25px;
         z-index: 3;
+        padding-left: 20px;
     }
 
 
     .ticket .bottom {
-        height: 355px;
         background: #fff;
         border-bottom-right-radius: 25px;
         border-bottom-left-radius: 25px;
@@ -93,7 +92,6 @@
         <div class="text-center">
             <p>MyTicket</p>
         </div>
-
         <div class="ticket">
             <div>
                 <img src="{{$eventPicture}}" alt=" Esemény képe" width="500" height="300">

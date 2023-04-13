@@ -37,6 +37,7 @@
         box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.3);
         border-radius: 25px;
         z-index: 3;
+        padding-left: 20px;
     }
 
 

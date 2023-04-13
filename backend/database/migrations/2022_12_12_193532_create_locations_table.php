@@ -25,10 +25,10 @@ return new class extends Migration
             $table->char('room', 20)->nullable()->default('');
         });
 
-        Locations::create(['name' => 'Alterego', 'postcode' => '2320', 'street' => 'Szep', 'houseNumber' => '10']);
-        Locations::create(['name' => 'Kek osztriga', 'postcode' => '2330', 'street' => 'Ok', 'houseNumber' => '12']);
+        Locations::create(['name' => 'REMIX', 'postcode' => '2320', 'street' => 'Szep', 'houseNumber' => '10']);
+        Locations::create(['name' => 'MADAM', 'postcode' => '2330', 'street' => 'Ok', 'houseNumber' => '12']);
         Locations::create(['name' => 'A38', 'postcode' => '2120', 'street' => 'Mezo', 'houseNumber' => '110']);
-        Locations::create(['name' => 'Cat', 'postcode' => '1220', 'street' => 'Alter', 'houseNumber' => '1']);
+        Locations::create(['name' => 'Budapest park', 'postcode' => '1220', 'street' => 'Alter', 'houseNumber' => '1']);
         Locations::create(['name' => 'Dog', 'postcode' => '1210', 'street' => 'Bolti', 'houseNumber' => '101']);
     }
 
