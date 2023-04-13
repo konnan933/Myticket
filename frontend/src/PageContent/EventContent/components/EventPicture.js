@@ -20,9 +20,11 @@ function EventPicture() {
           backgroundRepeat: 'no-repeat'
         }}
         className="flex justify-center">
-        <Typography variant="h4" color="white">
-          {singleDetailedEvent.title}
-        </Typography>
+        <div>
+          <Typography variant="h4" color="white" className="bg-gray-400 bg-opacity-40 min-w-3/5">
+            {singleDetailedEvent.title}
+          </Typography>
+        </div>
       </div>
     </div>
   );

@@ -44,9 +44,14 @@ function SlideShow() {
                   backgroundRepeat: 'no-repeat'
                 }}
                 className="flex flex-col justify-between">
-                <Typography variant="h3" color="black">
-                  {oneEvent.title}
-                </Typography>
+                <div className="w-full flex justify-center">
+                  <Typography
+                    variant="h4"
+                    color="white"
+                    className="bg-gray-400 bg-opacity-40 min-w-3/5">
+                    {oneEvent.title}
+                  </Typography>
+                </div>
                 <EventButton id={oneEvent.id} />
               </div>
             </SwiperSlide>
