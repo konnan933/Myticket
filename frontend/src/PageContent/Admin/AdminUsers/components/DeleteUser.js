@@ -9,15 +9,23 @@ import UserEventsTable from '../UserEventsTable';
 import CloseIcon from '@mui/icons-material/Close';
 import { getUserEvents } from 'redux/thunks/User';
 import useMediaQuery from '@mui/material/useMediaQuery';
+/* import { getSoldEventTickets } from 'redux/thunks/Event';
+import { useEffect } from 'react'; */
 
 function DeleteUser({ id }) {
   const { t } = useTranslation('adminUser');
   const dispatch = useDispatch();
   const { userEvents, userEventsLoading } = useSelector((state) => state.user);
+  const { soldEventTickets } = useSelector((state) => state.event);
   const [open, setOpen] = useState(false);
   const hasEvent = userEvents[0] != undefined;
   const matches = useMediaQuery('(min-width:765px)');
   const hasAcceptedEvent = hasEvent && userEvents[0].status === 1;
+
+  console.log(userEvents);
+/*   useEffect(() => {
+    dispatch(getSoldEventTickets());
+  }, []); */
 
   const handleClickOpen = () => {
     dispatch(getUserEvents(id));
@@ -49,7 +57,7 @@ function DeleteUser({ id }) {
             width: '80%',
             overflowY: 'auto',
             maxHeight: hasEvent && !matches ? '80%' : '100%',
-            height: hasEvent && !matches ? '80%' : '20%',
+            height: hasEvent && !matches ? '20%' : '80%',
             bgcolor: 'white',
             boxShadow: 24,
             borderRadius: 7

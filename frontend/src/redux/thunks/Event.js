@@ -131,3 +131,19 @@ export const getPromotedEvents = createAsyncThunk(
     }
   }
 );
+
+export const getSoldEventTickets = createAsyncThunk(
+  'event/getSoldTickets',
+  async (eventId, { rejectWithValue }) => {
+    try {
+      const response = await api.get(event.soldEventTickets + eventId);
+      return response.data;
+    } catch (err) {
+      if (!err.response) {
+        throw err;
+      }
+      const { data, status } = err.response;
+      return rejectWithValue({ data, status });
+    }
+  }
+);

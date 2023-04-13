@@ -285,4 +285,13 @@ class EventsController extends Controller
 
         return $promotedEvents;
     }
+
+    public static function getSoldEventTickets($eventId)
+    {
+        $soldEventTickets = DB::table('tickets')->select('*')
+            ->where('eventId', '=', $eventId)
+            ->count();
+
+        return $soldEventTickets;
+    }
 }

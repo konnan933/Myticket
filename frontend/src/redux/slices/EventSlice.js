@@ -4,7 +4,8 @@ import {
   getFilteredEvent,
   getPromotedEvents,
   getSingleEvent,
-  getSingleEventsDetailed
+  getSingleEventsDetailed,
+  getSoldEventTickets
 } from 'redux/thunks/Event';
 
 const EVENT_INIT_STATE = {
@@ -18,7 +19,9 @@ const EVENT_INIT_STATE = {
   filteredEvent: [],
   filteredEventLoading: false,
   promotedEvents: [],
-  promotedEventsLoading: false
+  promotedEventsLoading: false,
+  soldEventTickets: null,
+  soldEventTicketsLoading: false
 };
 const eventSlice = createSlice({
   name: 'event',
@@ -77,6 +80,17 @@ const eventSlice = createSlice({
     });
     builder.addCase(getPromotedEvents.rejected, (state) => {
       state.promotedEventsLoading = false;
+    });
+
+    builder.addCase(getSoldEventTickets.pending, (state) => {
+      state.soldEventTicketsLoading = true;
+    });
+    builder.addCase(getSoldEventTickets.fulfilled, (state, action) => {
+      state.soldEventTickets = action.payload;
+      state.soldEventTickets = false;
+    });
+    builder.addCase(getSoldEventTickets.rejected, (state) => {
+      state.soldEventTickets = false;
     });
   }
 });
