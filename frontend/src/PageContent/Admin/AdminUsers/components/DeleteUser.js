@@ -52,7 +52,7 @@ function DeleteUser({ id }) {
             width: '80%',
             overflowY: 'auto',
             maxHeight: hasEvent && !matches ? '80%' : '100%',
-            height: hasEvent && !matches ? '20%' : '80%',
+            height: hasEvent && matches ? '80%' : '20%',
             bgcolor: 'white',
             boxShadow: 24,
             borderRadius: 7
