@@ -16,16 +16,11 @@ function DeleteUser({ id }) {
   const { t } = useTranslation('adminUser');
   const dispatch = useDispatch();
   const { userEvents, userEventsLoading } = useSelector((state) => state.user);
-  const { soldEventTickets } = useSelector((state) => state.event);
   const [open, setOpen] = useState(false);
   const hasEvent = userEvents[0] != undefined;
   const matches = useMediaQuery('(min-width:765px)');
   const hasAcceptedEvent = hasEvent && userEvents[0].status === 1;
 
-  console.log(userEvents);
-/*   useEffect(() => {
-    dispatch(getSoldEventTickets());
-  }, []); */
 
   const handleClickOpen = () => {
     dispatch(getUserEvents(id));
