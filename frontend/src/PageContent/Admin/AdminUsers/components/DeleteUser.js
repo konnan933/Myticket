@@ -9,8 +9,6 @@ import UserEventsTable from '../UserEventsTable';
 import CloseIcon from '@mui/icons-material/Close';
 import { getUserEvents } from 'redux/thunks/User';
 import useMediaQuery from '@mui/material/useMediaQuery';
-/* import { getSoldEventTickets } from 'redux/thunks/Event';
-import { useEffect } from 'react'; */
 
 function DeleteUser({ id }) {
   const { t } = useTranslation('adminUser');

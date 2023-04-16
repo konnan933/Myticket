@@ -1,12 +1,8 @@
-import { Typography } from '@mui/material';
 import event from 'API/Event';
-import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 function EventPicture() {
   const { id } = useParams();
-
-  const { singleDetailedEvent } = useSelector((state) => state.event);
 
   return (
     <div className="w-4/5">
@@ -19,13 +15,8 @@ function EventPicture() {
           backgroundPosition: 'center center',
           backgroundRepeat: 'no-repeat'
         }}
-        className="flex justify-center">
-        <div>
-          <Typography variant="h4" color="white" className="bg-gray-400 bg-opacity-40 min-w-3/5">
-            {singleDetailedEvent.title}
-          </Typography>
-        </div>
-      </div>
+        className="flex justify-center"
+      />
     </div>
   );
 }

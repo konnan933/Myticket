@@ -20,6 +20,7 @@ import UserEditEvent from './components/UserEditEvent';
 import UserEventTickets from './components/UserEventTickets';
 
 function UserDetailedEvent() {
+  const matches = useMediaQuery('(min-width:765px)');
   const { t } = useTranslation('userEvent');
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -55,7 +56,8 @@ function UserDetailedEvent() {
       <div className="flex justify-center">
         <div className="flex flex-col">
           <div className="flex justify-center">
-            <Typography variant="h3">{`${singleDetailedEvent.title}`}</Typography>
+            <Typography
+              variant={matches ? 'h5' : 'h4'}>{`${singleDetailedEvent.title}`}</Typography>
           </div>
           <div className="flex justify-center p-6">
             <EditEventPictures />

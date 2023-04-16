@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material';
+import { Typography, useMediaQuery } from '@mui/material';
 import Loader from 'PageContent/utils/Loader';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -13,6 +13,7 @@ function EventContent() {
   const { t } = useTranslation('eventPage');
   const { id } = useParams();
   const dispatch = useDispatch();
+  const matches = useMediaQuery('(min-width:765px)');
 
   const { singleDetailedEvent, singleDetailedEventLoading } = useSelector((state) => state.event);
   const { eventTicketsLoading } = useSelector((state) => state.ticket);
@@ -30,7 +31,9 @@ function EventContent() {
     <div className="w-4/5 flex flex-col justify-center items-center m-auto">
       <EventPicture />
       <div className="w-full my-10">
-        <Typography variant="h2">{`${singleDetailedEvent.title} ${t('TICKETS')}`}</Typography>
+        <Typography variant={matches ? 'h2' : 'h4'}>{`${singleDetailedEvent.title} ${t(
+          'TICKETS'
+        )}`}</Typography>
       </div>
       <EventTickets />
     </div>
