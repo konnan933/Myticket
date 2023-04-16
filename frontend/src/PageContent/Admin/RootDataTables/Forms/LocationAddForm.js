@@ -8,7 +8,7 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import districts from 'PageContent/utils/Districts';
 
-function LocationAddForm() {
+function LocationAddForm({ handleClose }) {
   const { t } = useTranslation('rootData');
   const { register, handleSubmit } = useForm();
 
@@ -16,7 +16,7 @@ function LocationAddForm() {
 
   const locationObj = {
     name: '',
-    postCode: '',
+    postcode: '',
     district: '',
     street: '',
     houseNumber: '',
@@ -36,13 +36,16 @@ function LocationAddForm() {
   return (
     <form
       onSubmit={handleSubmit((data) => {
-        dispatch(addLocation(data));
+        dispatch(addLocation(data)).then(() => {
+          handleClose();
+        });
       })}>
       <fieldset>
         <div className="grid gap-8 p-4">
           <TextField
             {...register('name')}
             required
+            autoComplete="on"
             name="name"
             type="text"
             value={locationData.name}
@@ -53,8 +56,9 @@ function LocationAddForm() {
           <TextField
             {...register('postcode')}
             required
+            autoComplete="on"
             inputProps={{ max: 9985, min: 1011 }}
-            name="postCode"
+            name="postcode"
             type="number"
             value={locationData.postCode}
             onChange={locationChangeHandler}
@@ -84,6 +88,7 @@ function LocationAddForm() {
             required
             name="street"
             type="text"
+            autoComplete="on"
             value={locationData.street}
             onChange={locationChangeHandler}
             label={t('STREET')}
@@ -92,6 +97,7 @@ function LocationAddForm() {
           <TextField
             {...register('houseNumber')}
             required
+            autoComplete="on"
             name="houseNumber"
             type="number"
             value={locationData.houseNumber}
@@ -103,6 +109,7 @@ function LocationAddForm() {
             {...register('floor')}
             inputProps={{ maxLength: 3 }}
             name="floor"
+            autoComplete="on"
             type="text"
             value={locationData.floor}
             onChange={locationChangeHandler}
@@ -113,6 +120,7 @@ function LocationAddForm() {
             {...register('room')}
             inputProps={{ maxLength: 20 }}
             name="room"
+            autoComplete="on"
             type="text"
             value={locationData.room}
             onChange={locationChangeHandler}

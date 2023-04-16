@@ -16,7 +16,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 function UserEventsContent() {
   const { t } = useTranslation('userEvent');
   const navigate = useNavigate();
-  const width = useMediaQuery('(max-width:1000px)');
+  const width = useMediaQuery('(max-width:760px)');
 
   const { userEventsWithDetails, userEventsWithDetailsLoading } = useSelector(
     (state) => state.user
@@ -79,7 +79,6 @@ function UserEventsContent() {
                   src={`${event.eventPicture}${userEvent.eventId}`}
                   effect="blur"
                   scrollPosition={scrollPosition}
-                  width={670}
                 />
                 <Box>
                   <CardContent>
