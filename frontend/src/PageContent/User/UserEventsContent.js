@@ -16,7 +16,8 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 function UserEventsContent() {
   const { t } = useTranslation('userEvent');
   const navigate = useNavigate();
-  const width = useMediaQuery('(max-width:760px)');
+  const width = useMediaQuery('(max-width:1450px)');
+  const mobile = useMediaQuery('(max-width:765px)');
 
   const { userEventsWithDetails, userEventsWithDetailsLoading } = useSelector(
     (state) => state.user
@@ -27,7 +28,6 @@ function UserEventsContent() {
 
   const hasntEvent = userEventsWithDetails[0] === undefined;
   const [scrollPosition, setScrollPosition] = useState(0);
-
   useEffect(() => {
     dispatch(getUserEventsWithDetails(loggedUser.id));
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -79,11 +79,12 @@ function UserEventsContent() {
                   src={`${event.eventPicture}${userEvent.eventId}`}
                   effect="blur"
                   scrollPosition={scrollPosition}
+                  width={mobile ? '100%' : 750}
                 />
                 <Box>
                   <CardContent>
                     <div className="w-full">
-                      <Typography gutterBottom variant="h5" component="div">
+                      <Typography gutterBottom variant="h6" component="div">
                         {`${t('EVENT_TITLE')}: ${userEvent.title}`}
                       </Typography>
                       <Typography gutterBottom variant="h6" color="text.secondary">
