@@ -1,4 +1,4 @@
-import { Box, Button, IconButton, Modal } from '@mui/material';
+import { Box, Button, IconButton, Modal, Typography } from '@mui/material';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
@@ -19,19 +19,25 @@ function Addimage({ setImageId }) {
   const displayRemoveButton = path && !open && isSent;
   const displayAddButton = !open && !isSent;
   const imageRequired = path === null;
+  const [isNotValid, setIsNotValid] = useState(false);
 
   const checkDimensions = (imgUrl) => {
-    const img = new Image();
-    img.src = imgUrl;
-    img.onload = () => {
-      const width = img.naturalWidth;
-      const height = img.naturalHeight;
-      if (width < 1280 || height < 720) {
-        console.log('nemjo');
-        return false;
-      }
-      console.log('jo');
-      return true;
+    const reader = new FileReader();
+    reader.readAsDataURL(imgUrl);
+    reader.onload = (e) => {
+      const image = new Image();
+      image.src = e.target.result;
+      image.onload = () => {
+        const { height, width } = image;
+        console.log(height);
+        console.log(width);
+        if (width === 1280 && height === 720) {
+          setIsNotValid(false);
+          setPath(imgUrl);
+        } else {
+          setIsNotValid(true);
+        }
+      };
     };
   };
 
@@ -70,6 +76,12 @@ function Addimage({ setImageId }) {
                 <CloseIcon fontSize="medium" />
               </IconButton>
             </div>
+            <div className="flex justify-center">
+              <h2>{t('ADD_IMAGE')}</h2>
+            </div>
+            <div className="flex justify-center p-4">
+              <Typography variant="h7">{t('PICTIURE_SIZE')}</Typography>
+            </div>
             {!path && (
               <input
                 type="file"
@@ -83,6 +95,18 @@ function Addimage({ setImageId }) {
                   }
                 }}
               />
+            )}
+            {isNotValid && (
+              <div>
+                <div className="flex justify-center p-2">
+                  <Typography className="text-red-500" variant="h7">
+                    {t('PICTIURE_NOT_VALID')}
+                  </Typography>
+                </div>
+                <div className="flex justify-center p-2">
+                  <Typography variant="h7">{t('PLEASE_ADD_OTHER_IMAGE')}</Typography>
+                </div>
+              </div>
             )}
             {path && (
               <div>
