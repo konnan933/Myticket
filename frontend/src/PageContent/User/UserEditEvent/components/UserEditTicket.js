@@ -6,7 +6,8 @@ import {
   MenuItem,
   Modal,
   Select,
-  TextField
+  TextField,
+  useMediaQuery
 } from '@mui/material';
 import { Box } from '@mui/system';
 import { useEffect, useState } from 'react';
@@ -46,6 +47,7 @@ function UserEditTicket({ ticket }) {
   const dispatch = useDispatch();
   const loading = TicketTypesLoading;
   const errors = allAmountError || startDateError;
+  const width = useMediaQuery('(max-width:768px)');
 
   useEffect(() => {
     dispatch(getTicketTypes());
@@ -97,7 +99,7 @@ function UserEditTicket({ ticket }) {
               top: '50%',
               left: '50%',
               transform: 'translate(-50%, -50%)',
-              width: 400,
+              width: width ? '80%' : '30%',
               bgcolor: 'white',
               boxShadow: 24,
               p: 4,

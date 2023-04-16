@@ -1,5 +1,4 @@
-import { Box, IconButton, Modal, Typography } from '@mui/material';
-import modalStyle from 'PageContent/utils/ModalStyle';
+import { Box, IconButton, Modal, Typography, useMediaQuery } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -21,6 +20,7 @@ function UserAddTicket() {
   const { id } = useParams();
   const { t } = useTranslation('userEvent');
   const dispatch = useDispatch();
+  const width = useMediaQuery('(max-width:768px)');
 
   useEffect(() => {
     dispatch(getCurrency());
@@ -47,7 +47,18 @@ function UserAddTicket() {
           onClose={handleClose}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description">
-          <Box sx={modalStyle}>
+          <Box
+            sx={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              width: width ? '80%' : '30%',
+              bgcolor: 'background.paper',
+              boxShadow: 24,
+              p: 4,
+              borderRadius: 7
+            }}>
             <div className="flex justify-end">
               <IconButton color="error" onClick={handleClose}>
                 <CloseIcon fontSize="medium" />

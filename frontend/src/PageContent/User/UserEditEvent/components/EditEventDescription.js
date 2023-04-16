@@ -11,7 +11,6 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import modalStyle from 'PageContent/utils/ModalStyle';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import CloseIcon from '@mui/icons-material/Close';
 import { useParams } from 'react-router-dom';
@@ -74,18 +73,29 @@ function EditEventDescription() {
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
-        <Box sx={modalStyle}>
+        <Box
+          sx={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: width ? '80%' : '50%',
+            bgcolor: 'background.paper',
+            boxShadow: 24,
+            p: 4,
+            borderRadius: 7
+          }}>
           <div className="flex justify-end">
             <IconButton color="error" onClick={handleClose}>
               <CloseIcon fontSize="medium" />
             </IconButton>
           </div>
-          <div className="flex justify-center pb-10 pt-5">
+          <div className="flex justify-center pb-3 pt-3">
             <Typography>{t('DESCRIPTION')}</Typography>
           </div>
           <div className="flex justify-center">
             {isEdit ? (
-              <form className="flex flex-row h-full w-4/5 p-4" onSubmit={handleOnSubmit}>
+              <form className="flex flex-col h-full w-full p-4" onSubmit={handleOnSubmit}>
                 <TextareaAutosize
                   {...register('description')}
                   type="text"
