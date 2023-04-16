@@ -28,12 +28,12 @@ function EventContent() {
   }
 
   return (
-    <div className="w-4/5 flex flex-col justify-center items-center m-auto">
+    <div className="flex flex-col justify-center items-center m-auto">
       <EventPicture />
       <div className="w-full my-10">
-        <Typography variant={matches ? 'h2' : 'h4'}>{`${singleDetailedEvent.title} ${t(
-          'TICKETS'
-        )}`}</Typography>
+        <Typography className="pl-4" variant={matches ? 'h3' : 'h4'}>{`${
+          singleDetailedEvent.title
+        } ${t('TICKETS')}`}</Typography>
       </div>
       <EventTickets />
     </div>
