@@ -57,7 +57,8 @@ function UserDetailedEvent() {
         <div className="flex flex-col">
           <div className="flex justify-center">
             <Typography
-              variant={matches ? 'h5' : 'h4'}>{`${singleDetailedEvent.title}`}</Typography>
+              className="p-1"
+              variant={matches ? 'h3' : 'h5'}>{`${singleDetailedEvent.title}`}</Typography>
           </div>
           <div className="flex justify-center p-6">
             <EditEventPictures />

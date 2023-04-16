@@ -35,7 +35,9 @@ function UserAddTicket() {
   return (
     <div className="p-4">
       <div className="flex flex-row">
-        <Typography variant="h3">{`${singleEvent.title} ${t('TICKETS')}`}</Typography>
+        <Typography variant={width ? 'h5' : 'h3'}>{`${singleEvent.title} ${t(
+          'TICKETS'
+        )}`}</Typography>
         <IconButton onClick={handleOpen}>
           <AddCircleOutlineIcon fontSize="medium" />
         </IconButton>
