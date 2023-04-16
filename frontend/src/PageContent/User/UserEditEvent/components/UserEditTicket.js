@@ -124,6 +124,7 @@ function UserEditTicket({ ticket }) {
                       data.conceptTicketId = ticket.conceptTicketId;
                       data.currencies = ticket.currencies;
                       data.price = ticket.price;
+                      data.bookedTicket = ticket.bookedTicket;
                       dispatch(
                         putEventTicket({ data, ticketId: ticket.conceptTicketId, eventId: id })
                       );
