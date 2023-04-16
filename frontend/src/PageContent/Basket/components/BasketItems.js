@@ -11,16 +11,17 @@ function BasketItems({ payCurrency }) {
   const { basketWithDetails } = useSelector((state) => state.basket);
 
   return (
-    <div className="w-10/12 max-md:w-4/5 max-h-[400px]  overflow-y-scroll  border-2 p-2 rounded-lg max-md:justify-center border-bc-yellow-theme ">
+    <div className="w-10/12 max-md:w-4/5 max-h-[450px]  overflow-y-auto  border-2 p-2 rounded-lg max-md:justify-center border-bc-yellow-theme ">
       {basketWithDetails.map((basket) => (
         <div key={basket.id}>
           <div className="flex flex-row max-md:flex-col items-center">
-            <div className="flex justify-center items-center">
+            <div className="flex justify-center items-center p-4">
               <LazyLoadImage
                 alt="Esemeny kep"
                 src={`${event.eventPicture}${basket.eventId}`}
                 effect="blur"
-                width={'200'}
+                width={'300'}
+                className="rounded-xl"
               />
             </div>
             <div className="w-full flex justify-evenly max-md:flex-col max-md:justify-center  items-center max-md:text-center">
@@ -31,7 +32,7 @@ function BasketItems({ payCurrency }) {
                 }`}</Typography>
                 <div className="w-4/5 max-md:w-full flex flex-row justify-between  max-md:flex-col ">
                   <Typography color="text.primary">{`${basket.ticketType}`}</Typography>
-                  <Typography color="text.primary">{`${
+                  <Typography variant="h6" color="text.primary">{`${
                     basket.currencies === 'HUF'
                       ? Math.round(basket.price, 0)
                       : parseFloat(basket.price).toFixed(2)
