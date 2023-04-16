@@ -20,6 +20,21 @@ function Addimage({ setImageId }) {
   const displayAddButton = !open && !isSent;
   const imageRequired = path === null;
 
+  const checkDimensions = (imgUrl) => {
+    const img = new Image();
+    img.src = imgUrl;
+    img.onload = () => {
+      const width = img.naturalWidth;
+      const height = img.naturalHeight;
+      if (width < 1280 || height < 720) {
+        console.log('nemjo');
+        return false;
+      }
+      console.log('jo');
+      return true;
+    };
+  };
+
   return (
     <div>
       {imageRequired && (
@@ -60,7 +75,12 @@ function Addimage({ setImageId }) {
                 type="file"
                 name="path"
                 onChange={(event) => {
-                  setPath(event.target.files[0]);
+                  if (checkDimensions(event.target.files[0])) {
+                    setPath(event.target.files[0]);
+                    console.log('asd');
+                  } else {
+                    console.log('jo');
+                  }
                 }}
               />
             )}

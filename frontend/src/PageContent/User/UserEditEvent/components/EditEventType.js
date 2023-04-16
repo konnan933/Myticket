@@ -36,7 +36,6 @@ function EditEventType({ type }) {
       window.location.reload(true);
     });
   };
-  console.log(type);
   const eventTypeChangeHandler = (event) => {
     setLocalType(event.target.value);
   };

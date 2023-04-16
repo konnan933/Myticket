@@ -70,7 +70,10 @@ const locale = {
   EVENT_TYPE_3: 'Concert',
   EVENT_TYPE_4: 'Show',
   EVENT_TYPE_5: 'Other',
-  BUISNESS_PHONE_NUMBER: 'Buisness phone number'
+  BUISNESS_PHONE_NUMBER: 'Buisness phone number',
+  PICTIURE_SIZE: 'The picture size must be 1280x720 pixels!',
+  PICTIURE_NOT_VALID: 'The picture width and height is not vaild',
+  PLEASE_ADD_OTHER_IMAGE: 'Please add a valid picture'
 };
 
 export default locale;

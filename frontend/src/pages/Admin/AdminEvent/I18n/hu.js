@@ -70,6 +70,9 @@ const locale = {
   EVENT_TYPE_3: 'Koncert',
   EVENT_TYPE_4: 'Előodas',
   EVENT_TYPE_5: 'Egyéb',
-  BUISNESS_PHONE_NUMBER: 'Biznisz telefonszám'
+  BUISNESS_PHONE_NUMBER: 'Biznisz telefonszám',
+  PICTIURE_SIZE: 'A kép mérete csak 1280x720 pixel lehet!',
+  PICTIURE_NOT_VALID: 'A kép szélessége és magassága nem megfelelő',
+  PLEASE_ADD_OTHER_IMAGE: 'Kérjük adjon meg egy megfelelő képet'
 };
 export default locale;
