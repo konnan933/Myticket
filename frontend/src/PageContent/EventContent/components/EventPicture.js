@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 
 function EventPicture() {
   const { id } = useParams();
-  const mobile = useMediaQuery('(min-width:765px)');
+  const mobile = useMediaQuery('(min-width:768px)');
 
   return (
     <div className="w-4/5 max-md:w-9/10">

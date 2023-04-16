@@ -13,7 +13,7 @@ function EventContent() {
   const { t } = useTranslation('eventPage');
   const { id } = useParams();
   const dispatch = useDispatch();
-  const matches = useMediaQuery('(min-width:765px)');
+  const matches = useMediaQuery('(min-width:768px)');
 
   const { singleDetailedEvent, singleDetailedEventLoading } = useSelector((state) => state.event);
   const { eventTicketsLoading } = useSelector((state) => state.ticket);
