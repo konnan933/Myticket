@@ -249,8 +249,6 @@ class EventsController extends Controller
     {
         $userEvents = DB::table('events')->select('events.id as eventId', 'events.title', 'events.startDate', 'events.endDate', 'users.userName', 'users.id as organizerId', 'events.status')
             ->join('users', 'users.id', '=', 'events.user')
-
-
             ->where('users.id', '=', $userId)
             ->get();
 
@@ -286,12 +284,4 @@ class EventsController extends Controller
         return $promotedEvents;
     }
 
-    public static function getSoldEventTickets($eventId)
-    {
-        $soldEventTickets = DB::table('tickets')->select('*')
-            ->where('eventId', '=', $eventId)
-            ->count();
-
-        return $soldEventTickets;
-    }
 }
