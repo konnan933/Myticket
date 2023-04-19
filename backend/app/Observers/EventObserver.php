@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\ConceptTicketController;
+use App\Http\Controllers\EmailController;
 use App\Models\Events;
 use App\Models\EventsChanges;
 use App\Models\ConceptTicket;
@@ -59,7 +60,7 @@ class EventObserver
         }
 
         if ($events->status == 4) {
-            EventsController::sendEmailEventDelete($events);
+            EmailController::sendEmailEventDelete($events);
             Events::find($events->id)->delete();
         }
 
@@ -70,7 +71,7 @@ class EventObserver
             ||
             $events->getOriginal('location') != $events->location
         ) {
-            EventsController::sendEmailEventChange($events);
+            EmailController::sendEmailEventChange($events);
         }
     }
 

@@ -152,75 +152,7 @@ class EventsController extends Controller
 
         return $eventCategory;
     }
-    public static function sendEmailEventChange($event)
-    {
-        $userTicket = DB::table('tickets')->select('users.userName', 'users.id', 'users.email')
-            ->join('users', 'users.id', '=', 'tickets.user')
-            ->where('eventId', '=', $event->id)
-            ->distinct('users.id')
-            ->get();
 
-        $eventName = $event->title;
-        $startDate = $event->startDate;
-        $endDate = $event->endDate;
-        $location_name = Locations::find($event->location)->name;
-        $location_address = LocationsController::eventLocationBuilder($event->location);
-
-
-        foreach ($userTicket as $user) {
-            $user = User::find($user->id);
-            $userName = $user->userName;
-            $email = $user->email;
-            if ($user->languge === 'hu') {
-                $subject = "A(z)" . $eventName . " eseményen változás történt.";
-                Mail::send(
-                    'email.huEventChange',
-                    ['userName' => $userName, 'event_name' => $eventName, 'startDate' => $startDate, 'endDate' => $endDate, 'location_name' => $location_name, 'location_address' => $location_address],
-                    function ($mail) use ($email, $userName, $subject) {
-                        $mail->from("myticketszakdoga@gmail.com", "MyTicket");
-                        $mail->to($email, $userName);
-                        $mail->subject($subject);
-                    }
-                );
-            } else {
-                $subject = "The" . $eventName . " event details got changed.";
-                Mail::send(
-                    'email.enEventChanged',
-                    ['userName' => $userName, 'event_name' => $eventName, 'startDate' => $startDate, 'endDate' => $endDate, 'location_name' => $location_name, 'location_address' => $location_address],
-                    function ($mail) use ($email, $userName, $subject) {
-                        $mail->from("myticketszakdoga@gmail.com", "MyTicket");
-                        $mail->to($email, $userName);
-                        $mail->subject($subject);
-                    }
-                );
-            }
-        }
-    }
-    public static function sendEmailEventDelete($event)
-    {
-        $userTicket = DB::table('tickets')->select('users.userName', 'users.email')
-            ->join('user', 'user.id', '=', 'tickets.user')
-            ->where('eventId', '=', $event->id)
-            ->where('tickets.user', '=', 'user.id')
-            ->get();
-
-        $title = $event->title;
-
-        $subject = "A(z)" . $title . " esemény sajnos elmarad.";
-        foreach ($userTicket as $users) {
-            $userName = $users->userName;
-            $email = $users->email;
-            Mail::send(
-                'email.event$eventValt',
-                ['userName' => $userName, 'title' => $title],
-                function ($mail) use ($email, $userName, $subject) {
-                    $mail->from("myticketszakdoga@gmail.com", "MyTicket");
-                    $mail->to($email, $userName);
-                    $mail->subject($subject);
-                }
-            );
-        }
-    }
     public function getEventDetails()
     {
 
@@ -283,5 +215,4 @@ class EventsController extends Controller
 
         return $promotedEvents;
     }
-
 }
