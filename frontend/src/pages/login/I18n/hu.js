@@ -4,7 +4,8 @@ const locale = {
   PASSWORD: 'Jelszó',
   LOGIN_SEND: 'Bejelntkezés',
   REMEMBER_ME: 'Emlékezz rám',
-  WELCOME: 'Köszöntünk a Myticketen'
+  WELCOME: 'Köszöntünk a Myticketen',
+  FORGOT_PASSWORD: 'Elfelejtett jelszó'
 };
 
 export default locale;

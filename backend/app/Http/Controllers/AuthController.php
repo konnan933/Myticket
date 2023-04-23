@@ -27,28 +27,28 @@ class AuthController extends Controller
         $verificationPassword->emailString = $rndString;
         $verificationPassword->save();
 
-        if($user->language === 'hu'){
-        $subject = "Email cím megerősítése";
-        Mail::send(
-            'email.huEmailVerification',
-            ['link' => $link],
-            function ($mail) use ($user, $subject) {
-                $mail->from("myticketszakdoga@gmail.com", "MyTicket");
-                $mail->to($user->email, $user->name);
-                $mail->subject($subject);
-            }
-        );
-        }else{
-        $subject = "Email verification";
-        Mail::send(
-            'email.enEmailVerification',
-            ['link' => $link],
-            function ($mail) use ($user, $subject) {
-                $mail->from("myticketszakdoga@gmail.com", "MyTicket");
-                $mail->to($user->email, $user->name);
-                $mail->subject($subject);
-            }
-        );
+        if ($user->language === 'hu') {
+            $subject = "E-mail cím megerősítése";
+            Mail::send(
+                'email.huEmailVerification',
+                ['link' => $link],
+                function ($mail) use ($user, $subject) {
+                    $mail->from("myticketszakdoga@gmail.com", "MyTicket");
+                    $mail->to($user->email, $user->name);
+                    $mail->subject($subject);
+                }
+            );
+        } else {
+            $subject = "E-mail verification";
+            Mail::send(
+                'email.enEmailVerification',
+                ['link' => $link],
+                function ($mail) use ($user, $subject) {
+                    $mail->from("myticketszakdoga@gmail.com", "MyTicket");
+                    $mail->to($user->email, $user->name);
+                    $mail->subject($subject);
+                }
+            );
         }
     }
 
@@ -78,7 +78,7 @@ class AuthController extends Controller
         $link =  env('FRONTEND_URL') . '/passwordReset/' . $rndString;
         $email = $request->email;
         $emailExsits = User::where('email', $email)->get();
-        $user = User::where('email','like',$email) -> first();
+        $user = User::where('email', 'like', $email)->first();
         if ($emailExsits->isEmpty()) {
             return response()->json([
                 'data' => false
@@ -93,28 +93,28 @@ class AuthController extends Controller
         $verificationPassword->newPaswordCode = $rndString;
         $verificationPassword->save();
 
-        if($user->language === 'hu'){
+        if ($user->language === 'hu') {
             $subject = "Jelszó megváltoztatása";
-        Mail::send(
-            'email.huPasswordReset',
-            ['link' => $link],
-            function ($mail) use ($email, $subject) {
-                $mail->from("myticketszakdoga@gmail.com", "MyTicket");
-                $mail->to($email);
-                $mail->subject($subject);
-            }
-        );
-        }else{
+            Mail::send(
+                'email.huPasswordReset',
+                ['link' => $link],
+                function ($mail) use ($email, $subject) {
+                    $mail->from("myticketszakdoga@gmail.com", "MyTicket");
+                    $mail->to($email);
+                    $mail->subject($subject);
+                }
+            );
+        } else {
             $subject = "Reset password";
-        Mail::send(
-            'email.enPaswordReset',
-            ['link' => $link],
-            function ($mail) use ($email, $subject) {
-                $mail->from("myticketszakdoga@gmail.com", "MyTicket");
-                $mail->to($email);
-                $mail->subject($subject);
-            }
-        );
+            Mail::send(
+                'email.enPaswordReset',
+                ['link' => $link],
+                function ($mail) use ($email, $subject) {
+                    $mail->from("myticketszakdoga@gmail.com", "MyTicket");
+                    $mail->to($email);
+                    $mail->subject($subject);
+                }
+            );
         }
     }
 

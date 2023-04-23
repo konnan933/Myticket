@@ -29,7 +29,7 @@ function LoginContent() {
         </div>
         <LoginForm />
         <Button onClick={handleForgotPassword} size="small">
-          {t('ForgotPassword')}
+          {t('FORGOT_PASSWORD')}
         </Button>
       </div>
     </div>
