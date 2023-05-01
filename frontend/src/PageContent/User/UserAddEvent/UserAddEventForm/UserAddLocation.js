@@ -31,11 +31,13 @@ function UserAddLocation() {
               top: '50%',
               left: '50%',
               transform: 'translate(-50%, -50%)',
-              width: matches ? '50%' : '80%',
+              width: matches ? '50%' : '60%',
               bgcolor: 'background.paper',
               boxShadow: 24,
               p: 4,
-              borderRadius: 7
+              borderRadius: 7,
+              overflowY: 'auto',
+              height: '90%'
             }}>
             <div className="flex justify-end">
               <IconButton color="error" onClick={handleClose}>
