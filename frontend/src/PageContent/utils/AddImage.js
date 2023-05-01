@@ -6,7 +6,7 @@ import ModalStyle from './BigModalStyle';
 import CloseIcon from '@mui/icons-material/Close';
 import { addPicture } from 'redux/thunks/Picture';
 
-function Addimage({ setImageId }) {
+function Addimage() {
   const dispatch = useDispatch();
   const [path, setPath] = useState(null);
   const [open, setOpen] = useState(false);
@@ -29,8 +29,6 @@ function Addimage({ setImageId }) {
       image.src = e.target.result;
       image.onload = () => {
         const { height, width } = image;
-        console.log(height);
-        console.log(width);
         if (width === 1280 && height === 720) {
           setIsNotValid(false);
           setPath(imgUrl);
@@ -60,7 +58,6 @@ function Addimage({ setImageId }) {
             onClick={() => {
               setPath(null);
               setIsSent(false);
-              setImageId('');
             }}>
             {t('REMOVE_IMAGE')}
           </Button>
@@ -114,11 +111,9 @@ function Addimage({ setImageId }) {
                 <div className="flex justify-center">
                   <Button
                     onClick={() => {
-                      dispatch(addPicture(path)).then((respone) => {
-                        setIsSent(true);
-                        console.log(respone);
-                        setImageId(respone.payload);
+                      dispatch(addPicture(path)).then(() => {
                         setOpen(false);
+                        setIsSent(true);
                       });
                     }}>
                     {t('SEND_IMAGE')}
@@ -127,7 +122,6 @@ function Addimage({ setImageId }) {
                     onClick={() => {
                       setPath(null);
                       setIsSent(false);
-                      setImageId('');
                     }}>
                     {t('CHANGE_PICTURE')}
                   </Button>

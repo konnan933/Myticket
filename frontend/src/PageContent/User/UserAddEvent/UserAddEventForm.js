@@ -26,9 +26,9 @@ function UserAddEventForm() {
   const navigate = useNavigate();
   const { locationNames, addedLocation } = useSelector((state) => state.location);
   const { loggedUser } = useSelector((state) => state.auth);
+  const { imageId } = useSelector((state) => state.picture);
   const { t } = useTranslation('userAddEvent');
   const dispatch = useDispatch();
-
   const { register, handleSubmit } = useForm();
   const [eventName, setEventName] = useState('');
   const [buisnessEmail, setBuisnessEmail] = useState(loggedUser.email);
@@ -38,7 +38,6 @@ function UserAddEventForm() {
   const organizerName = loggedUser.userName;
   const [locationName, setLocationName] = useState('');
   const [locationNameinput, setLocationNameInput] = useState('');
-  const [imageId, setImageId] = useState('');
   const [startDateError, setStartDateError] = useState(false);
   const [endDateError, setEndDateError] = useState(false);
   const [startDateErrorMsg, setStartDateErrorMsg] = useState('');
@@ -243,7 +242,7 @@ function UserAddEventForm() {
               placeholder={t('DESCRIPTION')}
               className="border-2 w-full p-3 mt-5"
             />
-            <Addimage setImageId={setImageId} />
+            <Addimage />
           </fieldset>
           <div className="flex justify-center p-6">
             <Button

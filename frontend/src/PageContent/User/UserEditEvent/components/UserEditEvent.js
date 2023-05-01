@@ -42,7 +42,7 @@ function UserEditEvent({ event }) {
   const organizerName = event.userName;
   const [locationName, setLocationName] = useState(event.locationName);
   const [locationNameinput, setLocationNameInput] = useState('');
-  const [imageId, setImageId] = useState('');
+  const { imageId } = useSelector((state) => state.picture);
   const [startDateError, setStartDateError] = useState(false);
   const [endDateError, setEndDateError] = useState(false);
   const [startDateErrorMsg, setStartDateErrorMsg] = useState('');
@@ -275,7 +275,7 @@ function UserEditEvent({ event }) {
                         placeholder={t('DESCRIPTION')}
                         className="border-2 w-full p-3 mt-5"
                       />
-                      {isEventImage && <Addimage setImageId={setImageId} />}
+                      {isEventImage && <Addimage />}
                     </fieldset>
                     <div className="flex justify-center p-9">
                       <Button

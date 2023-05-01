@@ -33,6 +33,7 @@ function EditEvent({ event }) {
 
   const dispatch = useDispatch();
 
+  const { imageId } = useSelector((state) => state.picture);
   const [eventName, setEventName] = useState(event.title);
   const [buisnessEmail, setBuisnessEmail] = useState(event.email);
   const [buisnessPhoneNum, setBuisnessPhoneNum] = useState(event.phoneNumber);
@@ -42,7 +43,6 @@ function EditEvent({ event }) {
   const [organizerNameinput, setOrganizerInput] = useState('');
   const [locationName, setLocationName] = useState(event.locationName);
   const [locationNameinput, setLocationNameInput] = useState('');
-  const [imageId, setImageId] = useState('');
   const [startDateError, setStartDateError] = useState(false);
   const [endDateError, setEndDateError] = useState(false);
   const [startDateErrorMsg, setStartDateErrorMsg] = useState('');
@@ -293,7 +293,7 @@ function EditEvent({ event }) {
                         placeholder={t('DESCRIPTION')}
                         className="border-2 w-full p-3 mt-5"
                       />
-                      {isEventImage && <Addimage setImageId={setImageId} />}
+                      {isEventImage && <Addimage />}
                     </fieldset>
                     <div className="flex justify-center p-9">
                       <Button

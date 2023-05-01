@@ -36,8 +36,7 @@ function AddEventForm() {
   const [organizerNameinput, setOrganizerInput] = useState('');
   const [locationName, setLocationName] = useState('');
   const [locationNameinput, setLocationNameInput] = useState('');
-
-  const [imageId, setImageId] = useState('');
+const { imageId } = useSelector((state) => state.picture);
 
   const [startDateError, setStartDateError] = useState(false);
   const [endDateError, setEndDateError] = useState(false);
@@ -234,7 +233,7 @@ function AddEventForm() {
               placeholder={t('DESCRIPTION')}
               className="border-2 w-full p-3 mt-5"
             />
-            <Addimage setImageId={setImageId} />
+            <Addimage  />
           </fieldset>
           <div className="flex justify-center pt-4 p-2">
             <Button
