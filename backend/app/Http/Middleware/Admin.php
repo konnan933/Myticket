@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class Admin
 {
@@ -17,10 +18,11 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
+        $link = env('FRONTEND_URL') . '/donthaveaccess';
         if (Auth::user() && Auth::user()->level == 0) {
             return $next($request);
         } else {
-            return 'home';
+            return Redirect::to($link);
         }
     }
 }

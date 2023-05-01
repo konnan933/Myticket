@@ -23,6 +23,7 @@ import ProfilePage from 'pages/Profile/ProfilePage';
 import EmailVerificationPage from 'pages/EmailVerification/EmailVerificationPage';
 import ResetPasswordPage from 'pages/ResetPassword/ResetPasswordPage';
 import ForgotPasswordPage from 'pages/ForgotPassword/ForgotPasswordPage';
+import DontHaveAccessPage from 'pages/DontHaveAccess/DontHaveAccessPage';
 
 i18n.addResourceBundle('en', 'rootes', en);
 i18n.addResourceBundle('hu', 'rootes', hu);
@@ -116,6 +117,11 @@ export const allRootConfig = [
   {
     pagePath: '/forgotPassword',
     element: <ForgotPasswordPage />,
+    level: level.guest
+  },
+  {
+    pagePath: '/donthaveaccess',
+    element: <DontHaveAccessPage />,
     level: level.guest
   }
 ];
