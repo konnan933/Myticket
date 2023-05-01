@@ -18,6 +18,7 @@ import EditEventStartDate from './components/EditEventStartDate';
 import EditEventType from './components/EditEventType';
 import UserEditEvent from './components/UserEditEvent';
 import UserEventTickets from './components/UserEventTickets';
+import moment from 'moment';
 
 function UserDetailedEvent() {
   const matches = useMediaQuery('(min-width:765px)');
@@ -27,6 +28,13 @@ function UserDetailedEvent() {
   const { singleDetailedEvent, singleDetailedEventLoading } = useSelector((state) => state.event);
   const width = useMediaQuery('(max-width:768px)');
   const eventTypeValues = { ekId: singleDetailedEvent.ekId, typeName: singleDetailedEvent.name };
+
+  const editDate = moment(
+    new Date().setDate(new Date(singleDetailedEvent.startDate).getDate() - 7)
+  ).format('YYYY-MM-DD');
+
+  const canEdit = moment().isBefore(editDate);
+
   const eventLocationValues = {
     locationId: singleDetailedEvent.locationId,
     locationName: singleDetailedEvent.locationName,
@@ -34,6 +42,7 @@ function UserDetailedEvent() {
     street: singleDetailedEvent.street,
     houseNumber: singleDetailedEvent.houseNumber
   };
+
   useEffect(() => {
     dispatch(getSingleEventsDetailed(id));
     dispatch(getSingleEvent(id));
@@ -63,6 +72,15 @@ function UserDetailedEvent() {
           <div className="flex justify-center p-6">
             <EditEventPictures />
           </div>
+          {canEdit && (
+            <div className="flex justify-center p-6">
+              <Typography variant="h5" component="h5">
+                {t('EDIT_EVENT_ATTENCION')}
+                {editDate}:{' 23:59'}
+              </Typography>
+            </div>
+          )}
+
           <div>
             <div className="flex justify-between p-4">
               <div className="flex justify-start">
@@ -70,9 +88,20 @@ function UserDetailedEvent() {
                   {t('EDIT_EVENT')}:
                 </Typography>
               </div>
-              <div className="flex justify-end">
-                <UserEditEvent event={singleDetailedEvent} />
-              </div>
+              {canEdit ? (
+                <div className="flex justify-end">
+                  <UserEditEvent event={singleDetailedEvent} />
+                </div>
+              ) : (
+                <div className="flex justify-end flex-col text-red-500">
+                  <Typography gutterBottom variant="h8" component="div">
+                    {t('CANT_EDIT')}
+                  </Typography>
+                  <Typography gutterBottom variant="h8" component="div">
+                    {t('PLEASE_CONTACT_SUPPORT')}
+                  </Typography>
+                </div>
+              )}
             </div>
             <div className={`grid ${width ? 'grid-cols-1' : 'grid-cols-2'}`}>
               <Typography className="p-4" gutterBottom variant="h5" component="div">
@@ -99,9 +128,10 @@ function UserDetailedEvent() {
                 type="tel"
               />
               <EditEventType type={eventTypeValues} />
-              <EditEventLocation location={eventLocationValues} />
-              <EditEventStartDate date={singleDetailedEvent.startDate} />
+              <EditEventLocation canEdit={canEdit} location={eventLocationValues} />
+              <EditEventStartDate canEdit={canEdit} date={singleDetailedEvent.startDate} />
               <EditEventEndDate
+                canEdit={canEdit}
                 endDate={singleDetailedEvent.endDate}
                 startDate={singleDetailedEvent.startDate}
               />

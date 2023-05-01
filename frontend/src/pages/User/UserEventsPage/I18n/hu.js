@@ -4,6 +4,7 @@ const locale = {
   EVENT_CATEGORY: 'Kategória',
   EVENT_BUISNESS_EMAIL: 'Biznisz email',
   EVENT_BUISNESS_PHONENUMBER: 'Biznisz telefonszám',
+  BUISNESS_PHONE_NUMBER: 'Biznisz telefonszám',
   EVENT_START_DATE: 'Esemény kezdete',
   EVENT_END_DATE: 'Esemény vége',
   EVENT_STATUS: 'Státusz',
@@ -54,8 +55,11 @@ const locale = {
   EVENT_TYPE_1: 'Buli',
   EVENT_TYPE_2: 'Fesztivál',
   EVENT_TYPE_3: 'Koncert',
-  EVENT_TYPE_4: 'Előodas',
-  EVENT_TYPE_5: 'Egyéb'
+  EVENT_TYPE_4: 'Előadas',
+  EVENT_TYPE_5: 'Egyéb',
+  CANT_EDIT: 'Az esemény egyes adatai már nem szerkeztehtők',
+  PLEASE_CONTACT_SUPPORT: 'Kérjük vegye fel a kapcsolatot az ügyfélszolgálattal',
+  EDIT_EVENT_ATTENCION: 'Eddig szerkeztheted ezt az eseményt: '
 };
 
 export default locale;

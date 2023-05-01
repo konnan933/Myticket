@@ -4,6 +4,7 @@ const locale = {
   EVENT_CATEGORY: 'Category',
   EVENT_BUISNESS_EMAIL: 'Buisness email',
   EVENT_BUISNESS_PHONENUMBER: 'Buisness phone number',
+  BUISNESS_PHONE_NUMBER: 'Buisness phone number',
   EVENT_START_DATE: 'Event start date',
   EVENT_END_DATE: 'Event end date',
   EVENT_STATUS: 'Status',
@@ -50,7 +51,10 @@ const locale = {
   EVENT_TYPE_2: 'Festival',
   EVENT_TYPE_3: 'Concert',
   EVENT_TYPE_4: 'Show',
-  EVENT_TYPE_5: 'Other'
+  EVENT_TYPE_5: 'Other',
+  CANT_EDIT: 'You cant edit some details on this event',
+  PLEASE_CONTACT_SUPPORT: 'Please contact support',
+  EDIT_EVENT_ATTENCION: 'You can edit this event until: '
 };
 
 export default locale;
