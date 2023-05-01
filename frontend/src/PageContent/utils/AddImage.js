@@ -89,9 +89,6 @@ function Addimage({ setImageId }) {
                 onChange={(event) => {
                   if (checkDimensions(event.target.files[0])) {
                     setPath(event.target.files[0]);
-                    console.log('asd');
-                  } else {
-                    console.log('jo');
                   }
                 }}
               />
@@ -119,6 +116,7 @@ function Addimage({ setImageId }) {
                     onClick={() => {
                       dispatch(addPicture(path)).then((respone) => {
                         setIsSent(true);
+                        console.log(respone);
                         setImageId(respone.payload);
                         setOpen(false);
                       });

@@ -20,8 +20,10 @@ import Loader from 'PageContent/utils/Loader';
 import { getEventTypes } from 'redux/thunks/EventTypes';
 import { getLocationNames } from 'redux/thunks/Location';
 import { addEvent } from 'redux/thunks/Event';
+import { useNavigate } from 'react-router-dom';
 
 function UserAddEventForm() {
+  const navigate = useNavigate();
   const { locationNames, addedLocation } = useSelector((state) => state.location);
   const { loggedUser } = useSelector((state) => state.auth);
   const { t } = useTranslation('userAddEvent');
@@ -114,7 +116,9 @@ function UserAddEventForm() {
             data.user = loggedUser.id;
             data.location = locationName.id;
             data.image = imageId;
-            dispatch(addEvent(data));
+            dispatch(addEvent(data)).then(() => {
+              navigate('/userEvents');
+            });
           })}>
           <fieldset>
             <div className="flex pb-6">
