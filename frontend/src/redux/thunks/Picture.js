@@ -14,7 +14,6 @@ export const addPicture = createAsyncThunk(
       fd.append('path', path);
       const response = await api.post(picture.addPicture, fd).then((response) => {
         i18nReduxToast(i18n.language, 'Success');
-        console.log(response);
         dispatch(setImageId(response.data));
       });
       return response?.data;

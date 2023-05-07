@@ -68,8 +68,8 @@ class BasketController extends Controller
             ->selectRaw('conceptticket.price * basket.numberOfTickets as price')
             ->join('basket', 'basket.eventId', '=', 'events.id')
             ->join('locations', 'locations.id', '=', 'events.location')
-            ->join('ticketTypes', 'ticketTypes.id', '=', 'basket.conceptTicketId')
             ->join('conceptticket', 'conceptticket.conceptTicketId', '=', 'basket.conceptTicketId')
+            ->join('ticketTypes', 'ticketTypes.id', '=', 'conceptticket.type')
             ->where('basket.user', '=', $userId)
             ->get();
         return $basket;

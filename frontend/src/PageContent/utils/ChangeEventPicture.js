@@ -28,8 +28,6 @@ function ChangeEventPicture() {
       image.src = e.target.result;
       image.onload = () => {
         const { height, width } = image;
-        console.log(height);
-        console.log(width);
         if (width === 1280 && height === 720) {
           setIsNotValid(false);
           setPath(imgUrl);
