@@ -4,9 +4,7 @@ import { allRootConfig } from 'pages/routes/RootConfig';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ProtectedLink from 'pages/routes/ProtectedLink';
-import { useSelector } from 'react-redux';
 function App() {
-  const { login } = useSelector((state) => state.auth);
   return (
     <div className="App">
       <Navbar />
@@ -17,7 +15,7 @@ function App() {
               key={index}
               path={root.pagePath}
               element={
-                <ProtectedLink level={root.level} userLevel={login[0].level}>
+                <ProtectedLink level={root.level} userLevel={Number(localStorage.getItem('level'))}>
                   {root.element}
                 </ProtectedLink>
               }

@@ -10,27 +10,10 @@ import EventSlice from './slices/EventSlice';
 import UserSlice from './slices/UserSlice';
 import PictureSlice from './slices/PictureSlice';
 import BasketSlice from './slices/BasketSlice';
-import {
-  persistStore,
-  persistReducer,
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER
-} from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
-
-const persistConfig = {
-  key: 'root',
-  version: 1,
-  storage
-};
 
 const store = configureStore({
   reducer: {
-    auth: persistReducer(persistConfig, AuthSlice),
+    auth: AuthSlice,
     admin: AdminSlice,
     location: LocationSlice,
     eventTypes: EventTypes,
@@ -41,13 +24,6 @@ const store = configureStore({
     user: UserSlice,
     picture: PictureSlice,
     basket: BasketSlice
-  },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
-      }
-    })
+  }
 });
-export let persistor = persistStore(store);
 export default store;

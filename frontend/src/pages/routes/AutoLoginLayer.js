@@ -14,6 +14,7 @@ function AutoLoginLayer({ children }) {
       dispatch(fetchLoggedIn());
       dispatch(setRememberMe(true));
     }
+    localStorage.setItem('level', 0);
   }, []);
 
   if (loginLoading) {

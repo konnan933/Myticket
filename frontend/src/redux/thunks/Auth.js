@@ -15,6 +15,7 @@ export const fetchLogin = createAsyncThunk(
       await api.get('/sanctum/csrf-cookie');
       const response = await api.post(auth.login, data).then((response) => {
         dispatch(setLoggedIn(true));
+        localStorage.setItem('level', response.data[0].level);
         dispatch(setRememberMe(rememberMe));
         dispatch(setLoggedUser(response.data[0]));
         return response;
@@ -36,6 +37,7 @@ export const fetchLogout = createAsyncThunk(
   async (_, { dispatch, rejectWithValue }) => {
     try {
       await api.post(auth.logout).then(() => {
+        localStorage.setItem('level', 0);
         dispatch(setLogin());
         dispatch(setRememberMe(false));
         dispatch(setLoggedIn(false));

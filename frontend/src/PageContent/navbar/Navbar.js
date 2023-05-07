@@ -36,6 +36,7 @@ export default function Navbar() {
         sx={{ backgroundColor: '#262626', marginBottom: 2, height: 56, position: 'sticky' }}>
         {matches && (
           <div className="h-full flex justify-end items-center">
+            {loggedIn && matches && <BasketButton />}
             <Toolbar>
               <IconButton
                 size="large"
