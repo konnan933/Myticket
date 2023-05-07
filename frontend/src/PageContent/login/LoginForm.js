@@ -3,11 +3,13 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { fetchLogin } from 'redux/thunks/Auth';
 
 function LoginForm() {
   const { register, handleSubmit } = useForm();
   const { t } = useTranslation('login');
+  const navigation = useNavigate();
 
   const loginObj = {
     email: 'odornorbert.on@gmail.com',
@@ -35,6 +37,7 @@ function LoginForm() {
     <form
       onSubmit={handleSubmit((data) => {
         dispatch(fetchLogin({ data, rememberMe: loginData.rememberMe }));
+        navigation(-1);
       })}
       className="w-full">
       <fieldset className=" flex justify-center items-center">
