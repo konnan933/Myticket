@@ -29,10 +29,9 @@ function UserDetailedEvent() {
   const width = useMediaQuery('(max-width:768px)');
   const eventTypeValues = { ekId: singleDetailedEvent.ekId, typeName: singleDetailedEvent.name };
 
-  const editDate = moment(
-    new Date().setDate(new Date(singleDetailedEvent.startDate).getDate() - 7)
-  ).format('YYYY-MM-DD');
-
+  const editDateMoment = moment(singleDetailedEvent.startDate);
+  editDateMoment.subtract(7, 'days');
+  const editDate = editDateMoment.format('YYYY-MM-DD');
   const canEdit = moment().isBefore(editDate);
 
   const eventLocationValues = {
