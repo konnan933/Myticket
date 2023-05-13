@@ -12,7 +12,7 @@ use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
-    public function verifyEmailSender($userId)
+    public static function verifyEmailSender($userId)
     {
 
         $user = User::find($userId);

@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EventsController;
 use App\Models\Events;
 use App\Models\User;
@@ -17,7 +18,7 @@ class UserObserver
      */
     public function created(User $user)
     {
-        //
+        AuthController::verifyEmailSender($user->id);
     }
 
     /**

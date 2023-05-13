@@ -1,12 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import user from 'API/User';
-import i18n from 'i18n';
-import { toast } from 'react-toastify';
 import { setLoggedIn, setLoggedUser, setLogin, setRememberMe } from 'redux/slices/AuthSlice';
 import auth from '../../API/Auth';
 import api from '../../axios/axois';
 import { getBasketCounter } from './Basket';
-import { verifyEmail } from './User';
 
 export const fetchLogin = createAsyncThunk(
   'auth/fetchLog',
@@ -59,15 +56,6 @@ export const fetchRegister = createAsyncThunk(
       await api.get('/sanctum/csrf-cookie');
       await api.post(auth.register, data).then((response) => {
         dispatch(fetchLogin({ email: data.email, password: data.password }));
-        dispatch(verifyEmail(response.data.id)).then(() => {
-          if (i18n.language === 'hu') {
-            return toast.success(
-              i18n.t('hu', 'Az megerősítő emailt a megadott email címre kiküldtük!')
-            );
-          } else {
-            return toast.success(i18n.t('en', 'Verification email sent for your email address'));
-          }
-        });
       });
     } catch (err) {
       if (!err.response) {

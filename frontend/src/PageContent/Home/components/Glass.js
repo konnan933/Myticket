@@ -1,9 +1,13 @@
 import { Button, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 function Glass() {
   const { t } = useTranslation('home');
+
+  const { loggedIn } = useSelector((state) => state.auth);
+
   const navigate = useNavigate();
   return (
     <div className=" w-full h-1/10 flex justify-center items-center">
@@ -23,7 +27,11 @@ function Glass() {
           <Button
             variant="outlined"
             onClick={() => {
-              navigate('/userAddEvent');
+              if (loggedIn) {
+                navigate('/userAddEvent');
+              } else {
+                navigate('/login');
+              }
             }}
             sx={{ borderColor: 'white', color: 'white', textTransform: 'none', letterSpacing: 1 }}>
             {t('AD_EVENT_BUTTON')}

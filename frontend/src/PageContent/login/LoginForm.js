@@ -12,12 +12,11 @@ function LoginForm() {
   const navigation = useNavigate();
 
   const loginObj = {
-    email: 'odornorbert.on@gmail.com',
-    password: 'Aa123456@',
-    rememberMe: true
+    email: '',
+    password: '',
+    rememberMe: false
   };
   const [loginData, setLoginData] = useState(loginObj);
-
   const dispatch = useDispatch();
 
   const loginChangeHandler = (event) => {
