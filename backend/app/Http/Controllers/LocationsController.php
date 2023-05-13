@@ -56,7 +56,7 @@ class LocationsController extends Controller
         $locations->save();
     }
 
-    public static function eventLocationBuilder($id)
+    public static function eventLocationBuilder($id, $lng)
     {
         $helyszin_cim = '';
         $location = Locations::find($id);
@@ -67,16 +67,53 @@ class LocationsController extends Controller
         $floor = $location->floor;
         $room = $location->room;
 
-        if ($floor != '') {
-            $floor = ' Emelet ' . $floor;
-        }
-        if ($room != '') {
-            $room = ' Terem ' . $floor;
-        }
+        if ($lng === 'hu') {
 
-        $helyszin_cim = $postcode . ' ' . $distirct . $street .' '. 'utca' . ' ' . $houseNumber . $floor . $room;
+            if ($floor != null) {
+                $floor = ' Emelet ' . $floor;
+            } else {
+                $floor = '';
+            }
 
-        return $helyszin_cim;
+            if ($room != null) {
+                $room = ' Terem ' . $room;
+            } else {
+                $room = '';
+            }
+
+            if ($distirct != null) {
+                $distirct = ' Kerület' . $distirct;
+            } else {
+                $distirct = '';
+            }
+
+            $helyszin_cim = $postcode . ' ' . $distirct . $street . ' ' . 'utca' . ' ' . $houseNumber . $floor . $room;
+
+            return $helyszin_cim;
+        } else {
+
+            if ($floor != null) {
+                $floor = ' FLoor ' . $floor;
+            } else {
+                $floor = '';
+            }
+
+            if ($room != null) {
+                $room = ' Room ' . $room;
+            } else {
+                $room = '';
+            }
+
+            if ($distirct != null) {
+                $distirct = ' Distirct' . $distirct;
+            } else {
+                $distirct = '';
+            }
+
+            $helyszin_cim = $postcode . ' ' . $distirct . $street . ' ' . 'utca' . ' ' . $houseNumber . $floor . $room;
+
+            return $helyszin_cim;
+        }
     }
 
     public function getLocationNames()

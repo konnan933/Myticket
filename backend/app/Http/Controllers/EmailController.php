@@ -57,7 +57,7 @@ class EmailController extends Controller
         $esemeny_nev = Events::find($tickets->eventId)->title;
         $ticketTypes = TicketTypes::find(ConceptTicket::find($tickets->conceptTicketId)->type)->name;
         $esemeny = Events::find($tickets->eventId);
-        $helyszin_cim = LocationsController::eventLocationBuilder($esemeny->location);
+        $helyszin_cim = LocationsController::eventLocationBuilder($esemeny->location, $user->language);
         /*  $eventPicture = EventsController::getPicture($esemeny->id);  */
         $eventPicture = Storage::path(Image::find($esemeny->image)->path);
         $jegy_ar = ConceptTicket::find($tickets->conceptTicketId)->price;
@@ -114,10 +114,10 @@ class EmailController extends Controller
         $startDate = $event->startDate;
         $endDate = $event->endDate;
         $location_name = Locations::find($event->location)->name;
-        $location_address = LocationsController::eventLocationBuilder($event->location);
 
 
         foreach ($userTicket as $user) {
+            $location_address = LocationsController::eventLocationBuilder($event->location, $user->language);
             $user = User::find($user->id);
             $userName = $user->userName;
             $email = $user->email;

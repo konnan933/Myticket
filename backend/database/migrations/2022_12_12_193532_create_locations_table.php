@@ -18,11 +18,11 @@ return new class extends Migration
             $table->id('id');
             $table->char('name', 50);
             $table->smallInteger('postcode');
-            $table->char('district', 9)->default('');
+            $table->char('district', 9)->nullable();
             $table->string('street');
             $table->smallInteger('houseNumber');
-            $table->char('floor', 3)->nullable()->default('');
-            $table->char('room', 20)->nullable()->default('');
+            $table->char('floor', 3)->nullable();
+            $table->char('room', 20)->nullable();
         });
 
         Locations::create(['name' => 'REMIX', 'postcode' => '2320', 'street' => 'Szep', 'houseNumber' => '10']);

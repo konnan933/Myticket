@@ -177,7 +177,7 @@ function UserAddEventForm() {
                 className="border-2 "
               />
 
-              <FormControl>
+              <FormControl required>
                 <InputLabel shrink={true} id="demo-simple-select-label">
                   {t('EVENT_TYPE')}
                 </InputLabel>
@@ -185,7 +185,6 @@ function UserAddEventForm() {
                   {...register('eventType')}
                   value={eventType}
                   notched={true}
-                  required
                   label={t('EVENT_TYPE')}
                   onChange={eventTypeChangeHandler}
                   inputProps={{ 'aria-label': 'Without label' }}>
@@ -210,6 +209,7 @@ function UserAddEventForm() {
               />
 
               <TextField
+                required
                 {...register('startDate')}
                 error={startDateError}
                 defaultValue={date}

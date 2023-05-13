@@ -20,7 +20,8 @@ const locale = {
   CONFIRM_DELETE_TT: 'Do you want to delete this ticket type?',
   EDIT_TT: 'Modify ticket type',
   ADD_TT: 'Add ticket type',
-  ADD_TICKETS: 'Add tickets'
+  ADD_TICKETS: 'Add tickets',
+  IN_BUDAPEST: 'The location is in Budapest ?'
 };
 
 export default locale;

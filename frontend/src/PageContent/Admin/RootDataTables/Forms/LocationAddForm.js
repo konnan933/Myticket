@@ -1,4 +1,4 @@
-import { Button, MenuItem, Select, TextField } from '@mui/material';
+import { Button, MenuItem, Select, TextField, Typography } from '@mui/material';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
@@ -7,12 +7,15 @@ import { addLocation } from 'redux/thunks/Location';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import districts from 'PageContent/utils/Districts';
+import Checkbox from '@mui/material/Checkbox';
 
 function LocationAddForm({ handleClose }) {
   const { t } = useTranslation('rootData');
   const { register, handleSubmit } = useForm();
 
   const dispatch = useDispatch();
+  const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+  const [inBudapest, setInBudapest] = useState(false);
 
   const locationObj = {
     name: '',
@@ -26,6 +29,7 @@ function LocationAddForm({ handleClose }) {
 
   const [locationData, setLocationData] = useState(locationObj);
 
+  const errors = inBudapest && locationData.district === '';
   const locationChangeHandler = (event) => {
     const {
       target: { name, value }
@@ -36,6 +40,9 @@ function LocationAddForm({ handleClose }) {
   return (
     <form
       onSubmit={handleSubmit((data) => {
+        if (!inBudapest) {
+          data.district = null;
+        }
         dispatch(addLocation(data)).then(() => {
           handleClose();
         });
@@ -65,24 +72,35 @@ function LocationAddForm({ handleClose }) {
             label={t('POST_CODE')}
             className="border-2"
           />
-          <FormControl>
-            <InputLabel shrink={true} id="demo-simple-select-label">
-              {t('DISTRICT')}
-            </InputLabel>
-            <Select
-              {...register('district')}
-              value={locationData.district}
-              name="district"
-              notched={true}
-              label={t('DISTRICT')}
-              onChange={locationChangeHandler}>
-              {Object.values(districts).map((disctrict) => (
-                <MenuItem key={disctrict} value={disctrict}>
-                  {`${disctrict} ${t('DISTRICT')}`}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+          <div className="flex flex-row justify-between">
+            <Typography className="pt-3">{t('IN_BUDAPEST')}</Typography>
+            <Checkbox
+              {...label}
+              onChange={() => {
+                setInBudapest(!inBudapest);
+              }}
+            />
+          </div>
+          {inBudapest && (
+            <FormControl required={inBudapest}>
+              <InputLabel shrink={true} id="demo-simple-select-label">
+                {t('DISTRICT')}
+              </InputLabel>
+              <Select
+                {...register('district')}
+                value={locationData.district}
+                name="district"
+                notched={true}
+                label={t('DISTRICT')}
+                onChange={locationChangeHandler}>
+                {Object.values(districts).map((disctrict) => (
+                  <MenuItem key={disctrict} value={disctrict}>
+                    {`${disctrict} ${t('DISTRICT')}`}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          )}
           <TextField
             {...register('street')}
             required
@@ -130,6 +148,7 @@ function LocationAddForm({ handleClose }) {
           <Button
             variant="contained"
             color="info"
+            disabled={errors}
             className=" w-full mt-16"
             aria-label="Sign in"
             type="submit"

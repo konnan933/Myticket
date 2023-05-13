@@ -20,7 +20,8 @@ const locale = {
   CONFIRM_DELETE_TT: 'Biztosan törölni szeretné a jegy tipust?',
   EDIT_TT: 'Jegy type szerkesztése',
   ADD_TT: 'Jegy type hozzáadás',
-  ADD_TICKETS: 'Jegyek hozzáadása'
+  ADD_TICKETS: 'Jegyek hozzáadása',
+  IN_BUDAPEST: 'A helyszín Budapesten van ?'
 };
 
 export default locale;
