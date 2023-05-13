@@ -45,12 +45,15 @@ function Filters() {
     <div className="w-full flex justify-center">
       <form
         onSubmit={handleSubmit((data) => {
+          console.log(data);
           dispatch(
             getFilteredEvent({
               date: data.date === '' ? '*' : data.date,
               eventType: data.eventType === '' ? '*' : data.eventType,
               location:
-                locationName.id === '' || locationName.id === undefined ? '*' : locationName.id
+                data.locationName.id === '' || data.locationName.id === undefined
+                  ? '*'
+                  : data.locationName.id
             })
           );
         })}
@@ -70,6 +73,7 @@ function Filters() {
         <Autocomplete
           className="w-1/3 max-md:w-full"
           options={locationNames}
+          {...register('locationName')}
           getOptionLabel={(option) => (option.name ? option.name : '')}
           value={locationName}
           onChange={(event, newValue) => {
