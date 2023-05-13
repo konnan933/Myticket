@@ -29,12 +29,12 @@ function TicketTypesAdd() {
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description">
           <Box sx={modalStyle}>
+            <div className="flex justify-end">
+              <IconButton color="error" onClick={handleClose}>
+                <CloseIcon fontSize="medium" />
+              </IconButton>
+            </div>
             <div className="flex justify-center">
-              <div className="flex justify-end">
-                <IconButton color="error" onClick={handleClose}>
-                  <CloseIcon fontSize="medium" />
-                </IconButton>
-              </div>
               <h2>{t('ADD_TT')}</h2>
             </div>
             <TicketTypesAddForm handleClose={handleClose} />

@@ -11,8 +11,9 @@ import districts from 'PageContent/utils/Districts';
 function LocationEditForm({ location }) {
   const { t } = useTranslation('rootData');
   const { register, handleSubmit } = useForm();
-
+  const hasDistrict = !(location.district === null || location.district === '');
   const dispatch = useDispatch();
+  console.log(hasDistrict);
 
   const locationObj = {
     name: location.name,
@@ -62,24 +63,26 @@ function LocationEditForm({ location }) {
             label={t('POST_CODE')}
             className="border-2"
           />
-          <FormControl>
-            <InputLabel shrink={true} id="demo-simple-select-label">
-              {t('DISTRICT')}
-            </InputLabel>
-            <Select
-              {...register('district')}
-              value={locationData.district}
-              name="district"
-              notched={true}
-              label={t('DISTRICT')}
-              onChange={locationChangeHandler}>
-              {Object.values(districts).map((disctrict) => (
-                <MenuItem key={disctrict} value={disctrict}>
-                  {`${disctrict} ${t('DISTRICT')}`}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+          {hasDistrict && (
+            <FormControl>
+              <InputLabel shrink={true} id="demo-simple-select-label">
+                {t('DISTRICT')}
+              </InputLabel>
+              <Select
+                {...register('district')}
+                value={locationData.district}
+                name="district"
+                notched={true}
+                label={t('DISTRICT')}
+                onChange={locationChangeHandler}>
+                {Object.values(districts).map((disctrict) => (
+                  <MenuItem key={disctrict} value={disctrict}>
+                    {`${disctrict} ${t('DISTRICT')}`}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          )}
           <TextField
             {...register('street')}
             required

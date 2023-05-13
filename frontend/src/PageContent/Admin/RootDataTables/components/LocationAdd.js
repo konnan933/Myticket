@@ -1,16 +1,17 @@
 import { Box, IconButton, Modal } from '@mui/material';
 import { useState } from 'react';
-import modalStyle from 'PageContent/utils/ModalStyle';
 import { useTranslation } from 'react-i18next';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import LocationAddForm from '../Forms/LocationAddForm';
 import CloseIcon from '@mui/icons-material/Close';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 function LocationAdd() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const { t } = useTranslation('rootData');
+  const matches = useMediaQuery('(min-width:765px)');
 
   return (
     <div>
@@ -28,7 +29,20 @@ function LocationAdd() {
           onClose={handleClose}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description">
-          <Box sx={modalStyle}>
+          <Box
+            sx={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              width: matches ? '40%' : '80%',
+              bgcolor: 'background.paper',
+              boxShadow: 24,
+              p: 4,
+              borderRadius: 7,
+              overflowY: 'auto',
+              height: matches ? '90%' : '99%'
+            }}>
             <div className="flex justify-end">
               <IconButton color="error" onClick={handleClose}>
                 <CloseIcon fontSize="medium" />
