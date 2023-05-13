@@ -59,7 +59,8 @@ const locale = {
   EVENT_TYPE_5: 'Egyéb',
   CANT_EDIT: 'Az esemény egyes adatai már nem szerkeztehtők',
   PLEASE_CONTACT_SUPPORT: 'Kérjük vegye fel a kapcsolatot az ügyfélszolgálattal',
-  EDIT_EVENT_ATTENCION: 'Eddig szerkeztheted ezt az eseményt: '
+  EDIT_EVENT_ATTENCION: 'Eddig szerkeztheted ezt az eseményt: ',
+  DETAILED_DESCRIPTION_INFO: 'Kattintson a leírás megtekintéséhez'
 };
 
 export default locale;

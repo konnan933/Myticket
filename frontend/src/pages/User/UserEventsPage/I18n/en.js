@@ -54,7 +54,8 @@ const locale = {
   EVENT_TYPE_5: 'Other',
   CANT_EDIT: 'You cant edit some details on this event',
   PLEASE_CONTACT_SUPPORT: 'Please contact support',
-  EDIT_EVENT_ATTENCION: 'You can edit this event until: '
+  EDIT_EVENT_ATTENCION: 'You can edit this event until: ',
+  DETAILED_DESCRIPTION_INFO: 'Click to see the description'
 };
 
 export default locale;
