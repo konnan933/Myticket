@@ -3,7 +3,7 @@ const locale = {
   DATE: 'Dátum',
   LOCATION: 'Helyszín',
   CATEGORY: 'Kategória',
-  EVENT_TYPE: 'Esemény tipus',
+  EVENT_TYPE: 'Esemény típus',
   SEARCH: 'Keresés',
   SHOW_EVENT: 'Esemény megtekintése',
   ALL_EVENTS: 'Események',

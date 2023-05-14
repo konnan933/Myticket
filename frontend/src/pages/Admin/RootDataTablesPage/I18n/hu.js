@@ -10,16 +10,16 @@ const locale = {
   STREET: 'Utca',
   ROOM: 'Terem',
   CONFIRM_DELETE_LOCATION: 'Biztosan törölni szeretné a helyszínt?',
-  MANAGE_LOCATION: 'Helyszin szerkeztése',
-  ADD_LOCATION: 'Helyszin felvétele',
+  MANAGE_LOCATION: 'Helyszín szerkeztése',
+  ADD_LOCATION: 'Helyszín felvétele',
   // * eventTypes
-  CONFIRM_DELETE_ET: 'Biztosan törölni szeretné a esemény tipust?',
-  EDIT_ET: 'Esemény type szerkesztése',
-  ADD_ET: 'Esemény type hozzáadás',
+  CONFIRM_DELETE_ET: 'Biztosan törölni szeretné a esemény típust?',
+  EDIT_ET: 'Esemény típus szerkesztése',
+  ADD_ET: 'Esemény típus hozzáadás',
   // * ticketTypes
-  CONFIRM_DELETE_TT: 'Biztosan törölni szeretné a jegy tipust?',
-  EDIT_TT: 'Jegy type szerkesztése',
-  ADD_TT: 'Jegy type hozzáadás',
+  CONFIRM_DELETE_TT: 'Biztosan törölni szeretné a jegy típust?',
+  EDIT_TT: 'Jegy típus szerkesztése',
+  ADD_TT: 'Jegy típus hozzáadás',
   ADD_TICKETS: 'Jegyek hozzáadása',
   IN_BUDAPEST: 'A helyszín Budapesten van ?'
 };

@@ -5,7 +5,7 @@ const locale = {
   NUMBER_OF_TICKETS: 'db',
   PRICE: 'Ára',
   TICKET_STARTS: 'Árúsítás kezdete',
-  TICKET_TYPE: 'Jegy tipus',
+  TICKET_TYPE: 'Jegy típus',
   INTO_BASKET: 'Kosárba'
 };
 
