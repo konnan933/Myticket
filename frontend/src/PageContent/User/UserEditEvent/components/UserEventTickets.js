@@ -38,7 +38,7 @@ function UserEventTickets() {
                     {`${t('ALL_TICKET')}: ${ticket.allTicket} ${t('PORTION')}`}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    {`${t('BOOKED_TCIKET')}: ${ticket.bookedTicket} ${t('PORTION')}`}
+                    {`${t('BOOKED_TICKET')}: ${ticket.bookedTicket} ${t('PORTION')}`}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
                     {`${t('FREE_TICKET')}: ${ticket.freeTicket} ${t('PORTION')}`}

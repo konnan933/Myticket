@@ -26,6 +26,8 @@ const locale = {
   STATUS: 'Status',
   STREET: 'Street',
   SAVE: 'Save',
+  ALL_TICKET: 'All ticket',
+  BOOKED_TICKET: 'Booked tikcet',
   FREE_TICKET: 'Free ticket',
   CLICK_EDIT: 'Tap to edit',
   CLICK_TO_OPEN: 'Tap to open',
@@ -55,7 +57,8 @@ const locale = {
   CANT_EDIT: 'You cant edit some details on this event',
   PLEASE_CONTACT_SUPPORT: 'Please contact support',
   EDIT_EVENT_ATTENCION: 'You can edit this event until: ',
-  DETAILED_DESCRIPTION_INFO: 'Click to see the description'
+  DETAILED_DESCRIPTION_INFO: 'Click to see the description',
+  SALE_DATE_HELPER: 'The event starts at'
 };
 
 export default locale;

@@ -27,7 +27,7 @@ const locale = {
   STREET: 'Utca',
   PORTION: 'Darab',
   ALL_TICKET: 'Összes jegy',
-  BOOKED_TCIKET: 'Foglalt jegy',
+  BOOKED_TICKET: 'Foglalt jegy',
   FREE_TICKET: 'Szabad jegy',
   SAVE: 'Mentés',
   CLICK_EDIT: 'Koppintson a szerkeztéshez',
