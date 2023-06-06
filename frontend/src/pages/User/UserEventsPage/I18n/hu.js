@@ -55,7 +55,7 @@ const locale = {
   EVENT_TYPE_1: 'Buli',
   EVENT_TYPE_2: 'Fesztivál',
   EVENT_TYPE_3: 'Koncert',
-  EVENT_TYPE_4: 'Előadas',
+  EVENT_TYPE_4: 'Előadás',
   EVENT_TYPE_5: 'Egyéb',
   CANT_EDIT: 'Az esemény egyes adatai már nem szerkeztehtők',
   PLEASE_CONTACT_SUPPORT: 'Kérjük vegye fel a kapcsolatot az ügyfélszolgálattal',

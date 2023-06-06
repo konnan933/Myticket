@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('name');
         });
 
-        TicketTypes::create(['name' => 'Early bid']);
+        TicketTypes::create(['name' => 'Early bird']);
         TicketTypes::create(['name' => 'Standard']);
         TicketTypes::create(['name' => 'Sandard 1']);
         TicketTypes::create(['name' => 'VIP']);

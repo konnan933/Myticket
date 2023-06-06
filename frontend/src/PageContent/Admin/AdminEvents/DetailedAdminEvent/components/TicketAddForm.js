@@ -18,7 +18,7 @@ function TicketAddForm() {
   const [currency, setCurrency] = useState('');
   const [startDateErrorMsg, setStartDateErrorMsg] = useState('');
   const [startDateError, setStartDateError] = useState(false);
-  const startDate = moment(singleEvent.endDate).format('yyyy-MM-DDTHH:mm');
+  const startDate = moment(singleEvent.startDate).format('yyyy-MM-DDTHH:mm');
   const [allAmount, setAllAmount] = useState(0);
   const [allAmountError, setAllAmountError] = useState(false);
   const [allAmountErrorMsg, setAllAmountErrorMsg] = useState('');

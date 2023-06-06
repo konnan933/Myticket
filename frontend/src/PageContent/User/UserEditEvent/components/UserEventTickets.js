@@ -23,7 +23,7 @@ function UserEventTickets() {
   return (
     <div>
       <div>
-        <UserAddTicket />;
+        <UserAddTicket />
       </div>
       <div className={`grid ${width ? 'grid-cols-1' : 'grid-cols-2'}`}>
         {eventTickets.map((ticket) => (

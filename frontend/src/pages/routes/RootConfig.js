@@ -112,7 +112,7 @@ export const allRootConfig = [
   {
     pagePath: '/passwordReset/:rndCodePassword',
     element: <ResetPasswordPage />,
-    level: level.user
+    level: level.guest
   },
   {
     pagePath: '/forgotPassword',

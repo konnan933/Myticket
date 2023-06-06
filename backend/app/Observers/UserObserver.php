@@ -18,7 +18,7 @@ class UserObserver
      */
     public function created(User $user)
     {
-        AuthController::verifyEmailSender($user->id);
+        //AuthController::verifyEmailSender($user->id);
     }
 
     /**

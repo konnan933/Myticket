@@ -22,7 +22,7 @@ const locale = {
   EVENT_TYPE_1: 'Buli',
   EVENT_TYPE_2: 'Fesztivál',
   EVENT_TYPE_3: 'Koncert',
-  EVENT_TYPE_4: 'Előodas',
+  EVENT_TYPE_4: 'Előadás',
   EVENT_TYPE_5: 'Egyéb'
 };
 
