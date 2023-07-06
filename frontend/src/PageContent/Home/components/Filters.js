@@ -45,15 +45,12 @@ function Filters() {
     <div className="w-full flex justify-center">
       <form
         onSubmit={handleSubmit((data) => {
-          console.log(data);
           dispatch(
             getFilteredEvent({
               date: data.date === '' ? '*' : data.date,
               eventType: data.eventType === '' ? '*' : data.eventType,
               location:
-                data.locationName.id === '' || data.locationName.id === undefined
-                  ? '*'
-                  : data.locationName.id
+                locationName.id === '' || locationName.id === undefined ? '*' : locationName.id
             })
           );
         })}
@@ -77,6 +74,7 @@ function Filters() {
           getOptionLabel={(option) => (option.name ? option.name : '')}
           value={locationName}
           onChange={(event, newValue) => {
+            console.log(newValue);
             setLocationName(newValue);
           }}
           inputValue={locationNameinput}
